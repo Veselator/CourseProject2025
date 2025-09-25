@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefabs:
   - bulletType: 0
-    prefab: {fileID: 7612053777050718617, guid: 38ac31dd9223b6849bbec96c88711398, type: 3}
+    prefab: {fileID: 7612053777050718617, guid: 725559b4446e4b34abd6f80c50387f9c, type: 3}
   - bulletType: 1
+    prefab: {fileID: 7612053777050718617, guid: 38ac31dd9223b6849bbec96c88711398, type: 3}
+  - bulletType: 2
+    prefab: {fileID: 7612053777050718617, guid: 38ac31dd9223b6849bbec96c88711398, type: 3}
+  - bulletType: 3
     prefab: {fileID: 7612053777050718617, guid: 38ac31dd9223b6849bbec96c88711398, type: 3}

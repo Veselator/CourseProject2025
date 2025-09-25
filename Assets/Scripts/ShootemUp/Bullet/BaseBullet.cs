@@ -73,7 +73,7 @@ public abstract class BaseBullet : MonoBehaviour, IBullet
         Move();
     }
 
-    protected void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         // Если подошли к краю - уничтожаемся
         if (collision.transform.CompareTag("BulletDestroyer")) Destroy(gameObject);
@@ -98,22 +98,30 @@ public abstract class BaseBullet : MonoBehaviour, IBullet
     {
         // Если пуля коснулась игрока и заспавнена игроком - ничего
         if (IsSpawnedByPlayer) return;
-        entity.TakeDamage(damage);
+        Hit(entity);
+        // В любом случае уничтожаем после контакта
+        Destroy(gameObject);
     }
 
     protected virtual void OnCollidedWithEnemy(IHealth entity)
     {
         if (!IsSpawnedByPlayer) return;
+        Hit(entity);
+        Destroy(gameObject);
+    }
+
+    protected virtual void Hit(IHealth entity)
+    {
         entity.TakeDamage(damage);
+    }
+
+    protected virtual void OnDestroy()
+    {
+        // Какие-то эффекты прописать по умолчанию
     }
 
     public override string ToString()
     {
         return $"I`m a bullet with direction {direction}, speed {speed}, and I`m {(IsSpawnedByPlayer ? "" : "not ")}spawned by player";
-    }
-
-    private void OnDestroy()
-    {
-        // Какие-то эффекты прописать
     }
 }
