@@ -116,7 +116,11 @@ public abstract class BaseEnemy : MonoBehaviour, IEnemy
 
     protected virtual void DestroyEnemy()
     {
-        GlobalFlags.ToggleFlag(GlobalFlags.Flags.SHOOTEMUP_ENEMY_DIED);
+        // Сообщаем, что мы умерли
+        // НО
+        // важно также учитывать характер смерти - от столкновения с игроком, от пули или от достижения границы
+        WavesManager.OnEnemyDied?.Invoke();
+        //GlobalFlags.ToggleFlag(GlobalFlags.Flags.SHOOTEMUP_ENEMY_DIED);
         // Здесь можно добавить эффекты уничтожения, дроп и т.д.
         Destroy(gameObject);
     }

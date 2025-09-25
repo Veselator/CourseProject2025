@@ -13,12 +13,16 @@ public class WavesManager : MonoBehaviour
     public int TotalNumOfWaves => _waves.TotalNumOfWaves;
     private int currentWaveIndex;
     public int TotalNumOfEnemiesInWave { get; private set; }
+    private int currentNumOfEnemiesInWave;
+    public int CurrentNumOfEnemiesInWave => currentNumOfEnemiesInWave;
 
     [SerializeField] private Box spawningArea;
     public static WavesManager Instance { get; private set; }
     public bool IsWaveEnded { get; private set; }
+    private bool isAbleToEnd;
 
     public Action OnWaveEnded;
+    public static Action OnEnemyDied;
 
     [Inject]
     public void Construct(WavesStreamConfig wavesStrConfig)
@@ -36,6 +40,7 @@ public class WavesManager : MonoBehaviour
         currentWaveIndex = 0;
         _enemySpawner = EnemySpawner.Instance;
         GlobalFlags.onFlagChanged += CheckGlobalFlag;
+        OnEnemyDied += CheckEnemyDied;
 
         StartWave();
     }
@@ -43,6 +48,35 @@ public class WavesManager : MonoBehaviour
     private void OnDestroy()
     {
         GlobalFlags.onFlagChanged -= CheckGlobalFlag;
+        OnEnemyDied -= CheckEnemyDied;
+    }
+
+    private void CheckEnemyDied()
+    {
+        currentNumOfEnemiesInWave--;
+
+        CheckNextWave();
+    }
+
+    private void CheckNextWave()
+    {
+        // Проверка - надо ли заканчивать эту волну
+        if (currentNumOfEnemiesInWave == 0 && isAbleToEnd)
+        {
+            currentWaveIndex++;
+            IsWaveEnded = true;
+
+            // Проверяем, закончились ли волны
+            // Если да - что-то делаем
+            if (currentWaveIndex == TotalNumOfWaves)
+            {
+                GlobalFlags.ToggleFlag(GlobalFlags.Flags.GAME_WIN);
+                return;
+            }
+
+            // Если волны не закончились - продолжаем
+            OnWaveEnded?.Invoke();
+        }
     }
 
     private void CheckGlobalFlag(string flagName, bool flagState)
@@ -69,9 +103,12 @@ public class WavesManager : MonoBehaviour
     {
         yield return new WaitForSeconds(_waves.timeBeforeStart);
         IsWaveEnded = false;
+        isAbleToEnd = false;
 
         WaveConfig currentWave = _waves[currentWaveIndex];
         TotalNumOfEnemiesInWave = currentWave.enemyStreamConfigs.Sum(a => a.count);
+        currentNumOfEnemiesInWave = TotalNumOfEnemiesInWave;
+
         Debug.Log($"Total num of enemies in current wave: {TotalNumOfEnemiesInWave}");
 
         foreach (var enemyStream in currentWave.enemyStreamConfigs)
@@ -93,16 +130,9 @@ public class WavesManager : MonoBehaviour
 
             yield return new WaitForSeconds(enemyStream.delayAfterEndOfStream);
         }
-        currentWaveIndex++;
-        IsWaveEnded = true;
-        OnWaveEnded?.Invoke();
 
-        // Проверяем, закончились ли волны
-        if (currentWaveIndex == TotalNumOfWaves)
-        {
-            GlobalFlags.ToggleFlag(GlobalFlags.Flags.GAME_WIN);
-            yield break;
-        }
+        isAbleToEnd = true;
+        CheckNextWave();
 
         // Переключаем только тогда, когда все враги умрут
         //GlobalFlags.ToggleFlag(GlobalFlags.Flags.SHOOTEMUP_WAVE_ENDED);

@@ -246,7 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10ecbec003463ae4993bd1cfad02afff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _direction: {x: 0, y: -1}
+  direction: {x: 0, y: -1}
   delay: 0.63
   currentBulletType: 0
   spawnBulletsPoint: {fileID: 7887360541593810713}

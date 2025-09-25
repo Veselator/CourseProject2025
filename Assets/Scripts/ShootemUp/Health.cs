@@ -12,6 +12,10 @@ public class Health : MonoBehaviour, IHealth
     public float MaximumHealth
     {
         get => maxHealth;
+        set
+        {
+            maxHealth = value;
+        }
     }
 
     [SerializeField] private float maximumArmor;
