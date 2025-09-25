@@ -3,3 +3,5 @@
 Склад команди:
 - Борис Соломка (тімлід)
 - Олексій Саєнко
+
+Дизайн-документ: https://docs.google.com/document/d/1XC4C-vvGw8esqU0ubh5JrW8huCUPlw5-wlfDsbKTEM0/edit?tab=t.0
