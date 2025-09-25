@@ -17,6 +17,9 @@ public class Health : MonoBehaviour, IHealth
     [SerializeField] private float maximumArmor;
     public float MaximumArmor { get; }
     private float currentArmor;
+
+    public GameObject Instance => this.gameObject;
+
     public float Armor
     {
         get => Mathf.Clamp(currentArmor, 0f, maximumArmor);
@@ -74,7 +77,7 @@ public class Health : MonoBehaviour, IHealth
         {
             currentHealth -= damage.damageMultiplier * damage.damageHealth;
         }
-        Debug.Log($"Damage dealed. I`m hp = {currentHealth} & arm = {currentArmor}");
+        Debug.Log($"Damage dealed hpd {damage.damageHealth} armd {damage.damageArmor} dmp {damage.damageMultiplier}. I`m hp = {currentHealth} & arm = {currentArmor}");
         OnDamaged?.Invoke();
 
         if (IsDied) OnDeath?.Invoke();

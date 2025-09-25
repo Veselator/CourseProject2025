@@ -7,6 +7,7 @@ public interface IHealth
 {
     float MaximumHealth { get; }
     float CurrentHealth { get; set; }
+    GameObject Instance { get; }
 
     // Если есть броня, то урон сниженый
     float MaximumArmor { get; } // Сколько максимум может быть брони

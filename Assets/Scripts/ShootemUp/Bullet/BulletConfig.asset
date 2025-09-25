@@ -18,6 +18,6 @@ MonoBehaviour:
   - bulletType: 1
     prefab: {fileID: 7612053777050718617, guid: 38ac31dd9223b6849bbec96c88711398, type: 3}
   - bulletType: 2
-    prefab: {fileID: 7612053777050718617, guid: 38ac31dd9223b6849bbec96c88711398, type: 3}
+    prefab: {fileID: 3622054379257392472, guid: dd7424b260fe1914d8b9816940f41b0c, type: 3}
   - bulletType: 3
-    prefab: {fileID: 7612053777050718617, guid: 38ac31dd9223b6849bbec96c88711398, type: 3}
+    prefab: {fileID: 8865029649500105291, guid: e5cfda8be49128b46a31fd2d55621375, type: 3}

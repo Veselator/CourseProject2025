@@ -17,7 +17,7 @@ public abstract class BaseBullet : MonoBehaviour, IBullet
 
     private bool isSpawnedByPLayer;
     public bool IsSpawnedByPlayer { get => isSpawnedByPLayer; }
-
+    public GameObject Instance => this.gameObject;
     public float Speed => speed;
     public Vector2 Direction
     {

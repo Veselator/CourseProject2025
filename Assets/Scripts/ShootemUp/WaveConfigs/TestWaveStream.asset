@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - enemyStreamConfigs:
-    - enemyType: 1
+    - enemyType: 4
       movingPatternType: 4
       startX: 0.099
       endX: 0.75
       count: 6
       delayBetweenSpawns: 0.71
-      delayAfterEndOfStream: 5
+      delayAfterEndOfStream: 3.01
     - enemyType: 0
       movingPatternType: 1
       startX: 0.664

@@ -23,9 +23,6 @@ public class BouncingBullet : BaseBullet
 
             if (isPlayer) OnCollidedWithPlayer(entity);
             else OnCollidedWithEnemy(entity);
-
-            
-
         }
     }
 
@@ -36,25 +33,39 @@ public class BouncingBullet : BaseBullet
         Hit(entity);
 
         // TODO: логика отражения!
+        Reflect(entity);
     }
 
     protected override void OnCollidedWithEnemy(IHealth entity)
     {
         if (!IsSpawnedByPlayer) return;
         Hit(entity);
+        Reflect(entity);
     }
 
-    private void Reflect(Collider2D collider)
+    private void Reflect(IHealth entity)
     {
+        if (currentNumOfReflections > maxNumOfReflections)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Debug.Log($"BULLET REFLECTED! old direction = {Direction}");
         currentNumOfReflections++;
-        Vector2 normal = GetSurfaceNormal(collider);
-        Direction = Vector2.Reflect(Direction, normal);
-    }
 
-    private Vector2 GetSurfaceNormal(Collider2D hitCollider)
-    {
-        // Простой способ - направление от центра коллайдера к пуле
-        return (transform.position - hitCollider.transform.position).normalized;
+        float minAngle = -45f;
+        float maxAngle = 45f;
+
+        Vector2 normal = new Vector2(0, -1);
+        Vector2 reflected = Vector2.Reflect(Direction, normal).normalized;
+
+        float randomAngle = Random.Range(minAngle, maxAngle);
+        Vector2 newDirection = Quaternion.Euler(0, 0, randomAngle) * reflected;
+        Direction = newDirection.normalized;
+
+        damage.damageMultiplier *= 0.7f;
+        Debug.Log($"                 normal: {normal} new Direction = {Direction} (angle offset: {randomAngle})");
     }
 
     protected override void Hit(IHealth entity)

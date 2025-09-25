@@ -103,7 +103,7 @@ MonoBehaviour:
   damage:
     damageHealth: 25
     damageArmor: 0
-    damageMultiplayer: 1
+    damageMultiplier: 1
   lifetime: 4
 --- !u!61 &217448018343412268
 BoxCollider2D:

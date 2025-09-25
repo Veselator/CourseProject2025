@@ -15,7 +15,7 @@ public class WavesManager : MonoBehaviour
     public int TotalNumOfEnemiesInWave { get; private set; }
 
     [SerializeField] private Box spawningArea;
-    public WavesManager Instance { get; private set; }
+    public static WavesManager Instance { get; private set; }
     public bool IsWaveEnded { get; private set; }
 
     [Inject]

@@ -26,7 +26,15 @@ public class BulletSpawner : MonoBehaviour
     private GameObject currentBulletPrefab;
     [SerializeField] private Transform spawnBulletsPoint;
     [SerializeField] private bool isPlayerSpawner;
-    public float DamageMultiplayer { get; set; }
+    private float damageMultiplier = 1f;
+    public float DamageMultiplayer
+    {
+        get => damageMultiplier;
+        set
+        {
+            damageMultiplier = Mathf.Max(0f, value);
+        }
+    }
 
     private float timer;
 

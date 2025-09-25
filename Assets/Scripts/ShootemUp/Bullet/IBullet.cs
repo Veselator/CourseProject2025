@@ -7,6 +7,7 @@ public interface IBullet
     float Speed { get; }
     Vector2 Direction { get; set; }
     bool IsSpawnedByPlayer { get; }
+    GameObject Instance { get; }
 
     void Move();
     void Initialize(Vector2 startDirection, float bulletSpeed, bool isSpawnedByPlayer, float damageMultiplayer);

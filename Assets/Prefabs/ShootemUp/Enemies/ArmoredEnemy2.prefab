@@ -175,7 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 60
   maximumArmor: 55
-  isArmored: 0
+  isArmored: 1
 --- !u!114 &643910971502515373
 MonoBehaviour:
   m_ObjectHideFlags: 0
