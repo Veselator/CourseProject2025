@@ -48,6 +48,7 @@ public class UpgradesManager : MonoBehaviour
         _wavesManager = WavesManager.Instance;
         _wavesManager.OnWaveEnded += OnWaveEnded;
 
+        // Ќужно добавить возможность множественного добавлени€ один и тех же элементов.
         _availableUpgrades = UpgradesConfig.upgrades.Values.ToList();
     }
 
