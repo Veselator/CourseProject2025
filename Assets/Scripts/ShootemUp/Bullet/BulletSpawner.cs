@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VContainer;
 
 public class BulletSpawner : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class BulletSpawner : MonoBehaviour
     [Min(0.1f)] // Минимальное значение
     [SerializeField] private float delay;
 
-    [SerializeField] private BulletConfig _bulletConfig;
+    private BulletConfig _bulletConfig;
     [SerializeField] private BulletType currentBulletType;
     public BulletType CurrentBulletType
     {
@@ -25,8 +26,21 @@ public class BulletSpawner : MonoBehaviour
     private GameObject currentBulletPrefab;
     [SerializeField] private Transform spawnBulletsPoint;
     [SerializeField] private bool isPlayerSpawner;
+    public float DamageMultiplayer { get; set; }
 
     private float timer;
+
+    [Inject]
+    public void Construct(BulletConfig bulletConfig)
+    {
+        Init(bulletConfig);
+    }
+
+    public void Init(BulletConfig bulletConfig)
+    {
+        Debug.Log("BulletConfig inited succesfully");
+        _bulletConfig = bulletConfig;
+    }
 
     private void Start()
     {
@@ -51,9 +65,9 @@ public class BulletSpawner : MonoBehaviour
 
     private void SpawnBullet()
     {
-        GameObject lastBullet = Instantiate(currentBulletPrefab, spawnBulletsPoint.position, Quaternion.identity); // TODO: поворот
+        GameObject lastBullet = Instantiate(currentBulletPrefab, spawnBulletsPoint.position, Quaternion.identity);
         
-        lastBullet.GetComponent<IBullet>().Initialize(_direction, isPlayerSpawner);
+        lastBullet.GetComponent<IBullet>().Initialize(_direction, isPlayerSpawner, DamageMultiplayer);
         //Debug.Log(lastBullet.GetComponent<IBullet>());
     }
 }

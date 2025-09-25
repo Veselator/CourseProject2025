@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 217448018343412268}
   - component: {fileID: 1153391425344850014}
   m_Layer: 0
-  m_Name: RegularBulletPrefab
+  m_Name: AntiArmor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 013b3c4799884074087d588b0452414a, type: 3}
-  m_Color: {r: 1, g: 0.96559113, b: 0, a: 1}
+  m_Color: {r: 0.08395338, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,10 +99,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03b47570173cb134684f176c9eae9b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 22.56
+  speed: 18.1
   damage:
-    damageHealth: 25
-    damageArmor: 2
+    damageHealth: 2
+    damageArmor: 25
+    damageMultiplayer: 1
   lifetime: 4
 --- !u!61 &217448018343412268
 BoxCollider2D:
