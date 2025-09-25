@@ -18,6 +18,8 @@ public class WavesManager : MonoBehaviour
     public static WavesManager Instance { get; private set; }
     public bool IsWaveEnded { get; private set; }
 
+    public Action OnWaveEnded;
+
     [Inject]
     public void Construct(WavesStreamConfig wavesStrConfig)
     {
@@ -93,6 +95,7 @@ public class WavesManager : MonoBehaviour
         }
         currentWaveIndex++;
         IsWaveEnded = true;
+        OnWaveEnded?.Invoke();
 
         // Проверяем, закончились ли волны
         if (currentWaveIndex == TotalNumOfWaves)
