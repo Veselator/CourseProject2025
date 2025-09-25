@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - enemyStreamConfigs:
-    - enemyType: 0
+    - enemyType: 1
       movingPatternType: 4
       startX: 0.099
       endX: 0.75

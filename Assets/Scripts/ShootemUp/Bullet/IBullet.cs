@@ -9,6 +9,7 @@ public interface IBullet
     bool IsSpawnedByPlayer { get; }
 
     void Move();
-    void Initialize(Vector2 startDirection, float bulletSpeed, bool isSpawnedByPlayer);
+    void Initialize(Vector2 startDirection, float bulletSpeed, bool isSpawnedByPlayer, float damageMultiplayer);
+    void Initialize(Vector2 startDirection, bool isSpawnedByPlayer, float damageMultiplayer);
     void Initialize(Vector2 startDirection, bool isSpawnedByPlayer);
 }

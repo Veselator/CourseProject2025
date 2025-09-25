@@ -15,3 +15,5 @@ MonoBehaviour:
   bulletPrefabs:
   - bulletType: 0
     prefab: {fileID: 7612053777050718617, guid: 38ac31dd9223b6849bbec96c88711398, type: 3}
+  - bulletType: 1
+    prefab: {fileID: 7612053777050718617, guid: 38ac31dd9223b6849bbec96c88711398, type: 3}

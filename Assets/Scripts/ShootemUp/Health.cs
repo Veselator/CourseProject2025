@@ -57,8 +57,8 @@ public class Health : MonoBehaviour, IHealth
         if (isArmored)
         {
             // Дополнительный урок
-            float excessDamage = damage.damageArmor - currentArmor;
-            currentArmor -= damage.damageArmor;
+            float excessDamage = damage.damageMultiplier * damage.damageArmor - currentArmor;
+            currentArmor -= damage.damageMultiplier * damage.damageArmor;
             if (currentArmor <= 0f)
             {
                 OnArmoryDestoyed?.Invoke();
@@ -66,15 +66,15 @@ public class Health : MonoBehaviour, IHealth
 
                 if (excessDamage > 0f)
                 {
-                    currentHealth -= excessDamage;
+                    currentHealth -= damage.damageMultiplier * excessDamage;
                 }
             }
         }
         else
         {
-            currentHealth -= damage.damageHealth;
+            currentHealth -= damage.damageMultiplier * damage.damageHealth;
         }
-        Debug.Log($"Damage dealed {damage}. I`m hp = {currentHealth} & arm = {currentArmor}");
+        Debug.Log($"Damage dealed. I`m hp = {currentHealth} & arm = {currentArmor}");
         OnDamaged?.Invoke();
 
         if (IsDied) OnDeath?.Invoke();

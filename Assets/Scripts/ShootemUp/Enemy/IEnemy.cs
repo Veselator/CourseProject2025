@@ -2,9 +2,10 @@
 public enum EnemyType
 {
     Regular,
+    RegularShooting,
     Armored1,
     Armored2,
-    Heavy,
+    ArmoredShooting,
     Fast,
     Boss
 }

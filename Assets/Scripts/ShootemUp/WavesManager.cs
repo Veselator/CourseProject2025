@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using VContainer;
 
 public class WavesManager : MonoBehaviour
 {
-    [SerializeField] private WavesStreamConfig _waves;
+    private WavesStreamConfig _waves;
     private EnemySpawner _enemySpawner;
 
     public int TotalNumOfWaves => _waves.TotalNumOfWaves;
@@ -16,6 +17,12 @@ public class WavesManager : MonoBehaviour
     [SerializeField] private Box spawningArea;
     public WavesManager Instance { get; private set; }
     public bool IsWaveEnded { get; private set; }
+
+    [Inject]
+    public void Construct(WavesStreamConfig wavesStrConfig)
+    {
+        _waves = wavesStrConfig;
+    }
 
     private void Awake()
     {

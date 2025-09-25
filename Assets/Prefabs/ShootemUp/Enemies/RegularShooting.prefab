@@ -63,7 +63,7 @@ Transform:
   m_GameObject: {fileID: 2928121809797406077}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.924798, y: 1.1498535, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -246,9 +246,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10ecbec003463ae4993bd1cfad02afff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _direction: {x: 0, y: 0}
-  delay: 0
-  _bulletConfig: {fileID: 0}
+  _direction: {x: 0, y: -1}
+  delay: 0.63
   currentBulletType: 0
-  spawnBulletsPoint: {fileID: 0}
+  spawnBulletsPoint: {fileID: 4625196801996111061}
   isPlayerSpawner: 0

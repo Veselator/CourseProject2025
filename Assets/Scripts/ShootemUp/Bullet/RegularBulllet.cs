@@ -10,14 +10,17 @@ public class RegularBullet : BaseBullet
         Destroy(gameObject, lifetime);
     }
 
-    protected new void OnTriggerEnter2D(Collider2D collision)
+    protected override void OnCollidedWithPlayer(IHealth entity)
     {
-        base.OnTriggerEnter2D(collision);
+        if (IsSpawnedByPlayer) return;
+        entity.TakeDamage(damage);
+        Destroy(gameObject);
+    }
 
-        // Если коснулись игрока, и при этом пуля заспавнена игроком - игнорируем
-        if (IsSpawnedByPlayer && collision.gameObject.TryGetComponent<PlayerMovementHandler>(out var _)) return;
-
-        // Уничтожаем пулю при любом столкновении
+    protected override void OnCollidedWithEnemy(IHealth entity)
+    {
+        if (!IsSpawnedByPlayer) return;
+        entity.TakeDamage(damage);
         Destroy(gameObject);
     }
 }

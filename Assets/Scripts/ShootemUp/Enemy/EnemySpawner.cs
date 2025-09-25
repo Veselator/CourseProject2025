@@ -1,8 +1,12 @@
 using UnityEngine;
+using VContainer;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private EnemyConfig enemyConfig;
+    private EnemyConfig enemyConfig;
+    private BulletConfig bulletConfig;
+    // VContainer
+    private IObjectResolver resolver;
 
     // Вызываем для спавна врагов
 
@@ -12,6 +16,14 @@ public class EnemySpawner : MonoBehaviour
     // Что просто супер
 
     public static EnemySpawner Instance { get; private set; }
+
+    [Inject]
+    public void Construct(IObjectResolver resolver, EnemyConfig enemyConfig, BulletConfig bulletConfig)
+    {
+        this.resolver = resolver;
+        this.enemyConfig = enemyConfig;
+        this.bulletConfig = bulletConfig;
+    }
 
     private void Awake()
     {
@@ -33,6 +45,11 @@ public class EnemySpawner : MonoBehaviour
         GameObject enemyObject = Instantiate(enemyPrefab, spawnData.spawnPosition, Quaternion.identity);
 
         BaseEnemy enemy = enemyObject.GetComponent<BaseEnemy>();
+        if (enemyObject.TryGetComponent<BulletSpawner>(out var bulletSpawner))
+        {
+            bulletSpawner.Init(bulletConfig);
+        }
+
         if (enemy != null)
         {
             // Вызываем фабрику для паттерна

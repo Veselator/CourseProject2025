@@ -1,9 +1,12 @@
 using UnityEngine;
+using VContainer;
 
 public abstract class BaseEnemy : MonoBehaviour, IEnemy
 {
     [SerializeField] protected IHealth _healthTracker;
     [SerializeField] protected IMovement _movement;
+    private IObjectResolver resolver;
+    private BulletConfig _bulletConfig;
 
     // Экземпляр будет даже не знать, по какому паттерну он движется
     public IMovingPattern currentMovingPattern { get; set; }
@@ -13,6 +16,13 @@ public abstract class BaseEnemy : MonoBehaviour, IEnemy
     protected Vector2 currentTargetPosition;
     protected bool isMovingToTarget = false;
     protected float arrivalThreshold = 0.1f;
+
+    [Inject]
+    public void Construct(IObjectResolver resolver, BulletConfig bulletConfig)
+    {
+        this.resolver = resolver;
+        this._bulletConfig = bulletConfig;
+    }
 
     protected virtual void Start()
     {
