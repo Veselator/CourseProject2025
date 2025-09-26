@@ -12,8 +12,9 @@ public class UIBulletSwitcherManager : MonoBehaviour
     // Важно, что-бы ихний порядок соотвествовал порядку пуль в enum
     [SerializeField] private GameObject[] _bulletsImages;
     [SerializeField] private GameObject selector;
-    private float selectorAnimationDuration = 0.5f;
-    private float unlockAnimationDuration = 3.2f;
+    private float unlockAnimationDuration = 1.2f;
+    private float selectorSpeedFactor = 0.2f;
+    private float selectorAccuracy = 0.01f;
 
     private void Start()
     {
@@ -34,11 +35,13 @@ public class UIBulletSwitcherManager : MonoBehaviour
 
     private void UnlockBullet(BulletType bulletType)
     {
+        if(GlobalFlags.GetFlag(GlobalFlags.Flags.GAME_OVER)) return; 
         StartCoroutine(UnlockAnimation(_bulletsImages[(int)bulletType]));
     }
 
     private void SwitchBullet(int newBulletIndex)
     {
+        if(GlobalFlags.GetFlag(GlobalFlags.Flags.GAME_OVER)) return;
         StartCoroutine(MoveSelector(_bulletsImages[newBulletIndex].transform.position));
     }
 
@@ -83,14 +86,9 @@ public class UIBulletSwitcherManager : MonoBehaviour
 
     private IEnumerator MoveSelector(Vector2 endPosition)
     {
-        float elapsedTime = 0f;
-        Vector2 selectorStartPos = selector.transform.position;
-        while (elapsedTime < selectorAnimationDuration)
+        while (Mathf.Abs(selector.transform.position.x - endPosition.x) < selectorAccuracy)
         {
-            float currentFactor = elapsedTime / selectorAnimationDuration;
-            selector.transform.position = Vector2.Lerp(selectorStartPos, endPosition, currentFactor);
-
-            elapsedTime += Time.deltaTime;
+            selector.transform.position = Vector2.Lerp(selector.transform.position, endPosition, selectorSpeedFactor);
             yield return null;
         }
 

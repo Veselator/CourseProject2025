@@ -5,7 +5,6 @@ using UnityEngine;
 public class UIHideManager : MonoBehaviour
 {
     private CanvasGroup canvasGroup;
-    private PlayerHealth _playerHealth;
     [SerializeField] private float fadeDuration = 5f;
     private const float delayBeforeEndOfAnimation = 2f;
 
@@ -13,8 +12,7 @@ public class UIHideManager : MonoBehaviour
 
     private void Start()
     {
-        _playerHealth = PlayerHealth.Instance;
-        _playerHealth.OnPlayerDied += HideUI;
+        GlobalFlags.onFlagChanged += CheckGlobalFlags;
 
         _UIAppearManager = UIAppearManager.Instance;
         canvasGroup = GetComponent<CanvasGroup>();
@@ -22,7 +20,15 @@ public class UIHideManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        _playerHealth.OnPlayerDied -= HideUI;
+        GlobalFlags.onFlagChanged += CheckGlobalFlags;
+    }
+
+    private void CheckGlobalFlags(string flagName, bool flagState)
+    {
+        if (flagName == GlobalFlags.Flags.GAME_OVER)
+        {
+            HideUI();
+        }
     }
 
     private void HideUI()

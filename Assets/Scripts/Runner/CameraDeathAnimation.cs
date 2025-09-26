@@ -9,32 +9,42 @@ public class CameraDeathAnimation : MonoBehaviour
     private float movementDuration = 3f;
 
     private Camera mainCamera;
-    private PlayerHealth _playerHealth;
     private CameraShake _shake;
+    [SerializeField] private Transform playerTransform;
+    private bool isPlayingAnimation = false;
 
     void Start()
     {
         mainCamera = Camera.main;
         startCameraSize = mainCamera.orthographicSize;
 
-        _playerHealth = PlayerHealth.Instance;
-        _playerHealth.OnPlayerDied += PlayDeathAnimation;
+        GlobalFlags.onFlagChanged += CheckGlobalFlags;
         _shake = GetComponent<CameraShake>();
     }
 
     private void OnDestroy()
     {
-        _playerHealth.OnPlayerDied -= PlayDeathAnimation;
+        GlobalFlags.onFlagChanged -= CheckGlobalFlags;
+    }
+
+    private void CheckGlobalFlags(string flagName, bool flagState)
+    {
+        if (flagName == GlobalFlags.Flags.GAME_OVER)
+        {
+            PlayDeathAnimation();
+        }
     }
 
     private void PlayDeathAnimation()
     {
+        if (isPlayingAnimation) return;
         _shake.enabled = false;
-        StartCoroutine(MoveCameraToTarget(_playerHealth.transform));
+        StartCoroutine(MoveCameraToTarget(playerTransform));
     }
 
     public IEnumerator MoveCameraToTarget(Transform targetObject)
     {
+        isPlayingAnimation = true;
         Vector3 startPosition = mainCamera.transform.position;
         Vector3 endPosition = new Vector3(targetObject.position.x, targetObject.position.y, startPosition.z);
 
@@ -60,5 +70,7 @@ public class CameraDeathAnimation : MonoBehaviour
         // Гарантируем точное достижение конечных значений
         mainCamera.transform.position = endPosition;
         mainCamera.orthographicSize = endCameraSize;
+
+        isPlayingAnimation = false;
     }
 }

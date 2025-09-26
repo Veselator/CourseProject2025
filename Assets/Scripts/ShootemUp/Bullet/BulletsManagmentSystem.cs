@@ -14,6 +14,11 @@ public class BulletsManagmentSystem : MonoBehaviour
         if (Instance == null) Instance = this;
     }
 
+    private void Start()
+    {
+        UnlockBullet(BulletType.Regular);
+    }
+
     //  ласс дл€ того, что-бы управл€ть доступными пул€ми
     public static void UnlockBullet(BulletType bulletType)
     {

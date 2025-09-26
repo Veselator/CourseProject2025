@@ -20,6 +20,7 @@ public class WavesManager : MonoBehaviour
     public static WavesManager Instance { get; private set; }
     public bool IsWaveEnded { get; private set; }
     private bool isAbleToEnd;
+    private bool isAbleToSpawnEnemies;
 
     public Action OnWaveEnded;
     public static Action OnEnemyDied;
@@ -39,6 +40,8 @@ public class WavesManager : MonoBehaviour
     {
         currentWaveIndex = 0;
         _enemySpawner = EnemySpawner.Instance;
+        isAbleToSpawnEnemies = true;
+
         GlobalFlags.onFlagChanged += CheckGlobalFlag;
         OnEnemyDied += CheckEnemyDied;
 
@@ -60,6 +63,7 @@ public class WavesManager : MonoBehaviour
 
     private void CheckNextWave()
     {
+        if (!isAbleToSpawnEnemies) return;
         // ѕроверка - надо ли заканчивать эту волну
         if (currentNumOfEnemiesInWave == 0 && isAbleToEnd)
         {
@@ -85,6 +89,12 @@ public class WavesManager : MonoBehaviour
         if (flagName == GlobalFlags.Flags.SHOOTEMUP_START_WAVE)
         {
             StartWave();
+        }
+
+
+        if(flagName == GlobalFlags.Flags.GAME_OVER)
+        {
+            isAbleToSpawnEnemies = false;
         }
     }
 
@@ -124,7 +134,7 @@ public class WavesManager : MonoBehaviour
 
             for (int i = 0; i < enemyStream.count; i++)
             {
-                _enemySpawner.SpawnEnemy(enemySpawnData);
+                if(isAbleToSpawnEnemies) _enemySpawner.SpawnEnemy(enemySpawnData);
                 yield return new WaitForSeconds(enemyStream.delayBetweenSpawns);
             }
 

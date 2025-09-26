@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour
 {
     private ICameraTracker _tracker;
     private Transform _target;
+    public static bool IsAbleToUpdate = true;
 
     private void Start()
     {
@@ -16,6 +17,7 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        transform.position = _tracker.GetCurrentPosition(_target.position);
+        if (GlobalFlags.GetFlag(GlobalFlags.Flags.GAME_OVER)) return;
+        if (IsAbleToUpdate) transform.position = _tracker.GetCurrentPosition(_target.position);
     }
 }

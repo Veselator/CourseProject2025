@@ -38,6 +38,8 @@ public class PlayerHealth : MonoBehaviour
             health--;
             Debug.Log("Player hit an obstacle! Health: " + health);
             OnPlayerHit?.Invoke();
+            CameraShake.ShakeCamera?.Invoke();
+
             if (health <= 0)
             {
                 Debug.Log("Player is dead!");

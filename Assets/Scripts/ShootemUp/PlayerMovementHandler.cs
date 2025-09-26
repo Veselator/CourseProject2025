@@ -7,6 +7,7 @@ public class PlayerMovementHandler : MonoBehaviour
 
     [SerializeField] private Box clampingBox;
 
+    public Vector2 MovementVector => _playerInput.GetMovementVector();
     public static PlayerMovementHandler Instance { get; private set; }
 
     private void Awake()
@@ -28,12 +29,13 @@ public class PlayerMovementHandler : MonoBehaviour
 
     private void Update()
     {
+        if (GlobalFlags.GetFlag(GlobalFlags.Flags.GAME_OVER)) return;
         HandleMovingInput();
     }
 
     private void HandleMovingInput()
     {
-        Vector2 movementVector = _playerInput.GetMovementVector();
+        Vector2 movementVector = MovementVector;
         _movement.ChangeVelocity(movementVector);
     }
 }

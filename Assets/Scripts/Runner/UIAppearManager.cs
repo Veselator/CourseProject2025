@@ -18,6 +18,8 @@ public class UIAppearManager : MonoBehaviour
 
     private void Start()
     {
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
         canvasGroup.alpha = 0f;
     }
 

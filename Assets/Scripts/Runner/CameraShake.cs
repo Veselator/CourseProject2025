@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class CameraShake : MonoBehaviour
     [SerializeField] private float shakeHitIntensity = 0.3f;
     [SerializeField] private float ShakeDuration = 0.8f;
     [SerializeField] private float ShakeHitDuration = 0.4f;
+    public float ShakeHitTime => ShakeHitDuration;
     [SerializeField] private AnimationCurve shakeCurve = AnimationCurve.EaseInOut(0f, 1f, 1f, 0f);
 
     private Vector3 originalLocalPosition;
@@ -15,22 +17,28 @@ public class CameraShake : MonoBehaviour
     // Flag to prevent overlapping shakes
     private bool isShaking = false;
     // Property to enable/disable shaking
-    public bool IsAbleToShake { get; set; } = true;
+    public bool IsAbleToShake = true;
 
-    PlayerHealth playerHealth;
+    public static CameraShake Instace;
+
+    public static Action ShakeCamera;
+
+    private void Awake()
+    {
+        if (Instace == null) Instace = this;
+    }
 
     void Start()
     {
         // Сохраняем изначальную локальную позицию камеры
         originalLocalPosition = transform.localPosition;
         originalLocalRotation = transform.localRotation;
-        playerHealth = PlayerHealth.Instance;
-        if(playerHealth != null) playerHealth.OnPlayerHit += StartHitShake;
+        ShakeCamera += StartHitShake;
     }
 
     private void OnDestroy()
     {
-        if (playerHealth != null) playerHealth.OnPlayerHit -= StartHitShake;
+        ShakeCamera -= StartHitShake;
     }
 
     public void HandleShake()
@@ -43,6 +51,7 @@ public class CameraShake : MonoBehaviour
 
     public void StartHitShake()
     {
+        Debug.Log("Starting shaking");
         StartCoroutine(HitShake(ShakeHitDuration, shakeHitIntensity));
     }
 
@@ -56,13 +65,13 @@ public class CameraShake : MonoBehaviour
         Quaternion startRotation = transform.localRotation;
 
         // Случайные семена для Perlin noise, чтобы каждый вызов отличался
-        float seedX = Random.Range(0f, 100f);
-        float seedY = Random.Range(100f, 200f);
-        float seedRot = Random.Range(200f, 300f);
+        float seedX = UnityEngine.Random.Range(0f, 100f);
+        float seedY = UnityEngine.Random.Range(100f, 200f);
+        float seedRot = UnityEngine.Random.Range(200f, 300f);
 
         // Базовые частоты — немного варьируем, чтобы имитировать человеческую руку
-        float baseFreq = Random.Range(0.9f, 1.6f);
-        float rotFreq = baseFreq * Random.Range(0.6f, 1.2f);
+        float baseFreq = UnityEngine.Random.Range(0.9f, 1.6f);
+        float rotFreq = baseFreq * UnityEngine.Random.Range(0.6f, 1.2f);
 
         while (elapsedTime < duration)
         {
@@ -127,15 +136,15 @@ public class CameraShake : MonoBehaviour
 
             // Создаём случайное смещение (удар более резкий)
             Vector3 randomOffset = new Vector3(
-                Random.Range(-1f, 1f) * intensity * curveValue,
-                Random.Range(-1f, 1f) * intensity * curveValue,
+                UnityEngine.Random.Range(-1f, 1f) * intensity * curveValue,
+                UnityEngine.Random.Range(-1f, 1f) * intensity * curveValue,
                 0f
             );
 
             transform.localPosition = startPosition + randomOffset;
 
             // Лёгкая резкая ротация для удара
-            float rot = Random.Range(-1f, 1f) * intensity * 4f * curveValue;
+            float rot = UnityEngine.Random.Range(-1f, 1f) * intensity * 4f * curveValue;
             transform.localRotation = Quaternion.Euler(0f, 0f, rot) * startRotation;
 
             yield return null;

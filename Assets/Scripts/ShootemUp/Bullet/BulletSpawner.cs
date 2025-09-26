@@ -36,7 +36,7 @@ public class BulletSpawner : MonoBehaviour
     private GameObject currentBulletPrefab;
     [SerializeField] private Transform spawnBulletsPoint;
     [SerializeField] private bool isPlayerSpawner;
-    private float damageMultiplier = 1f;
+    [SerializeField] private float damageMultiplier = 1f;
     public float DamageMultiplayer
     {
         get => damageMultiplier;
@@ -60,6 +60,11 @@ public class BulletSpawner : MonoBehaviour
         _bulletConfig = bulletConfig;
     }
 
+    private void OnEnable()
+    {
+        if(!isPlayerSpawner && _bulletConfig == null) Init(PlayerInstances.playerBulletSpawner._bulletConfig);
+    }
+
     private void Start()
     {
         timer = 0f;
@@ -68,6 +73,7 @@ public class BulletSpawner : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GlobalFlags.GetFlag(GlobalFlags.Flags.GAME_OVER)) return;
         timer += Time.fixedDeltaTime;
         if (timer >= delay)
         {
