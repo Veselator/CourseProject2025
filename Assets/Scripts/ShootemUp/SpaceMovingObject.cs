@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class SpaceMovingObject : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private SpaceSpeedController controller;
+    [SerializeField] private float moveFactor;
+
+    private void Start()
     {
-        
+        controller = SpaceSpeedController.Instance;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        HandleMoving();
+        CheckEdge();
+    }
+
+    private void HandleMoving()
+    {
+        transform.position += controller.Speed * Time.deltaTime * moveFactor * Vector3.down;
+    }
+
+    private void CheckEdge()
+    {
+        if (transform.position.y < controller.BottomY) transform.position = new Vector3(transform.position.x, controller.TopY, transform.position.z);
     }
 }
