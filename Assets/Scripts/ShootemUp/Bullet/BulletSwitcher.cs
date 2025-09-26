@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,8 +11,17 @@ public class BulletSwitcher : MonoBehaviour
     private BulletsManagmentSystem bms;
     private BulletSpawner playerBulletSpawner;
     [SerializeField] private BulletType[] bulletTypes = new BulletType[4]; // Какие типы доступны игроку в принципе
+    public BulletType[] AllPlayerBullets => bulletTypes;
 
     private int currentBulletIndex = 0;
+
+    public Action<int> OnBulletSwitched;
+    public static BulletSwitcher Instance { get; private set; }
+
+    private void Awake()
+    {
+        if(Instance == null) Instance = this;
+    }
 
     private void Start()
     {
@@ -46,8 +56,10 @@ public class BulletSwitcher : MonoBehaviour
         if (!bms.IsBulletTypeAvailable(selectedBulletType)) return;
 
         // Если мы дошли до сюда - следовательно, всё нормально и мы можем переключать
-        // 
+
         currentBulletIndex = index;
         playerBulletSpawner.CurrentBulletType = selectedBulletType;
+
+        OnBulletSwitched?.Invoke(currentBulletIndex);
     }
 }
