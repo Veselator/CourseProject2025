@@ -19,7 +19,14 @@ public class Health : MonoBehaviour, IHealth
     }
 
     [SerializeField] private float maximumArmor;
-    public float MaximumArmor { get; }
+    public float MaximumArmor
+    {
+        get => maximumArmor;
+        set
+        {
+            maximumArmor = value;
+        }
+    }
     private float currentArmor;
 
     public GameObject Instance => this.gameObject;
@@ -48,24 +55,33 @@ public class Health : MonoBehaviour, IHealth
     public IConditionToHit conditionToHit { get; set; }
 
     public bool IsDied => CurrentHealth == 0f;
+    public float CurrentHealthInPercentage => CurrentHealth / MaximumHealth;
+    public float CurrentArmorInPercentage => Armor / MaximumArmor;
 
     public Action OnDamaged { get; set; }
     public Action OnArmoryDestoyed { get; set; }
     public Action OnDeath { get; set;  }
+    public Action OnHealthChanged { get; set; }
+    public Action OnArmorChanged { get; set; }
 
     public void Start()
     {
         currentHealth = MaximumHealth;
         currentArmor = MaximumArmor;
+        Debug.Log($"Helath inited! hp{currentHealth} arm{currentArmor}");
     }
 
     public void TakeDamage(Damage damage)
     {
+        Debug.Log($"Registering hit armordaamge {damage.damageArmor} healthdamage {damage.damageHealth} currentArmor {currentArmor} current health {currentHealth} is armored {isArmored}");
         if (isArmored)
         {
+            Debug.Log($"Armor just hit {damage.damageArmor}");
             // Дополнительный урок
             float excessDamage = damage.damageMultiplier * damage.damageArmor - currentArmor;
             currentArmor -= damage.damageMultiplier * damage.damageArmor;
+            OnArmorChanged?.Invoke();
+
             if (currentArmor <= 0f)
             {
                 OnArmoryDestoyed?.Invoke();
@@ -80,6 +96,7 @@ public class Health : MonoBehaviour, IHealth
         else
         {
             currentHealth -= damage.damageMultiplier * damage.damageHealth;
+            OnHealthChanged?.Invoke();
         }
         Debug.Log($"Damage dealed hpd {damage.damageHealth} armd {damage.damageArmor} dmp {damage.damageMultiplier}. I`m hp = {currentHealth} & arm = {currentArmor}");
         OnDamaged?.Invoke();
