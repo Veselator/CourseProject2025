@@ -17,6 +17,8 @@ public abstract class BaseEnemy : MonoBehaviour, IEnemy
     protected bool isMovingToTarget = false;
     protected float arrivalThreshold = 0.1f;
 
+    [SerializeField] private Damage damageOnCollisionWithPlayer;
+
     [Inject]
     public void Construct(IObjectResolver resolver, BulletConfig bulletConfig)
     {
@@ -110,13 +112,18 @@ public abstract class BaseEnemy : MonoBehaviour, IEnemy
         if (other.CompareTag("Player"))
         {
             // При попадании в игрока
+            other.GetComponent<IHealth>().TakeDamage(damageOnCollisionWithPlayer);
             DestroyEnemy();
         }
     }
 
     protected virtual void DestroyEnemy()
     {
-        GlobalFlags.ToggleFlag(GlobalFlags.Flags.SHOOTEMUP_ENEMY_DIED);
+        // Сообщаем, что мы умерли
+        // НО
+        // важно также учитывать характер смерти - от столкновения с игроком, от пули или от достижения границы
+        WavesManager.OnEnemyDied?.Invoke();
+        //GlobalFlags.ToggleFlag(GlobalFlags.Flags.SHOOTEMUP_ENEMY_DIED);
         // Здесь можно добавить эффекты уничтожения, дроп и т.д.
         Destroy(gameObject);
     }

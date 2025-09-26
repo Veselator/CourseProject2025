@@ -1,15 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using VContainer;
 
 public class BulletSpawner : MonoBehaviour
 {
-    [SerializeField] private Vector2 _direction;
+    public Vector2 direction;
 
     [Tooltip("Задержка между спавном пуль")]
-    [Min(0.1f)] // Минимальное значение
+    [Min(0.01f)] // Минимальное значение
     [SerializeField] private float delay;
+
+    public float ShootingDelay
+    {
+        get => delay;
+        set
+        {
+            delay = math.max(value, 0.01f);
+        }
+    }
 
     private BulletConfig _bulletConfig;
     [SerializeField] private BulletType currentBulletType;
@@ -26,7 +36,7 @@ public class BulletSpawner : MonoBehaviour
     private GameObject currentBulletPrefab;
     [SerializeField] private Transform spawnBulletsPoint;
     [SerializeField] private bool isPlayerSpawner;
-    private float damageMultiplier = 1f;
+    [SerializeField] private float damageMultiplier = 1f;
     public float DamageMultiplayer
     {
         get => damageMultiplier;
@@ -50,6 +60,11 @@ public class BulletSpawner : MonoBehaviour
         _bulletConfig = bulletConfig;
     }
 
+    private void OnEnable()
+    {
+        if(!isPlayerSpawner && _bulletConfig == null) Init(PlayerInstances.playerBulletSpawner._bulletConfig);
+    }
+
     private void Start()
     {
         timer = 0f;
@@ -58,6 +73,7 @@ public class BulletSpawner : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GlobalFlags.GetFlag(GlobalFlags.Flags.GAME_OVER)) return;
         timer += Time.fixedDeltaTime;
         if (timer >= delay)
         {
@@ -75,7 +91,7 @@ public class BulletSpawner : MonoBehaviour
     {
         GameObject lastBullet = Instantiate(currentBulletPrefab, spawnBulletsPoint.position, Quaternion.identity);
         
-        lastBullet.GetComponent<IBullet>().Initialize(_direction, isPlayerSpawner, DamageMultiplayer);
+        lastBullet.GetComponent<IBullet>().Initialize(direction, isPlayerSpawner, DamageMultiplayer);
         //Debug.Log(lastBullet.GetComponent<IBullet>());
     }
 }

@@ -7,7 +7,9 @@ public enum EnemyType
     Armored2,
     ArmoredShooting,
     Fast,
-    Boss
+    Boss,
+    RotatingEnemy,
+    Armored3
 }
 
 public interface IEnemy

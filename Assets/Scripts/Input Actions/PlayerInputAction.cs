@@ -109,6 +109,42 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NumOne"",
+                    ""type"": ""Value"",
+                    ""id"": ""05ad3559-4c1e-4c59-99a2-14c78a3fc7da"",
+                    ""expectedControlType"": ""Integer"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""NumTwo"",
+                    ""type"": ""Value"",
+                    ""id"": ""b0eb1819-d505-445e-b929-e4330ea9ab72"",
+                    ""expectedControlType"": ""Integer"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""NumThree"",
+                    ""type"": ""Value"",
+                    ""id"": ""1eb94c93-8704-421a-acbd-abc94b6e516e"",
+                    ""expectedControlType"": ""Integer"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""NumFour"",
+                    ""type"": ""Value"",
+                    ""id"": ""a109b320-8bd4-418d-af82-c50d13a07b88"",
+                    ""expectedControlType"": ""Integer"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -135,9 +171,31 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""up"",
+                    ""id"": ""0ac7cf33-9561-4d98-bb7b-9b709e7d0a3a"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": ""down"",
                     ""id"": ""f99e7c22-cdf9-4558-9e0b-5dee21e17df0"",
                     ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""4505e038-e00c-40c9-8526-62df50cbfe47"",
+                    ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -157,9 +215,31 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""left"",
+                    ""id"": ""0ee53389-02bf-475b-a033-9e2f00d8856c"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": ""right"",
                     ""id"": ""9e92e394-7215-4b58-989b-832cbf29cfcb"",
                     ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""8e87d51f-11eb-4b12-b027-9e751dd0922d"",
+                    ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -177,6 +257,50 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3ef3706f-bc24-42da-93c3-6ad05e41ec5e"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NumOne"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""10789046-42db-4e9f-8005-2a18aa43d556"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NumTwo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9b167c8d-3533-4042-8365-d98c00d13c74"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NumThree"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8a8628bd-4d85-4ee7-aed9-08ebffd12c7a"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NumFour"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -187,6 +311,10 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_NumOne = m_Player.FindAction("NumOne", throwIfNotFound: true);
+        m_Player_NumTwo = m_Player.FindAction("NumTwo", throwIfNotFound: true);
+        m_Player_NumThree = m_Player.FindAction("NumThree", throwIfNotFound: true);
+        m_Player_NumFour = m_Player.FindAction("NumFour", throwIfNotFound: true);
     }
 
     ~@PlayerInputAction()
@@ -269,6 +397,10 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_NumOne;
+    private readonly InputAction m_Player_NumTwo;
+    private readonly InputAction m_Player_NumThree;
+    private readonly InputAction m_Player_NumFour;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -288,6 +420,22 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Jump".
         /// </summary>
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/NumOne".
+        /// </summary>
+        public InputAction @NumOne => m_Wrapper.m_Player_NumOne;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/NumTwo".
+        /// </summary>
+        public InputAction @NumTwo => m_Wrapper.m_Player_NumTwo;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/NumThree".
+        /// </summary>
+        public InputAction @NumThree => m_Wrapper.m_Player_NumThree;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/NumFour".
+        /// </summary>
+        public InputAction @NumFour => m_Wrapper.m_Player_NumFour;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -320,6 +468,18 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @NumOne.started += instance.OnNumOne;
+            @NumOne.performed += instance.OnNumOne;
+            @NumOne.canceled += instance.OnNumOne;
+            @NumTwo.started += instance.OnNumTwo;
+            @NumTwo.performed += instance.OnNumTwo;
+            @NumTwo.canceled += instance.OnNumTwo;
+            @NumThree.started += instance.OnNumThree;
+            @NumThree.performed += instance.OnNumThree;
+            @NumThree.canceled += instance.OnNumThree;
+            @NumFour.started += instance.OnNumFour;
+            @NumFour.performed += instance.OnNumFour;
+            @NumFour.canceled += instance.OnNumFour;
         }
 
         /// <summary>
@@ -337,6 +497,18 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @NumOne.started -= instance.OnNumOne;
+            @NumOne.performed -= instance.OnNumOne;
+            @NumOne.canceled -= instance.OnNumOne;
+            @NumTwo.started -= instance.OnNumTwo;
+            @NumTwo.performed -= instance.OnNumTwo;
+            @NumTwo.canceled -= instance.OnNumTwo;
+            @NumThree.started -= instance.OnNumThree;
+            @NumThree.performed -= instance.OnNumThree;
+            @NumThree.canceled -= instance.OnNumThree;
+            @NumFour.started -= instance.OnNumFour;
+            @NumFour.performed -= instance.OnNumFour;
+            @NumFour.canceled -= instance.OnNumFour;
         }
 
         /// <summary>
@@ -391,5 +563,33 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnJump(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "NumOne" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNumOne(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "NumTwo" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNumTwo(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "NumThree" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNumThree(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "NumFour" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNumFour(InputAction.CallbackContext context);
     }
 }
