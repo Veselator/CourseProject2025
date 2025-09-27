@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class SpaceSpeedController : MonoBehaviour
 {
-    [SerializeField] private float speed;
-    [SerializeField] private float topY;
-    [SerializeField] private float bottomY;
-    public float Speed => speed;
-    public float TopY => topY;
-    public float BottomY => bottomY;
-
-    public static SpaceSpeedController Instance { get; private set; }
-    private void Awake()
+    // Start is called before the first frame update
+    void Start()
     {
-        if (Instance == null) Instance = this;
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 }
