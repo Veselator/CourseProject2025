@@ -31,7 +31,7 @@ public class DistanceTracker : MonoBehaviour
 
     // Значения дистанций для этапов
     // Вынесены в константы для удобства настройки
-    public readonly float DISTANCE_TO_FIRST_TURN = 700f;
+    public readonly float DISTANCE_TO_FIRST_TURN = 200f;
     public readonly float DISTANCE_TO_SECOND_TURN = 1400f;
     public readonly float DISTANCE_TO_END_GAME = 2400f;
 
@@ -126,7 +126,7 @@ public class DistanceTracker : MonoBehaviour
             GlobalFlags.SetFlag(GlobalFlags.Flags.RUNNER_IS_ROTATING);
             RotateRoad?.Invoke();
             playerMovementAcrossLevel.CurrentDirection = Vector2.up;
-            playerRotationAnimation.OnRotateRoad(0);
+            playerRotationAnimation.OnRotateRoad();
 
 
             // Меняем значения, которые отвечают за сложность игры
@@ -142,7 +142,7 @@ public class DistanceTracker : MonoBehaviour
             GlobalFlags.SetFlag(GlobalFlags.Flags.RUNNER_IS_ROTATING);
             playerMovementAcrossLevel.CurrentDirection = Vector2.right;
             RotateRoad?.Invoke();
-            playerRotationAnimation.OnRotateRoad(1);
+            playerRotationAnimation.OnRotateRoad();
 
             maxSpeed = 100f;
             MaxAcceleration = 4f;

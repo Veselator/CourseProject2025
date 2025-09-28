@@ -131,8 +131,14 @@ public class PlayerInputHandler : MonoBehaviour
 
     // Публичные методы для внешнего управления
     public void DisableInput() => SetInputMode(InputMode.None);
-    public void EnableHorizontalInput() => SetInputMode(InputMode.Horizontal);
-    public void EnableVerticalInput() => SetInputMode(InputMode.Vertical);
+    public void EnableHorizontalInput()
+    {
+        SetInputMode(InputMode.Horizontal);
+    }
+    public void EnableVerticalInput()
+    {
+        SetInputMode(InputMode.Vertical);
+    }
 
     // Для отладки
     public string GetCurrentInputInfo()

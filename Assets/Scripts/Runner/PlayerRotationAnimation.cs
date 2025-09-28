@@ -13,8 +13,10 @@ public class PlayerRotationAnimation : MonoBehaviour
     public static PlayerRotationAnimation Instance;
     
     private SpawnRoad _spawnRoad;
-    private float animationDuration = 0.64f;
     private float CameraOffsetX;
+
+    [SerializeField] private float fault;
+    [SerializeField] private float lerpFactor;
 
     private void Awake()
     {
@@ -27,7 +29,7 @@ public class PlayerRotationAnimation : MonoBehaviour
         CameraOffsetX = 7.07f;
     }
 
-    public void OnRotateRoad(int turnId)
+    public void OnRotateRoad()
     {
         Transform center = _spawnRoad.LastSpawnedTurn.transform.Find("Center");
         if (center == null)
@@ -43,14 +45,14 @@ public class PlayerRotationAnimation : MonoBehaviour
 
     private IEnumerator MoveCoroutine(Vector2 endPosition)
     {
-        Vector2 startPosition = transform.position;
-        float elapsedTime = 0f;
+        //Vector2 startPosition = transform.position;
+        //float elapsedTime = 0f;
 
-        while (elapsedTime < animationDuration)
+        while (Mathf.Abs(transform.position.x - endPosition.x) > fault)
         {
-            float t = elapsedTime / animationDuration;
-            transform.position = Vector2.Lerp(startPosition, endPosition, t);
-            elapsedTime += Time.deltaTime;
+            //float t = elapsedTime / animationDuration;
+            transform.position = Vector2.Lerp(transform.position, endPosition, lerpFactor * Time.deltaTime);
+            //elapsedTime += Time.deltaTime;
             yield return null;
         }
 

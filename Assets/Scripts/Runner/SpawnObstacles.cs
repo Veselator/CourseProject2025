@@ -70,6 +70,7 @@ public class SpawnObstacles : MonoBehaviour
         int randomLaneIndex = GetRandomLaneIndex();
         GameObject obstacleObject = GetRandomObstacle();
         Vector3 obstaclePosition = lanes[randomLaneIndex].transform.position + lanes[randomLaneIndex].transform.right * obstacleDistanceOfSpawning;
+        obstaclePosition.z = -1;
 
         obstacleObject = Instantiate(obstacleObject, obstaclePosition, Quaternion.identity);
         spawnedObstacles.Add(obstacleObject);

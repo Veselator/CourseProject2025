@@ -30,7 +30,7 @@ public class PlayerLaneController : MonoBehaviour
     private void Start()
     {
         // Устанавливаем начальную позицию
-        movementAnimator.TeleportTo(lanePositions[(int)currentLane].transform.position);
+        //movementAnimator.TeleportTo(lanePositions[(int)currentLane].transform.position);
         movementAnimator.SetTarget(lanePositions[(int)currentLane].transform);
 
         inputHandler.EnableVerticalInput();
