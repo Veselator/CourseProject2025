@@ -101,8 +101,12 @@ public class DistanceTracker : MonoBehaviour
         {
             RunnerStage1Passed = state;
         }
+        else if (flagName == GlobalFlags.Flags.GAME_OVER)
+        {
+            DisableSpawners();
+        }
 
-        OnGlobalFlagChanged?.Invoke(flagName, state);
+            OnGlobalFlagChanged?.Invoke(flagName, state);
     }
 
     private void Update()
@@ -152,7 +156,7 @@ public class DistanceTracker : MonoBehaviour
         else if (CurrentDistance >= turnDistances[2] && !GlobalFlags.GetFlag(GlobalFlags.Flags.RUNNER_STAGE_3_PASSED))
         {
             Debug.Log("Third turn reached");
-            DisableSpawners();
+            
             GlobalFlags.SetFlag(GlobalFlags.Flags.RUNNER_STAGE_3_PASSED);
             GlobalFlags.SetFlag(GlobalFlags.Flags.GAME_WIN);
             GameSceneManager.LoadNextScene();
@@ -164,6 +168,7 @@ public class DistanceTracker : MonoBehaviour
         foreach (var spawner in spawners)
         {
             spawner.IsAbleToSpawn = false;
+            Debug.Log($"Spawner is able to spawn {spawner.IsAbleToSpawn}");
         }
     }
 
