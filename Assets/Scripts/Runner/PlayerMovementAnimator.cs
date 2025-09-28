@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerMovementAnimator : MonoBehaviour
 {
+    // Тут также будем прописывать анимации
     [Header("Movement Settings")]
     [SerializeField] private float movementSpeed = 8f;
     [SerializeField] private float positionTolerance = 0.01f;

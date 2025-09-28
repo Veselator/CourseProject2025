@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class JumpBarController : MonoBehaviour
 {
-    [SerializeField] private Slider jumpBarSlider;
+    [SerializeField] private Image jumpBarSlider;
     [SerializeField] private GameObject imageIsReadyToJump;
     private float linearInterpolationFactor = 0.5f;
     JumpTracker jumpTracker;
@@ -13,7 +13,7 @@ public class JumpBarController : MonoBehaviour
     private void Start()
     {
         jumpTracker = JumpTracker.Instance;
-        jumpBarSlider.value = 0f;
+        jumpBarSlider.fillAmount = 0f;
         jumpTracker.OnReadyToJump += ShowReadyToJumpIcon;
         jumpTracker.OnJumpAnimationStarted += HideReadyToJumpIcon;
     }
@@ -36,7 +36,7 @@ public class JumpBarController : MonoBehaviour
 
     private void Update()
     {
-        jumpBarSlider.value = Mathf.Lerp(jumpBarSlider.value, jumpTracker.ProgressToNextJump, linearInterpolationFactor);
+        jumpBarSlider.fillAmount = Mathf.Lerp(jumpBarSlider.fillAmount, jumpTracker.ProgressToNextJump, linearInterpolationFactor);
     }
 
 }

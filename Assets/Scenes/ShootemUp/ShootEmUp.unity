@@ -150,7 +150,7 @@ Transform:
   m_GameObject: {fileID: 11939870}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.7, y: 2.74, z: -0.883459}
+  m_LocalPosition: {x: -3.67, y: 2.73, z: -0.883459}
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.2
+  parallaxFactor: 0.7
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &11939873
@@ -313,7 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 1
+  parallaxFactor: 0
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &22347906
@@ -561,7 +561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 1
+  parallaxFactor: 0
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &30047506
@@ -675,7 +675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.53
+  parallaxFactor: 0.35
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &34397185
@@ -854,7 +854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 1
+  parallaxFactor: 0
   parallaxX: 1
   parallaxY: 1
 --- !u!1 &85822864
@@ -1725,7 +1725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.53
+  parallaxFactor: 0.35
   parallaxX: 1
   parallaxY: 1
 --- !u!1 &324347497
@@ -1807,7 +1807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.53
+  parallaxFactor: 0.35
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &350579475
@@ -1986,7 +1986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.53
+  parallaxFactor: 0.35
   parallaxX: 1
   parallaxY: 1
 --- !u!1 &381849599
@@ -2368,7 +2368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.53
+  parallaxFactor: 0.35
   parallaxX: 1
   parallaxY: 1
 --- !u!1 &489477665
@@ -2482,7 +2482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 1
+  parallaxFactor: 0
   parallaxX: 1
   parallaxY: 1
 --- !u!1 &494273053
@@ -2630,7 +2630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 1
+  parallaxFactor: 0
   parallaxX: 1
   parallaxY: 1
 --- !u!1 &534142996
@@ -2679,7 +2679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.53
+  parallaxFactor: 0.35
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &534142999
@@ -3209,7 +3209,7 @@ Transform:
   m_GameObject: {fileID: 595998954}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.13, y: 3.49, z: -0.883459}
+  m_LocalPosition: {x: -7.1, y: 3.48, z: -0.883459}
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3227,7 +3227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.2
+  parallaxFactor: 0.7
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &595998957
@@ -3341,7 +3341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 1
+  parallaxFactor: 0
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &601380678
@@ -3831,7 +3831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.53
+  parallaxFactor: 0.35
   parallaxX: 1
   parallaxY: 1
 --- !u!1 &698010785
@@ -3945,7 +3945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 1
+  parallaxFactor: 0
   parallaxX: 1
   parallaxY: 1
 --- !u!1 &723595070
@@ -4104,7 +4104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.53
+  parallaxFactor: 0.35
   parallaxX: 1
   parallaxY: 1
 --- !u!1 &745035350
@@ -4293,7 +4293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.53
+  parallaxFactor: 0.35
   parallaxX: 1
   parallaxY: 1
 --- !u!1 &773888796
@@ -4544,7 +4544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.53
+  parallaxFactor: 0.35
   parallaxX: 1
   parallaxY: 1
 --- !u!1 &821968922
@@ -4658,7 +4658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.53
+  parallaxFactor: 0.35
   parallaxX: 1
   parallaxY: 1
 --- !u!1 &877588511
@@ -4898,7 +4898,7 @@ Transform:
   m_GameObject: {fileID: 892976801}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.71, y: 2.41, z: -0.883459}
+  m_LocalPosition: {x: 0.74, y: 2.4, z: -0.883459}
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -4916,7 +4916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.2
+  parallaxFactor: 0.7
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &892976804
@@ -5095,7 +5095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.53
+  parallaxFactor: 0.35
   parallaxX: 1
   parallaxY: 1
 --- !u!1 &977146359
@@ -5209,7 +5209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.53
+  parallaxFactor: 0.35
   parallaxX: 1
   parallaxY: 1
 --- !u!1 &997728711
@@ -5323,7 +5323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.53
+  parallaxFactor: 0.35
   parallaxX: 1
   parallaxY: 1
 --- !u!1 &1041734501
@@ -5372,7 +5372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 1
+  parallaxFactor: 0
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &1041734504
@@ -5588,7 +5588,7 @@ Transform:
   m_GameObject: {fileID: 1077384228}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.26630017, w: 0.9638902}
-  m_LocalPosition: {x: -11.03, y: 8.28, z: -0.883459}
+  m_LocalPosition: {x: -11, y: 8.27, z: -0.883459}
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -5606,7 +5606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.2
+  parallaxFactor: 0.7
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &1077384231
@@ -6021,7 +6021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.53
+  parallaxFactor: 0.35
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &1155621246
@@ -6246,7 +6246,7 @@ Transform:
   m_GameObject: {fileID: 1266339379}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.26630017, w: 0.9638902}
-  m_LocalPosition: {x: -11.1, y: 3.76, z: -0.883459}
+  m_LocalPosition: {x: -11.07, y: 3.75, z: -0.883459}
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -6264,7 +6264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.2
+  parallaxFactor: 0.7
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &1266339382
@@ -6360,7 +6360,7 @@ Transform:
   m_GameObject: {fileID: 1273412478}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.27, y: 8.45, z: -0.883459}
+  m_LocalPosition: {x: -9.24, y: 8.44, z: -0.883459}
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -6378,7 +6378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.2
+  parallaxFactor: 0.7
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &1273412481
@@ -6535,7 +6535,7 @@ Transform:
   m_GameObject: {fileID: 1310871628}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.48, y: 2.49, z: -0.883459}
+  m_LocalPosition: {x: -8.45, y: 2.48, z: -0.883459}
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -6553,7 +6553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.2
+  parallaxFactor: 0.7
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &1310871631
@@ -6667,7 +6667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 1
+  parallaxFactor: 0
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &1349304738
@@ -7030,7 +7030,7 @@ Transform:
   m_GameObject: {fileID: 1380714151}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.74, y: -2.09, z: -0.883459}
+  m_LocalPosition: {x: -8.71, y: -2.1, z: -0.883459}
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -7048,7 +7048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.2
+  parallaxFactor: 0.7
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &1380714154
@@ -7162,7 +7162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 1
+  parallaxFactor: 0
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &1421733351
@@ -7351,7 +7351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 1
+  parallaxFactor: 0
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &1460577342
@@ -7478,7 +7478,7 @@ Transform:
   m_GameObject: {fileID: 1496680922}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.03, y: 4.95, z: -0.883459}
+  m_LocalPosition: {x: -14, y: 4.94, z: -0.883459}
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -7496,7 +7496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.2
+  parallaxFactor: 0.7
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &1496680925
@@ -7675,7 +7675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.53
+  parallaxFactor: 0.35
   parallaxX: 1
   parallaxY: 1
 --- !u!1 &1558148199
@@ -7724,7 +7724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 1
+  parallaxFactor: 0
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &1558148202
@@ -7820,7 +7820,7 @@ Transform:
   m_GameObject: {fileID: 1565346706}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.15, y: 5.68, z: -0.883459}
+  m_LocalPosition: {x: -6.12, y: 5.67, z: -0.883459}
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -7838,7 +7838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.2
+  parallaxFactor: 0.7
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &1565346709
@@ -8017,7 +8017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.53
+  parallaxFactor: 0.35
   parallaxX: 1
   parallaxY: 1
 --- !u!1 &1672040177
@@ -8131,7 +8131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.53
+  parallaxFactor: 0.35
   parallaxX: 1
   parallaxY: 1
 --- !u!1 &1695811690
@@ -8162,7 +8162,7 @@ Transform:
   m_GameObject: {fileID: 1695811690}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.28, y: -2.93, z: -0.883459}
+  m_LocalPosition: {x: -5.25, y: -2.94, z: -0.883459}
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -8180,7 +8180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.2
+  parallaxFactor: 0.7
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &1695811693
@@ -8524,7 +8524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.53
+  parallaxFactor: 0.35
   parallaxX: 1
   parallaxY: 1
 --- !u!1 &1755613612
@@ -8942,7 +8942,7 @@ Transform:
   m_GameObject: {fileID: 1811858236}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.43, y: 4.64, z: -0.883459}
+  m_LocalPosition: {x: -9.4, y: 4.63, z: -0.883459}
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -8960,7 +8960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.2
+  parallaxFactor: 0.7
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &1811858239
@@ -9074,7 +9074,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 1
+  parallaxFactor: 0
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &1827119606
@@ -9170,7 +9170,7 @@ Transform:
   m_GameObject: {fileID: 1830773844}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.81, y: -1.5, z: -0.883459}
+  m_LocalPosition: {x: 2.84, y: -1.51, z: -0.883459}
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -9188,7 +9188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.2
+  parallaxFactor: 0.7
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &1830773847
@@ -9411,7 +9411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.53
+  parallaxFactor: 0.35
   parallaxX: 1
   parallaxY: 1
 --- !u!1 &1871844037
@@ -9504,7 +9504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 1
+  parallaxFactor: 0
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &1918759424
@@ -9850,7 +9850,7 @@ Transform:
   m_GameObject: {fileID: 2007699775}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.99, y: 0.87, z: -0.883459}
+  m_LocalPosition: {x: -6.96, y: 0.86, z: -0.883459}
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -9868,7 +9868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.2
+  parallaxFactor: 0.7
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &2007699778
@@ -9964,7 +9964,7 @@ Transform:
   m_GameObject: {fileID: 2021804575}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.45, y: 0.2, z: -0.883459}
+  m_LocalPosition: {x: 3.48, y: 0.19, z: -0.883459}
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -9982,7 +9982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.2
+  parallaxFactor: 0.7
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &2021804578
@@ -10078,7 +10078,7 @@ Transform:
   m_GameObject: {fileID: 2027560783}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.2, y: 0.17, z: -0.883459}
+  m_LocalPosition: {x: -5.17, y: 0.16, z: -0.883459}
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -10096,7 +10096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.2
+  parallaxFactor: 0.7
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &2027560786
@@ -10258,7 +10258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.53
+  parallaxFactor: 0.35
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &2078378814
@@ -10431,7 +10431,7 @@ Transform:
   m_GameObject: {fileID: 2094796053}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.7, y: 4.85, z: -0.883459}
+  m_LocalPosition: {x: -1.67, y: 4.84, z: -0.883459}
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -10449,7 +10449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f78d067289f53c43bb03e926dd593d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.2
+  parallaxFactor: 0.7
   parallaxX: 1
   parallaxY: 1
 --- !u!114 &2094796056

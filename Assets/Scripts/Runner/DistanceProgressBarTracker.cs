@@ -6,16 +6,15 @@ using UnityEngine.UI;
 public class DistanceProgressBarTracker : MonoBehaviour
 {
     private DistanceTracker _distanceTracker;
-    private Slider slider;
+    [SerializeField] private Image slider;
 
     private void Start()
     {
         _distanceTracker = DistanceTracker.Instance;
-        slider = GetComponent<Slider>();
     }
 
     private void Update()
     {
-        slider.value = _distanceTracker.ProgressToEnd;
+        slider.fillAmount = _distanceTracker.ProgressToEnd;
     }
 }
