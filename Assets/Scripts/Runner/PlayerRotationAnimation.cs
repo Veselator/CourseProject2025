@@ -48,7 +48,7 @@ public class PlayerRotationAnimation : MonoBehaviour
         //Vector2 startPosition = transform.position;
         //float elapsedTime = 0f;
 
-        while (Mathf.Abs(transform.position.x - endPosition.x) > fault)
+        while (Vector2.Distance(transform.position, endPosition) > fault)
         {
             //float t = elapsedTime / animationDuration;
             transform.position = Vector2.Lerp(transform.position, endPosition, lerpFactor * Time.deltaTime);

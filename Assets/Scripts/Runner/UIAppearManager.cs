@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class UIAppearManager : MonoBehaviour
     private float fadeDuration = 1.5f;
 
     public static UIAppearManager Instance;
+    public Action OnAppearAnimationEnded;
 
     private void Awake()
     {
@@ -42,6 +44,7 @@ public class UIAppearManager : MonoBehaviour
             yield return null;
         }
 
+        OnAppearAnimationEnded?.Invoke();
         canvasGroup.alpha = 1f;
     }
 }

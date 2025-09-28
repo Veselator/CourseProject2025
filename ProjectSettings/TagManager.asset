@@ -9,6 +9,7 @@ TagManager:
   - EnemyDestroyer
   - Enemy
   - Bullet
+  - Money
   layers:
   - Default
   - TransparentFX
@@ -46,6 +47,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Obstacles
+    uniqueID: 2691546079
+    locked: 0
   - name: Player
     uniqueID: 1268406437
+    locked: 0
+  - name: TheToppestThings
+    uniqueID: 4139118391
     locked: 0

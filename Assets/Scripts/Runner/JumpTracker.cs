@@ -17,6 +17,7 @@ public class JumpTracker : MonoBehaviour
 
     public Action OnReadyToJump;
     public Action OnJumpAnimationStarted;
+    public Action OnJumpEnded;
 
     private void Awake()
     {
@@ -52,6 +53,7 @@ public class JumpTracker : MonoBehaviour
     {
         // Вызывается когда прыжок закончился
         playerHealth.IsPossibleToHitPlayer = true;
+        OnJumpEnded?.Invoke();
         GlobalFlags.ClearFlag(GlobalFlags.Flags.BLOCK_PLAYER_MOVING);
     }
 

@@ -31,6 +31,7 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Collision detected with " + other.gameObject.name);
 
         if (!IsPossibleToHitPlayer) return;
+        if (other.CompareTag("Money")) return;
 
         if (other.transform.TryGetComponent<ObstacleInfo>(out ObstacleInfo obstacleInfo))
         {

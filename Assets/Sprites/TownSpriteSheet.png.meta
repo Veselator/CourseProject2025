@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -134,7 +134,154 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: TownSpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2269
+        width: 2618
+        height: 262
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67e23c29007369e448125821aeedd9c1
+      internalID: 1590096400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TownSpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1905
+        width: 2618
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56f36cf41514f914cae43ed9b64c3ebc
+      internalID: 558023047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TownSpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1644
+        width: 2618
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0621152363a3cc74691827b5f4f8aeee
+      internalID: 849287911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TownSpriteSheet_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1354
+        width: 2618
+        height: 286
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aab4d61d1d2748d43b4d993e8fe8aa8e
+      internalID: -2021849748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TownSpriteSheet_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 435
+        width: 2618
+        height: 462
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 618060da70f92ae4da269d1d9f010342
+      internalID: 344449713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TownSpriteSheet_26
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 903
+        width: 2618
+        height: 445
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93e67802b60903b498d4420419c33f68
+      internalID: -887676126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TownSpriteSheet_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 2618
+        height: 426
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16458679f4ef3534b90ac26a5128474d
+      internalID: 1221933368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -145,7 +292,35 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TownSpriteSheet_0: 1590096400
+      TownSpriteSheet_1: 1289753189
+      TownSpriteSheet_10: 948103897
+      TownSpriteSheet_11: 1399325432
+      TownSpriteSheet_12: 1691138655
+      TownSpriteSheet_13: -1513192387
+      TownSpriteSheet_14: -230786021
+      TownSpriteSheet_15: 849287911
+      TownSpriteSheet_16: 315333944
+      TownSpriteSheet_17: 1365987626
+      TownSpriteSheet_18: 604976361
+      TownSpriteSheet_19: -2021849748
+      TownSpriteSheet_2: 424593879
+      TownSpriteSheet_20: 299518161
+      TownSpriteSheet_21: 1110148591
+      TownSpriteSheet_22: -605829955
+      TownSpriteSheet_23: -1913780137
+      TownSpriteSheet_24: 1049656490
+      TownSpriteSheet_25: 344449713
+      TownSpriteSheet_26: -887676126
+      TownSpriteSheet_27: 1221933368
+      TownSpriteSheet_3: 1076634065
+      TownSpriteSheet_4: 1998865941
+      TownSpriteSheet_5: 400153086
+      TownSpriteSheet_6: 547000604
+      TownSpriteSheet_7: -794367078
+      TownSpriteSheet_8: 558023047
+      TownSpriteSheet_9: -899014839
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

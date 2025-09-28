@@ -10,13 +10,13 @@ public class DistanceTracker : MonoBehaviour
     // SpeedTracker будет отвечать только за скорость и дистанцию
     // StageTracker будет отвечать за этапы и события
 
-    public float CurrentSpeed { get; private set; } = 12f;
-    private const float START_ACCELERATION = 2f;
+    public float CurrentSpeed { get; private set; } = 8f;
+    private const float START_ACCELERATION = 1f;
     private float currentAcceleration = START_ACCELERATION;
-    private float maxAcceleration = 7f;
+    private float maxAcceleration = 4f;
 
     public float CurrentDistance { get; private set; }
-    private float maxSpeed = 40f;
+    private float maxSpeed = 30f;
 
     public float MaxAcceleration
     {
@@ -31,9 +31,9 @@ public class DistanceTracker : MonoBehaviour
 
     // Значения дистанций для этапов
     // Вынесены в константы для удобства настройки
-    public readonly float DISTANCE_TO_FIRST_TURN = 200f;
+    public readonly float DISTANCE_TO_FIRST_TURN = 700f;
     public readonly float DISTANCE_TO_SECOND_TURN = 1400f;
-    public readonly float DISTANCE_TO_END_GAME = 2400f;
+    public readonly float DISTANCE_TO_END_GAME = 2600f;
 
     public float ProgressToEnd => CurrentDistance / DISTANCE_TO_END_GAME;
 
@@ -42,6 +42,7 @@ public class DistanceTracker : MonoBehaviour
     private PlayerMovementAcrossLevel playerMovementAcrossLevel;
     private PlayerRotationAnimation playerRotationAnimation;
     private SpawnObstacles spawnObstacles;
+    [SerializeField] private BaseSpawner[] spawners;
 
     // Singleton
     private static DistanceTracker instance;
@@ -130,8 +131,8 @@ public class DistanceTracker : MonoBehaviour
 
 
             // Меняем значения, которые отвечают за сложность игры
-            maxSpeed = 60f;
-            MaxAcceleration = 8f;
+            maxSpeed = 50f;
+            MaxAcceleration = 5f;
             spawnObstacles.SpawnInterval = 2.7f;
         }
         else if (CurrentDistance >= turnDistances[1] && !GlobalFlags.GetFlag(GlobalFlags.Flags.RUNNER_STAGE_2_PASSED))
@@ -144,17 +145,25 @@ public class DistanceTracker : MonoBehaviour
             RotateRoad?.Invoke();
             playerRotationAnimation.OnRotateRoad();
 
-            maxSpeed = 100f;
-            MaxAcceleration = 4f;
+            maxSpeed = 90f;
+            MaxAcceleration = 6f;
             spawnObstacles.SpawnInterval = 2.4f;
         }
         else if (CurrentDistance >= turnDistances[2] && !GlobalFlags.GetFlag(GlobalFlags.Flags.RUNNER_STAGE_3_PASSED))
         {
             Debug.Log("Third turn reached");
-
+            DisableSpawners();
             GlobalFlags.SetFlag(GlobalFlags.Flags.RUNNER_STAGE_3_PASSED);
             GlobalFlags.SetFlag(GlobalFlags.Flags.GAME_WIN);
             GameSceneManager.LoadNextScene();
+        }
+    }
+
+    private void DisableSpawners()
+    {
+        foreach (var spawner in spawners)
+        {
+            spawner.IsAbleToSpawn = false;
         }
     }
 

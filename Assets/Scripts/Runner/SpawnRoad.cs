@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SpawnRoad : MonoBehaviour
 {
-    [SerializeField] private GameObject roadPrefab;
+    [SerializeField] private GameObject[] roadPrefabs;
     [SerializeField] private GameObject[] turnPrefabs = new GameObject[2];
     private int _currentTurnIndex = 0;
     [SerializeField] private float distanceBetweenRoads = 10f;
@@ -65,7 +65,12 @@ public class SpawnRoad : MonoBehaviour
 
     private void SpawnNextRoad()
     {
-        SpawnPart(roadPrefab, Vector2Rotation(_playerMovement.CurrentDirection));
+        SpawnPart(GetRandomPrefab(), Vector2Rotation(_playerMovement.CurrentDirection));
+    }
+
+    private GameObject GetRandomPrefab()
+    {
+        return roadPrefabs[UnityEngine.Random.Range(0, roadPrefabs.Length - 1)];
     }
 
     private void SpawnTurn()
