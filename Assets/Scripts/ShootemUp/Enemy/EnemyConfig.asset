@@ -31,3 +31,5 @@ MonoBehaviour:
     prefab: {fileID: 7483383346812524280, guid: 4ae4c52fd60c38646b3b150b46a69bb7, type: 3}
   - enemyType: 8
     prefab: {fileID: 8764308845040164860, guid: 996d058fe04b53d49a873c4fd16e6b5a, type: 3}
+  - enemyType: 9
+    prefab: {fileID: 5030022706384296453, guid: 08de62036f181ff458884933990433a0, type: 3}

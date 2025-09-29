@@ -25,6 +25,10 @@ public class UIBulletSwitcherManager : MonoBehaviour
         _bms.OnNewBulletUnlocked += UnlockBullet;
 
         selector.transform.position = _bulletsImages[0].transform.position;
+
+        _bulletsImages[1].SetActive(false);
+        _bulletsImages[2].SetActive(false);
+        _bulletsImages[3].SetActive(false);
     }
 
     private void OnDestroy()

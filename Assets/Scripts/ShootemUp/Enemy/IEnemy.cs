@@ -9,7 +9,8 @@ public enum EnemyType
     Fast,
     Boss,
     RotatingEnemy,
-    Armored3
+    Armored3,
+    AllSide
 }
 
 public interface IEnemy

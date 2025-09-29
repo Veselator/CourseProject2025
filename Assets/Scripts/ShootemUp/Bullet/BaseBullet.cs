@@ -5,7 +5,8 @@ public enum BulletType
     Regular,
     AntiArmor,
     Explosive,
-    Bouncing
+    Bouncing,
+    Circular
 }
 
 public abstract class BaseBullet : MonoBehaviour, IBullet

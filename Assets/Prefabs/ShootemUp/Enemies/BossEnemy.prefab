@@ -34,7 +34,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7905227366311674826}
@@ -80,9 +80,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 013b3c4799884074087d588b0452414a, type: 3}
-  m_Color: {r: 0.91194963, g: 0, b: 0.7547639, a: 1}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 1915741197, guid: 969d3c03095c84245a7212d79e59cc69, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -147,14 +147,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 7.02, y: 5.85}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 6.93, y: 5.63}
   m_EdgeRadius: 0
 --- !u!50 &3448101427377393822
 Rigidbody2D:
@@ -340,6 +340,10 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2391162751876183077, guid: 86585c212ce5c82459131fd8efcd7b36, type: 3}
+      propertyPath: trackingHealth
+      value: 
+      objectReference: {fileID: 1011285221036939711}
     - target: {fileID: 2616445666063078227, guid: 86585c212ce5c82459131fd8efcd7b36, type: 3}
       propertyPath: m_Layer
       value: 6
