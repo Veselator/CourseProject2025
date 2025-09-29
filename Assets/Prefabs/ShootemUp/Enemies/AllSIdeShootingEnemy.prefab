@@ -294,7 +294,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: {x: 0, y: -1}
   delay: 1
-  currentBulletType: 0
+  IsAbleToSpawn: 1
+  currentBulletType: 4
   spawnBulletsPoint: {fileID: 1236736323118148089}
   isPlayerSpawner: 0
   damageMultiplier: 1
@@ -312,7 +313,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 1}
   delay: 1
-  currentBulletType: 0
+  IsAbleToSpawn: 1
+  currentBulletType: 4
   spawnBulletsPoint: {fileID: 1236736323118148089}
   isPlayerSpawner: 0
   damageMultiplier: 1
@@ -330,7 +332,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: {x: -1, y: 0}
   delay: 1
-  currentBulletType: 0
+  IsAbleToSpawn: 1
+  currentBulletType: 4
   spawnBulletsPoint: {fileID: 1236736323118148089}
   isPlayerSpawner: 0
   damageMultiplier: 1
@@ -348,7 +351,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: {x: 1, y: 0}
   delay: 1
-  currentBulletType: 0
+  IsAbleToSpawn: 1
+  currentBulletType: 4
   spawnBulletsPoint: {fileID: 1236736323118148089}
   isPlayerSpawner: 0
   damageMultiplier: 1

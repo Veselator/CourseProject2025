@@ -22,7 +22,6 @@ public class UIUpgradesManager : MonoBehaviour
 
     private void InitButtons()
     {
-        // TODO: разделение на большой и малый текст
         buttonTexts = new TextMeshProUGUI[buttons.Length];
         for (int i = 0; i < buttons.Length; i++)
         {
@@ -99,9 +98,9 @@ public class UIUpgradesManager : MonoBehaviour
             yield return null;
         }
 
-        // Финальная установка точного значения
-        target.localScale = Vector3.zero;
         target.gameObject.SetActive(false);
+
+        target.localScale = originalScale;
     }
 
     private float EaseInBackWithOvershoot(float t, float overshoot = 1.2f)

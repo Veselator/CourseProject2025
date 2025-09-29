@@ -140,7 +140,7 @@ public class UIHealthArmorBarManager : MonoBehaviour
         }
     }
 
-    private void UpdateHealthBar()
+    public void UpdateHealthBar()
     {
         float targetHealth = trackingHealth.CurrentHealthInPercentage;
 
@@ -152,7 +152,7 @@ public class UIHealthArmorBarManager : MonoBehaviour
         }
     }
 
-    private void UpdateArmorBar()
+    public void UpdateArmorBar()
     {
         float targetArmor = trackingHealth.CurrentArmorInPercentage;
 

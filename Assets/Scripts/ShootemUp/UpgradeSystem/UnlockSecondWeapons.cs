@@ -10,7 +10,7 @@ public class UnlockSecondWeapons : IUpgrade
     {
         foreach(var bulletSpawner in PlayerInstances.Instance.additionalGuns.GetComponents<BulletSpawner>())
         {
-            bulletSpawner.enabled = true;
+            bulletSpawner.IsAbleToSpawn = true;
         }
         // Возможно, потребуется как-то графически это передать
         // Изменением спрайта игрока

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using VContainer;
+using VContainer.Unity;
 
 public class BulletSpawner : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class BulletSpawner : MonoBehaviour
     [Tooltip("Задержка между спавном пуль")]
     [Min(0.01f)] // Минимальное значение
     [SerializeField] private float delay;
+    public bool IsAbleToSpawn = true;
 
     public float ShootingDelay
     {
@@ -74,6 +76,7 @@ public class BulletSpawner : MonoBehaviour
     private void FixedUpdate()
     {
         if (GlobalFlags.GetFlag(GlobalFlags.Flags.GAME_OVER)) return;
+        if (!IsAbleToSpawn) return;
         timer += Time.fixedDeltaTime;
         if (timer >= delay)
         {
@@ -84,6 +87,8 @@ public class BulletSpawner : MonoBehaviour
 
     private void InitBulletGameObject()
     {
+        // Напрямую обращаемся к LifetimeScope, если нет конфига пули
+        if (_bulletConfig == null) _bulletConfig = LifetimeScope.Find<ShootemUpLifetimeScope>().Container.Resolve<BulletConfig>();
         currentBulletPrefab = _bulletConfig.GetPrefab(currentBulletType);
     }
 

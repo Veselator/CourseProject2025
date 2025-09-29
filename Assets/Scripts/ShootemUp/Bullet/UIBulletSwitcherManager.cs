@@ -12,8 +12,11 @@ public class UIBulletSwitcherManager : MonoBehaviour
     // Важно, что-бы ихний порядок соотвествовал порядку пуль в enum
     [SerializeField] private GameObject[] _bulletsImages;
     [SerializeField] private GameObject selector;
+    private Transform targetTransform;
+    private bool isAtTarget = true;
+
     private float unlockAnimationDuration = 1.2f;
-    private float selectorSpeedFactor = 14.2f;
+    private float selectorSpeedFactor = 0.2f;
     private float selectorAccuracy = 0.1f;
 
     private void Start()
@@ -29,12 +32,26 @@ public class UIBulletSwitcherManager : MonoBehaviour
         _bulletsImages[1].SetActive(false);
         _bulletsImages[2].SetActive(false);
         _bulletsImages[3].SetActive(false);
+
+        targetTransform = _bulletsImages[0].transform;
     }
 
     private void OnDestroy()
     {
         _bs.OnBulletSwitched -= SwitchBullet;
         _bms.OnNewBulletUnlocked -= UnlockBullet;
+    }
+
+    private void Update()
+    {
+        if (isAtTarget) return;
+        selector.transform.position = Vector2.Lerp(selector.transform.position, targetTransform.position, selectorSpeedFactor);
+
+        if(Mathf.Abs(selector.transform.position.x - targetTransform.position.x) < selectorAccuracy)
+        {
+            selector.transform.position = targetTransform.position;
+            isAtTarget = true;
+        }
     }
 
     private void UnlockBullet(BulletType bulletType)
@@ -46,7 +63,9 @@ public class UIBulletSwitcherManager : MonoBehaviour
     private void SwitchBullet(int newBulletIndex)
     {
         if(GlobalFlags.GetFlag(GlobalFlags.Flags.GAME_OVER)) return;
-        StartCoroutine(MoveSelector(_bulletsImages[newBulletIndex].transform.position));
+        targetTransform = _bulletsImages[newBulletIndex].transform;
+        isAtTarget = false;
+        //StartCoroutine(MoveSelector(_bulletsImages[newBulletIndex].transform.position));
     }
 
     private IEnumerator UnlockAnimation(GameObject unlockBulletImage)
@@ -88,14 +107,14 @@ public class UIBulletSwitcherManager : MonoBehaviour
         bulletImage.color = originalColor;
     }
 
-    private IEnumerator MoveSelector(Vector2 endPosition)
-    {
-        while (Mathf.Abs(selector.transform.position.x - endPosition.x) > selectorAccuracy)
-        {
-            selector.transform.position = Vector2.Lerp(selector.transform.position, endPosition, selectorSpeedFactor * Time.deltaTime);
-            yield return null;
-        }
+    //private IEnumerator MoveSelector(Vector2 endPosition)
+    //{
+    //    while (Mathf.Abs(selector.transform.position.x - endPosition.x) > selectorAccuracy)
+    //    {
+    //        selector.transform.position = Vector2.Lerp(selector.transform.position, endPosition, selectorSpeedFactor * Time.deltaTime);
+    //        yield return null;
+    //    }
 
-        selector.transform.position = endPosition;
-    }
+    //    selector.transform.position = endPosition;
+    //}
 }

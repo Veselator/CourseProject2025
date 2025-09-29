@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ShootemUpLifetimeScope : LifetimeScope
 {
-    [SerializeField] private EnemyConfig _enemyConfig;
-    [SerializeField] private BulletConfig _bulletConfig;
-    [SerializeField] private WavesStreamConfig _wavesStreamConfig;
+    [SerializeField] public EnemyConfig _enemyConfig;
+    [SerializeField] public BulletConfig _bulletConfig;
+    [SerializeField] public WavesStreamConfig _wavesStreamConfig;
 
     protected override void Configure(IContainerBuilder builder)
     {
@@ -16,6 +16,5 @@ public class ShootemUpLifetimeScope : LifetimeScope
 
         builder.RegisterComponentInHierarchy<WavesManager>();
         builder.RegisterComponentInHierarchy<EnemySpawner>();
-        builder.RegisterComponentInHierarchy<BulletSpawner>();
     }
 }

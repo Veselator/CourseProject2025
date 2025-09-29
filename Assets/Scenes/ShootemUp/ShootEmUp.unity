@@ -972,13 +972,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 111584483}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10ecbec003463ae4993bd1cfad02afff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 1}
   delay: 0.79
+  IsAbleToSpawn: 0
   currentBulletType: 0
   spawnBulletsPoint: {fileID: 561665401}
   isPlayerSpawner: 1
@@ -990,13 +991,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 111584483}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10ecbec003463ae4993bd1cfad02afff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 1}
   delay: 0.79
+  IsAbleToSpawn: 0
   currentBulletType: 0
   spawnBulletsPoint: {fileID: 15218963}
   isPlayerSpawner: 1
@@ -2957,6 +2959,7 @@ GameObject:
   - component: {fileID: 594169083}
   - component: {fileID: 594169080}
   - component: {fileID: 594169086}
+  - component: {fileID: 594169093}
   - component: {fileID: 594169087}
   - component: {fileID: 594169091}
   m_Layer: 0
@@ -3108,6 +3111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 1}
   delay: 0.29
+  IsAbleToSpawn: 1
   currentBulletType: 0
   spawnBulletsPoint: {fileID: 1725437049}
   isPlayerSpawner: 1
@@ -3202,6 +3206,19 @@ MonoBehaviour:
   minMovementThreshold: 0.01
   useXMovement: 1
   invertRotation: 0
+--- !u!114 &594169093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594169077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebaca5cb602970a47af5c3c3abd4e1ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthArmorBarManager: {fileID: 1149279658}
 --- !u!1 &595998954
 GameObject:
   m_ObjectHideFlags: 0
@@ -6667,8 +6684,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16.3
-  m_fontSizeBase: 16.3
+  m_fontSize: 20.7
+  m_fontSizeBase: 20.7
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6703,7 +6720,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 34.0339, y: 0, z: 34.531033, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -6808,7 +6825,8 @@ Animation:
   m_Enabled: 1
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: 83d87200614a07843ae91f7b513f6688, type: 2}
-  m_Animations: []
+  m_Animations:
+  - {fileID: 7400000, guid: 83d87200614a07843ae91f7b513f6688, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -10130,8 +10148,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16.3
-  m_fontSizeBase: 16.3
+  m_fontSize: 20.7
+  m_fontSizeBase: 20.7
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -10166,7 +10184,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 33.558876, y: 0, z: 32.956017, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -11351,9 +11369,7 @@ SceneRoots:
   - {fileID: 2081396022}
   - {fileID: 1852294504}
   - {fileID: 773888798}
-  - {fileID: 1218949284}
   - {fileID: 1287936886}
-  - {fileID: 1352373380}
   - {fileID: 1976650959}
   - {fileID: 1074542391}
   - {fileID: 1871844039}
@@ -11363,3 +11379,5 @@ SceneRoots:
   - {fileID: 1180493196}
   - {fileID: 1470218203}
   - {fileID: 713106627}
+  - {fileID: 1352373380}
+  - {fileID: 1218949284}

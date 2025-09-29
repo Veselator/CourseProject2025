@@ -57,6 +57,7 @@ public class WavesManager : MonoBehaviour
 
     private void CheckEnemyDied()
     {
+        Debug.Log($"Some enemy died. Rip. currentNumOfEnemiesInWave: {currentNumOfEnemiesInWave}");
         currentNumOfEnemiesInWave--;
 
         CheckNextWave();
