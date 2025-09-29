@@ -10,7 +10,7 @@ public class CameraDeathAnimation : MonoBehaviour
 
     private Camera mainCamera;
     private CameraShake _shake;
-    [SerializeField] private Transform playerTransform;
+    [SerializeField] private GameObject playerTransform;
     private bool isPlayingAnimation = false;
 
     void Start()
@@ -39,7 +39,7 @@ public class CameraDeathAnimation : MonoBehaviour
     {
         if (isPlayingAnimation) return;
         _shake.enabled = false;
-        StartCoroutine(MoveCameraToTarget(playerTransform));
+        StartCoroutine(MoveCameraToTarget(playerTransform.transform));
     }
 
     public IEnumerator MoveCameraToTarget(Transform targetObject)

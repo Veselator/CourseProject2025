@@ -24,6 +24,7 @@ public class WavesManager : MonoBehaviour
 
     public Action OnWaveEnded;
     public static Action OnEnemyDied;
+    public Action<int> OnWaveStarted;
 
     [Inject]
     public void Construct(WavesStreamConfig wavesStrConfig)
@@ -101,6 +102,7 @@ public class WavesManager : MonoBehaviour
     public void StartWave()
     {
         Debug.Log($"WAVE {currentWaveIndex} STARTED!");
+        OnWaveStarted?.Invoke(currentWaveIndex);
         StartCoroutine(StartWaveWithDelay());
     }
 

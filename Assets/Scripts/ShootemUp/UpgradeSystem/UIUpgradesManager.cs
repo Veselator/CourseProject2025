@@ -9,7 +9,7 @@ public class UIUpgradesManager : MonoBehaviour
     private UpgradesManager upgradesManager;
     [Header("Animation Settings")]
     [SerializeField] private Transform upgradesMenuTransform;
-    [SerializeField] private GameObject[] buttons; // 0 - левый, 1 - правый
+    [SerializeField] private GameObject[] buttons; // 0 и 1 - левый, 2 и 3 - правый
     private TextMeshProUGUI[] buttonTexts;
 
     private void Start()
@@ -26,6 +26,7 @@ public class UIUpgradesManager : MonoBehaviour
         buttonTexts = new TextMeshProUGUI[buttons.Length];
         for (int i = 0; i < buttons.Length; i++)
         {
+            Debug.Log($"{i} - {buttonTexts[i]}");
             buttonTexts[i] = buttons[i].GetComponent<TextMeshProUGUI>();
         }
     }
@@ -38,11 +39,12 @@ public class UIUpgradesManager : MonoBehaviour
     private void ShowUI()
     {
         // Обновляем текст
-        for (int i = 0; i < buttonTexts.Length; i++)
+        for (int i = 0; i < 2; i++)
         {
             IUpgrade chosenUpgrade = upgradesManager.choosenUpgrades[i];
             Debug.Log($"Index {i}: The chosen upgrade is {chosenUpgrade.MainText} buttonTexts[i] == null: {buttonTexts[i] == null}");
-            buttonTexts[i].text = chosenUpgrade.MainText + " " + chosenUpgrade.SecondText;
+            buttonTexts[2 * i].text = chosenUpgrade.MainText;// + " " + chosenUpgrade.SecondText;
+            buttonTexts[2 * i + 1].text = chosenUpgrade.SecondText;
         }
 
         StartCoroutine(UIShowingAnimation(upgradesMenuTransform));
@@ -50,7 +52,7 @@ public class UIUpgradesManager : MonoBehaviour
 
     public void HideUI()
     {
-        upgradesMenuTransform.gameObject.SetActive(false);
+        StartCoroutine(UIHidingAnimation(upgradesMenuTransform));
     }
 
     private IEnumerator UIShowingAnimation(Transform target, float duration = 0.6f, float overshoot = 1.2f)
@@ -76,6 +78,30 @@ public class UIUpgradesManager : MonoBehaviour
 
         // Финальная установка точного значения
         target.localScale = originalScale;
+    }
+
+    private IEnumerator UIHidingAnimation(Transform target, float duration = 0.6f, float overshoot = 1.2f)
+    {
+        Vector3 originalScale = target.localScale;
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            float progress = elapsedTime / duration;
+
+            // Кастомная easing функция с overshoot
+            float easeValue = EaseInBackWithOvershoot(1f - progress, overshoot);
+
+            target.localScale = originalScale * easeValue;
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Финальная установка точного значения
+        target.localScale = Vector3.zero;
+        target.gameObject.SetActive(false);
     }
 
     private float EaseInBackWithOvershoot(float t, float overshoot = 1.2f)

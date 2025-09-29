@@ -5,8 +5,10 @@ public abstract class BaseEnemy : MonoBehaviour, IEnemy
 {
     [SerializeField] protected IHealth _healthTracker;
     [SerializeField] protected IMovement _movement;
-    private IObjectResolver resolver;
-    private BulletConfig _bulletConfig;
+    [SerializeField] private GameObject boomParticle;
+
+    [SerializeField] private int scoreAdd;
+    private ShootemUpScoreManager _scoreManager;
 
     // Экземпляр будет даже не знать, по какому паттерну он движется
     public IMovingPattern currentMovingPattern { get; set; }
@@ -18,13 +20,6 @@ public abstract class BaseEnemy : MonoBehaviour, IEnemy
     protected float arrivalThreshold = 0.1f;
 
     [SerializeField] private Damage damageOnCollisionWithPlayer;
-
-    [Inject]
-    public void Construct(IObjectResolver resolver, BulletConfig bulletConfig)
-    {
-        this.resolver = resolver;
-        this._bulletConfig = bulletConfig;
-    }
 
     protected virtual void Start()
     {
@@ -38,6 +33,8 @@ public abstract class BaseEnemy : MonoBehaviour, IEnemy
 
     protected virtual void Die()
     {
+        Instantiate(boomParticle, gameObject.transform.position, Quaternion.identity);
+        Debug.Log("Enemy just died");
         DestroyEnemy();
     }
 
@@ -45,7 +42,10 @@ public abstract class BaseEnemy : MonoBehaviour, IEnemy
     {
         _movement = GetComponent<IMovement>();
         _healthTracker = GetComponent<IHealth>();
+        _scoreManager = ShootemUpScoreManager.Instance;
+
         _healthTracker.OnDeath += Die;
+        _healthTracker.OnDeath += AddScore;
 
         _movement.Init(Vector2.down);
 
@@ -59,6 +59,12 @@ public abstract class BaseEnemy : MonoBehaviour, IEnemy
     private void OnDestroy()
     {
         _healthTracker.OnDeath -= Die;
+        _healthTracker.OnDeath -= AddScore;
+    }
+
+    private void AddScore()
+    {
+        _scoreManager.AddScoreAction?.Invoke(scoreAdd);
     }
 
     protected virtual void UpdateMovement()
@@ -113,7 +119,7 @@ public abstract class BaseEnemy : MonoBehaviour, IEnemy
         {
             // При попадании в игрока
             other.GetComponent<IHealth>().TakeDamage(damageOnCollisionWithPlayer);
-            DestroyEnemy();
+            Die();
         }
     }
 
@@ -122,6 +128,7 @@ public abstract class BaseEnemy : MonoBehaviour, IEnemy
         // Сообщаем, что мы умерли
         // НО
         // важно также учитывать характер смерти - от столкновения с игроком, от пули или от достижения границы
+        Debug.Log("Enemy just destroyed");
         WavesManager.OnEnemyDied?.Invoke();
         //GlobalFlags.ToggleFlag(GlobalFlags.Flags.SHOOTEMUP_ENEMY_DIED);
         // Здесь можно добавить эффекты уничтожения, дроп и т.д.

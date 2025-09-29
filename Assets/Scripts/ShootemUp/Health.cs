@@ -73,6 +73,9 @@ public class Health : MonoBehaviour, IHealth
 
     public void TakeDamage(Damage damage)
     {
+        // Что-бы не регистрировать урон когда игра уже закончилась
+        if (GlobalFlags.GetFlag(GlobalFlags.Flags.GAME_OVER)) return;
+
         Debug.Log($"Registering hit armordaamge {damage.damageArmor} healthdamage {damage.damageHealth} currentArmor {currentArmor} current health {currentHealth} is armored {isArmored}");
         if (isArmored)
         {

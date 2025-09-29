@@ -14,20 +14,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - enemyStreamConfigs:
-    - enemyType: 6
+    - enemyType: 0
+      movingPatternType: 4
+      startX: 0.277
+      endX: 0.723
+      count: 6
+      delayBetweenSpawns: 1.2
+      delayAfterEndOfStream: 2
+    - enemyType: 0
+      movingPatternType: 4
+      startX: 0.432
+      endX: 0.716
+      count: 6
+      delayBetweenSpawns: 1.2
+      delayAfterEndOfStream: 2
+    - enemyType: 0
+      movingPatternType: 4
+      startX: 0.504
+      endX: 0.859
+      count: 6
+      delayBetweenSpawns: 1.2
+      delayAfterEndOfStream: 0.1
+  - enemyStreamConfigs:
+    - enemyType: 1
       movingPatternType: 0
       startX: 0
-      endX: 1
+      endX: 0
       count: 1
-      delayBetweenSpawns: 1.2
-      delayAfterEndOfStream: 5
-    - enemyType: 1
-      movingPatternType: 1
-      startX: 0.846
-      endX: 0.145
-      count: 4
-      delayBetweenSpawns: 1.1
-      delayAfterEndOfStream: 1.16
+      delayBetweenSpawns: 0.3
+      delayAfterEndOfStream: 0.1
+    - enemyType: 0
+      movingPatternType: 0
+      startX: 0
+      endX: 0
+      count: 3
+      delayBetweenSpawns: 0.29
+      delayAfterEndOfStream: 0.1
   - enemyStreamConfigs:
     - enemyType: 0
       movingPatternType: 0
@@ -36,4 +58,66 @@ MonoBehaviour:
       count: 6
       delayBetweenSpawns: 0.29
       delayAfterEndOfStream: 2.61
-  timeBeforeStart: 4.13
+  - enemyStreamConfigs:
+    - enemyType: 0
+      movingPatternType: 0
+      startX: 0
+      endX: 0
+      count: 6
+      delayBetweenSpawns: 0.29
+      delayAfterEndOfStream: 2.61
+  - enemyStreamConfigs:
+    - enemyType: 0
+      movingPatternType: 0
+      startX: 0
+      endX: 0
+      count: 6
+      delayBetweenSpawns: 0.29
+      delayAfterEndOfStream: 2.61
+  - enemyStreamConfigs:
+    - enemyType: 0
+      movingPatternType: 0
+      startX: 0
+      endX: 0
+      count: 6
+      delayBetweenSpawns: 0.29
+      delayAfterEndOfStream: 2.61
+  - enemyStreamConfigs:
+    - enemyType: 0
+      movingPatternType: 0
+      startX: 0
+      endX: 0
+      count: 6
+      delayBetweenSpawns: 0.29
+      delayAfterEndOfStream: 2.61
+  - enemyStreamConfigs:
+    - enemyType: 0
+      movingPatternType: 0
+      startX: 0
+      endX: 0
+      count: 6
+      delayBetweenSpawns: 0.29
+      delayAfterEndOfStream: 2.61
+  - enemyStreamConfigs:
+    - enemyType: 4
+      movingPatternType: 0
+      startX: 1
+      endX: 0
+      count: 3
+      delayBetweenSpawns: 0.4
+      delayAfterEndOfStream: 0.1
+    - enemyType: 4
+      movingPatternType: 0
+      startX: 0
+      endX: 1
+      count: 3
+      delayBetweenSpawns: 0.4
+      delayAfterEndOfStream: 3.28
+    - enemyType: 6
+      movingPatternType: 1
+      startX: 0
+      endX: 0.5
+      count: 1
+      delayBetweenSpawns: 0.4
+      delayAfterEndOfStream: 3.28
+  timeBeforeStart: 5

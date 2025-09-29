@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using VContainer;
 
@@ -42,7 +43,11 @@ public class EnemySpawner : MonoBehaviour
         GameObject enemyPrefab = enemyConfig.GetPrefab(spawnData.enemyType);
         if (enemyPrefab == null) return;
 
-        GameObject enemyObject = Instantiate(enemyPrefab, spawnData.spawnPosition, Quaternion.identity);
+        // С учётом высоты изображения
+        float imageHeight = enemyPrefab.GetComponent<SpriteRenderer>().bounds.size.y;
+        Vector2 spawnPosition = new Vector2(spawnData.spawnPosition.x, spawnData.spawnPosition.y + imageHeight);
+
+        GameObject enemyObject = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
 
         BaseEnemy enemy = enemyObject.GetComponent<BaseEnemy>();
         if (enemyObject.TryGetComponent<BulletSpawner>(out var bulletSpawner))

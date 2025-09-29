@@ -8,7 +8,10 @@ public class UnlockSecondWeapons : IUpgrade
     public string SecondText => "Другу зброю";
     public void ApplyUpgrade()
     {
-        PlayerInstances.Instance.additionalGuns.SetActive(true);
+        foreach(var bulletSpawner in PlayerInstances.Instance.additionalGuns.GetComponents<BulletSpawner>())
+        {
+            bulletSpawner.enabled = true;
+        }
         // Возможно, потребуется как-то графически это передать
         // Изменением спрайта игрока
     }

@@ -13,8 +13,8 @@ public class UIBulletSwitcherManager : MonoBehaviour
     [SerializeField] private GameObject[] _bulletsImages;
     [SerializeField] private GameObject selector;
     private float unlockAnimationDuration = 1.2f;
-    private float selectorSpeedFactor = 0.2f;
-    private float selectorAccuracy = 0.01f;
+    private float selectorSpeedFactor = 14.2f;
+    private float selectorAccuracy = 0.1f;
 
     private void Start()
     {
@@ -90,9 +90,9 @@ public class UIBulletSwitcherManager : MonoBehaviour
 
     private IEnumerator MoveSelector(Vector2 endPosition)
     {
-        while (Mathf.Abs(selector.transform.position.x - endPosition.x) < selectorAccuracy)
+        while (Mathf.Abs(selector.transform.position.x - endPosition.x) > selectorAccuracy)
         {
-            selector.transform.position = Vector2.Lerp(selector.transform.position, endPosition, selectorSpeedFactor);
+            selector.transform.position = Vector2.Lerp(selector.transform.position, endPosition, selectorSpeedFactor * Time.deltaTime);
             yield return null;
         }
 
