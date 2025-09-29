@@ -9,6 +9,7 @@ public abstract class BaseEnemy : MonoBehaviour, IEnemy
 
     [SerializeField] private int scoreAdd;
     private ShootemUpScoreManager _scoreManager;
+    private bool IsDiedFlag = false;
 
     // Ёкземпл€р будет даже не знать, по какому паттерну он движетс€
     public IMovingPattern currentMovingPattern { get; set; }
@@ -33,6 +34,9 @@ public abstract class BaseEnemy : MonoBehaviour, IEnemy
 
     protected virtual void Die()
     {
+        if (IsDiedFlag) return;
+
+        IsDiedFlag = true;
         Instantiate(boomParticle, gameObject.transform.position, Quaternion.identity);
         Debug.Log("Enemy just died");
         DestroyEnemy();
@@ -58,6 +62,8 @@ public abstract class BaseEnemy : MonoBehaviour, IEnemy
 
     private void OnDestroy()
     {
+        WavesManager.OnEnemyDied?.Invoke();
+
         _healthTracker.OnDeath -= Die;
         _healthTracker.OnDeath -= AddScore;
     }
@@ -129,7 +135,6 @@ public abstract class BaseEnemy : MonoBehaviour, IEnemy
         // Ќќ
         // важно также учитывать характер смерти - от столкновени€ с игроком, от пули или от достижени€ границы
         Debug.Log("Enemy just destroyed");
-        WavesManager.OnEnemyDied?.Invoke();
         //GlobalFlags.ToggleFlag(GlobalFlags.Flags.SHOOTEMUP_ENEMY_DIED);
         // «десь можно добавить эффекты уничтожени€, дроп и т.д.
         Destroy(gameObject);

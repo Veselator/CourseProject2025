@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 4995739884363487835}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.82, z: 0}
+  m_LocalPosition: {x: -0.046, y: -0.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 80
-  maximumArmor: 10
+  maximumArmor: 40
   isArmored: 1
 --- !u!114 &5374551283794437728
 MonoBehaviour:
@@ -580,11 +580,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1065505801032510698, guid: c91a77b01b3821940aea0042b1bc7694, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.06
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 1065505801032510698, guid: c91a77b01b3821940aea0042b1bc7694, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.62
+      value: 0.624
       objectReference: {fileID: 0}
     - target: {fileID: 1065505801032510698, guid: c91a77b01b3821940aea0042b1bc7694, type: 3}
       propertyPath: m_LocalPosition.z
@@ -625,6 +625,10 @@ PrefabInstance:
     - target: {fileID: 1423501214450259614, guid: c91a77b01b3821940aea0042b1bc7694, type: 3}
       propertyPath: m_Name
       value: FireParticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1423501214450259614, guid: c91a77b01b3821940aea0042b1bc7694, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7000703669010073017, guid: c91a77b01b3821940aea0042b1bc7694, type: 3}
       propertyPath: InitialModule.gravityModifier.scalar

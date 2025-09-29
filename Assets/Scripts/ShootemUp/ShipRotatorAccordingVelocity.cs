@@ -92,7 +92,7 @@ public class ShipRotatorAccordingVelocity : MonoBehaviour
     private void ApplyRotation()
     {
         currentRotation = Mathf.LerpAngle(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
-        rotateTransform.rotation = Quaternion.Euler(rotateTransform.rotation.x, currentRotation, rotateTransform.rotation.y);
+        rotateTransform.rotation = Quaternion.Euler(rotateTransform.eulerAngles.x, currentRotation, rotateTransform.eulerAngles.z);
     }
 
     public void SetObjectToRotate(GameObject obj)

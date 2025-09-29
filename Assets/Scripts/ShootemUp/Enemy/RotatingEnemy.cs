@@ -22,6 +22,7 @@ public class RotatingEnemy : BaseEnemy
     private void Rotate()
     {
         transform.Rotate(0, 0, rotatingSpeed * Time.deltaTime);
+        Debug.Log($"Currently trying to rotate {transform.rotation.z}");
         _bulletSpawner.direction = QuaternionToVector2(transform.rotation);
     }
 

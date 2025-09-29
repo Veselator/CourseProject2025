@@ -64,7 +64,7 @@ public class BulletSpawner : MonoBehaviour
 
     private void OnEnable()
     {
-        if(!isPlayerSpawner && _bulletConfig == null) Init(PlayerInstances.playerBulletSpawner._bulletConfig);
+        //if(!isPlayerSpawner && _bulletConfig == null) Init(PlayerInstances.playerBulletSpawner._bulletConfig);
     }
 
     private void Start()

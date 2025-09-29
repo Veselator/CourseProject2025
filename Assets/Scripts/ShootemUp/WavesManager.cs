@@ -57,7 +57,7 @@ public class WavesManager : MonoBehaviour
 
     private void CheckEnemyDied()
     {
-        Debug.Log($"Some enemy died. Rip. currentNumOfEnemiesInWave: {currentNumOfEnemiesInWave}");
+        Debug.Log($"Some enemy died. Rip. currentNumOfEnemiesInWave: {currentNumOfEnemiesInWave}, isAbleToEnd {isAbleToEnd}");
         currentNumOfEnemiesInWave--;
 
         CheckNextWave();
@@ -66,10 +66,13 @@ public class WavesManager : MonoBehaviour
     private void CheckNextWave()
     {
         if (!isAbleToSpawnEnemies) return;
+        if (IsWaveEnded) return;
         // Проверка - надо ли заканчивать эту волну
-        if (currentNumOfEnemiesInWave == 0 && isAbleToEnd)
+        if (currentNumOfEnemiesInWave <= 0 && isAbleToEnd)
         {
+            Debug.Log($"Wave {currentWaveIndex} just ended currentNumOfEnemies = {currentNumOfEnemiesInWave}");
             currentWaveIndex++;
+            currentNumOfEnemiesInWave = 0;
             IsWaveEnded = true;
 
             // Проверяем, закончились ли волны
