@@ -69,7 +69,7 @@ public class UIBulletSwitcherManager : MonoBehaviour
     {
         if(GlobalFlags.GetFlag(GlobalFlags.Flags.GAME_OVER)) return;
         targetTransform = _bulletsImages[newBulletIndex].transform;
-        selectorImage.color = _bulletsImages[newBulletIndex].GetComponent<Color>();
+        selectorImage.color = _bulletsImages[newBulletIndex].GetComponent<Image>().color;
         isAtTarget = false;
         //StartCoroutine(MoveSelector(_bulletsImages[newBulletIndex].transform.position));
     }
