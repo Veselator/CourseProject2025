@@ -9,7 +9,7 @@ public class WaveTextController : MonoBehaviour
     private Animation waveTextAnimation;
     private WavesManager _wavesManager;
 
-    private void Start()
+    private void OnEnable()
     {
         _wavesManager = WavesManager.Instance;
         waveTextAnimation = wavesText.gameObject.GetComponent<Animation>();

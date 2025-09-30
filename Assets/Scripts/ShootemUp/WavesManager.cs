@@ -12,6 +12,8 @@ public class WavesManager : MonoBehaviour
 
     public int TotalNumOfWaves => _waves.TotalNumOfWaves;
     private int currentWaveIndex;
+
+    public int CurrentWaveIndex => currentWaveIndex;
     public int TotalNumOfEnemiesInWave { get; private set; }
     private int currentNumOfEnemiesInWave;
     public int CurrentNumOfEnemiesInWave => currentNumOfEnemiesInWave;

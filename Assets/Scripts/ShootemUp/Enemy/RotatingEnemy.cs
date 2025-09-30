@@ -28,7 +28,7 @@ public class RotatingEnemy : BaseEnemy
 
     private static Vector2 QuaternionToVector2(Quaternion rotation)
     {
-        Vector3 forward = rotation * Vector3.right; // или Vector3.up, зависит от ориентации
+        Vector3 forward = rotation * Vector3.down; // или Vector3.up, зависит от ориентации
         return new Vector2(forward.x, forward.y).normalized;
     }
 

@@ -6805,7 +6805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9969,63 +9969,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1895631813
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6734725662538167782, guid: 4ae4c52fd60c38646b3b150b46a69bb7, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.96
-      objectReference: {fileID: 0}
-    - target: {fileID: 6734725662538167782, guid: 4ae4c52fd60c38646b3b150b46a69bb7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.58
-      objectReference: {fileID: 0}
-    - target: {fileID: 6734725662538167782, guid: 4ae4c52fd60c38646b3b150b46a69bb7, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6734725662538167782, guid: 4ae4c52fd60c38646b3b150b46a69bb7, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6734725662538167782, guid: 4ae4c52fd60c38646b3b150b46a69bb7, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6734725662538167782, guid: 4ae4c52fd60c38646b3b150b46a69bb7, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6734725662538167782, guid: 4ae4c52fd60c38646b3b150b46a69bb7, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6734725662538167782, guid: 4ae4c52fd60c38646b3b150b46a69bb7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6734725662538167782, guid: 4ae4c52fd60c38646b3b150b46a69bb7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6734725662538167782, guid: 4ae4c52fd60c38646b3b150b46a69bb7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7483383346812524280, guid: 4ae4c52fd60c38646b3b150b46a69bb7, type: 3}
-      propertyPath: m_Name
-      value: RotatingEnemy
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4ae4c52fd60c38646b3b150b46a69bb7, type: 3}
 --- !u!1 &1918759421
 GameObject:
   m_ObjectHideFlags: 0
@@ -11457,4 +11400,3 @@ SceneRoots:
   - {fileID: 713106627}
   - {fileID: 1352373380}
   - {fileID: 1218949284}
-  - {fileID: 1895631813}
