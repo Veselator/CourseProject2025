@@ -127,21 +127,21 @@ MonoBehaviour:
       movingPatternType: 0
       startX: 0
       endX: 0
-      count: 10
+      count: 1
       delayBetweenSpawns: 0.29
       delayAfterEndOfStream: 0.1
     - enemyType: 7
       movingPatternType: 0
       startX: 0.5
       endX: 0.5
-      count: 6
-      delayBetweenSpawns: 0.29
-      delayAfterEndOfStream: 0.1
+      count: 2
+      delayBetweenSpawns: 1.01
+      delayAfterEndOfStream: 0.6
     - enemyType: 4
       movingPatternType: 0
       startX: 1
       endX: 1
-      count: 10
+      count: 1
       delayBetweenSpawns: 0.29
       delayAfterEndOfStream: 0.1
   - enemyStreamConfigs:

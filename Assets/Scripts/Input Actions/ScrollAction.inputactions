@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "name": "ScrollAction",
+    "maps": [
+        {
+            "name": "Scroll",
+            "id": "fd0b5d59-fc70-4985-9871-246bb9db80db",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Value",
+                    "id": "ced61391-e4f4-4703-b826-0313e839f9f5",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "513242b5-366f-4955-a0a0-864a2e9f247f",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

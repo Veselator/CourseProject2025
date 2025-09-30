@@ -12,6 +12,8 @@ public class UIBulletSwitcherManager : MonoBehaviour
     // Важно, что-бы ихний порядок соотвествовал порядку пуль в enum
     [SerializeField] private GameObject[] _bulletsImages;
     [SerializeField] private GameObject selector;
+
+    private Image selectorImage;
     private Transform targetTransform;
     private bool isAtTarget = true;
 
@@ -23,6 +25,7 @@ public class UIBulletSwitcherManager : MonoBehaviour
     {
         _bs = BulletSwitcher.Instance;
         _bms = BulletsManagmentSystem.Instance;
+        selectorImage = selector.GetComponent<Image>();
 
         _bs.OnBulletSwitched += SwitchBullet;
         _bms.OnNewBulletUnlocked += UnlockBullet;
@@ -34,6 +37,8 @@ public class UIBulletSwitcherManager : MonoBehaviour
         _bulletsImages[3].SetActive(false);
 
         targetTransform = _bulletsImages[0].transform;
+
+        SwitchBullet(0);
     }
 
     private void OnDestroy()
@@ -64,6 +69,7 @@ public class UIBulletSwitcherManager : MonoBehaviour
     {
         if(GlobalFlags.GetFlag(GlobalFlags.Flags.GAME_OVER)) return;
         targetTransform = _bulletsImages[newBulletIndex].transform;
+        selectorImage.color = _bulletsImages[newBulletIndex].GetComponent<Color>();
         isAtTarget = false;
         //StartCoroutine(MoveSelector(_bulletsImages[newBulletIndex].transform.position));
     }
