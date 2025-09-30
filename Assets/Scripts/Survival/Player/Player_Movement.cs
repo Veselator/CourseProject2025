@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-
 public class Player_Movement : MonoBehaviour
 {
     public static Player_Movement Instance { get; private set; }
@@ -14,8 +13,8 @@ public class Player_Movement : MonoBehaviour
     private Rigidbody2D rb;
     private Knockback_System ks;
     private Stamina_Sys s;
-   
-    
+
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -23,45 +22,41 @@ public class Player_Movement : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
         Instance = this;
-
-       
 
         rb = GetComponent<Rigidbody2D>();
         ks = GetComponent<Knockback_System>();
         s = GetComponent<Stamina_Sys>();
-      
-       
+
+
     }
-  
-    private void Movement() 
+
+    private void Movement()
     {
-        if (ks != null && ks.isKnockBack) 
+        if (ks != null && ks.isKnockBack)
         {
             return;
         }
         hor = Input.GetAxis("Horizontal");
         vert = Input.GetAxis("Vertical");
-      
-       
-            var movement = new Vector2(hor, vert);
-            if (movement.magnitude > 1)
-            {
-                movement.Normalize();
-            }
-            if (s.amountOfStamina >0&&Input.GetKey(KeyCode.LeftShift))
-            {
-                rb.velocity = movement * sprint;
-                s.Take_Stamina(10f * Time.deltaTime);
-            }
-            else
-            {
-                rb.velocity = movement * speed;
-            }
-        
-       
-        
+        float currentSpeed = 0f;
+
+        var movement = new Vector2(hor, vert);
+        if (movement.magnitude > 1)
+        {
+            movement.Normalize();
+        }
+        if (s.amountOfStamina > 0 && Input.GetKey(KeyCode.LeftShift))
+        {
+            currentSpeed = sprint;
+            //rb.MovePosition(movement * sprint);//rb.velocity = movement * sprint;
+            s.Take_Stamina(10f * Time.deltaTime);
+        }
+        else
+        {
+            currentSpeed = speed;
+        }
+        rb.MovePosition(rb.position + currentSpeed * Time.deltaTime * movement); //rb.velocity = movement * sprint;
     }
     private void Update()
     {
