@@ -14,6 +14,8 @@ public class Player_Movement : MonoBehaviour
     private Knockback_System ks;
     private Stamina_Sys s;
 
+    public float CurrentSpeed;
+
 
     private void Awake()
     {
@@ -38,23 +40,22 @@ public class Player_Movement : MonoBehaviour
 
         hor = Input.GetAxis("Horizontal");
         vert = Input.GetAxis("Vertical");
-        float currentSpeed = 0f;
 
         var movement = new Vector2(hor, vert);
         if (movement.magnitude > 1)
         {
             movement.Normalize();
         }
-        currentSpeed = speed;
+        CurrentSpeed = speed;
 
         if (s.amountOfStamina > 0 && Input.GetKey(KeyCode.LeftShift))
         {
-            currentSpeed *= sprintFactor;
+            CurrentSpeed *= sprintFactor;
             //rb.MovePosition(movement * sprint);//rb.velocity = movement * sprint;
             s.Take_Stamina(10f * Time.deltaTime);
         }
 
-        rb.velocity = currentSpeed * movement * Time.fixedDeltaTime;//MovePosition(rb.position + currentSpeed * Time.deltaTime * movement); //rb.velocity = movement * sprint;
+        rb.velocity = CurrentSpeed * movement * Time.fixedDeltaTime;//MovePosition(rb.position + currentSpeed * Time.deltaTime * movement); //rb.velocity = movement * sprint;
     }
     private void FixedUpdate()
     {

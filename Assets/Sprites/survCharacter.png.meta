@@ -227,8 +227,8 @@ TextureImporter:
         y: 0
         width: 194
         height: 233
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.53, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -245,9 +245,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 584
-        y: 5
+        y: 0
         width: 243
-        height: 233
+        height: 238
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -266,9 +266,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 885
-        y: 14
+        y: 0
         width: 169
-        height: 221
+        height: 235
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -287,11 +287,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1159
-        y: 18
+        y: 0
         width: 156
-        height: 216
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 234
+      alignment: 9
+      pivot: {x: 0.42, y: 0.49773276}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -308,11 +308,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1398
-        y: 18
+        y: 0
         width: 159
-        height: 219
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 237
+      alignment: 9
+      pivot: {x: 0.43, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -333,7 +333,7 @@ TextureImporter:
         width: 189
         height: 223
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -341,6 +341,27 @@ TextureImporter:
       bones: []
       spriteID: 3a3bc555ef0dbda4ab6c421a9d74ec28
       internalID: -2088615507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: survCharacter_4
+      rect:
+        serializedVersion: 2
+        x: 844
+        y: 284
+        width: 280
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0db451533d3e613498a56980447086c6
+      internalID: 80871592
       vertices: []
       indices: 
       edges: []

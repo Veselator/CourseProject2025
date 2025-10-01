@@ -15,6 +15,10 @@ public class Player_Rotation : MonoBehaviour
 
     private void Update()
     {
+        // Блокируем вращение во время атаки
+        if (Player_Attack.Instance != null && Player_Attack.Instance.IsAttacking)
+            return;
+
         Check_Mouse_Pos();
     }
 
