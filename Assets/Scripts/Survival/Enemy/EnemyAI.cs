@@ -10,8 +10,6 @@ public class EnemyAI : MonoBehaviour
     private Rigidbody2D rb;
     private Base_Enemy health;
     public float Knocking = 0.5f;
-
-    private float KnoakingTime;
    
 
     private void Awake()

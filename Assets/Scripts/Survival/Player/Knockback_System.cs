@@ -27,7 +27,19 @@ public class Knockback_System : MonoBehaviour
             rb.velocity = knockDir * knockBackForce;
         }
     }
- 
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag(tag))
+        {
+            isKnockBack = true;
+            knockBackTimer = knockBackDuration;
+
+            Vector2 knockDir = (transform.position - collision.transform.position).normalized;
+            rb.velocity = knockDir * knockBackForce;
+        }
+    }
+
     private void Update()
     {
         if (isKnockBack) 

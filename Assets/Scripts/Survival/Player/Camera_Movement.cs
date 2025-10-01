@@ -6,7 +6,7 @@ public class Camera_Movement : MonoBehaviour
     public static Camera_Movement Instance { get; private set; }
 
     [Header("Target Settings")]
-    [SerializeField] private Transform player;
+    [SerializeField] private Transform target;
 
     [Header("Camera Settings")]
     public Vector3 offset = new Vector3(0, 5, -10);
@@ -50,13 +50,13 @@ public class Camera_Movement : MonoBehaviour
     private void FindPlayer()
     {
         // Если player не назначен в Inspector, ищем по тегу
-        if (player == null)
+        if (target == null)
         {
             GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
 
             if (playerObject != null)
             {
-                player = playerObject.transform;
+                target = playerObject.transform;
             }
             else
             {
@@ -68,17 +68,17 @@ public class Camera_Movement : MonoBehaviour
     private void LateUpdate()
     {
         // LateUpdate вызывается после всех Update, поэтому камера следует за актуальной позицией игрока
-        Move_Camera_To_Player();
+        Move2Target();
     }
 
-    private void Move_Camera_To_Player()
+    private void Move2Target()
     {
-        if (player == null)
+        if (target == null)
         {
             return;
         }
 
-        Vector3 targetPosition = player.position + offset;
+        Vector3 targetPosition = target.position + offset;
 
         // Ограничиваем позицию камеры, если включены границы
         if (useBounds)
@@ -106,7 +106,7 @@ public class Camera_Movement : MonoBehaviour
     // Публичные методы для внешнего управления
     public void SetPlayer(Transform newPlayer)
     {
-        player = newPlayer;
+        target = newPlayer;
     }
 
     public void SetOffset(Vector3 newOffset)

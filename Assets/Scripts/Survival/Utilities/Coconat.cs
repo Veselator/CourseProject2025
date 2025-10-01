@@ -13,7 +13,7 @@ public class Coconat : MonoBehaviour
                 player.Regain_Some_Stamina();
             }
             
-        Destroy(gameObject);
+            Destroy(gameObject);
 
         }
     }

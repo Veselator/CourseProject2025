@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 500
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -134,7 +134,217 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: survCharacter_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 25
+        width: 248
+        height: 554
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a40d883933b4404e8aebada35376cae
+      internalID: -768786405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: survCharacter_1
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 573
+        width: 109
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0b56f8974a399e468beb31c0f3c0084
+      internalID: -1511040971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: survCharacter_3
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 290
+        width: 209
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c14e665547be2740919a2cc475a08a8
+      internalID: 1671526611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: survCharacter_12
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 281
+        width: 72
+        height: 225
+      alignment: 9
+      pivot: {x: 0.7495736, y: 0.9134124}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a6e02b9d11bcfb438396d4d8e92a72e
+      internalID: 1602482818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: survCharacter_35
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 0
+        width: 194
+        height: 233
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5b1ef0152e9ec54a8104c088c1729fd
+      internalID: 1654068321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: survCharacter_36
+      rect:
+        serializedVersion: 2
+        x: 584
+        y: 5
+        width: 243
+        height: 233
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66c415c6597f5dc45bca97adc53dde11
+      internalID: 520319902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: survCharacter_37
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 14
+        width: 169
+        height: 221
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a52810ac1aa70a4b9f6af1f59d6ea15
+      internalID: -1038270405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: survCharacter_38
+      rect:
+        serializedVersion: 2
+        x: 1159
+        y: 18
+        width: 156
+        height: 216
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8068c9fd4fa844b4a92bce6574fde509
+      internalID: -941845831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: survCharacter_39
+      rect:
+        serializedVersion: 2
+        x: 1398
+        y: 18
+        width: 159
+        height: 219
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d3a453349282634db0a289021bfccf8
+      internalID: -1447464902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: survCharacter_2
+      rect:
+        serializedVersion: 2
+        x: 1338
+        y: 377
+        width: 189
+        height: 223
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a3bc555ef0dbda4ab6c421a9d74ec28
+      internalID: -2088615507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -145,7 +355,47 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      survCharacter_0: -768786405
+      survCharacter_1: -1511040971
+      survCharacter_10: 972139734
+      survCharacter_11: -1813640124
+      survCharacter_12: 1602482818
+      survCharacter_13: 698797733
+      survCharacter_14: 373154007
+      survCharacter_15: 447182949
+      survCharacter_16: -241364077
+      survCharacter_17: 2144543155
+      survCharacter_18: 1143772837
+      survCharacter_19: -1199010464
+      survCharacter_2: -2088615507
+      survCharacter_20: 529098233
+      survCharacter_21: 2108020519
+      survCharacter_22: -1396319072
+      survCharacter_23: -1502040034
+      survCharacter_24: -1971197910
+      survCharacter_25: 962728306
+      survCharacter_26: -1528584411
+      survCharacter_27: -1783668077
+      survCharacter_28: 1578338737
+      survCharacter_29: 1620776968
+      survCharacter_3: 1671526611
+      survCharacter_30: -878716008
+      survCharacter_31: 74778597
+      survCharacter_32: -162556501
+      survCharacter_33: -251125693
+      survCharacter_34: -76480358
+      survCharacter_35: 1654068321
+      survCharacter_36: 520319902
+      survCharacter_37: -1038270405
+      survCharacter_38: -941845831
+      survCharacter_39: -1447464902
+      survCharacter_4: 80871592
+      survCharacter_5: 1016518009
+      survCharacter_6: -1666387531
+      survCharacter_7: -727736895
+      survCharacter_8: -1686173641
+      survCharacter_9: -499872982
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

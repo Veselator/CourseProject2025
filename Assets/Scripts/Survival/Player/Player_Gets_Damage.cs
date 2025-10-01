@@ -12,18 +12,18 @@ public class Player_Gets_Damage : MonoBehaviour
 
     private void Game_Over()
     {
-       
         gameObject.SetActive(false);
-      manager.Game_Over();
-        
-       
+        manager.Game_Over();
+    }
 
-
-
-}
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.collider.CompareTag("Enemy")) 
+        CheckDamage(collision);
+    }
+
+    private void CheckDamage(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
         {
             Health_System.Instance.Take_Damage(damage);
             if (Health_System.Instance.Health <= 0)
@@ -33,9 +33,15 @@ public class Player_Gets_Damage : MonoBehaviour
             }
         }
     }
-    private void OnCollisionStay2D(Collision2D collision)
+
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.collider.CompareTag("Enemy")) 
+        CheckStayDamage(collision);
+    }
+
+    private void CheckStayDamage(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
         {
             damageTimer += Time.deltaTime;
             if (damageTimer > damageInterval)
@@ -50,6 +56,7 @@ public class Player_Gets_Damage : MonoBehaviour
             }
         }
     }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
         damageTimer = 0f;

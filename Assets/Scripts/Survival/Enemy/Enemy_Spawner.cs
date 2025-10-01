@@ -10,9 +10,22 @@ public class Enemy_Spawner : MonoBehaviour
     public float TimeToSpawnBoss = 30f;
     private float BossSpawnrTime = 0;
     private float SpawnTimer = 0;
-    private int maxEnemyOnTheField = 1;
+    private int maxEnemyOnTheField = 2;
 
-    
+    private Transform[] spawnPositions;
+    private KillCounter killCounter;
+
+    private void Start()
+    {
+        killCounter = KillCounter.Instance;
+        InitSpawnPositions();
+    }
+
+    private void InitSpawnPositions()
+    {
+        spawnPositions = GetComponentsInChildren<Transform>();
+    }
+
     private void SpawnEnemy() 
     {
         
@@ -23,9 +36,7 @@ public class Enemy_Spawner : MonoBehaviour
             {
                 if (SpawnTimer <= 0)
                 {
-                    float rand_x = Random.Range(-17.5f, 17.5f);
-                    float rand_y = Random.Range(-10f, 10f);
-                    Instantiate(enemyPrefab, new Vector3(rand_x, rand_y, 0), Quaternion.identity);
+                    Instantiate(enemyPrefab, GetRandomPosition(), Quaternion.identity);
                     SpawnTimer = TimeToSpawn;
                 }
                 else 
@@ -35,19 +46,22 @@ public class Enemy_Spawner : MonoBehaviour
             }
         }
     }
+
+    private Vector3 GetRandomPosition()
+    {
+        return spawnPositions[Random.Range(0, spawnPositions.Length - 1)].position;
+    }
+
     private void Check_For_Kills() 
     {
-        if (KillCounter.Instance.count == maxEnemyOnTheField * 2) 
+        if (killCounter.count == maxEnemyOnTheField * 2) 
         {
             maxEnemyOnTheField++;
         }
     }
     private void SpawnBoss() 
     {
-        
-        float rand_x = Random.Range(-17.5f, 17.5f);
-        float rand_y = Random.Range(-10f, 10f);
-        GameObject bossInstance = Instantiate(bossPrefab, new Vector3(rand_x, rand_y, 0), Quaternion.identity);
+        GameObject bossInstance = Instantiate(bossPrefab, GetRandomPosition(), Quaternion.identity);
 
        
         Boss_Health bossHealth = bossInstance.GetComponent<Boss_Health>();
@@ -60,11 +74,13 @@ public class Enemy_Spawner : MonoBehaviour
     private void Update()
     {
         BossSpawnrTime += Time.deltaTime;
+
         if (BossSpawnrTime >= TimeToSpawnBoss) 
         { 
-        SpawnBoss();
+            SpawnBoss();
             BossSpawnrTime = 0;
         }
+
         Check_For_Kills();
         SpawnEnemy();
       
