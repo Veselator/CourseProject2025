@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 public class BulletSwitcher : MonoBehaviour
 {
     [SerializeField] private InputActionReference[] bulletActions = new InputActionReference[4];
-    [SerializeField] private InputActionReference scrollAction; // Добавьте это в Inspector
+    [SerializeField] private InputActionReference scrollAction;
 
     private BulletsManagmentSystem bms;
     private BulletSpawner playerBulletSpawner;
