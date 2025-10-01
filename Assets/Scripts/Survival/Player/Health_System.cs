@@ -10,7 +10,7 @@ public class Health_System : MonoBehaviour
     // ѕо нормальному надо добавить переменную MaxAmountOfHealth
     private int amountOfHealth = 100;
     public int Health => amountOfHealth;
-    private float lerpFactor = 0.002f;
+    private float lerpFactor = 0.02f;
 
     private void Awake()
     {

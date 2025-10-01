@@ -12,7 +12,8 @@ public class Stamina_Sys : MonoBehaviour
     public float amountOfStamina { get;  set; } = 100f;
     public float Stamina => amountOfStamina;
     const float StaminaRegain = 30f;
-    private float lerpFactor = 0.002f;
+    private float lerpFactor = 0.02f;
+    private float staminaDecrease = 1f;
 
     private void Awake()
     {
@@ -33,10 +34,21 @@ public class Stamina_Sys : MonoBehaviour
         //StaminaBar.fillAmount = amountOfStamina / 100f;
     }
 
+    private void UpdateStamina()
+    {
+        amountOfStamina -= staminaDecrease * Time.deltaTime;
+    }
+
+    private void UpdateUI()
+    {
+        StaminaBar.fillAmount = Mathf.Lerp(StaminaBar.fillAmount, amountOfStamina / 100f, lerpFactor);
+    }
+
     private void Update()
     {
+        UpdateStamina();
         // Это ужасно - логика интерфейса в логике системы
         // Но имеем что имеем
-        StaminaBar.fillAmount = Mathf.Lerp(StaminaBar.fillAmount, amountOfStamina / 100f, lerpFactor);
+        UpdateUI();
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -12,6 +13,8 @@ public class Knockback_System : MonoBehaviour
     public float knockBackTimer = 0f;
     public bool isKnockBack = false;
 
+    public Action OnKnockback;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -20,11 +23,7 @@ public class Knockback_System : MonoBehaviour
     {
         if (collision.collider.CompareTag(tag))
         {
-            isKnockBack = true;
-            knockBackTimer = knockBackDuration;
-
-            Vector2 knockDir = (transform.position - collision.transform.position).normalized;
-            rb.velocity = knockDir * knockBackForce;
+            DoKnockBack(collision.transform);
         }
     }
 
@@ -32,12 +31,19 @@ public class Knockback_System : MonoBehaviour
     {
         if (collision.CompareTag(tag))
         {
-            isKnockBack = true;
-            knockBackTimer = knockBackDuration;
-
-            Vector2 knockDir = (transform.position - collision.transform.position).normalized;
-            rb.velocity = knockDir * knockBackForce;
+            DoKnockBack(collision.transform);
         }
+    }
+
+    private void DoKnockBack(Transform collision)
+    {
+        isKnockBack = true;
+        knockBackTimer = knockBackDuration;
+
+        Vector2 knockDir = (transform.position - collision.position).normalized;
+        rb.velocity = knockDir * knockBackForce;
+
+        OnKnockback?.Invoke();
     }
 
     private void Update()

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Enemy_Spawner : MonoBehaviour
@@ -10,6 +11,7 @@ public class Enemy_Spawner : MonoBehaviour
     public float TimeToSpawnBoss = 30f;
     private float BossSpawnrTime = 0;
     private float SpawnTimer = 0;
+    [SerializeField] private float spawnDelay;
     private int maxEnemyOnTheField = 2;
 
     private Transform[] spawnPositions;
@@ -19,11 +21,19 @@ public class Enemy_Spawner : MonoBehaviour
     {
         killCounter = KillCounter.Instance;
         InitSpawnPositions();
+        ApplyDelay();
+    }
+
+    private void ApplyDelay()
+    {
+        BossSpawnrTime -= spawnDelay;
+        SpawnTimer = spawnDelay;
     }
 
     private void InitSpawnPositions()
     {
-        spawnPositions = GetComponentsInChildren<Transform>();
+        // Исключаем текущий Transform из всех Transform
+        spawnPositions = GetComponentsInChildren<Transform>().Where(t => t != transform).ToArray();
     }
 
     private void SpawnEnemy() 
@@ -41,7 +51,7 @@ public class Enemy_Spawner : MonoBehaviour
                 }
                 else 
                 { 
-                SpawnTimer -= Time.deltaTime;
+                    SpawnTimer -= Time.deltaTime;
                 }
             }
         }

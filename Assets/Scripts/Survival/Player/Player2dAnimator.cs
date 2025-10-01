@@ -34,7 +34,7 @@ public class Player2dANimator : MonoBehaviour
     {
         bool isAnyMove = (Mathf.Abs(_rigidBody.velocity.x) > movingThreshold) || (Mathf.Abs(_rigidBody.velocity.y) > movingThreshold);
 
-        if (isAnyMove) Debug.Log($"Velocity: {_rigidBody.velocity}");
+        //if (isAnyMove) Debug.Log($"Velocity: {_rigidBody.velocity}");
 
         if (isAnyMove && !IsMoving)
         {

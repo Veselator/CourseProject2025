@@ -7,6 +7,7 @@ public class Camera_Movement : MonoBehaviour
 
     [Header("Target Settings")]
     [SerializeField] private Transform target;
+    private Knockback_System _playerKnockback;
 
     [Header("Camera Settings")]
     public Vector3 offset = new Vector3(0, 5, -10);
@@ -19,12 +20,21 @@ public class Camera_Movement : MonoBehaviour
 
     private Vector3 velocity = Vector3.zero;
     private Camera cam;
+    private bool isShaking = false;
 
     private void Awake()
     {
         InitializeSingleton();
         CacheComponents();
         FindPlayer();
+
+        _playerKnockback = target.GetComponent<Knockback_System>();
+        _playerKnockback.OnKnockback += ShakeCamera;
+    }
+
+    private void OnDestroy()
+    {
+        _playerKnockback.OnKnockback -= ShakeCamera;
     }
 
     private void InitializeSingleton()
@@ -119,13 +129,20 @@ public class Camera_Movement : MonoBehaviour
         smoothSpeed = Mathf.Max(0.1f, newSpeed);
     }
 
-    public void ShakeCamera(float duration, float magnitude)
+    public void ShakeCamera()
     {
+        ShakeCamera(0.5f, 12f);
+    }
+
+    public void ShakeCamera(float duration = 0.4f, float magnitude = 1f)
+    {
+        if (isShaking) return;
         StartCoroutine(CameraShakeCoroutine(duration, magnitude));
     }
 
     private IEnumerator CameraShakeCoroutine(float duration, float magnitude)
     {
+        isShaking = true;
         Vector3 originalOffset = offset;
         float elapsed = 0f;
 
@@ -141,6 +158,7 @@ public class Camera_Movement : MonoBehaviour
         }
 
         offset = originalOffset;
+        isShaking = false;
     }
 
     // Визуализация границ камеры в редакторе

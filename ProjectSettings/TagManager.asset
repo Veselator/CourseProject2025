@@ -10,6 +10,9 @@ TagManager:
   - Enemy
   - Bullet
   - Money
+  - attack_zone
+  - Coconut
+  - Upgrade
   layers:
   - Default
   - TransparentFX
@@ -44,6 +47,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: TheBackground
+    uniqueID: 4139118391
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
@@ -52,7 +58,4 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1268406437
-    locked: 0
-  - name: TheToppestThings
-    uniqueID: 4139118391
     locked: 0
