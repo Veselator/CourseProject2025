@@ -7,25 +7,37 @@ public class BoosterHandler : MonoBehaviour
 {
     [SerializeField] private ClickerBooster _booster;
     private ClickerManager _clickerManager;
+
+    // Ленивая инициализация
+    private ClickerManager ClickerManager
+    {
+        get
+        {
+            if (_clickerManager == null)
+                _clickerManager = ClickerManager.Instance;
+            return _clickerManager;
+        }
+    }
+
     private int currentNumOfUpgrades = 0;
+    public int CurrentNumOfUpgrades => currentNumOfUpgrades;
     public bool IsBought { get; private set; } = false;
 
     // Формула расчёта текущей цены для апгрейда
     // Возможная оптимизация: кешировать значения PriceToUpgrade и CurrentIncomePerTick
-    private float PriceToUpgrade => _booster.basePriceForUnit * Mathf.Pow(_booster.priceScalerFactor, currentNumOfUpgrades) * _clickerManager.PriceFactor;
+    public float PriceToUpgrade => _booster.basePriceForUnit * Mathf.Pow(_booster.priceScalerFactor, currentNumOfUpgrades) * ClickerManager.PriceFactor;
+    public float PriceToUnlock => _booster.priceToUnlock;
     public float CurrentIncomePerTick => currentNumOfUpgrades * _booster.incomePerUnit;
+    public string Title => _booster.title;
+    public bool IsAvailableToUpgrade => IsBought && (ClickerManager.IsAffordable(PriceToUpgrade));
+    public bool IsAvailableToBuy => ClickerManager.IsAffordable(PriceToUnlock);
 
     public Action OnBoosterBought;
     public Action OnBoosterUpgraded;
 
-    private void Start()
+    public bool TryToBuy()
     {
-        _clickerManager = ClickerManager.Instance;
-    }
-
-    public void TryToBuy()
-    {
-        if (IsBought) return;
+        if (IsBought) return false;
 
         if (_clickerManager.IsAffordable(_booster.priceToUnlock))
         {
@@ -33,17 +45,23 @@ public class BoosterHandler : MonoBehaviour
             IsBought = true;
 
             OnBoosterBought?.Invoke();
+            return true;
         }
+
+        return false;
     }
 
-    public void TryToUpgrade()
+    public bool TryToUpgrade()
     {
-        if (_clickerManager.IsAffordable(PriceToUpgrade))
+        if (IsAvailableToUpgrade)
         {
             _clickerManager.ChangeMoney(-PriceToUpgrade);
             currentNumOfUpgrades++;
 
             OnBoosterUpgraded?.Invoke();
+            return true;
         }
+
+        return false;
     }
 }

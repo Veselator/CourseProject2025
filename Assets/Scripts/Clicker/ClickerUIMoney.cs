@@ -49,6 +49,13 @@ public class ClickerUIMoney : MonoBehaviour
             StopCoroutine(_animationCoroutine);
         }
 
+        if (newMoney - _currentDisplayedMoney <= 1f)
+        {
+            _currentDisplayedMoney = newMoney;
+            UpdateText(_currentDisplayedMoney);
+            return;
+        }
+
         _animationCoroutine = StartCoroutine(AnimateMoney());
     }
 

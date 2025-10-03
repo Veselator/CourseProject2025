@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "YetAnotherClickerBooster", menuName = "Clicker/Booster")]
 public class ClickerBooster : ScriptableObject
 {
+    // Название
+    public string title;
     // Доход от одной единицы
     public float incomePerUnit;
     // Цена для разблокировки
