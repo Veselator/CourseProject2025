@@ -6,17 +6,21 @@ using UnityEngine.SceneManagement;
 public class Gm : MonoBehaviour
 {
 
-    [SerializeField] Transform piece;
-    [SerializeField] Transform border;
-    [SerializeField] Texture2D[] pic;
-    [SerializeField] Transform gameHolder;
+    [SerializeField] private Transform piece;
+    [SerializeField] private Transform border;
+    [SerializeField] private Texture2D[] pic;
+    [SerializeField] private Transform gameHolder;
     [Range(2, 6)]
-    [SerializeField] int startDifficulty;
-   
+    [SerializeField] private int startDifficulty;
+    [SerializeField] Canvas gameWinScreen;
+    
 
 
-    public static int difficulty = 0;
-    public static int picCounter = 0;
+    const int MaxLevel = 3;
+
+    private int difficulty = 0;
+    private int picCounter = 0;
+
 
     private float scale;
     private Vector2Int ratio;
@@ -24,28 +28,28 @@ public class Gm : MonoBehaviour
     private Vector2 pieceSize;
     private float offsetX;
     private float offsetY;
+    private int puzzlesSolved = 0;
+
 
     private List<PuzzlePiece> pieces = new List<PuzzlePiece>();
     private int correctCounter = 0;
 
     void Start()
     {
-        if (startDifficulty + 3 <= difficulty) 
-        {
-           
-            return;
-        }
-        if (difficulty == 0)
-        {
-            difficulty = startDifficulty;
-        }
+        GetBasicParametrs();
+    }
+
+    private void GetBasicParametrs()
+    {
+        if (difficulty == 0) difficulty = startDifficulty;
+
         scale = Camera.main.orthographicSize;
-        scaleFactor = scale * 1.5f;  // присваиваем уже после того, как scale получил значение
+        scaleFactor = scale * 1.5f;
         ratio = GetDimentions(pic[picCounter]);
         UpdateGameHolder();
         CreatePuzzles(pic[picCounter], ratio.x, ratio.y);
         UpdateBorder(pieceSize.x, pieceSize.y);
-        Scattering();
+        PuzzleScattering.ScatterPuzzles(pieces, gameHolder);
     }
     private Vector2Int GetDimentions(Texture2D picture)
     {
@@ -104,9 +108,6 @@ public class Gm : MonoBehaviour
 
                 if (x == 0 && y == 0)
                 {
-
-                   
-                 
                     pieceSize = new Vector2(currPiece.GetComponent<SpriteRenderer>().bounds.size.x, (currPiece.GetComponent<SpriteRenderer>().bounds.size.y));
                     offsetY = (yH - 1) * pieceSize.y * 0.5f;
                     offsetX = (xW - 1) * pieceSize.x;
@@ -122,31 +123,10 @@ public class Gm : MonoBehaviour
                 PuzzlePiece puzzlePiece = currPiece.GetComponent<PuzzlePiece>();
                 puzzlePiece.SetCorrectPos(currPiece.localPosition);
                 pieces.Add(puzzlePiece);
-
-
-
-
-
-
             }
         }
     }
-    private void Scattering()
-    {
-        // получаем примерный диапазон по размеру контейнера
-        float sizeX = gameHolder.GetComponent<SpriteRenderer>().bounds.size.x;
-        float sizeY = gameHolder.GetComponent<SpriteRenderer>().bounds.size.y;
 
-
-        foreach (var p in pieces)
-        {
-            float scatterRangeX = Random.Range(3f / sizeX, 1f / sizeX);   // от середины до правого края
-            float scatterRangeY = Random.Range(-2f / sizeY, 2f / sizeY);       // по вертикали от -Y до +Y
-
-            // задаём случайную позицию
-            p.transform.localPosition = new Vector3(scatterRangeX, scatterRangeY, 0);
-        }
-    }
     private void IncreaseCorrectCounter()
     {
         correctCounter++;
@@ -154,28 +134,43 @@ public class Gm : MonoBehaviour
 
     private void OnEnable()
     {
-       
+
         EventManager.OnPuzzleCorrect += IncreaseCorrectCounter;
         EventManager.OnPuzzleCorrect += CheckCorrect;
 
     }
     private void OnDisable()
     {
-       
         EventManager.OnPuzzleCorrect -= IncreaseCorrectCounter;
         EventManager.OnPuzzleCorrect -= CheckCorrect;
     }
-    
+    private void GetToNextPuzzle()
+    {
+        difficulty++;
+        picCounter++;
+        for (int i = 0; i < pieces.Count; i++)
+        {
+            Destroy(pieces[i].gameObject);
+        }
+        pieces.Clear();
+        correctCounter = 0;
+        GetBasicParametrs();
+
+    }
     private void CheckCorrect()
     {
-        if (difficulty != startDifficulty + 1 && correctCounter == pieces.Count)
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-                difficulty++;
-                picCounter++;
-            }
 
-        
+        if (correctCounter == pieces.Count)
+        {
+            puzzlesSolved++;
+            if (puzzlesSolved == MaxLevel)
+            {
+                gameWinScreen.gameObject.SetActive(true);
+                return;
+            }
+            GetToNextPuzzle();
+         
+           
         }
-       
     }
+}
