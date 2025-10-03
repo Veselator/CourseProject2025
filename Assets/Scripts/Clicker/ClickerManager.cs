@@ -1,0 +1,50 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ClickerManager
+{
+    // Класс, отвечающий непосредственно за хранение информации о деньгах
+
+    private float money = 0f;
+    public float Money {
+        get => money;
+        set
+        {
+            money = Mathf.Max(value, 0f);
+        }
+    }
+
+    // Подлянка для игрока - со временем все цены увеличиваются
+    public float PriceFactor { get; set; } = 1f;
+    public static ClickerManager Instance { get; private set; }
+
+    // Переменные, которые касаются ручного клика игрока
+    private float baseIncomePerClick = 100f;
+    public float IncomePerClick => baseIncomePerClick * incomePerClickMultiplier;
+    public float incomePerClickMultiplier = 1f;
+
+    public Action<float> OnMoneyChanged;
+
+    public ClickerManager()
+    {
+        if (Instance == null) Instance = this;
+    }
+
+    public void ChangeMoney(float deltaMoney)
+    {
+        Money += deltaMoney;
+        OnMoneyChanged?.Invoke(Money);
+    }
+
+    public void ModifyPriceFactor(float newPriceFactor)
+    {
+        PriceFactor = newPriceFactor;
+    }
+
+    public bool IsAffordable(float price)
+    {
+        return Money >= price;
+    }
+}
