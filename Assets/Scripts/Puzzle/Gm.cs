@@ -163,7 +163,7 @@ public class Gm : MonoBehaviour
         if (correctCounter == pieces.Count)
         {
             puzzlesSolved++;
-            if (puzzlesSolved == MaxLevel)
+            if (puzzlesSolved == MaxLevel && difficulty >= 6)
             {
                 gameWinScreen.gameObject.SetActive(true);
                 return;
