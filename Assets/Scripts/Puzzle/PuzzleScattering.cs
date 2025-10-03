@@ -15,7 +15,7 @@ public class PuzzleScattering : MonoBehaviour
         foreach (var p in pieces)
         {
             float scatterRangeX = Random.Range(offsetForX / sizeX, 1f / sizeX);   // от середины до правого края
-            float scatterRangeY = Random.Range(-offsetForY / sizeY, 2f / sizeY);       // по вертикали от -Y до +Y
+            float scatterRangeY = Random.Range(-offsetForY / sizeY, offsetForY / sizeY);       // по вертикали от -Y до +Y
 
             // задаём случайную позицию
             p.transform.localPosition = new Vector3(scatterRangeX, scatterRangeY, 0);

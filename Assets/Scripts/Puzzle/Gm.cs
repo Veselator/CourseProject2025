@@ -17,6 +17,7 @@ public class Gm : MonoBehaviour
 
 
     const int MaxLevel = 3;
+    const int MaxDifficulty = 6;
 
     private int difficulty = 0;
     private int picCounter = 0;
@@ -163,7 +164,7 @@ public class Gm : MonoBehaviour
         if (correctCounter == pieces.Count)
         {
             puzzlesSolved++;
-            if (puzzlesSolved == MaxLevel && difficulty >= 6)
+            if (puzzlesSolved == MaxLevel || difficulty > MaxDifficulty)
             {
                 gameWinScreen.gameObject.SetActive(true);
                 return;
