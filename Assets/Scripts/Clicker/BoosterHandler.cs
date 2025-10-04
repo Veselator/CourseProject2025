@@ -6,6 +6,9 @@ using UnityEngine;
 public class BoosterHandler : MonoBehaviour
 {
     [SerializeField] private ClickerBooster _booster;
+    [SerializeField] private GameObject currentGraphicPrefab;
+    private UIBooster _UIBooster;
+    public GameObject CurrentPrefab => currentGraphicPrefab;
     private ClickerManager _clickerManager;
 
     // Ленивая инициализация
@@ -35,6 +38,11 @@ public class BoosterHandler : MonoBehaviour
     public Action OnBoosterBought;
     public Action OnBoosterUpgraded;
 
+    private void Awake()
+    {
+        _UIBooster = GetComponent<UIBooster>();
+    }
+
     public bool TryToBuy()
     {
         if (IsBought) return false;
@@ -63,5 +71,12 @@ public class BoosterHandler : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void ShowAnimation()
+    {
+        // КОд анимации
+        if (_UIBooster == null) _UIBooster = GetComponent<UIBooster>();
+        _UIBooster.ShowAnimation();
     }
 }

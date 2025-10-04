@@ -21,8 +21,19 @@ public class UIBooster : MonoBehaviour
     [SerializeField] private Image buyButtonImage;
     private bool currentButtonState = true;
 
+    [SerializeField] private Transform startPointOfUISpawning;
+    [SerializeField] private Transform endPointOfUISpawning;
+
+    private Box spawnUIBox;
+
     private Color buttonNotAvailableColor = Color.gray;
     private Color buttonAvailableColor = Color.white;
+
+    // Настройки анимации
+    [SerializeField] private float animationDuration = 0.5f;
+    [SerializeField] private float overshoot = 1.2f;
+
+    private static Vector3 originalScale = new Vector3(1f, 1f, 1f);
 
     // Текущий бустер
     private BoosterHandler _currentBooster;
@@ -32,6 +43,7 @@ public class UIBooster : MonoBehaviour
     {
         _currentBooster = GetComponent<BoosterHandler>();
         _clickerManager = ClickerManager.Instance;
+        //originalScale = transform.localScale;
 
         _clickerManager.OnMoneyChanged += UpdateButtonState;
         InitUIComponents();
@@ -39,6 +51,7 @@ public class UIBooster : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (_clickerManager == null) _clickerManager = ClickerManager.Instance;
         _clickerManager.OnMoneyChanged -= UpdateButtonState;
     }
 
@@ -49,6 +62,9 @@ public class UIBooster : MonoBehaviour
         incomePerSecond.text = $"{_currentBooster.CurrentIncomePerTick}/c";
         priceUnlockText.text = $"{_currentBooster.PriceToUnlock}";
         priceText.text = $"{Math.Ceiling(_currentBooster.PriceToUpgrade)}";
+
+        spawnUIBox.startPoint = startPointOfUISpawning.localPosition;
+        spawnUIBox.endPoint = endPointOfUISpawning.localPosition;
 
         lockBoosterObject.SetActive(true);
         mainGroup.SetActive(false);
@@ -124,7 +140,72 @@ public class UIBooster : MonoBehaviour
         if (_currentBooster.TryToUpgrade())
         {
             // Графически отобразить апгрейд
+            SpawnAnotherUICoolThingThatIEvenCantNameButWhichHasPrettyCoolLook();
             UpdateTextInfo();
         }
+    }
+
+    public void ShowAnimation()
+    {
+        gameObject.SetActive(true);
+        StartCoroutine(ShowingAnimation());
+    }
+
+    private IEnumerator ShowingAnimation()
+    {
+        transform.localScale = Vector3.zero;
+        Vector3 velocity = Vector3.zero;
+
+        float elapsed = 0f;
+
+        // Фаза 1: Увеличение до overshoot (с перелётом)
+        Vector3 targetScale = originalScale * overshoot;
+        float phase1Duration = animationDuration * 0.6f; // 60% времени на разгон
+
+        while (elapsed < phase1Duration)
+        {
+            transform.localScale = Vector3.SmoothDamp(
+                transform.localScale,
+                targetScale,
+                ref velocity,
+                phase1Duration - elapsed
+            );
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // Фаза 2: Возврат к изначальному размеру
+        elapsed = 0f;
+        float phase2Duration = animationDuration * 0.4f; // 40% времени на возврат
+
+        while (elapsed < phase2Duration)
+        {
+            transform.localScale = Vector3.SmoothDamp(
+                transform.localScale,
+                originalScale,
+                ref velocity,
+                phase2Duration - elapsed
+            );
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // Гарантируем точное значение
+        transform.localScale = originalScale;
+    }
+
+    private Vector2 GetRandomPositionInsideSpawnBox()
+    {
+        return new Vector2(UnityEngine.Random.Range(spawnUIBox.startPoint.x, spawnUIBox.endPoint.x), 
+            UnityEngine.Random.Range(spawnUIBox.startPoint.y, spawnUIBox.endPoint.y));
+    }
+
+    private void SpawnAnotherUICoolThingThatIEvenCantNameButWhichHasPrettyCoolLook()
+    {
+        // Я правда не знаю как назвать эти штуки
+        GameObject newUiThing = Instantiate(_currentBooster.CurrentPrefab, transform);
+        newUiThing.transform.localPosition = GetRandomPositionInsideSpawnBox();
     }
 }

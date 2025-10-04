@@ -22,6 +22,11 @@ public class ClickerHandler : MonoBehaviour
         Init(new ClickerManager());
     }
 
+    private void Start()
+    {
+        UpdateBoostersVisibility();
+    }
+
     private void Update()
     {
         UpdateTimer();
@@ -31,6 +36,29 @@ public class ClickerHandler : MonoBehaviour
     private void Init(ClickerManager clickerManager)
     {
         _clickerManager = clickerManager;
+
+        InitBoosters();
+    }
+
+    private void InitBoosters()
+    {
+        for (int i = 0; i < _boosterHandlers.Length; i++)
+        {
+            // Подписка на событие покупки бустера
+            // Нужно, что-бы открывались новые бустеры
+            _boosterHandlers[i].OnBoosterBought += UpdateBoostersVisibility;
+
+            // Если не первый бустер - то выключаем его
+            if (i > 0) _boosterHandlers[i].gameObject.SetActive(false);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        for (int i = 0; i < _boosterHandlers.Length; i++)
+        {
+            _boosterHandlers[i].OnBoosterBought -= UpdateBoostersVisibility;
+        }
     }
 
     private void UpdateTimer()
@@ -71,5 +99,29 @@ public class ClickerHandler : MonoBehaviour
     {
         Debug.Log("User clicked!");
         _clickerManager.ChangeMoney(_clickerManager.IncomePerClick);
+    }
+
+    private void UpdateBoostersVisibility()
+    {
+        // Метод необходим для того, что-бы отображать
+        // бустер, который мы можем открыть
+        // При желании можно добавить вызов анимаций
+
+        int lastBoughtIndex = -1;
+        for (int i = 0; i < _boosterHandlers.Length; i++)
+        {
+            if (_boosterHandlers[i].IsBought)
+            {
+                lastBoughtIndex = i;
+                continue;
+            }
+
+            if(i == lastBoughtIndex + 1)
+            {
+                // Мы нашли следующий для открытия
+                _boosterHandlers[i].ShowAnimation();
+                return;
+            }
+        }
     }
 }
