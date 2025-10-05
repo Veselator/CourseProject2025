@@ -60,8 +60,8 @@ public class UIBooster : MonoBehaviour
         title.text = _currentBooster.Title;
         levelText.text = $"Lv. {_currentBooster.CurrentNumOfUpgrades}";
         incomePerSecond.text = $"{_currentBooster.CurrentIncomePerTick}/c";
-        priceUnlockText.text = $"{_currentBooster.PriceToUnlock}";
-        priceText.text = $"{Math.Ceiling(_currentBooster.PriceToUpgrade)}";
+        priceUnlockText.text = $"{NumsFormatter.FormatMoney(_currentBooster.PriceToUnlock)}";
+        priceText.text = $"{NumsFormatter.FormatMoney(Math.Ceiling(_currentBooster.PriceToUpgrade))}";
 
         spawnUIBox.startPoint = startPointOfUISpawning.localPosition;
         spawnUIBox.endPoint = endPointOfUISpawning.localPosition;
@@ -82,7 +82,7 @@ public class UIBooster : MonoBehaviour
     {
         levelText.text = $"Lv. {_currentBooster.CurrentNumOfUpgrades}";
         incomePerSecond.text = $"{_currentBooster.CurrentIncomePerTick}/c";
-        priceText.text = $"{Math.Ceiling(_currentBooster.PriceToUpgrade)}";
+        priceText.text = $"{NumsFormatter.FormatMoney(Math.Ceiling(_currentBooster.PriceToUpgrade))}";
     }
 
     private void UpdateButtonState(float _ = 0f)

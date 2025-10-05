@@ -19,11 +19,18 @@ public class ClickerManager
     // Подлянка для игрока - со временем все цены увеличиваются
     public float PriceFactor { get; set; } = 1f;
     public static ClickerManager Instance { get; private set; }
+    public float IncomePerTick { get; set; }
 
     // Переменные, которые касаются ручного клика игрока
     private float baseIncomePerClick = 1f;
-    public float IncomePerClick => baseIncomePerClick * incomePerClickMultiplier;
-    public float incomePerClickMultiplier = 1f;
+    public float BaseIncomePerClick
+    {
+        get => baseIncomePerClick;
+        set => baseIncomePerClick = value;
+    }
+
+    public float IncomePerClick => baseIncomePerClick * IncomePerClickMultiplier;
+    public float IncomePerClickMultiplier = 1f;
 
     public Action<float> OnMoneyChanged;
 

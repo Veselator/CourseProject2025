@@ -91,7 +91,9 @@ public class ClickerHandler : MonoBehaviour
             totalSum += boosterHandler.CurrentIncomePerTick;
             //_clickerManager.ChangeMoney(boosterHandler.CurrentIncomePerTick);
         }
+
         Debug.Log($"Total sum is {totalSum}, current money {_clickerManager.Money}");
+        _clickerManager.IncomePerTick = totalSum;
         _clickerManager.ChangeMoney(totalSum);
     }
 

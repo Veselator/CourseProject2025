@@ -5,7 +5,8 @@ using UnityEngine;
 public class ClickerUIMoney : MonoBehaviour
 {
     private ClickerManager _clickerManager;
-    [SerializeField] private TextMeshProUGUI _text;
+    [SerializeField] private TextMeshProUGUI[] _moneyText;
+    [SerializeField] private TextMeshProUGUI _incomePerTickText;
 
     [Header("Animation Settings")]
     [SerializeField] private float _animationDuration = 0.5f;
@@ -13,12 +14,6 @@ public class ClickerUIMoney : MonoBehaviour
     private float _currentDisplayedMoney;
     private float _targetMoney;
     private Coroutine _animationCoroutine;
-
-    // Суффиксы для больших чисел
-    private static readonly string[] _suffixes = new string[]
-    {
-        "", "K", "M", "B", "T", "Qa", "Qi", "Sx", "Sp", "Oc", "No", "Dc"
-    };
 
     private void Start()
     {
@@ -85,28 +80,8 @@ public class ClickerUIMoney : MonoBehaviour
 
     private void UpdateText(float money)
     {
-        _text.text = FormatMoney(money);
-    }
-
-    private string FormatMoney(float money)
-    {
-        if (money < 1000f)
-        {
-            // Для маленьких чисел показываем без дробной части
-            return Mathf.Floor(money).ToString("F0");
-        }
-
-        // Определяем порядок величины
-        int suffixIndex = 0;
-        float displayValue = money;
-
-        while (displayValue >= 1000f && suffixIndex < _suffixes.Length - 1)
-        {
-            displayValue /= 1000f;
-            suffixIndex++;
-        }
-
-        // Форматируем с 2 знаками после запятой
-        return displayValue.ToString("F2") + _suffixes[suffixIndex];
+        foreach(var text in _moneyText)
+            text.text = NumsFormatter.FormatMoney(money);
+        _incomePerTickText.text = $"{_clickerManager.IncomePerTick}/c";
     }
 }
