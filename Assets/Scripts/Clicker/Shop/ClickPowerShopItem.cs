@@ -20,7 +20,7 @@ public class ClickPowerShopItem : BaseClickerShopItem
                     break;
 
                 case EffectType.ChangePriceFactor:
-                    clickerManager.PriceFactor *= effect.value;
+                    clickerManager.MultiplyPriceFactor(effect.value);
                     break;
             }
         }

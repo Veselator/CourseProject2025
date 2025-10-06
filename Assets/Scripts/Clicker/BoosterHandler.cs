@@ -29,7 +29,7 @@ public class BoosterHandler : MonoBehaviour
     // Формула расчёта текущей цены для апгрейда
     // Возможная оптимизация: кешировать значения PriceToUpgrade и CurrentIncomePerTick
     public float PriceToUpgrade => _booster.basePriceForUnit * Mathf.Pow(_booster.priceScalerFactor, currentNumOfUpgrades) * ClickerManager.PriceFactor;
-    public float PriceToUnlock => _booster.priceToUnlock;
+    public float PriceToUnlock => _booster.priceToUnlock * ClickerManager.PriceFactor;
     public float CurrentIncomePerTick => currentNumOfUpgrades * _booster.incomePerUnit;
     public string Title => _booster.title;
     public bool IsAvailableToUpgrade => IsBought && (ClickerManager.IsAffordable(PriceToUpgrade));

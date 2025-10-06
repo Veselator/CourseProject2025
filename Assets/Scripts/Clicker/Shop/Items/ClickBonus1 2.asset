@@ -17,11 +17,13 @@ MonoBehaviour:
   description: "\u0422\u0438 \u043A\u0440\u0443\u0442\u0438\u0439! +5 \u043C\u043E\u043D\u0435\u0442
     \u0437\u0430 \u043A\u043B\u0456\u043A!"
   icon: {fileID: -689681565, guid: efc04c05192edcb449f2d0eff0ec1f54, type: 3}
-  price: 200
+  price: 400
   category: 0
   effects:
   - type: 1
     value: 5
+  - type: 3
+    value: 1.2
   conditions: 01000000
   requiredItemIDs:
   - clickBonus2

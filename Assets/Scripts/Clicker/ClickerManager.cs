@@ -17,7 +17,7 @@ public class ClickerManager
     }
 
     // Подлянка для игрока - со временем все цены увеличиваются
-    public float PriceFactor { get; set; } = 1f;
+    public float PriceFactor { get; private set; } = 1.25f;
     public static ClickerManager Instance { get; private set; }
     public float IncomePerTick { get; set; }
 
@@ -30,9 +30,10 @@ public class ClickerManager
     }
 
     public float IncomePerClick => baseIncomePerClick * IncomePerClickMultiplier;
-    public float IncomePerClickMultiplier = 1f;
+    public float IncomePerClickMultiplier = 1.0f;
 
     public Action<float> OnMoneyChanged;
+    public Action<float> OnPriceFactorChanged;
 
     public ClickerManager()
     {
@@ -53,5 +54,11 @@ public class ClickerManager
     public bool IsAffordable(float price)
     {
         return Money >= price;
+    }
+
+    public void MultiplyPriceFactor(float multiplier)
+    {
+        PriceFactor *= multiplier;
+        OnPriceFactorChanged?.Invoke(PriceFactor);
     }
 }

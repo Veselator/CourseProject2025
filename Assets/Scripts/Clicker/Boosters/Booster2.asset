@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: "\u0413\u043E\u0431\u043B\u0456\u043D\u0438"
   incomePerUnit: 3
-  priceToUnlock: 45
+  priceToUnlock: 80
   basePriceForUnit: 30
   priceScalerFactor: 2.5

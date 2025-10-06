@@ -16,7 +16,7 @@ MonoBehaviour:
   title: "\u0421\u0442\u0430\u043B\u0435\u0432\u0430 \u0431\u0440\u043E\u043D\u044F"
   description: 
   icon: {fileID: -689681565, guid: efc04c05192edcb449f2d0eff0ec1f54, type: 3}
-  price: 500
+  price: 1400
   category: 0
   effects:
   - type: 2

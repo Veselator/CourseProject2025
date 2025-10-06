@@ -21,6 +21,7 @@ public class ClickerUIShopItem : MonoBehaviour
 
     [Header("Цвета состояний")]
     [SerializeField] private Color availableColor = Color.white;
+    [SerializeField] private Color availableTextColor = Color.black;
     [SerializeField] private Color expensiveColor = new Color(1f, 0.8f, 0.3f);
     [SerializeField] private Color lockedColor = new Color(0.5f, 0.5f, 0.5f);
     [SerializeField] private Color purchasedColor = new Color(0.3f, 1f, 0.3f);
@@ -143,7 +144,7 @@ public class ClickerUIShopItem : MonoBehaviour
                 lockedOverlay.SetActive(false);
                 purchasedOverlay.SetActive(false);
                 requirementsPanel.SetActive(false);
-                priceText.color = availableColor;
+                priceText.color = availableTextColor;
                 StartCoroutine(PulseAnimation());
                 break;
 

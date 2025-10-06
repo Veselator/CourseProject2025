@@ -18,7 +18,7 @@ public abstract class BaseClickerShopItem : MonoBehaviour, IClickerShopItem
     public string ItemID => itemData?.itemID ?? itemID;
     public string Title => itemData?.title ?? "Unknown Item";
     public string Description => itemData?.description ?? "";
-    public float Price => itemData != null ? itemData.price * ClickerManager.Instance.PriceFactor : 0;
+    public float Price => itemData != null ? itemData.price : 0; // Важно: в магазине фактор цен не учитываем
     public bool IsBought => _isBought;
     public bool IsAvailable => CheckAvailability();
     public bool IsAffordable => ClickerManager.Instance.IsAffordable(Price);

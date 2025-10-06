@@ -658,7 +658,7 @@ MonoBehaviour:
   lockedOverlay: {fileID: 9128094242438419301}
   requirementsPanel: {fileID: 2632632874843473831}
   availableColor: {r: 1, g: 1, b: 1, a: 1}
-  expensiveColor: {r: 1, g: 0.8, b: 0.3, a: 1}
+  expensiveColor: {r: 1, g: 0, b: 0, a: 1}
   lockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   purchasedColor: {r: 0.3, g: 1, b: 0.3, a: 1}
   animationDuration: 0.3

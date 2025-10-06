@@ -46,6 +46,7 @@ public class UIBooster : MonoBehaviour
         //originalScale = transform.localScale;
 
         _clickerManager.OnMoneyChanged += UpdateButtonState;
+        _clickerManager.OnPriceFactorChanged += HandlePriceFactorChanged;
         InitUIComponents();
     }
 
@@ -53,6 +54,7 @@ public class UIBooster : MonoBehaviour
     {
         if (_clickerManager == null) _clickerManager = ClickerManager.Instance;
         _clickerManager.OnMoneyChanged -= UpdateButtonState;
+        _clickerManager.OnPriceFactorChanged -= HandlePriceFactorChanged;
     }
 
     private void InitUIComponents()
@@ -78,11 +80,17 @@ public class UIBooster : MonoBehaviour
 
     //
 
+    private void HandlePriceFactorChanged(float newPriceFactor)
+    {
+        UpdateTextInfo();
+    }
+
     private void UpdateTextInfo()
     {
         levelText.text = $"Lv. {_currentBooster.CurrentNumOfUpgrades}";
         incomePerSecond.text = $"{_currentBooster.CurrentIncomePerTick}/c";
-        priceText.text = $"{NumsFormatter.FormatMoney(Math.Ceiling(_currentBooster.PriceToUpgrade))}";
+        if (_currentBooster.IsBought) priceText.text = $"{NumsFormatter.FormatMoney(Math.Ceiling(_currentBooster.PriceToUpgrade))}";
+        else priceUnlockText.text = $"{NumsFormatter.FormatMoney(_currentBooster.PriceToUnlock)}";
     }
 
     private void UpdateButtonState(float _ = 0f)
