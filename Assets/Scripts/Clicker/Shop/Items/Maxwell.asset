@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23dbcf4175e3f784c94b8f05864bec8a, type: 3}
+  m_Name: Maxwell
+  m_EditorClassIdentifier: 
+  itemID: maxwell
+  title: "\u041A\u0456\u0442 \u041C\u0430\u043A\u0441\u0432\u0435\u043B\u043B"
+  description: "\u0429\u043E? \u0425\u0442\u043E \u0446\u0435?"
+  icon: {fileID: -689681565, guid: efc04c05192edcb449f2d0eff0ec1f54, type: 3}
+  price: 900
+  category: 2
+  effects:
+  - type: 2
+    value: 10
+  conditions: 
+  requiredItemIDs: []

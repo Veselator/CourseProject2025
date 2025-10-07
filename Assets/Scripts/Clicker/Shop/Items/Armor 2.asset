@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23dbcf4175e3f784c94b8f05864bec8a, type: 3}
   m_Name: Armor 2
   m_EditorClassIdentifier: 
-  itemID: goldernArmor
-  title: "\u0417\u043E\u043B\u043E\u0442\u0430 \u0431\u0440\u043E\u043D\u044F"
-  description: 
+  itemID: armor3
+  title: "\u0417\u043D\u0430\u0440\u044F\u0434\u0434\u044F 3"
+  description: "\u0417\u043D\u0430\u0440\u044F\u0434\u0434\u044F 3"
   icon: {fileID: -689681565, guid: efc04c05192edcb449f2d0eff0ec1f54, type: 3}
   price: 2900
   category: 0
   effects:
-  - type: 2
+  - type: 4
     value: 2
   conditions: 01000000
   requiredItemIDs:
-  - ironArmor
+  - armor2

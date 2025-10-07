@@ -17,6 +17,9 @@ public class ClickerHandler : MonoBehaviour
     private const float timePerTick = 1f;
     private float timer = 0f;
 
+    public static ClickerHandler Instance { get; private set; }
+
+    public event Action<Vector2, float> OnUserClicked;
     private void Awake()
     {
         Init(new ClickerManager());
@@ -36,6 +39,7 @@ public class ClickerHandler : MonoBehaviour
     private void Init(ClickerManager clickerManager)
     {
         _clickerManager = clickerManager;
+        if (Instance == null) Instance = this;
 
         InitBoosters();
     }
@@ -101,6 +105,11 @@ public class ClickerHandler : MonoBehaviour
     {
         Debug.Log("User clicked!");
         _clickerManager.ChangeMoney(_clickerManager.IncomePerClick);
+
+        // Вызываем событие клика мыши
+        Vector3 mouseScreenPosition = Input.mousePosition;
+        Vector3 cursorWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+        OnUserClicked?.Invoke(cursorWorldPosition, _clickerManager.IncomePerClick);
     }
 
     private void UpdateBoostersVisibility()

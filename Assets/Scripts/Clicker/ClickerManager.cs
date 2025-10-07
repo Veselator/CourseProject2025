@@ -22,7 +22,7 @@ public class ClickerManager
     public float IncomePerTick { get; set; }
 
     // ѕеременные, которые касаютс€ ручного клика игрока
-    private float baseIncomePerClick = 1f;
+    private float baseIncomePerClick = 1000f;
     public float BaseIncomePerClick
     {
         get => baseIncomePerClick;

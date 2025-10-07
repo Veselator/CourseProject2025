@@ -9,7 +9,8 @@ public class ClickerShopManager : MonoBehaviour
     public static ClickerShopManager Instance { get; private set; }
 
     [Header("Существующие предметы в сцене")]
-    [SerializeField] private BaseClickerShopItem[] existingShopItems; // Массив уже существующих предметов
+    [SerializeField] private GameObject ShopParentGO;
+    private BaseClickerShopItem[] existingShopItems; // Массив уже существующих предметов
 
     private Dictionary<string, BaseClickerShopItem> _shopItems = new Dictionary<string, BaseClickerShopItem>();
     private HashSet<string> _purchasedItemIDs = new HashSet<string>();
@@ -32,7 +33,13 @@ public class ClickerShopManager : MonoBehaviour
     private void InitializeShop()
     {
         //LoadPurchasedItems();
+        LoadExistingItems();
         LinkExistingItems();      // Связываем существующие предметы с данными
+    }
+
+    private void LoadExistingItems()
+    {
+        existingShopItems = ShopParentGO.GetComponentsInChildren<BaseClickerShopItem>();
     }
 
     // НОВЫЙ МЕТОД - связывание существующих GameObject с данными

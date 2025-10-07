@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23dbcf4175e3f784c94b8f05864bec8a, type: 3}
   m_Name: Armor
   m_EditorClassIdentifier: 
-  itemID: silverArmor
-  title: "\u0411\u0440\u043E\u043D\u044F \u0437\u0456 \u0441\u0440\u0456\u0431\u043B\u0430"
-  description: 
+  itemID: armor1
+  title: "\u0417\u043D\u0430\u0440\u044F\u0434\u0434\u044F 1"
+  description: "\u0417\u043D\u0430\u0440\u044F\u0434\u0434\u044F 1"
   icon: {fileID: -689681565, guid: efc04c05192edcb449f2d0eff0ec1f54, type: 3}
   price: 500
   category: 0

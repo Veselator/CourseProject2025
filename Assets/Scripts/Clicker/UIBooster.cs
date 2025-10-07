@@ -25,9 +25,10 @@ public class UIBooster : MonoBehaviour
     [SerializeField] private Transform endPointOfUISpawning;
 
     private Box spawnUIBox;
+    [SerializeField] private float spawnStep;
 
     private Color buttonNotAvailableColor = Color.gray;
-    private Color buttonAvailableColor = Color.white;
+    private Color buttonAvailableColor = Color.yellow;
 
     // Настройки анимации
     [SerializeField] private float animationDuration = 0.5f;
@@ -214,6 +215,6 @@ public class UIBooster : MonoBehaviour
     {
         // Я правда не знаю как назвать эти штуки
         GameObject newUiThing = Instantiate(_currentBooster.CurrentPrefab, transform);
-        newUiThing.transform.localPosition = GetRandomPositionInsideSpawnBox();
+        newUiThing.transform.localPosition = new Vector2(spawnUIBox.startPoint.x + spawnStep * (_currentBooster.CurrentNumOfUpgrades - 1), spawnUIBox.startPoint.y);//spawnUIBox.startPoint + spawnStep * _currentBooster.CurrentNumOfUpgrades;
     }
 }

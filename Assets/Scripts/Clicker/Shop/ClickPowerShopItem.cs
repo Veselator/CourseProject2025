@@ -22,6 +22,14 @@ public class ClickPowerShopItem : BaseClickerShopItem
                 case EffectType.ChangePriceFactor:
                     clickerManager.MultiplyPriceFactor(effect.value);
                     break;
+
+                case EffectType.UnlockCosmetic:
+                    CosmeticsManager.Instance.UnlockCosmetic((int)effect.value);
+                    break;
+
+                case EffectType.EndGame:
+                    GameSceneManager.LoadNextScene();
+                    break;
             }
         }
     }

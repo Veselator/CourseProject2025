@@ -42,6 +42,7 @@ public enum EffectType
     ClickPowerBonus,
     UnlockCosmetic,
     ChangePriceFactor,
+    EndGame
 }
 
 public enum ConditionType
