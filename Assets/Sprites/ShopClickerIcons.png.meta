@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5e5cf15b9fa6f9b4e89898b9478e86e4
+guid: fb19376d42508054190c230898bec6fa
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ClickerUI_0
+      name: ShopClickerIcons_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 177
-        width: 635
-        height: 895
+        x: 0
+        y: 0
+        width: 91
+        height: 118
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e8e63eb4b10ee7d4b8df61d311c0376d
-      internalID: -1762354101
+      spriteID: 8fe5a35567c18714387d4fcc1d30445d
+      internalID: -562583360
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ClickerUI_1
+      name: ShopClickerIcons_3
       rect:
         serializedVersion: 2
-        x: 696
-        y: 643
-        width: 552
-        height: 417
+        x: 249
+        y: 0
+        width: 92
+        height: 106
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b41ef45f748dd234ea7143cb267a2e28
-      internalID: -727824788
+      spriteID: 47dc0e9349750be4282ce9d487e8a889
+      internalID: 1055096306
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ClickerUI_2
+      name: ShopClickerIcons_4
       rect:
         serializedVersion: 2
-        x: 1341
-        y: 659
-        width: 467
-        height: 413
+        x: 363
+        y: 25
+        width: 89
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,20 +192,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62288e9123e648c4baa95b8204946f3c
-      internalID: -1164295397
+      spriteID: 026c62b0ccb52db408dc66a3458aa9ff
+      internalID: -114938728
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ClickerUI_3
+      name: ShopClickerIcons_5
       rect:
         serializedVersion: 2
-        x: 1914
-        y: 332
-        width: 1075
-        height: 740
+        x: 480
+        y: 18
+        width: 76
+        height: 87
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,20 +213,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b6b4149151c8d7b45902c3ac66e19b85
-      internalID: -556260067
+      spriteID: 6dee68e308f06fc46948e459623840fc
+      internalID: -788742090
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ClickerUI_4
+      name: ShopClickerIcons_6
       rect:
         serializedVersion: 2
-        x: 696
-        y: 23
-        width: 789
-        height: 584
+        x: 588
+        y: 16
+        width: 77
+        height: 86
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,20 +234,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 52684740f3e6aeb4b9e49ce25f892d16
-      internalID: -494141236
+      spriteID: 9c28d3471fcdabe46bb218bb241930d8
+      internalID: -1923383144
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ClickerUI_5
+      name: ShopClickerIcons_7
       rect:
         serializedVersion: 2
-        x: 1543
-        y: 64
-        width: 312
-        height: 227
+        x: 710
+        y: 24
+        width: 93
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -255,20 +255,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff0c5bf3d640c1a4a92fedb5fd4aabda
-      internalID: -2058963277
+      spriteID: 3395336e69ee33248932c3e5a1415bac
+      internalID: 155695115
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ClickerUI_6
+      name: ShopClickerIcons_8
       rect:
         serializedVersion: 2
-        x: 1866
-        y: 108
-        width: 139
-        height: 142
+        x: 828
+        y: 0
+        width: 115
+        height: 119
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -276,20 +276,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23f5193c4521b4a4aa50b2dcfe497964
-      internalID: 1631829011
+      spriteID: bd5d8acd3c0e6b24b8a45b783dc35e55
+      internalID: 737204392
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ClickerUI_7
+      name: ShopClickerIcons_9
       rect:
         serializedVersion: 2
-        x: 2071
-        y: 29
-        width: 338
-        height: 262
+        x: 119
+        y: 0
+        width: 111
+        height: 119
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -297,113 +297,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc5b795e894d1274f9dc003a8c7c2828
-      internalID: 2143840008
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ClickerUI_8
-      rect:
-        serializedVersion: 2
-        x: 2450
-        y: 187
-        width: 85
-        height: 79
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: efcd1b3c152703d41aa3d50a15791d14
-      internalID: 1922520883
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ClickerUI_9
-      rect:
-        serializedVersion: 2
-        x: 2552
-        y: 189
-        width: 79
-        height: 55
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f9e8affa23f0ad9468ce407d767cbaf4
-      internalID: -217237048
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ClickerUI_10
-      rect:
-        serializedVersion: 2
-        x: 2650
-        y: 201
-        width: 82
-        height: 58
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 64ee68b1616b17a4796bbb8327629613
-      internalID: -817001583
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ClickerUI_11
-      rect:
-        serializedVersion: 2
-        x: 2756
-        y: 203
-        width: 34
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2ddf97a7e0c9e064285245ce6ea2bcb0
-      internalID: 491048504
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ClickerUI_12
-      rect:
-        serializedVersion: 2
-        x: 2813
-        y: 187
-        width: 70
-        height: 65
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 28528d6d6a9680d4baf930ac8cb9b17f
-      internalID: 1279408691
+      spriteID: 952f57f9935d39e4a8782476ee9c0c43
+      internalID: -2071785184
       vertices: []
       indices: 
       edges: []
@@ -419,19 +314,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ClickerUI_0: -1762354101
-      ClickerUI_1: -727824788
-      ClickerUI_10: -817001583
-      ClickerUI_11: 491048504
-      ClickerUI_12: 1279408691
-      ClickerUI_2: -1164295397
-      ClickerUI_3: -556260067
-      ClickerUI_4: -494141236
-      ClickerUI_5: -2058963277
-      ClickerUI_6: 1631829011
-      ClickerUI_7: 2143840008
-      ClickerUI_8: 1922520883
-      ClickerUI_9: -217237048
+      ShopClickerIcons_0: -562583360
+      ShopClickerIcons_1: -1550965659
+      ShopClickerIcons_2: -1686181168
+      ShopClickerIcons_3: 1055096306
+      ShopClickerIcons_4: -114938728
+      ShopClickerIcons_5: -788742090
+      ShopClickerIcons_6: -1923383144
+      ShopClickerIcons_7: 155695115
+      ShopClickerIcons_8: 737204392
+      ShopClickerIcons_9: -2071785184
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -16,7 +16,7 @@ MonoBehaviour:
   title: "\u041C\u0430\u0439\u0441\u0442\u0435\u0440 \u043F\u0456\u0434\u0437\u0435\u043C\u0435\u043B\u0435\u0439"
   description: "\u0422\u0438 \u043A\u0440\u0443\u0442\u0438\u0439! +2 \u043C\u043E\u043D\u0435\u0442\u0438
     \u0437\u0430 \u043A\u043B\u0456\u043A!"
-  icon: {fileID: -689681565, guid: efc04c05192edcb449f2d0eff0ec1f54, type: 3}
+  icon: {fileID: 1055096306, guid: fb19376d42508054190c230898bec6fa, type: 3}
   price: 400
   category: 0
   effects:
