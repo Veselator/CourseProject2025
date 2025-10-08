@@ -8,131 +8,209 @@ using VContainer;
 public class ClickerHandler : MonoBehaviour
 {
     // Реализует бизнес-логику ClickerManager
-
     private ClickerManager _clickerManager;
+
     [SerializeField] private BoosterHandler[] _boosterHandlers;
 
     // Время одного тика
-    // За один тик игрок поулчает доход от всех бустеров
-    private const float timePerTick = 1f;
-    private float timer = 0f;
+    private const float TIME_PER_TICK = 1.1f;
+    private float _timer = 0f;
+    private float _nextTickTime; // Оптимизация: вместо проверки каждый кадр
+
+    // Кеш для оптимизации
+    private int _lastActiveBoughtBoosterIndex = -1;
+    private float _cachedTotalIncome = 0f;
+    private bool _incomeNeedsRecalculation = true;
+
+    // Оптимизация: кешируем камеру
+    private Camera _mainCamera;
 
     public static ClickerHandler Instance { get; private set; }
-
     public event Action<Vector2, float> OnUserClicked;
+
     private void Awake()
     {
-        Init(new ClickerManager());
+        if (Instance == null)
+        {
+            Instance = this;
+            Init(new ClickerManager());
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        // Кешируем камеру один раз
+        _mainCamera = Camera.main;
     }
 
     private void Start()
     {
+        _nextTickTime = Time.time + TIME_PER_TICK;
         UpdateBoostersVisibility();
     }
 
     private void Update()
     {
-        UpdateTimer();
-        CheckTick();
+        // Оптимизация: проверяем время только когда нужно
+        if (Time.time >= _nextTickTime)
+        {
+            ApplyBoosters();
+            _nextTickTime = Time.time + TIME_PER_TICK;
+        }
     }
 
     private void Init(ClickerManager clickerManager)
     {
         _clickerManager = clickerManager;
-        if (Instance == null) Instance = this;
-
         InitBoosters();
     }
 
     private void InitBoosters()
     {
+        // Оптимизация: один проход по массиву
         for (int i = 0; i < _boosterHandlers.Length; i++)
         {
-            // Подписка на событие покупки бустера
-            // Нужно, что-бы открывались новые бустеры
-            _boosterHandlers[i].OnBoosterBought += UpdateBoostersVisibility;
+            var booster = _boosterHandlers[i];
 
-            // Если не первый бустер - то выключаем его
-            if (i > 0) _boosterHandlers[i].gameObject.SetActive(false);
+            // Подписка на события
+            booster.OnBoosterBought += OnBoosterBought;
+            booster.OnBoosterUpgraded += OnBoosterUpgraded;
+
+            // Если не первый бустер - выключаем
+            if (i > 0)
+            {
+                booster.gameObject.SetActive(false);
+            }
         }
     }
 
     private void OnDestroy()
     {
+        // Оптимизация: проверка на null
+        if (_boosterHandlers == null) return;
+
         for (int i = 0; i < _boosterHandlers.Length; i++)
         {
-            _boosterHandlers[i].OnBoosterBought -= UpdateBoostersVisibility;
+            if (_boosterHandlers[i] != null)
+            {
+                _boosterHandlers[i].OnBoosterBought -= OnBoosterBought;
+                _boosterHandlers[i].OnBoosterUpgraded -= OnBoosterUpgraded;
+            }
         }
     }
 
-    private void UpdateTimer()
+    // Новые методы для событий
+    private void OnBoosterBought()
     {
-        timer += Time.deltaTime;
+        _incomeNeedsRecalculation = true;
+        RecalculateTotalIncome();
+        UpdateBoostersVisibility();
     }
 
-    private void CheckTick()
+    private void OnBoosterUpgraded()
     {
-        if (timer > timePerTick)
-        {
-            timer = 0f;
-            ApplyBoosters();
-        }
+        _incomeNeedsRecalculation = true;
     }
 
     private void ApplyBoosters()
     {
-        if (_boosterHandlers.Length == 0) return;
-        float totalSum = 0f;
+        if (_boosterHandlers == null || _boosterHandlers.Length == 0) return;
 
-        foreach (var boosterHandler in _boosterHandlers)
+        // Используем кеш если доход не изменился
+        if (!_incomeNeedsRecalculation)
         {
-            // Все бустеры у нас расположены по прядку
-            // Если кто-то один не куплен - значит, и все бустеры дальше не куплены
-            // Нет смысла дальше проверять
-            if (!boosterHandler.IsBought) break;
-            if (boosterHandler.CurrentNumOfUpgrades == 0) continue;
-
-            totalSum += boosterHandler.CurrentIncomePerTick;
-            //_clickerManager.ChangeMoney(boosterHandler.CurrentIncomePerTick);
+            if (_cachedTotalIncome > 0)
+            {
+                _clickerManager.ChangeMoney(_cachedTotalIncome);
+            }
+            return;
         }
 
-        Debug.Log($"Total sum is {totalSum}, current money {_clickerManager.Money}");
-        _clickerManager.IncomePerTick = totalSum;
-        _clickerManager.ChangeMoney(totalSum);
+        // Пересчитываем доход
+        RecalculateTotalIncome();
+
+        if (_cachedTotalIncome > 0)
+        {
+            _clickerManager.IncomePerTick = _cachedTotalIncome;
+            _clickerManager.ChangeMoney(_cachedTotalIncome);
+        }
+
+        _incomeNeedsRecalculation = false;
+    }
+
+    private void RecalculateTotalIncome()
+    {
+        float totalSum = 0f;
+        int lastBoughtIndex = -1; // Локальная переменная для отслеживания
+
+        // Оптимизация: используем кешированный индекс как подсказку
+        int endIndex = _lastActiveBoughtBoosterIndex >= 0
+            ? Mathf.Min(_lastActiveBoughtBoosterIndex + 2, _boosterHandlers.Length) // +2 чтобы проверить следующий
+            : _boosterHandlers.Length;
+
+        for (int i = 0; i < endIndex; i++)
+        {
+            var booster = _boosterHandlers[i];
+
+            if (!booster.IsBought)
+            {
+                // Нашли первый некупленный - выходим
+                break;
+            }
+
+            // Бустер куплен - обновляем индекс
+            lastBoughtIndex = i;
+
+            if (booster.CurrentNumOfUpgrades > 0)
+            {
+                totalSum += booster.CurrentIncomePerTick;
+            }
+        }
+
+        // КРИТИЧНО: обновляем кеш ПОСЛЕ цикла
+        _lastActiveBoughtBoosterIndex = lastBoughtIndex;
+        _cachedTotalIncome = totalSum;
+
+        Debug.Log($"Total income: {totalSum}, Money: {_clickerManager.Money}, LastBoughtIndex: {lastBoughtIndex}");
     }
 
     public void ProcessUserClick()
     {
-        Debug.Log("User clicked!");
-        _clickerManager.ChangeMoney(_clickerManager.IncomePerClick);
 
-        // Вызываем событие клика мыши
-        Vector3 mouseScreenPosition = Input.mousePosition;
-        Vector3 cursorWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
-        OnUserClicked?.Invoke(cursorWorldPosition, _clickerManager.IncomePerClick);
+        float clickIncome = _clickerManager.IncomePerClick;
+        _clickerManager.ChangeMoney(clickIncome);
+
+        // Оптимизация: используем кешированную камеру
+        if (_mainCamera != null)
+        {
+            Vector3 mouseScreenPosition = Input.mousePosition;
+            Vector3 cursorWorldPosition = _mainCamera.ScreenToWorldPoint(mouseScreenPosition);
+            OnUserClicked?.Invoke(cursorWorldPosition, clickIncome);
+        }
     }
 
     private void UpdateBoostersVisibility()
     {
-        // Метод необходим для того, что-бы отображать
-        // бустер, который мы можем открыть
-        // При желании можно добавить вызов анимаций
+        int nextBoosterIndex = _lastActiveBoughtBoosterIndex + 1;
 
-        int lastBoughtIndex = -1;
-        for (int i = 0; i < _boosterHandlers.Length; i++)
+        Debug.Log($"UpdateBoostersVisibility: lastBought={_lastActiveBoughtBoosterIndex}, next={nextBoosterIndex}");
+
+        // Проверяем что индекс валиден
+        if (nextBoosterIndex >= 0 && nextBoosterIndex < _boosterHandlers.Length)
         {
-            if (_boosterHandlers[i].IsBought)
+            if (!_boosterHandlers[nextBoosterIndex].IsBought)
             {
-                lastBoughtIndex = i;
-                continue;
-            }
-
-            if(i == lastBoughtIndex + 1)
-            {
-                // Мы нашли следующий для открытия
-                _boosterHandlers[i].ShowAnimation();
-                return;
+                _boosterHandlers[nextBoosterIndex].ShowAnimation();
             }
         }
+    }
+
+    // Метод для форсированного пересчета (если нужно)
+    public void ForceRecalculateIncome()
+    {
+        _incomeNeedsRecalculation = true;
+        _lastActiveBoughtBoosterIndex = -1;
+        RecalculateTotalIncome();
     }
 }

@@ -19,6 +19,7 @@ public class UIBooster : MonoBehaviour
     [SerializeField] private TextMeshProUGUI priceUnlockText;
     [SerializeField] private Image buyUpgradeButtonImage;
     [SerializeField] private Image buyButtonImage;
+    [SerializeField] private ParticleSystem buyParticle;
     private bool currentButtonState = true;
 
     [SerializeField] private Transform startPointOfUISpawning;
@@ -139,6 +140,7 @@ public class UIBooster : MonoBehaviour
 
         lockBoosterObject.SetActive(false);
         mainGroup.SetActive(true);
+        buyParticle.Play();
 
         currentButtonState = true;
         UpdateButtonState();

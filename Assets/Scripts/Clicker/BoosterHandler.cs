@@ -75,7 +75,7 @@ public class BoosterHandler : MonoBehaviour
 
     public void ShowAnimation()
     {
-        // КОд анимации
+        // КОд анимации появления
         if (_UIBooster == null) _UIBooster = GetComponent<UIBooster>();
         _UIBooster.ShowAnimation();
     }

@@ -8,6 +8,7 @@ public class CosmeticsManager : MonoBehaviour
 
     [SerializeField] private CharacterData[] characters;
     [SerializeField] private GameObject catMaxwell;
+    [SerializeField] private GameObject tourch;
     private int currentIndex = 0;
     public static CosmeticsManager Instance {  get; private set; }
 
@@ -74,7 +75,7 @@ public class CosmeticsManager : MonoBehaviour
                 break;
 
             case 11:
-                // факел
+                tourch.SetActive(true);
                 break;
         }
     }
