@@ -28,9 +28,9 @@ public class PlayerInputHandler : MonoBehaviour
     private void Update()
     {
         if (CurrentInputMode == InputMode.None ||
-            GlobalFlags.GetFlag(GlobalFlags.Flags.RUNNER_IS_ROTATING) ||
-            GlobalFlags.GetFlag(GlobalFlags.Flags.BLOCK_PLAYER_MOVING) ||
-            GlobalFlags.GetFlag(GlobalFlags.Flags.GAME_OVER)) return;
+            GlobalFlags.GetFlag(Flags.RunnerIsRotating) ||
+            GlobalFlags.GetFlag(Flags.BlockPlayerMoving) ||
+            GlobalFlags.GetFlag(Flags.GameOver)) return;
 
         HandleMovingButtons();
         HandleJump();
@@ -48,12 +48,12 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void OnGlobalFlagChanged(string flag, bool state)
     {
-        if (flag == GlobalFlags.Flags.RUNNER_STAGE_1_PASSED && state)
+        if (flag == Flags.RunnerStage1Passed.ToString() && state)
         {
             // Если прошли первый этап, разрешаем горизонтальный ввод
             EnableHorizontalInput();
         }
-        if (flag == GlobalFlags.Flags.RUNNER_STAGE_2_PASSED && state)
+        if (flag == Flags.RunnerStage2Passed.ToString() && state)
         {
             // Если прошли второй этап, разрешаем вертикальный ввод
             EnableVerticalInput();

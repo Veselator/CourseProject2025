@@ -17,7 +17,7 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        if (GlobalFlags.GetFlag(GlobalFlags.Flags.GAME_OVER)) return;
+        if (GlobalFlags.GetFlag(Flags.GameOver)) return;
         if (IsAbleToUpdate) transform.position = _tracker.GetCurrentPosition(_target.position);
     }
 }

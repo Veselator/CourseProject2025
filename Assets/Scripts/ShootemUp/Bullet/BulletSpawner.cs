@@ -75,7 +75,7 @@ public class BulletSpawner : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GlobalFlags.GetFlag(GlobalFlags.Flags.GAME_OVER)) return;
+        if (GlobalFlags.GetFlag(Flags.GameOver)) return;
         if (!IsAbleToSpawn) return;
         timer += Time.fixedDeltaTime;
         if (timer >= delay)

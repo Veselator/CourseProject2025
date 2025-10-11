@@ -65,7 +65,7 @@ public class UpgradesManager : MonoBehaviour
         UpgradeType selectedType = GetUpgradeType(selectedUpgrade);
         _remainingUpgrades.Remove(selectedType);
 
-        GlobalFlags.ToggleFlag(GlobalFlags.Flags.SHOOTEMUP_START_WAVE);
+        GlobalFlags.ToggleFlag(Flags.ShootEmUpStartWave);
     }
 
     private void OnWaveEnded()
@@ -84,7 +84,7 @@ public class UpgradesManager : MonoBehaviour
         {
             // Если апгрейдов не осталось, сразу начинаем новую волну
             Debug.Log("No upgrades available, starting next wave immediately");
-            GlobalFlags.ToggleFlag(GlobalFlags.Flags.SHOOTEMUP_START_WAVE);
+            GlobalFlags.ToggleFlag(Flags.ShootEmUpStartWave);
         }
     }
 

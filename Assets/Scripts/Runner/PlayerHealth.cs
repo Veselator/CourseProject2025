@@ -46,7 +46,7 @@ public class PlayerHealth : MonoBehaviour
                 Debug.Log("Player is dead!");
                 OnPlayerDied?.Invoke();
 
-                GlobalFlags.SetFlag(GlobalFlags.Flags.GAME_OVER);
+                GlobalFlags.SetFlag(Flags.GameOver);
                 return;
                 // Handle player death (e.g., end game, respawn, etc.)
             }

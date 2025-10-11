@@ -15,6 +15,6 @@ public class WheelsController : MonoBehaviour
 
     private void Update()
     {
-        if (!GlobalFlags.GetFlag(GlobalFlags.Flags.GAME_OVER)) transform.Rotate(0, 0, _distanceTracker.CurrentSpeed * Time.deltaTime * speedFactor);
+        if (!GlobalFlags.GetFlag(Flags.GameOver)) transform.Rotate(0, 0, _distanceTracker.CurrentSpeed * Time.deltaTime * speedFactor);
     }
 }

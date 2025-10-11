@@ -29,7 +29,7 @@ public class PlayerMovementHandler : MonoBehaviour
 
     private void Update()
     {
-        if (GlobalFlags.GetFlag(GlobalFlags.Flags.GAME_OVER)) return;
+        if (GlobalFlags.GetFlag(Flags.GameOver)) return;
         HandleMovingInput();
     }
 

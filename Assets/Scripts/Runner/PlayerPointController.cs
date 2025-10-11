@@ -30,11 +30,11 @@ public class PlayerPointController : MonoBehaviour
 
     private void OnGlobalFlagChanged(string flag, bool flagState)
     {
-        if (flag == GlobalFlags.Flags.RUNNER_STAGE_1_PASSED && flagState)
+        if (flag == Flags.RunnerStage1Passed.ToString() && flagState)
         {
             MoveTo(points[1], -2f);
         }
-        if (flag == GlobalFlags.Flags.RUNNER_STAGE_2_PASSED && flagState)
+        if (flag == Flags.RunnerStage2Passed.ToString() && flagState)
         {
             // Да, hard-code
             // Задаём смещение точек при анимации
@@ -113,9 +113,9 @@ public class PlayerPointController : MonoBehaviour
         transform.position = outPoint.position;
         transform.rotation = outPoint.rotation;
 
-        if (isEnding && GlobalFlags.GetFlag(GlobalFlags.Flags.RUNNER_IS_ROTATING))
+        if (isEnding && GlobalFlags.GetFlag(Flags.RunnerIsRotating))
             // GlobalFlags.SetFlag(GlobalFlags.Flags.RUNNER_IS_ROTATING);
-            GlobalFlags.ClearFlag(GlobalFlags.Flags.RUNNER_IS_ROTATING);
+            GlobalFlags.ClearFlag(Flags.RunnerIsRotating);
     }
 
     // Вспомогательный метод для расчета квадратичной кривой Безье

@@ -93,27 +93,27 @@ public class DistanceTracker : MonoBehaviour
 
     private void HandleGlobalFlagChanged(string flagName, bool state)
     {
-        if (flagName == GlobalFlags.Flags.RUNNER_IS_ROTATING)
+        if (flagName == Flags.RunnerIsRotating.ToString())
         {
             IsRunnerRotating = state;
         }
-        else if (flagName == GlobalFlags.Flags.RUNNER_STAGE_1_PASSED)
+        else if (flagName == Flags.RunnerStage1Passed.ToString())
         {
             RunnerStage1Passed = state;
         }
-        else if (flagName == GlobalFlags.Flags.GAME_OVER)
+        else if (flagName == Flags.GameOver.ToString())
         {
             DisableSpawners();
         }
 
-            OnGlobalFlagChanged?.Invoke(flagName, state);
+        OnGlobalFlagChanged?.Invoke(flagName, state);
     }
 
     private void Update()
     {
         //Debug.Log($"Speed: {CurrentSpeed}, Distance: {CurrentDistance}");
 
-        if (GlobalFlags.GetFlag(GlobalFlags.Flags.GAME_OVER)) return;
+        if (GlobalFlags.GetFlag(Flags.GameOver)) return;
         UpdateSpeed();
         CheckStages();
 
@@ -122,13 +122,13 @@ public class DistanceTracker : MonoBehaviour
 
     private void CheckStages()
     {
-        if (CurrentDistance >= turnDistances[0] && !GlobalFlags.GetFlag(GlobalFlags.Flags.RUNNER_STAGE_1_PASSED))
+        if (CurrentDistance >= turnDistances[0] && !GlobalFlags.GetFlag(Flags.RunnerStage1Passed))
         {
             DebugInfo();
             Debug.Log("First turn reached");
             // При достижении дистанции запускаем событие поворота
-            GlobalFlags.SetFlag(GlobalFlags.Flags.RUNNER_STAGE_1_PASSED);
-            GlobalFlags.SetFlag(GlobalFlags.Flags.RUNNER_IS_ROTATING);
+            GlobalFlags.SetFlag(Flags.RunnerStage1Passed);
+            GlobalFlags.SetFlag(Flags.RunnerIsRotating);
             RotateRoad?.Invoke();
             playerMovementAcrossLevel.CurrentDirection = Vector2.up;
             playerRotationAnimation.OnRotateRoad();
@@ -139,12 +139,12 @@ public class DistanceTracker : MonoBehaviour
             MaxAcceleration = 5f;
             spawnObstacles.SpawnInterval = 2.7f;
         }
-        else if (CurrentDistance >= turnDistances[1] && !GlobalFlags.GetFlag(GlobalFlags.Flags.RUNNER_STAGE_2_PASSED))
+        else if (CurrentDistance >= turnDistances[1] && !GlobalFlags.GetFlag(Flags.RunnerStage2Passed))
         {
             Debug.Log("Second turn reached");
             // При достижении дистанции запускаем событие поворота
-            GlobalFlags.SetFlag(GlobalFlags.Flags.RUNNER_STAGE_2_PASSED);
-            GlobalFlags.SetFlag(GlobalFlags.Flags.RUNNER_IS_ROTATING);
+            GlobalFlags.SetFlag(Flags.RunnerStage1Passed);
+            GlobalFlags.SetFlag(Flags.RunnerIsRotating);
             playerMovementAcrossLevel.CurrentDirection = Vector2.right;
             RotateRoad?.Invoke();
             playerRotationAnimation.OnRotateRoad();
@@ -153,12 +153,12 @@ public class DistanceTracker : MonoBehaviour
             MaxAcceleration = 6f;
             spawnObstacles.SpawnInterval = 2.4f;
         }
-        else if (CurrentDistance >= turnDistances[2] && !GlobalFlags.GetFlag(GlobalFlags.Flags.RUNNER_STAGE_3_PASSED))
+        else if (CurrentDistance >= turnDistances[2] && !GlobalFlags.GetFlag(Flags.RunnerStage3Passed))
         {
             Debug.Log("Third turn reached");
             
-            GlobalFlags.SetFlag(GlobalFlags.Flags.RUNNER_STAGE_3_PASSED);
-            GlobalFlags.SetFlag(GlobalFlags.Flags.GAME_WIN);
+            GlobalFlags.SetFlag(Flags.RunnerStage3Passed);
+            GlobalFlags.SetFlag(Flags.GameWin);
             GameSceneManager.LoadNextScene();
         }
     }

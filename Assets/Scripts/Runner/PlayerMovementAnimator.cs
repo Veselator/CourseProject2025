@@ -27,7 +27,7 @@ public class PlayerMovementAnimator : MonoBehaviour
 
         if (!atTarget)
         {
-            if (GlobalFlags.GetFlag(GlobalFlags.Flags.BLOCK_PLAYER_MOVING)) return;
+            if (GlobalFlags.GetFlag(Flags.BlockPlayerMoving)) return;
             // Движемся к цели
             MoveTo(_target.position);
             IsMoving = true;

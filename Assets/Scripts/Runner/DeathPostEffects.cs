@@ -46,7 +46,7 @@ public class DeathPostEffects : MonoBehaviour
 
     private void CheckGlobalFlags(string flagName, bool flagState)
     {
-        if (flagName == GlobalFlags.Flags.GAME_OVER && !isPlayingAnimation)
+        if (flagName == Flags.GameOver.ToString() && !isPlayingAnimation)
         {
             StartAnimation();
         }

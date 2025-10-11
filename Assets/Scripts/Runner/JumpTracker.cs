@@ -43,7 +43,7 @@ public class JumpTracker : MonoBehaviour
         if (!IsReadyToJump) return;
 
         ResetJump();
-        GlobalFlags.SetFlag(GlobalFlags.Flags.BLOCK_PLAYER_MOVING);
+        GlobalFlags.SetFlag(Flags.BlockPlayerMoving);
         OnJumpAnimationStarted.Invoke();
         playerHealth.IsPossibleToHitPlayer = false;
         jumpAnimator.Jump();
@@ -54,7 +54,7 @@ public class JumpTracker : MonoBehaviour
         // Вызывается когда прыжок закончился
         playerHealth.IsPossibleToHitPlayer = true;
         OnJumpEnded?.Invoke();
-        GlobalFlags.ClearFlag(GlobalFlags.Flags.BLOCK_PLAYER_MOVING);
+        GlobalFlags.ClearFlag(Flags.BlockPlayerMoving);
     }
 
     public void ResetJump()

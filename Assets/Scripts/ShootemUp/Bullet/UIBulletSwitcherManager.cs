@@ -61,13 +61,13 @@ public class UIBulletSwitcherManager : MonoBehaviour
 
     private void UnlockBullet(BulletType bulletType)
     {
-        if(GlobalFlags.GetFlag(GlobalFlags.Flags.GAME_OVER)) return; 
+        if(GlobalFlags.GetFlag(Flags.GameOver)) return; 
         StartCoroutine(UnlockAnimation(_bulletsImages[(int)bulletType]));
     }
 
     private void SwitchBullet(int newBulletIndex)
     {
-        if(GlobalFlags.GetFlag(GlobalFlags.Flags.GAME_OVER)) return;
+        if(GlobalFlags.GetFlag(Flags.GameOver)) return;
         targetTransform = _bulletsImages[newBulletIndex].transform;
         selectorImage.color = _bulletsImages[newBulletIndex].GetComponent<Image>().color;
         isAtTarget = false;

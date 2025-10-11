@@ -19,6 +19,6 @@ public class CheckDeath : MonoBehaviour
 
     private void ToggleDeath()
     {
-        GlobalFlags.ToggleFlag(GlobalFlags.Flags.GAME_OVER);
+        GlobalFlags.ToggleFlag(Flags.GameOver);
     }
 }

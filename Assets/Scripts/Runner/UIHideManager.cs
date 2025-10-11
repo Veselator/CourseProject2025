@@ -25,7 +25,7 @@ public class UIHideManager : MonoBehaviour
 
     private void CheckGlobalFlags(string flagName, bool flagState)
     {
-        if (flagName == GlobalFlags.Flags.GAME_OVER)
+        if (flagName == Flags.GameOver.ToString())
         {
             HideUI();
         }

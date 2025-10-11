@@ -81,7 +81,7 @@ public class WavesManager : MonoBehaviour
             // Если да - что-то делаем
             if (currentWaveIndex == TotalNumOfWaves)
             {
-                GlobalFlags.ToggleFlag(GlobalFlags.Flags.GAME_WIN);
+                GlobalFlags.ToggleFlag(Flags.GameWin);
                 return;
             }
 
@@ -93,13 +93,12 @@ public class WavesManager : MonoBehaviour
     private void CheckGlobalFlag(string flagName, bool flagState)
     {
         Debug.Log($"Checking global flag {flagName} {flagState}");
-        if (flagName == GlobalFlags.Flags.SHOOTEMUP_START_WAVE)
+        if (flagName == Flags.ShootEmUpStartWave.ToString())
         {
             StartWave();
         }
 
-
-        if(flagName == GlobalFlags.Flags.GAME_OVER)
+        if(flagName == Flags.GameOver.ToString())
         {
             isAbleToSpawnEnemies = false;
         }
