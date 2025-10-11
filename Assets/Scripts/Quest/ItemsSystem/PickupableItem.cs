@@ -2,17 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickupableItem : MonoBehaviour
+public class PickupableItem : BaseItem
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private QuestInventoryItem itemData; // то, на какой предмет ссылаемся
+    [SerializeField] private QuestAction additionalActions;
+
+    private void Start()
     {
-        
+        itemData.itemId = itemID;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override bool CanInteract() => true;
+
+    public override void Interact()
     {
-        
+        QuestInventoryManager.Instance.AddItem(itemData);
+        if (additionalActions != null) QuestActionProccessor.Instance.ProcessAction(additionalActions, this.gameObject);
+        Destroy(gameObject);
     }
 }

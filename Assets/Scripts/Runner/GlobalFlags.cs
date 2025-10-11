@@ -49,6 +49,11 @@ public static class GlobalFlags
     {
         return _activeFlags;
     }
+
+    public static bool IsStringFlag(string flagName, out Flags outString)
+    {
+        return Enum.TryParse<Flags>(flagName, true, out outString);
+    }
 }
 
 public enum Flags

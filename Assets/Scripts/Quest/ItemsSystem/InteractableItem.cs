@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableItem : MonoBehaviour
+public class InteractableItem : BaseItem
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private QuestAction action;
+    [SerializeField] private bool interactOnlyOnce = true;
+    private bool isInteractable = true;
 
-    // Update is called once per frame
-    void Update()
+    public override bool CanInteract() => isInteractable;
+
+    public override void Interact()
     {
-        
+        QuestActionProccessor.Instance.ProcessAction(action, this.gameObject);
+
+        if (interactOnlyOnce)
+        {
+            isInteractable = false;
+        }
     }
 }

@@ -36,12 +36,12 @@ public class QuestGameManager : MonoBehaviour
         LoadLevel(currentLevel);
     }
 
-    public void HideLevel(int levelId)
+    private void HideLevel(int levelId)
     {
         levelsGO[levelId].SetActive(false);
     }
 
-    public void LoadLevel(int levelId)
+    private void LoadLevel(int levelId)
     {
         levelsGO[levelId].SetActive(true);
         OnLevelLoaded?.Invoke(levelId);
