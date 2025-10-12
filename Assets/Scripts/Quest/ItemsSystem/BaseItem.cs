@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseItem : MonoBehaviour, IInteractable
+public abstract class BaseItem : MonoBehaviour, IInteractable, IMessageReceiver
 {
     // Базовый класс предмета
     // От него наследуется интерактивный предмет и предмет подбираемый
@@ -31,6 +31,13 @@ public abstract class BaseItem : MonoBehaviour, IInteractable
     private void OnMouseDown()
     {
         if (CanInteract()) Interact();
+    }
+
+    // Для реализации дополнительной логики
+    // По типу откручивания вентиляционной крышки
+    public virtual void ProcessMessage(string message)
+    {
+        Debug.Log($"Lol, I got a message {message}");
     }
 
     public abstract bool CanInteract();

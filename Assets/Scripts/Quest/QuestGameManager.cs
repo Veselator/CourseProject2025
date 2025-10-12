@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class QuestGameManager : MonoBehaviour
@@ -27,6 +28,13 @@ public class QuestGameManager : MonoBehaviour
         HideLevel(currentLevel);
         currentLevel++;
 
+        if (currentLevel == levelsGO.Count())
+        {
+            // Если зашли за границы списка уровней - значит, мы победили
+            GlobalFlags.SetFlag(Flags.GameWin);
+            return;
+        }
+
         if (currentLevel > lastLevelIndex)
         {
             // Мы победили - ура
@@ -41,6 +49,7 @@ public class QuestGameManager : MonoBehaviour
         levelsGO[levelId].SetActive(false);
     }
 
+    // Загрузка нового уровня
     private void LoadLevel(int levelId)
     {
         levelsGO[levelId].SetActive(true);

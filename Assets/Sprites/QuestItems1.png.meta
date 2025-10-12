@@ -328,9 +328,9 @@ TextureImporter:
       name: QuestItems1_9
       rect:
         serializedVersion: 2
-        x: 1732
+        x: 1725
         y: 952
-        width: 1122
+        width: 1129
         height: 902
       alignment: 7
       pivot: {x: 0.5, y: 0}

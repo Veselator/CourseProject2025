@@ -10,11 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b46234717918d21458b88f003c9968a8, type: 3}
-  m_Name: KeyForShkatulka
+  m_Name: Otviortka
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: -1205197258, guid: db21d69c14f000a49a4a02057b3dfecb, type: 3}
-  itemId: shkatulkaKeys
+  itemIcon: {fileID: -565628807, guid: db21d69c14f000a49a4a02057b3dfecb, type: 3}
+  itemId: otviortka
   targetItemId:
-  - shkatulka
-  actionOnTarget: {fileID: 11400000, guid: 53d5bd752950bc841a651b7572140913, type: 2}
-  IsOneShoot: 1
+  - bolt1
+  - bolt2
+  - bolt3
+  - bolt4
+  actionOnTarget: {fileID: 11400000, guid: ff7b7077c3eda0d499a9ffb28c55afc0, type: 2}
+  IsOneShoot: 0

@@ -20,6 +20,8 @@ public struct QuestActionEffect
     public QuestEffectCondition[] conditions;
     public float floatValue;
     public string stringValue;
+    [Header("Для отправки сообщений")]
+    public string additionalStringValue;
 }
 
 public enum QuestEffectType
@@ -31,7 +33,13 @@ public enum QuestEffectType
     SetGlobalFlag,
     RemoveGlobalFlag,
     ToggleGlobalFlag,
-    PlayAnimation
+    PlayAnimation, // Анимация на отправителе
+    PlayAnimationAtSpecificObject,
+    RemoveItem,
+    ShowMessage, // Мысли главного героя
+    InvokeMessage, // Отправляем сообщение определённому объекту
+    InvokeMessageAtCurrentTarget,
+    WinGame
 }
 
 [Serializable]

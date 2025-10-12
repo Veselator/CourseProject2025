@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -27,8 +28,10 @@ public class QuestActionProccessor : MonoBehaviour
         _questObjectRegistry = QuestObjectRegistry.Instance;
     }
 
-    public void ProcessAction(QuestAction action, GameObject sender)
+    public void ProcessAction(QuestAction action, GameObject sender, bool isItemAction = false)
     {
+        if (GlobalFlags.GetFlag(Flags.GameOver)) return;
+
         // Обрабатываем действия
 
         // TODO: добавить такой механизм
@@ -42,11 +45,16 @@ public class QuestActionProccessor : MonoBehaviour
         // Скрипт на объекте вентиляции отслеживает это через события, и когда надо воспроизводит анимацию
         // снятия крышки и переносит на следующий уровень
 
-        // Если мы можем взаимодействовать с выбранным предметом и у нас есть выбранный предмет инвентаря, то пробуем обработать это
+        // Если мы можем взаимодействовать с выбранным предметом и у нас есть выбранный предмет инвентаря, и цель выбранного проедмета -
+        // текущий объект, то выполняем действие предмета
         //Debug.Log($"QuestActionProccessor need to process {action.name ?? "NULL"} on {sender.name ?? "NULL"}");
-        if (sender != null && sender.TryGetComponent<InteractableItem>(out InteractableItem item) && _questInventoryManager.IsSelectedAnyItem)
+
+        // isItemAction - для предотвращения рекурсии
+
+        if (!isItemAction && sender != null && sender.TryGetComponent<InteractableItem>(out InteractableItem item) 
+            && _questInventoryManager.IsSelectedAnyItem && _questInventoryManager.SelectedItem.targetItemId.Contains(item.itemID))
         {
-            TryToProcessSelectedItemAction(item, _questInventoryManager.SelectedItem);
+            ProcessSelectedItemAction(item, _questInventoryManager.SelectedItem, sender);
             return;
         }
 
@@ -58,16 +66,15 @@ public class QuestActionProccessor : MonoBehaviour
         }
     }
 
-    private void TryToProcessSelectedItemAction(InteractableItem item, QuestInventoryItem inventoryItem)
+    private void ProcessSelectedItemAction(InteractableItem item, QuestInventoryItem inventoryItem, GameObject sender)
     {
-        Debug.Log($"Trying to process item {item.itemID} inventoryItem {inventoryItem.itemId}");
-        // Пытаемя обработать клик предметом
-        if (item.itemID != inventoryItem.targetItemId) return;
+        Debug.Log($"Process item {item.itemID} inventoryItem {inventoryItem.itemId}");
 
-        // Если мы можем применить наш предмет - то применяем
-        // Возможно, стоит продумать логику по типу IsOneShot
-        _questInventoryManager.RemoveItem(inventoryItem);
-        ProcessAction(inventoryItem.actionOnTarget, null);
+        QuestInventoryItem tempItem = inventoryItem;
+        _questInventoryManager.DeselectItem();
+
+        ProcessAction(tempItem.actionOnTarget, sender, true);
+        if (inventoryItem.IsOneShoot) _questInventoryManager.RemoveItem(inventoryItem);
     }
 
     private bool IsAbleToApplyEffect(QuestActionEffect effect, GameObject sender)
@@ -123,6 +130,7 @@ public class QuestActionProccessor : MonoBehaviour
         // Временные переменные
         GameObject tempTarget;
         Flags tempFlag;
+        Animator tempAnimator;
 
         switch (effect.effectType)
         {
@@ -132,10 +140,22 @@ public class QuestActionProccessor : MonoBehaviour
             case QuestEffectType.NextLevel:
                 _questGameManager.NextLevel();
                 break;
+            case QuestEffectType.WinGame:
+                // TODO!
+                GlobalFlags.SetFlag(Flags.GameWin);
+                break;
+
             case QuestEffectType.PlayAnimation:
-                Animator animator;
-                if (!sender.TryGetComponent<Animator>(out animator)) return;
-                animator.SetTrigger(effect.stringValue);
+                Debug.Log($"Detected PlayAnimation {sender.name} {effect.stringValue}");
+                if (!sender.TryGetComponent<Animator>(out tempAnimator)) return;
+                Debug.Log($"SetTrigger {effect.stringValue}");
+                tempAnimator.SetTrigger(effect.stringValue);
+                break;
+
+            case QuestEffectType.PlayAnimationAtSpecificObject:
+                tempTarget = _questObjectRegistry.GetObject(effect.stringValue);
+                if (tempTarget == null || !tempTarget.TryGetComponent<Animator>(out tempAnimator)) return;
+                tempAnimator.SetTrigger(effect.stringValue);
                 break;
 
             // Спрятать / показать объект
@@ -168,6 +188,30 @@ public class QuestActionProccessor : MonoBehaviour
                 {
                     GlobalFlags.ToggleFlag(tempFlag);
                 }
+                break;
+
+            // Инвентарь
+            case QuestEffectType.RemoveItem:
+                _questInventoryManager.RemoveItem(effect.stringValue);
+                break;
+
+            // Показать масль главного героя
+            case QuestEffectType.ShowMessage:
+                // TODO!
+                Debug.Log($"Borys thinks: {effect.stringValue}");
+                break;
+
+            // Передать сообщение конкретному объекту
+            case QuestEffectType.InvokeMessage:
+                tempTarget = _questObjectRegistry.GetObject(effect.stringValue);
+                if (tempTarget == null) return;
+                tempTarget.GetComponent<IMessageReceiver>().ProcessMessage(effect.additionalStringValue);
+                break;
+
+            case QuestEffectType.InvokeMessageAtCurrentTarget:
+                IMessageReceiver imr;
+                if (sender == null || !sender.TryGetComponent<IMessageReceiver>(out imr)) return;
+                imr.ProcessMessage(effect.additionalStringValue);
                 break;
         }
     }

@@ -3,7 +3,6 @@ using UnityEngine;
 public class YSorting : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
-    [SerializeField] private bool useYPosition = true;
     [SerializeField] private float sortingOrderScale = -100f; // Множитель для точности
     [SerializeField] private float sortingOffset;
     [SerializeField] private float sortingOffsetY;

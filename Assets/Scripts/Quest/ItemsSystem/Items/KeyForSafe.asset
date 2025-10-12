@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: KeyForSafe
   m_EditorClassIdentifier: 
   itemIcon: {fileID: -1014657881, guid: db21d69c14f000a49a4a02057b3dfecb, type: 3}
-  itemId: 
-  targetItemId: 
-  actionOnTarget: {fileID: 0}
+  itemId: safeKeys
+  targetItemId:
+  - safe
+  actionOnTarget: {fileID: 11400000, guid: 0ef77f3098c937b45981bbe04f50dfd2, type: 2}
+  IsOneShoot: 1

@@ -12,6 +12,7 @@ public class PickupableItem : BaseItem
     protected override void Start()
     {
         itemID = itemData.itemId; // Важно
+        itemData.worldPickupPosition = transform.position;
         base.Start();
     }
 

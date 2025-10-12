@@ -21,6 +21,6 @@ public class ShowBarsOnEnemyDamaged : MonoBehaviour
 
     private void ShowBars()
     {
-        if (!BarParentGO.active) BarParentGO.SetActive(true);
+        if (!BarParentGO.activeInHierarchy) BarParentGO.SetActive(true);
     }
 }
