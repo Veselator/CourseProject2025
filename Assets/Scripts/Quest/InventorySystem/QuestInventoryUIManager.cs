@@ -25,7 +25,7 @@ public class QuestInventoryUIManager : MonoBehaviour
     private void AddItem(QuestInventoryItem item)
     {
         GameObject newItem = Instantiate(_itemPrefab, InventoryContentParent);
-        newItem.GetComponent<QuestInventoryItemHandler>().Init(item, _items.Count);
+        newItem.GetComponent<QuestInventoryItemHandler>().Init(_inventoryManager, item, _items.Count);
         _items.Add(newItem);
     }
 
@@ -37,7 +37,7 @@ public class QuestInventoryUIManager : MonoBehaviour
         // Обновляем id 
         for (int i = id; i < _items.Count; i++)
         {
-            _items[i].GetComponent<QuestInventoryItemHandler>().id = id;
+            _items[i].GetComponent<QuestInventoryItemHandler>().id = i;
         }
     }
 }

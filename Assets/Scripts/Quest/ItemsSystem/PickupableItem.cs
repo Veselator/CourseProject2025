@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class PickupableItem : BaseItem
 {
+    [Header("Предмет, на который ссылаемся")]
     [SerializeField] private QuestInventoryItem itemData; // то, на какой предмет ссылаемся
+    [Header("Действие, которое выполняется при подборе предмета")]
     [SerializeField] private QuestAction additionalActions;
 
-    private void Start()
+    protected override void Start()
     {
-        itemData.itemId = itemID;
+        itemID = itemData.itemId; // Важно
+        base.Start();
     }
 
     public override bool CanInteract() => true;

@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf66c41118ef551499aa46dda4dbfbf8, type: 3}
-  m_Name: ShowMeBoxPlease
+  m_Script: {fileID: 11500000, guid: b46234717918d21458b88f003c9968a8, type: 3}
+  m_Name: KeyForSafe
   m_EditorClassIdentifier: 
-  actionEffects:
-  - effectType: 3
-    conditionOperator: 0
-    conditions: []
-    floatValue: 1
-    stringValue: 
+  itemIcon: {fileID: -1014657881, guid: db21d69c14f000a49a4a02057b3dfecb, type: 3}
+  itemId: 
+  targetItemId: 
+  actionOnTarget: {fileID: 0}

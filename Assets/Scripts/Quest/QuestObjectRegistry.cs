@@ -32,6 +32,7 @@ public class QuestObjectRegistry : MonoBehaviour
 
     public void AddObject(string name, GameObject addedObject)
     {
+        Debug.Log($"Onjest registered: {name}");
         _objectRegistry.Add(new ObjectRecord(name, addedObject));
     }
 }

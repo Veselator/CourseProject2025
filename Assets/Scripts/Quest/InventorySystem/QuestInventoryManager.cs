@@ -7,7 +7,7 @@ public class QuestInventoryManager : MonoBehaviour
     private List<QuestInventoryItem> _inventory = new List<QuestInventoryItem>();
     public List<QuestInventoryItem> Inventory => _inventory;
     public int SelectedItemId { get; private set; } = -1;
-    public QuestInventoryItem SelectedItem => SelectedItemId == -1 ? null : _inventory[SelectedItemId];
+    public QuestInventoryItem SelectedItem => SelectedItemId == -1 || SelectedItemId >= _inventory.Count ? null : _inventory[SelectedItemId];
     public bool IsSelectedAnyItem => SelectedItemId != -1;
 
     public static QuestInventoryManager Instance { get; private set; }
@@ -76,5 +76,6 @@ public class QuestInventoryManager : MonoBehaviour
     public void SelectItem(int id)
     {
         SelectedItemId = id;
+        Debug.Log($"Item selected {id}");
     }
 }

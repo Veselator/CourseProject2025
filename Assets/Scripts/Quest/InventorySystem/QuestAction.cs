@@ -29,6 +29,8 @@ public enum QuestEffectType
     ShowObject,
     ChangeScreen,
     SetGlobalFlag,
+    RemoveGlobalFlag,
+    ToggleGlobalFlag,
     PlayAnimation
 }
 

@@ -10,10 +10,12 @@ public abstract class BaseItem : MonoBehaviour, IInteractable
 
     // Нужен для идентификации предмета
     public string itemID;
+    [SerializeField] private bool IsNeedToRegisterObject = true;
 
-    private void Start()
+    protected virtual void Start()
     {
         _itemVisual = GetComponent<ItemVisual>();
+        if(IsNeedToRegisterObject) QuestObjectRegistry.Instance.AddObject(itemID, gameObject);
     }
 
     private void OnMouseEnter()

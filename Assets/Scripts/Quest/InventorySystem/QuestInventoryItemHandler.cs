@@ -9,15 +9,16 @@ public class QuestInventoryItemHandler : MonoBehaviour
     private QuestInventoryManager _questInventoryManager;
     public int id = 0;
 
-    public void Init(QuestInventoryItem linkedItem, int id)
+    public void Init(QuestInventoryManager questInvManager, QuestInventoryItem linkedItem, int id)
     {
+        _questInventoryManager = questInvManager;
         LinkedItem = linkedItem;
         GetComponent<Image>().sprite = LinkedItem.itemIcon;
 
         this.id = id;
     }
 
-    private void OnMouseDown()
+    public void HandleClick()
     {
         _questInventoryManager.SelectItem(id);
     }
