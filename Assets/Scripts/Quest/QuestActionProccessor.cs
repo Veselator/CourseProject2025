@@ -12,6 +12,8 @@ public class QuestActionProccessor : MonoBehaviour
     private QuestScreensManager _questScreensManager;
     private QuestInventoryManager _questInventoryManager;
     private QuestObjectRegistry _questObjectRegistry;
+    private QuestTimerManager _questTimerManager;
+    private QuestVisibilityUIManager _questVisibilityUIManager;
 
     public static QuestActionProccessor Instance { get; private set; }
 
@@ -26,6 +28,8 @@ public class QuestActionProccessor : MonoBehaviour
         _questScreensManager = QuestScreensManager.Instance;
         _questInventoryManager = QuestInventoryManager.Instance;
         _questObjectRegistry = QuestObjectRegistry.Instance;
+        _questTimerManager = QuestTimerManager.Instance;
+        _questVisibilityUIManager = QuestVisibilityUIManager.Instance;
     }
 
     public void ProcessAction(QuestAction action, GameObject sender, bool isItemAction = false)
@@ -100,6 +104,7 @@ public class QuestActionProccessor : MonoBehaviour
     private bool CheckCondition(QuestEffectCondition condition)
     {
         bool result = false;
+        GameObject tempObject;
 
         switch (condition.conditionType)
         {
@@ -113,6 +118,19 @@ public class QuestActionProccessor : MonoBehaviour
 
             case QuestConditionType.DoesHaveItem:
                 result = _questInventoryManager.DoesHaveItem(condition.stringValue);
+                break;
+
+            case QuestConditionType.GetBoolValueAtObject:
+                tempObject = _questObjectRegistry.GetObject(condition.stringValue);
+                IPossibleToGetBool tempInterface;
+                if(tempObject == null || !tempObject.TryGetComponent<IPossibleToGetBool>(out tempInterface)) return false; // В любом случае возвращает false
+                result = tempInterface.GetBool();
+                break;
+
+            case QuestConditionType.IsGameObjectActive:
+                tempObject = _questObjectRegistry.GetObject(condition.stringValue);
+                if(tempObject == null) return false;
+                result = tempObject.activeInHierarchy;
                 break;
         }
 
@@ -155,7 +173,7 @@ public class QuestActionProccessor : MonoBehaviour
             case QuestEffectType.PlayAnimationAtSpecificObject:
                 tempTarget = _questObjectRegistry.GetObject(effect.stringValue);
                 if (tempTarget == null || !tempTarget.TryGetComponent<Animator>(out tempAnimator)) return;
-                tempAnimator.SetTrigger(effect.stringValue);
+                tempAnimator.SetTrigger(effect.additionalStringValue);
                 break;
 
             // Спрятать / показать объект
@@ -212,6 +230,22 @@ public class QuestActionProccessor : MonoBehaviour
                 IMessageReceiver imr;
                 if (sender == null || !sender.TryGetComponent<IMessageReceiver>(out imr)) return;
                 imr.ProcessMessage(effect.additionalStringValue);
+                break;
+
+            // Таймер
+            case QuestEffectType.StopTimer:
+                _questTimerManager.StopTimer();
+                break;
+            case QuestEffectType.ResumeTimer:
+                _questTimerManager.ResumeTimer();
+                break;
+
+            // UI
+            case QuestEffectType.HideUI:
+                _questVisibilityUIManager.HideUI();
+                break;
+            case QuestEffectType.ShowUI:
+                _questVisibilityUIManager.ShowUI();
                 break;
         }
     }

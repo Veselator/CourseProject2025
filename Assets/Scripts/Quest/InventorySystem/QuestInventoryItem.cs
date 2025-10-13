@@ -14,5 +14,5 @@ public class QuestInventoryItem : ScriptableObject
     public QuestAction actionOnTarget; // Действие, которое применяется, если предмет используется на цели
     public bool IsOneShoot = true;
 
-    public Vector3 worldPickupPosition;
+    [HideInInspector] public Vector3 worldPickupPosition;
 }

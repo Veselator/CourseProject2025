@@ -10,24 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf66c41118ef551499aa46dda4dbfbf8, type: 3}
-  m_Name: OpenVentilyatsyia
+  m_Name: LoadLevel2
   m_EditorClassIdentifier: 
   actionEffects:
-  - effectType: 1
+  - effectType: 0
     conditionOperator: 0
     conditions: []
     floatValue: 0
-    stringValue: ventilyatsiya
+    stringValue: 
     additionalStringValue: 
-  - effectType: 2
+  - effectType: 3
     conditionOperator: 0
     conditions: []
-    floatValue: 0
-    stringValue: ventOpen
+    floatValue: 6
+    stringValue: 
     additionalStringValue: 
-  - effectType: 9
+  - effectType: 15
     conditionOperator: 0
     conditions: []
-    floatValue: 0
-    stringValue: otviortka
+    floatValue: 6
+    stringValue: 
+    additionalStringValue: 
+  - effectType: 17
+    conditionOperator: 0
+    conditions: []
+    floatValue: 6
+    stringValue: 
     additionalStringValue: 

@@ -12,4 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf66c41118ef551499aa46dda4dbfbf8, type: 3}
   m_Name: StartAnomation1t2
   m_EditorClassIdentifier: 
-  actionEffects: []
+  actionEffects:
+  - effectType: 3
+    conditionOperator: 0
+    conditions: []
+    floatValue: 5
+    stringValue: 
+    additionalStringValue: 
+  - effectType: 8
+    conditionOperator: 0
+    conditions: []
+    floatValue: 5
+    stringValue: animation
+    additionalStringValue: Start
+  - effectType: 16
+    conditionOperator: 0
+    conditions: []
+    floatValue: 5
+    stringValue: animation
+    additionalStringValue: Start
+  - effectType: 14
+    conditionOperator: 0
+    conditions: []
+    floatValue: 5
+    stringValue: animation
+    additionalStringValue: Start

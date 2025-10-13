@@ -143,7 +143,7 @@ public class DistanceTracker : MonoBehaviour
         {
             Debug.Log("Second turn reached");
             // При достижении дистанции запускаем событие поворота
-            GlobalFlags.SetFlag(Flags.RunnerStage1Passed);
+            GlobalFlags.SetFlag(Flags.RunnerStage2Passed);
             GlobalFlags.SetFlag(Flags.RunnerIsRotating);
             playerMovementAcrossLevel.CurrentDirection = Vector2.right;
             RotateRoad?.Invoke();

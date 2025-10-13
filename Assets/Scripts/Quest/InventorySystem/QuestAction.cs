@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "QuestAction", menuName = "Quest/Action")]
@@ -20,7 +18,7 @@ public struct QuestActionEffect
     public QuestEffectCondition[] conditions;
     public float floatValue;
     public string stringValue;
-    [Header("Для отправки сообщений")]
+    [Header("Для отправки сообщений И для PlayAnimationAtSpecificObject")]
     public string additionalStringValue;
 }
 
@@ -39,7 +37,11 @@ public enum QuestEffectType
     ShowMessage, // Мысли главного героя
     InvokeMessage, // Отправляем сообщение определённому объекту
     InvokeMessageAtCurrentTarget,
-    WinGame
+    WinGame,
+    StopTimer,
+    ResumeTimer,
+    HideUI,
+    ShowUI
 }
 
 [Serializable]
@@ -48,6 +50,7 @@ public struct QuestEffectCondition
     public QuestConditionType conditionType;
     public QuestEffectConditionModifier modifier;
     public string stringValue;
+    public string additionalStringValue;
     public float floatValue;
 }
 
@@ -66,5 +69,7 @@ public enum QuestConditionOperator
 public enum QuestConditionType
 {
     DoesHaveItem,
-    IsGlobalFlag
+    IsGlobalFlag,
+    GetBoolValueAtObject,
+    IsGameObjectActive
 }

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46234717918d21458b88f003c9968a8, type: 3}
+  m_Name: EmptyKolba
+  m_EditorClassIdentifier: 
+  itemIcon: {fileID: 957250998, guid: ec06c5ac5f1ff534bb16090e8496d125, type: 3}
+  itemId: kolbaEmpty
+  targetItemId:
+  - PlaceForKolba
+  actionOnTarget: {fileID: 11400000, guid: aa0e57df13af77d40842e8318a91d070, type: 2}
+  IsOneShoot: 1
+  worldPickupPosition: {x: 0, y: 0, z: 0}

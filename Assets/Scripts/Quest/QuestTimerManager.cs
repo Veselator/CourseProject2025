@@ -18,7 +18,7 @@ public class QuestTimerManager : MonoBehaviour
     private float _nextTickTime;
     private int currentLevel = 0;
     [SerializeField] private float[] timersPerLevel;
-    public bool IsTimerStopped = false;
+    private bool IsTimerStopped = false;
 
     public static QuestTimerManager Instance {  get; private set; }
 
@@ -46,7 +46,7 @@ public class QuestTimerManager : MonoBehaviour
 
     private void Update()
     {
-        if (GlobalFlags.GetFlag(Flags.GameOver) || IsTimerStopped) return;
+        if (IsTimerStopped || GlobalFlags.GetFlag(Flags.GameOver)) return;
 
         if (Time.time >= _nextTickTime)
         {
@@ -73,5 +73,15 @@ public class QuestTimerManager : MonoBehaviour
         currentLevel = levelId;
         _timer = timersPerLevel[currentLevel];
         OnTimerReset?.Invoke();
+    }
+
+    public void StopTimer()
+    {
+        IsTimerStopped = true;
+    }
+
+    public void ResumeTimer()
+    {
+        IsTimerStopped = false;
     }
 }

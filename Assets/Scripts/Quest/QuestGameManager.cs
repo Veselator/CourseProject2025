@@ -21,6 +21,16 @@ public class QuestGameManager : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         lastLevelIndex = levelsGO.Length - 1;
+
+        InitLevels();
+    }
+
+    private void InitLevels()
+    {
+        for (int i = 1; i < levelsGO.Length; i++)
+        {
+            HideLevel(i);
+        }
     }
 
     public void NextLevel()

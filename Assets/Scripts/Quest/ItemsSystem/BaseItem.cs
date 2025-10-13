@@ -11,11 +11,13 @@ public abstract class BaseItem : MonoBehaviour, IInteractable, IMessageReceiver
     // Нужен для идентификации предмета
     public string itemID;
     [SerializeField] private bool IsNeedToRegisterObject = true;
+    [SerializeField] private bool isNeedToHide = false;
 
     protected virtual void Start()
     {
         _itemVisual = GetComponent<ItemVisual>();
         if(IsNeedToRegisterObject) QuestObjectRegistry.Instance.AddObject(itemID, gameObject);
+        if(isNeedToHide) gameObject.SetActive(false);
     }
 
     private void OnMouseEnter()
