@@ -7,13 +7,13 @@ using UnityEngine;
 public class QuestActionProccessor : MonoBehaviour
 {
     // Скрипт, который отвечает за применение эффектов - будь то подбираемые предметы или просто интерактивные
-    private QuestAnimationManager _questAnimationManager;
     private QuestGameManager _questGameManager;
     private QuestScreensManager _questScreensManager;
     private QuestInventoryManager _questInventoryManager;
     private QuestObjectRegistry _questObjectRegistry;
     private QuestTimerManager _questTimerManager;
     private QuestVisibilityUIManager _questVisibilityUIManager;
+    private QuestThinkingManager _questThinkingManager;
 
     public static QuestActionProccessor Instance { get; private set; }
 
@@ -30,6 +30,7 @@ public class QuestActionProccessor : MonoBehaviour
         _questObjectRegistry = QuestObjectRegistry.Instance;
         _questTimerManager = QuestTimerManager.Instance;
         _questVisibilityUIManager = QuestVisibilityUIManager.Instance;
+        _questThinkingManager = QuestThinkingManager.Instance;
     }
 
     public void ProcessAction(QuestAction action, GameObject sender, bool isItemAction = false)
@@ -218,8 +219,7 @@ public class QuestActionProccessor : MonoBehaviour
 
             // Показать масль главного героя
             case QuestEffectType.ShowMessage:
-                // TODO!
-                Debug.Log($"Borys thinks: {effect.stringValue}");
+                _questThinkingManager.Think(effect.stringValue);
                 break;
 
             // Передать сообщение конкретному объекту

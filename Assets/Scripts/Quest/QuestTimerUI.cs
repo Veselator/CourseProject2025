@@ -50,7 +50,7 @@ public class QuestTimerUI : MonoBehaviour
 
     private void UpdateTimeDisplay(float time)
     {
-        timeText.text = FormatTime(time);
+        timeText.text = FormatTime(Mathf.Max(time, 0));
 
         if(time < startHighlightWhen && !isHighlighted)
         {

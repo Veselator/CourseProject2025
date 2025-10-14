@@ -56,7 +56,7 @@ public class QuestTimerManager : MonoBehaviour
             else _nextTickTime = Time.time + TIME_PER_TICK;
 
             // Усё, допрыгались
-            if(_timer <= 0)
+            if(_timer < 0)
             {
                 GlobalFlags.SetFlag(Flags.GameOver);
                 OnTimerExpired?.Invoke();

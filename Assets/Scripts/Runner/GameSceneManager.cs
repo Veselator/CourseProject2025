@@ -13,7 +13,7 @@ public class GameSceneManager : MonoBehaviour
     public static void ReloadScene()
     {
         if (_playerInput == null) Debug.Log("PLAYER INPUT IS NULL");
-        _playerInput.playerInputAction.Player.Disable(); // Обязательно отключаем
+        else _playerInput.playerInputAction.Player.Disable();
         string currentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentSceneName);
     }

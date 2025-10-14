@@ -6,9 +6,10 @@ using UnityEngine;
 public class UIAppearManager : MonoBehaviour
 {
     private CanvasGroup canvasGroup;
-    private float fadeDuration = 1.5f;
+    [SerializeField] private float fadeDuration = 1.5f;
+    [SerializeField] private float delayBeforeStart = 0f;
 
-    public static UIAppearManager Instance;
+    public static UIAppearManager Instance { get; private set; }
     public Action OnAppearAnimationEnded;
 
     private void Awake()
@@ -32,6 +33,7 @@ public class UIAppearManager : MonoBehaviour
 
     private IEnumerator FadeIn()
     {
+        if(delayBeforeStart > 0f) yield return new WaitForSeconds(delayBeforeStart);
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
 
