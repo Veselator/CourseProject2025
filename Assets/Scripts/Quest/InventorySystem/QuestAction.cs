@@ -41,7 +41,8 @@ public enum QuestEffectType
     StopTimer,
     ResumeTimer,
     HideUI,
-    ShowUI
+    ShowUI,
+    LoadSpecificLevel
 }
 
 [Serializable]

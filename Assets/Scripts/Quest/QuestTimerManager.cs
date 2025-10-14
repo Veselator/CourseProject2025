@@ -69,7 +69,9 @@ public class QuestTimerManager : MonoBehaviour
         if (levelId < 0 || levelId >= timersPerLevel.Count())
         {
             Debug.LogError($"Ты мне какой levelid ({levelId}) передал?");
+            return;
         }
+
         currentLevel = levelId;
         _timer = timersPerLevel[currentLevel];
         OnTimerReset?.Invoke();

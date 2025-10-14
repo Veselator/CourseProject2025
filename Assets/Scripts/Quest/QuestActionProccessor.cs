@@ -152,17 +152,22 @@ public class QuestActionProccessor : MonoBehaviour
 
         switch (effect.effectType)
         {
+            // Общее
             case QuestEffectType.ChangeScreen:
                 _questScreensManager.ChangeScreen((int)effect.floatValue);
                 break;
             case QuestEffectType.NextLevel:
                 _questGameManager.NextLevel();
                 break;
+            case QuestEffectType.LoadSpecificLevel:
+                _questGameManager.LoadSpecificLevel((int)effect.floatValue);
+                break;
             case QuestEffectType.WinGame:
-                // TODO!
                 GlobalFlags.SetFlag(Flags.GameWin);
+                GameSceneManager.LoadNextScene();
                 break;
 
+            // Анимация
             case QuestEffectType.PlayAnimation:
                 Debug.Log($"Detected PlayAnimation {sender.name} {effect.stringValue}");
                 if (!sender.TryGetComponent<Animator>(out tempAnimator)) return;
@@ -177,7 +182,6 @@ public class QuestActionProccessor : MonoBehaviour
                 break;
 
             // Спрятать / показать объект
-
             case QuestEffectType.HideObject:
                 tempTarget = _questObjectRegistry.GetObject(effect.stringValue);
                 if (tempTarget != null) tempTarget.SetActive(false);
@@ -188,7 +192,6 @@ public class QuestActionProccessor : MonoBehaviour
                 break;
 
             // Глобальные флаги
-
             case QuestEffectType.SetGlobalFlag:
                 if (GlobalFlags.IsStringFlag(effect.stringValue, out tempFlag))
                 {

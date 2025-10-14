@@ -20,14 +20,12 @@ public class GameSceneManager : MonoBehaviour
 
     public static void ExitToMenu()
     {
-        _playerInput.playerInputAction.Player.Disable();
         Application.Quit();
     }
 
     public static void LoadNextScene()
     {
         // Временно!
-        _playerInput.playerInputAction.Player.Disable();
         Application.Quit();
     }
 }

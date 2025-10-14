@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class QuestGameManager : MonoBehaviour
@@ -38,19 +35,26 @@ public class QuestGameManager : MonoBehaviour
         HideLevel(currentLevel);
         currentLevel++;
 
-        if (currentLevel == levelsGO.Count())
+        if (currentLevel > lastLevelIndex)
         {
-            // Если зашли за границы списка уровней - значит, мы победили
+            // Мы победили - ура
             GlobalFlags.SetFlag(Flags.GameWin);
             return;
         }
 
-        if (currentLevel > lastLevelIndex)
+        LoadLevel(currentLevel);
+    }
+
+    public void LoadSpecificLevel(int newLevel)
+    {
+        if (newLevel < 0 || newLevel > lastLevelIndex)
         {
-            // Мы победили - ура
+            Debug.LogError("QuestGameManager: Попытка загрузить уровень за пределами массива");
             return;
         }
 
+        HideLevel(currentLevel);
+        currentLevel = newLevel;
         LoadLevel(currentLevel);
     }
 
