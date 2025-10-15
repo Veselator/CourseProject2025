@@ -12,7 +12,6 @@ public class Gm : MonoBehaviour
     [SerializeField] private Transform gameHolder;
     [Range(2, 6)]
     [SerializeField] private int startDifficulty;
-    [SerializeField] Canvas gameWinScreen;
     
 
 
@@ -166,7 +165,7 @@ public class Gm : MonoBehaviour
             puzzlesSolved++;
             if (puzzlesSolved == MaxLevel || difficulty > MaxDifficulty) // win condition
             {
-                gameWinScreen.gameObject.SetActive(true);
+                PuzzleWinGame.Instance.WinGame();
                 return;
             }
             GetToNextPuzzle();
