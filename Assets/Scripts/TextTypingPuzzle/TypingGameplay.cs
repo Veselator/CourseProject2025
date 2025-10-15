@@ -10,154 +10,160 @@ using UnityEngine.Windows;
 
 public class TypingGameplay : MonoBehaviour
 {
+
+    private const float MIN_ACCURACY_THRESHOLD = 60f;
+    private const float MIN_COMPLETION_THRESHOLD = 0.5f; // 50% слова
+
     [SerializeField] private CourotineSpawner spawner;
     [SerializeField] private CourotineWordMover mover;
-    [SerializeField] private TMP_Text text;
+    [SerializeField] private TMP_Text textPrefab;
+
     [SerializeField] private int maxWords = 10;
-  
-   
-   
     [SerializeField] private float timeBetweenWords = 0.5f;
-   
 
+    private Queue<TextPiece> activeWords;
+    private int totalWordsProcessed;
+    private WordValidator validator;
 
-    private int correctLetters = 0;
-    private int totalWordsTyped = 0;
-
-   
-    private Queue<TextPiece> que;
-
-   
-  
-
-    private void GetBasicParamas() 
+    private void Awake()
     {
-        Debug.Log("Returned to basic");
-        correctLetters = 0;
-   
-    }
-   
- 
-    private void CheckCorrection(char c, TextPiece text1)
-    {
-       
-        string str = text1.tmpText.text;
-        
-        if (text1.currentIndex >= str.Length)
-        {
-            
-            return;
-        }
-
-
-        if (char.ToLower(c) == char.ToLower(str[text1.currentIndex]))
-        {
-            WordBrush.SetCorrectColor(text1.currentIndex, text1);
-            correctLetters++;
-        }
-        else
-        {
-            WordBrush.SetIncorrectColor(text1.currentIndex, text1);
-        }
-
-        text1.IncrementIndex();
-        if (text1.currentIndex >= str.Length)
-        {
-            Debug.Log("Word completed!");
-          
-            text1.isComplete = true;
-
-            if (que.Count > 0)
-            {
-                que.Dequeue();
-                GetAccuracy(text1.currentIndex, str, text1);
-                Debug.Log("Den");
-            }
-
-            GetBasicParamas();
-            return;
-        }
+        validator = new WordValidator();
+        activeWords = new Queue<TextPiece>();
     }
 
-    private void Gameplay(TextPiece text1)
-    {
-        
-
-        foreach (char c in UnityEngine.Input.inputString)
-        {
-           
-            CheckCorrection(c, text1);
-        }
-    }
-    private void GetAccuracy(int currentIndex, string str, TextPiece text1) 
-    {
-        if (currentIndex == 0)
-        {
-            return;
-        }
-        float accuracy = str.Length > 0 ? (float)correctLetters / str.Length * 100f : 0f;
-        if (currentIndex > str.Length/2 && accuracy > 60f) 
-        {
-            WordBrush.SetDefaultColor(text1);
-            SpeedOfText.Instance.SpeedUp();
-            StartCoroutine(mover.MoveFromScreenWinnigScenario(text1, SetSpawnPoint.Instance.TopPos));
-            CorrectWordsCount.Instance.correctWords++;
-         
-
-
-
-        }
-        
-        totalWordsTyped++;
-
-
-    }
-  
- 
-    private void OnMiss(TextPiece text1) 
-    {
-        if (que.Count > 0)
-            que.Dequeue(); 
-        text1.isComplete = false;
-        totalWordsTyped++;
-        GetBasicParamas();
-    }
-    private void OnDestroy()
-    {
-        EventManagerPuzzle.OnMiss -= OnMiss;
-    }
     private void Start()
     {
-        que = new Queue<TextPiece>();
+        InitializeGame();
+    }
 
-
+    private void InitializeGame()
+    {
         SetSpawnPoint.Instance.UpdateSpawnPoints();
-        EventManagerPuzzle.OnMiss += OnMiss;
 
-        
         StartCoroutine(spawner.EnterYourNameCourotine(
             maxWords,
-            text,
-             SetSpawnPoint.Instance.parrants,
-            que,
+            textPrefab,
+            SetSpawnPoint.Instance.parrants,
+            activeWords,
             timeBetweenWords,
             SetSpawnPoint.Instance.RightPos,
             SetSpawnPoint.Instance.LeftPos
-
         ));
     }
-  
+
     private void Update()
     {
-        if (totalWordsTyped >= maxWords && que.Count <= 0) 
+        CheckGameOver();
+        ProcessInput();
+    }
+
+    private void ProcessInput()
+    {
+        if (activeWords.Count == 0) return;
+        if (string.IsNullOrEmpty(UnityEngine.Input.inputString)) return;
+
+        TextPiece currentWord = activeWords.Peek();
+
+        foreach (char inputChar in UnityEngine.Input.inputString)
+        {
+            ProcessCharacter(inputChar, currentWord);
+
+            if (currentWord.isComplete)
+                break;
+        }
+    }
+
+    private void ProcessCharacter(char inputChar, TextPiece word)
+    {
+        if (word.currentIndex >= word.tmpText.text.Length)
+            return;
+
+        bool isCorrect = validator.ValidateCharacter(inputChar, word);
+
+        if (isCorrect)
+        {
+            WordBrush.SetCorrectColor(word.currentIndex, word);
+        }
+        else
+        {
+            WordBrush.SetIncorrectColor(word.currentIndex, word);
+        }
+
+        word.IncrementIndex();
+
+        if (word.currentIndex >= word.tmpText.text.Length)
+        {
+            CompleteWord(word);
+        }
+    }
+
+    private void CompleteWord(TextPiece word)
+    {
+        word.isComplete = true;
+
+        if (activeWords.Count > 0)
+        {
+            activeWords.Dequeue();
+            EvaluateWordAccuracy(word);
+        }
+
+        validator.Reset();
+        totalWordsProcessed++;
+    }
+
+    private void EvaluateWordAccuracy(TextPiece word)
+    {
+        float accuracy = validator.GetAccuracy(word.tmpText.text.Length);
+        float completionRatio = (float)word.currentIndex / word.tmpText.text.Length;
+
+        Debug.Log($"Word: {word.tmpText.text}");
+
+        if (completionRatio >= MIN_COMPLETION_THRESHOLD && accuracy >= MIN_ACCURACY_THRESHOLD)
+        {
+            HandleCorrectWord(word);
+        }
+    }
+
+    private void HandleCorrectWord(TextPiece word)
+    {
+        WordBrush.SetDefaultColor(word);
+        SpeedOfText.Instance.SpeedUp();
+        CorrectWordsCount.Instance.correctWords++;
+
+        StartCoroutine(mover.MoveFromScreenWinnigScenario(
+            word,
+            SetSpawnPoint.Instance.TopPos
+        ));
+    }
+
+    private void OnWordMissed(TextPiece word)
+    {
+        if (activeWords.Count > 0 && activeWords.Peek() == word)
+        {
+            activeWords.Dequeue();
+        }
+
+        word.isComplete = false;
+        validator.Reset();
+        totalWordsProcessed++;
+    }
+
+    private void CheckGameOver()
+    {
+        if (totalWordsProcessed >= maxWords && activeWords.Count == 0)
         {
             EventManagerPuzzle.GameOverInv();
         }
-        if (que.Count > 0)
-        {
-            TextPiece CurrentWord = que.Peek();
-            Gameplay(CurrentWord);
-        }
+    }
+
+    private void OnEnable()
+    {
+        EventManagerPuzzle.OnMiss += OnWordMissed;
+    }
+
+    private void OnDisable()
+    {
+        EventManagerPuzzle.OnMiss -= OnWordMissed;
     }
 }
 
