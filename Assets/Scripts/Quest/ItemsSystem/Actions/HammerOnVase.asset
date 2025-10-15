@@ -25,3 +25,11 @@ MonoBehaviour:
     floatValue: 0
     stringValue: vaseDestroyed
     additionalStringValue: 
+  - effectType: 10
+    conditionOperator: 0
+    conditions: []
+    floatValue: 0
+    stringValue: "\u041D\u0430\u0434\u0456\u044E\u0441\u044C, \u0446\u0456\u043D\u0443
+      \u0432\u0430\u0437\u0438 \u043D\u0435 \u0441\u0442\u044F\u0433\u043D\u0443\u0442\u044C
+      \u0437\u0456 \u0441\u0442\u0438\u043F\u0435\u043D\u0434\u0456\u0457"
+    additionalStringValue: 

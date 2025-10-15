@@ -18,8 +18,17 @@ MonoBehaviour:
     conditions: []
     floatValue: 0
     stringValue: safe
+    additionalStringValue: 
   - effectType: 2
     conditionOperator: 0
     conditions: []
     floatValue: 0
     stringValue: safeOpen
+    additionalStringValue: 
+  - effectType: 10
+    conditionOperator: 0
+    conditions: []
+    floatValue: 0
+    stringValue: "\u041D\u0430\u0432\u0456\u0449\u043E \u0445\u043E\u0432\u0430\u0442\u0438
+      \u0432 \u0441\u0435\u0439\u0444\u0456 \u0432\u0438\u043A\u0440\u0443\u0442\u043A\u0443?"
+    additionalStringValue: 

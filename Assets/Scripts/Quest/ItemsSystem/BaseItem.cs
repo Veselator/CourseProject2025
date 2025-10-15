@@ -20,6 +20,12 @@ public abstract class BaseItem : MonoBehaviour, IInteractable, IMessageReceiver
         if(isNeedToHide) gameObject.SetActive(false);
     }
 
+    protected void HideVisual()
+    {
+        // Когда объект перестаёт быть интерактивным
+        if (_itemVisual != null) _itemVisual.Highlight(false);
+    }
+
     private void OnMouseEnter()
     {
         if(CanInteract() && _itemVisual != null) _itemVisual.Highlight(true);

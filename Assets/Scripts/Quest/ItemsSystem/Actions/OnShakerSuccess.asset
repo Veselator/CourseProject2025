@@ -37,3 +37,9 @@ MonoBehaviour:
     floatValue: 0
     stringValue: KolbaEmptyMini
     additionalStringValue: 
+  - effectType: 10
+    conditionOperator: 0
+    conditions: []
+    floatValue: 0
+    stringValue: "\u0412\u0430\u0443, \u0449\u043E\u0441\u044C \u0432\u0438\u0439\u0448\u043B\u043E!"
+    additionalStringValue: 

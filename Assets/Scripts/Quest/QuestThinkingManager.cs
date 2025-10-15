@@ -18,19 +18,20 @@ public class QuestThinkingManager : MonoBehaviour
         _thinkingPanel.SetActive(false);
     }
 
-    public void Think(string text)
+    public void Think(string text, float delayBeforeStart)
     {
         if (isPlayingAnimation)
         {
             StopAllCoroutines();
         }
 
-        StartCoroutine(Thinking(text));
+        StartCoroutine(Thinking(text, delayBeforeStart));
     }
 
-    private IEnumerator Thinking(string text)
+    private IEnumerator Thinking(string text, float delayBeforeStart)
     {
         isPlayingAnimation = true;
+        if (delayBeforeStart > 0f) yield return new WaitForSeconds(delayBeforeStart);
         _thinkingPanel.SetActive(true);
 
         _thinkingText.text = text;

@@ -18,8 +18,16 @@ MonoBehaviour:
     conditions: []
     floatValue: 0
     stringValue: fall
+    additionalStringValue: 
   - effectType: 2
     conditionOperator: 0
     conditions: []
     floatValue: 0
     stringValue: go2Safe
+    additionalStringValue: 
+  - effectType: 10
+    conditionOperator: 0
+    conditions: []
+    floatValue: 0.5
+    stringValue: "\u0412\u0430\u0443"
+    additionalStringValue: 

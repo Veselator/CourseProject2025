@@ -17,6 +17,7 @@ public struct QuestActionEffect
     public QuestConditionOperator conditionOperator;
     public QuestEffectCondition[] conditions;
     public float floatValue;
+    [TextArea(3, 10)]
     public string stringValue;
     [Header("Для отправки сообщений И для PlayAnimationAtSpecificObject")]
     public string additionalStringValue;

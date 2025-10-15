@@ -17,6 +17,7 @@ public class InteractableItem : BaseItem
         if (interactOnlyOnce)
         {
             isInteractable = false;
+            HideVisual();
         }
     }
 }

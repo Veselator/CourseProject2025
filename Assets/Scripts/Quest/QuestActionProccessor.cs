@@ -14,6 +14,15 @@ public class QuestActionProccessor : MonoBehaviour
     private QuestTimerManager _questTimerManager;
     private QuestVisibilityUIManager _questVisibilityUIManager;
     private QuestThinkingManager _questThinkingManager;
+    private QuestThinkingManager QuestThinkingManager
+    {
+        get
+        {
+            if (_questThinkingManager == null)
+                _questThinkingManager = QuestThinkingManager.Instance;
+            return _questThinkingManager;
+        }
+    }
 
     public static QuestActionProccessor Instance { get; private set; }
 
@@ -24,6 +33,11 @@ public class QuestActionProccessor : MonoBehaviour
 
     private void Start()
     {
+        InitManagers();
+    }
+
+    private void InitManagers()
+    {
         _questGameManager = QuestGameManager.Instance;
         _questScreensManager = QuestScreensManager.Instance;
         _questInventoryManager = QuestInventoryManager.Instance;
@@ -33,30 +47,15 @@ public class QuestActionProccessor : MonoBehaviour
         _questThinkingManager = QuestThinkingManager.Instance;
     }
 
-    public void ProcessAction(QuestAction action, GameObject sender, bool isItemAction = false)
+    public void ProcessAction(QuestAction action, GameObject sender, bool isBlockItemUse = false)
     {
         if (GlobalFlags.GetFlag(Flags.GameOver)) return;
 
         // Обрабатываем действия
 
-        // TODO: добавить такой механизм
-        // Если мы выбрали предмет, то проверяем, является ли sender интерактивный объектом
-        // Если да - проверяем, подходит ли id объекта sender к id target selectedItem
-        // Если подхходит - то воспроизводим действие selectedItem.ActionOnTarget
-        // Удаляем предмет из инвентаря
+        // isBlockItemUse - для предотвращения рекурсии
 
-        // Пример: отвёртка и вентиляция
-        // По очереди откручиваем болты
-        // Скрипт на объекте вентиляции отслеживает это через события, и когда надо воспроизводит анимацию
-        // снятия крышки и переносит на следующий уровень
-
-        // Если мы можем взаимодействовать с выбранным предметом и у нас есть выбранный предмет инвентаря, и цель выбранного проедмета -
-        // текущий объект, то выполняем действие предмета
-        //Debug.Log($"QuestActionProccessor need to process {action.name ?? "NULL"} on {sender.name ?? "NULL"}");
-
-        // isItemAction - для предотвращения рекурсии
-
-        if (!isItemAction && sender != null && sender.TryGetComponent<InteractableItem>(out InteractableItem item) 
+        if (!isBlockItemUse && sender != null && sender.TryGetComponent<InteractableItem>(out InteractableItem item) 
             && _questInventoryManager.IsSelectedAnyItem && _questInventoryManager.SelectedItem.targetItemId.Contains(item.itemID))
         {
             ProcessSelectedItemAction(item, _questInventoryManager.SelectedItem, sender);
@@ -219,7 +218,7 @@ public class QuestActionProccessor : MonoBehaviour
 
             // Показать масль главного героя
             case QuestEffectType.ShowMessage:
-                _questThinkingManager.Think(effect.stringValue);
+                QuestThinkingManager.Think(effect.stringValue, effect.floatValue);
                 break;
 
             // Передать сообщение конкретному объекту

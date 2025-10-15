@@ -19,3 +19,27 @@ MonoBehaviour:
     floatValue: 14
     stringValue: 
     additionalStringValue: 
+  - effectType: 10
+    conditionOperator: 0
+    conditions:
+    - conditionType: 3
+      modifier: 1
+      stringValue: CodePanelSay
+      additionalStringValue: 
+      floatValue: 0
+    floatValue: 1
+    stringValue: "\u041F\u0430\u0440\u043E\u043B\u044C? \u0422\u043E\u0447\u043D\u043E
+      \u043D\u0435 1234. \u0422\u0440\u0435\u0431\u0430 \u043F\u043E\u0448\u0443\u043A\u0430\u0442\u0438
+      \u043F\u0456\u0434\u043A\u0430\u0437\u043A\u0438."
+    additionalStringValue: 
+  - effectType: 2
+    conditionOperator: 0
+    conditions:
+    - conditionType: 3
+      modifier: 1
+      stringValue: CodePanelSay
+      additionalStringValue: 
+      floatValue: 0
+    floatValue: 14
+    stringValue: CodePanelSay
+    additionalStringValue: 
