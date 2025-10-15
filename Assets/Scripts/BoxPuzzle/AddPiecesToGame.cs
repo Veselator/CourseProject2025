@@ -42,7 +42,7 @@ public class AddPiecesToGame : MonoBehaviour
     }
     private void ClearBeforeChange() 
     {
-        StopAllCoroutines();
+        
         Destroy(levelInstance);
     }
     private void LevelChange() 
