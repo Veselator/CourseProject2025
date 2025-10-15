@@ -6,19 +6,24 @@ public class PuzzleScattering : MonoBehaviour
 {
     const float offsetForX = 3f;
     const float offsetForY = 2f;
-    public static void ScatterPuzzles(List<PuzzlePiece> pieces, Transform gameHolder) 
+    [SerializeField] private Box spawnBox;
+
+    public static PuzzleScattering Instance { get; private set; }
+
+    private void Awake()
     {
-        float sizeX = gameHolder.GetComponent<SpriteRenderer>().bounds.size.x;
-        float sizeY = gameHolder.GetComponent<SpriteRenderer>().bounds.size.y;
+        if (Instance == null) Instance = this;
+    }
 
-
+    public void ScatterPuzzles(List<PuzzlePiece> pieces) 
+    {
         foreach (var p in pieces)
         {
-            float scatterRangeX = Random.Range(offsetForX / sizeX, 1f / sizeX);   // от середины до правого края
-            float scatterRangeY = Random.Range(-offsetForY / sizeY, offsetForY / sizeY);       // по вертикали от -Y до +Y
+            float scatterRangeX = Random.Range(spawnBox.startPoint.x, spawnBox.endPoint.x);
+            float scatterRangeY = Random.Range(spawnBox.startPoint.y, spawnBox.endPoint.y);
 
             // задаём случайную позицию
-            p.transform.localPosition = new Vector3(scatterRangeX, scatterRangeY, 0);
+            p.transform.position = new Vector3(scatterRangeX, scatterRangeY, 0);
         }
     }
 }
