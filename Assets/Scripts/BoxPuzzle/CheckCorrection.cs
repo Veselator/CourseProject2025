@@ -4,6 +4,7 @@ using UnityEngine;
 
 public static class CheckCorrection
 {
+    // Чего 
     public static bool Check(Collider2D lp, Collider2D cp) 
     {
         if (!lp) return true;

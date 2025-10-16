@@ -4,57 +4,83 @@ using UnityEngine;
 
 public class BoxPuzzleGameManager : MonoBehaviour
 {
-    [SerializeField] AddPiecesToGame TotalPiecesAmount;
+    [SerializeField] private LevelManager levelManager; // Изменено с AddPiecesToGame
+    private BlockSelectionManager selectionManager;
 
-    private int totslLevel = 0;
-    private int amountOfLevels;
     private int currentLevelPieces = 0;
     private int totalCurrentLevelPieces;
 
-    private void GetToalCurrentLevelPiecesAmount()
+    private void Awake()
     {
+        // Находим менеджеры если не назначены
+        if (levelManager == null)
+            levelManager = FindObjectOfType<LevelManager>();
 
+        selectionManager = FindObjectOfType<BlockSelectionManager>();
+    }
 
-        totalCurrentLevelPieces = TotalPiecesAmount.currentLevelPieceAmount; 
+    private void Start()
+    {
+        UpdateLevelInfo();
+    }
+
+    private void UpdateLevelInfo()
+    {
+        if (levelManager != null)
+        {
+            totalCurrentLevelPieces = levelManager.CurrentLevelPieceCount;
+            Debug.Log($"Level {levelManager.CurrentLevel}/{levelManager.TotalLevels} - Pieces: {totalCurrentLevelPieces}");
+        }
     }
 
     private void IncrementCurrentLevelPieces()
     {
-        currentLevelPieces += 1;
+        currentLevelPieces++;
+        CheckForCompletion();
     }
-    private void GoToZeroCurrentPieces()
+
+    private void ResetCurrentPieces()
     {
-        currentLevelPieces = 0; // Для того, что бы нельзя было выиграть, просто кликая первый спрайт
+        currentLevelPieces = 0;
     }
+
+    private void CheckForCompletion()
+    {
+        if (currentLevelPieces >= totalCurrentLevelPieces && totalCurrentLevelPieces > 0)
+        {
+            Debug.Log("Level completed!");
+            StartCoroutine(CompleteLevelSequence());
+        }
+    }
+
+    private IEnumerator CompleteLevelSequence()
+    {
+        // Ждем анимацию успеха
+        yield return new WaitForSeconds(1.5f);
+
+        // Переход на следующий уровень
+        BoxPuzzleEventManager.LevelChange();
+        currentLevelPieces = 0;
+        UpdateLevelInfo();
+    }
+
+    private void OnLevelChange()
+    {
+        ResetCurrentPieces();
+        UpdateLevelInfo();
+    }
+
     private void OnEnable()
     {
         BoxPuzzleEventManager.OnRigthSelected += IncrementCurrentLevelPieces;
-        BoxPuzzleEventManager.OnReturnToNormalOpacity += GoToZeroCurrentPieces;
+        BoxPuzzleEventManager.OnReturnToNormalOpacity += ResetCurrentPieces;
+        BoxPuzzleEventManager.OnLevelChange += OnLevelChange;
     }
+
     private void OnDisable()
     {
         BoxPuzzleEventManager.OnRigthSelected -= IncrementCurrentLevelPieces;
-        BoxPuzzleEventManager.OnReturnToNormalOpacity -= GoToZeroCurrentPieces;
+        BoxPuzzleEventManager.OnReturnToNormalOpacity -= ResetCurrentPieces;
+        BoxPuzzleEventManager.OnLevelChange -= OnLevelChange;
     }
-    private void Start()
-    {
-        amountOfLevels = TotalPiecesAmount.sprites.Length;
-        GetToalCurrentLevelPiecesAmount();
-    }
-
-   
-    private void Check()
-    {
-            BoxPuzzleEventManager.LevelChange();   
-            currentLevelPieces = 0;
-            totalCurrentLevelPieces = TotalPiecesAmount.currentLevelPieceAmount;
-    }
-    private void Update()
-    {
-        if (currentLevelPieces > totalCurrentLevelPieces)
-        {
-            Check();
-       }
-    }
-
 }
