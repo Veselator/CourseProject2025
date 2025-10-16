@@ -10,13 +10,13 @@ public class NextPuzzleButton : MonoBehaviour
     private void Start()
     {
         _gm = Gm.Instance;
-        _gm.OnPuzzleCompleted += ShowNextPuzzleButton;
+        _gm.OnPuzzleSolved += ShowNextPuzzleButton;
         _nextPuzzleButton.SetActive(false);
     }
 
     private void OnDestroy()
     {
-        _gm.OnPuzzleCompleted -= ShowNextPuzzleButton;
+        _gm.OnPuzzleSolved -= ShowNextPuzzleButton;
     }
 
     private void ShowNextPuzzleButton()

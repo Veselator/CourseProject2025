@@ -4,7 +4,7 @@ public class SoftCameraTracker : MonoBehaviour, ICameraTracker
 {
     // Камера - статичная, но интерполирует значения с позицией курсора мыши
     private Vector3 startPosition;
-    private readonly float blendFactor = 0.05f;
+    [SerializeField] private float blendFactor = 0.05f;
 
     private void Start()
     {

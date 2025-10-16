@@ -1418,6 +1418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f430570708b69f449bbb9da3caf0cf7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blendFactor: 0.05
 --- !u!114 &263120673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1430,6 +1431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0912fb60a6c4df24ebea8c42c29b2442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _defaultTrackingPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &263120674
 MonoBehaviour:
   m_ObjectHideFlags: 0

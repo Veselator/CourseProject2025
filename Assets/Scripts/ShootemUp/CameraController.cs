@@ -7,10 +7,11 @@ public class CameraController : MonoBehaviour
     private ICameraTracker _tracker;
     private Transform _target;
     public static bool IsAbleToUpdate = true;
+    [SerializeField] private Vector3 _defaultTrackingPosition = Vector3.zero;
 
     private void Start()
     {
-        _target = PlayerMovementHandler.Instance.transform;
+        if (PlayerMovementHandler.Instance != null) _target = PlayerMovementHandler.Instance.transform;
 
         _tracker = GetComponent<SoftCameraTracker>();
     }
@@ -18,6 +19,8 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
         if (GlobalFlags.GetFlag(Flags.GameOver)) return;
-        if (IsAbleToUpdate) transform.position = _tracker.GetCurrentPosition(_target.position);
+        if (!IsAbleToUpdate) return; 
+        if(_target != null) transform.position = _tracker.GetCurrentPosition(_target.position);
+        else transform.position = _tracker.GetCurrentPosition(_defaultTrackingPosition);
     }
 }

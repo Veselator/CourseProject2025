@@ -7,6 +7,7 @@ public class PuzzleSolvedAnimation : MonoBehaviour
 {
     private Gm _gm;
     [SerializeField] private GameObject _puzzlePrefab;
+    [SerializeField] private GameObject _border;
     private GameObject newImage;
 
     public static PuzzleSolvedAnimation Instance { get; private set; }
@@ -19,12 +20,12 @@ public class PuzzleSolvedAnimation : MonoBehaviour
     private void Start()
     {
         _gm = Gm.Instance;
-        _gm.OnPuzzleCompleted += StartSolveAnimation;
+        _gm.OnPuzzleSolved += StartSolveAnimation;
     }
 
     private void OnDestroy()
     {
-        _gm.OnPuzzleCompleted -= StartSolveAnimation;
+        _gm.OnPuzzleSolved -= StartSolveAnimation;
     }
 
     private void InitGameObjectByTexture(GameObject newImage, Texture2D tex)
@@ -47,7 +48,7 @@ public class PuzzleSolvedAnimation : MonoBehaviour
         Texture2D CurrentTexture = _gm.CurrentTexture;
         InitGameObjectByTexture(newImage, CurrentTexture);
 
-        newImage.GetComponent<PuzzleSolvedImageScript>().Init();
+        newImage.GetComponent<PuzzleSolvedImageScript>().Init(_border);
     }
 
     public void ResetPuzzleSolvedAnimation()

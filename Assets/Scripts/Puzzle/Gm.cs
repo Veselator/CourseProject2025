@@ -44,7 +44,8 @@ public class Gm : MonoBehaviour
     private int correctCounter = 0;
 
     public static Gm Instance { get; private set; }
-    public event Action OnPuzzleCompleted;
+    public event Action OnPuzzleSolved; // Примечание: событие вызывается при решении паззла
+    public event Action OnPuzzleLoaded;
 
     private void Awake()
     {
@@ -84,6 +85,7 @@ public class Gm : MonoBehaviour
 
         // Обновляем рамку
         UpdateBorder();
+        OnPuzzleLoaded?.Invoke();
     }
 
     private Vector2Int CalculateGridSize(Texture2D texture)
@@ -239,7 +241,7 @@ public class Gm : MonoBehaviour
 
             // Переход к следующему паззлу
             //GetToNextPuzzle();
-            OnPuzzleCompleted?.Invoke();
+            OnPuzzleSolved?.Invoke();
         }
     }
 
