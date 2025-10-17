@@ -323,8 +323,10 @@ public class BlockSelectionManager : MonoBehaviour
     }
         
     // Корутина для connectionsLine для уменьшения толщины от текущей до 0 по ease in
-    private IEnumerator HideLine(float duration) 
+    private IEnumerator HideLine(float duration, float delayBefore=0f) 
     {
+        if(delayBefore > 0f) yield return new WaitForSeconds(delayBefore);
+
         float elapsed = 0f;
         float startWidth = connectionsLine.startWidth;
 
@@ -382,6 +384,7 @@ public class BlockSelectionManager : MonoBehaviour
 
         // Flash red
         Color originalColor = connectionsLine.startColor;
+        StartCoroutine(HideLine(0.6f, 0.6f));
         for (int i = 0; i < 3; i++)
         {
             connectionsLine.startColor = Color.red;

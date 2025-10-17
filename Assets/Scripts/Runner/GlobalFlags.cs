@@ -77,5 +77,8 @@ public enum Flags
     // ShootEmUp
     ShootEmUpWaveEnded,
     ShootEmUpStartWave,
-    ShootEmUpEnemyDied
+    ShootEmUpEnemyDied,
+    
+    // BoxPuzzle
+    IsReadyToShowMiniCamera
 }

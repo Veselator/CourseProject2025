@@ -49,10 +49,12 @@ public class BoxMaterialController : MonoBehaviour
     private IEnumerator AppearAnimation()
     {
         yield return StartCoroutine(AnimateProperty(1f, 0f, ANIMATION_IN_DURATION, _animationCurve));
+        GlobalFlags.SetFlag(Flags.IsReadyToShowMiniCamera);
     }
 
     private IEnumerator DisappearAnimation()
     {
+        GlobalFlags.ClearFlag(Flags.IsReadyToShowMiniCamera);
         yield return new WaitForSeconds(DELAY_BEFORE_DISAPPEARING);
         yield return StartCoroutine(AnimateProperty(0f, 1f, ANIMATION_OUT_DURATION, _animationCurve));
     }
