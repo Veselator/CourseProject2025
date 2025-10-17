@@ -35,7 +35,22 @@ public static class GetWord
         "stack",
         "string",
         "syntax",
-        "variable"
+        "variable",
+        "borys",
+        "unity",
+        "script",
+        "python",
+        "CSharp",
+        "solid",
+        "singletone",
+        "observer",
+        "delegate",
+        "event",
+        "dependency",
+        "error",
+        "int",
+        "enum",
+        "static"
     };
 
 public static string GetRandomWord()

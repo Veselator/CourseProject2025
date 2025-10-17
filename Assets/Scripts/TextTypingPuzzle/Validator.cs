@@ -27,7 +27,7 @@ public class WordValidator
     public float GetAccuracy(int totalLetters)
     {
         if (totalLetters == 0) return 0f;
-        return (float)correctLettersCount / totalLetters * 100f;
+        return (float)correctLettersCount / totalLetters;
     }
 
     public void Reset()

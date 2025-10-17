@@ -6,7 +6,14 @@ using UnityEngine;
 
 public class CourotineWordMover : MonoBehaviour
 {
-    public IEnumerator MoveWord(TextPiece text, RectTransform rightPos, RectTransform leftPos)
+    private SpeedOfText _speedOfText;
+
+    private void Start()
+    {
+        _speedOfText = SpeedOfText.Instance;
+    }
+
+    public IEnumerator MoveWord(TextPiece text, RectTransform rightPos, RectTransform leftPos, float borderOffsetX)
     {
        
         if (text == null) yield break;
@@ -15,12 +22,12 @@ public class CourotineWordMover : MonoBehaviour
 
         float randomY = UnityEngine.Random.Range(-200f, 200f);
         rt.anchoredPosition = new Vector2(rightPos.anchoredPosition.x, randomY);
-        Vector2 center = new Vector2(0, randomY);
+        Vector2 center = new Vector2(borderOffsetX, randomY);
         Vector2 end = new Vector2(leftPos.anchoredPosition.x, randomY);
 
         while (!text.isComplete&&rt != null && Vector3.Distance(rt.anchoredPosition, center) > 0.01f)
         {
-            rt.anchoredPosition = Vector3.MoveTowards(rt.anchoredPosition, center, SpeedOfText.Instance.speedOfTextFly * Time.deltaTime);
+            rt.anchoredPosition = Vector3.MoveTowards(rt.anchoredPosition, center, _speedOfText.speedOfTextFly * Time.deltaTime);
             yield return null;
         }
 
@@ -29,7 +36,7 @@ public class CourotineWordMover : MonoBehaviour
 
         while (rt != null && Vector3.Distance(rt.anchoredPosition, end) > 0.01f)
         {
-            rt.anchoredPosition = Vector3.MoveTowards(rt.anchoredPosition, end, SpeedOfText.Instance.speedOfTextFly * Time.deltaTime);
+            rt.anchoredPosition = Vector3.MoveTowards(rt.anchoredPosition, end, _speedOfText.speedOfTextFly * Time.deltaTime);
             yield return null;
         }
 
@@ -50,7 +57,7 @@ public class CourotineWordMover : MonoBehaviour
         while (rt != null && top != null && rt.anchoredPosition.y < top.anchoredPosition.y)
         {
 
-            rt.anchoredPosition += new Vector2(0, SpeedOfText.Instance.speedOfTextFly * Time.deltaTime);
+            rt.anchoredPosition += new Vector2(0, _speedOfText.speedOfTextFly * Time.deltaTime);
             yield return null;
         }
 

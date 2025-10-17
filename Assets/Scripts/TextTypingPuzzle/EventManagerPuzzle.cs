@@ -11,11 +11,11 @@ public static class EventManagerPuzzle
 
     public static void GameOverInv() 
     { 
-    gameOverAction?.Invoke();
+        gameOverAction?.Invoke();
     }
 
     public static void OnMissInv(TextPiece text) 
     { 
-    OnMiss?.Invoke(text);
+        OnMiss?.Invoke(text);
     }   
 }
