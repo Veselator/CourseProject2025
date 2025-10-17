@@ -40,6 +40,7 @@ public class BlockSelectionManager : MonoBehaviour
     [SerializeField] private Color _previewLineColor = new Color(1f, 1f, 1f, 0.5f);
     [SerializeField] private Color _connectedLineColor = Color.blue;
     [SerializeField] private GameObject _failMarkPrefab;
+    private CurrentMainColorManager _colorManager;
 
     private Coroutine lineAnimationCoroutine;
 
@@ -57,6 +58,11 @@ public class BlockSelectionManager : MonoBehaviour
         mainCamera = Camera.main;
         if (Instance == null) Instance = this;
         InitializeLineRenderers();
+    }
+
+    private void Start()
+    {
+        _colorManager = CurrentMainColorManager.Instance;
     }
 
     private void InitializeLineRenderers()
@@ -371,8 +377,9 @@ public class BlockSelectionManager : MonoBehaviour
 
         StartCoroutine(HideLine(0.5f));
         yield return new WaitForSeconds(DELAY_AFTER_END_OF_SUCCESS_ANIMATION);
-        
+
         // Proceed to next level
+        _colorManager.AssignNewColorPalette();
         ResetLineColors();
         BoxPuzzleEventManager.LevelChange();
         ResetSelection();
