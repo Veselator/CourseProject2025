@@ -5,7 +5,6 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] levelPrefabs;
-    [SerializeField] private float pieceSpacing = 2f;
 
     private int currentLevelIndex = 0;
     private GameObject currentLevelInstance;
@@ -91,9 +90,8 @@ public class LevelManager : MonoBehaviour
     private void OnAllLevelsCompleted()
     {
         // Show completion UI or restart from first level
-        Debug.Log("Game completed! Restarting...");
-        currentLevelIndex = 0;
-        LoadLevel();
+        Debug.Log("Game completed!");
+        GameSceneManager.LoadNextScene();
     }
 
     private void HandleLevelChange()

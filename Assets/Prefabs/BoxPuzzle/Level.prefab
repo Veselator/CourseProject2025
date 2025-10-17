@@ -45,7 +45,9 @@ GameObject:
   - component: {fileID: 253354535748511641}
   - component: {fileID: 6224552280711005115}
   - component: {fileID: 6213212330940439918}
-  m_Layer: 0
+  - component: {fileID: 3928113132549679211}
+  - component: {fileID: 9188982053866799277}
+  m_Layer: 3
   m_Name: 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +63,7 @@ Transform:
   m_GameObject: {fileID: 1962872165495968207}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.2747197, y: -2.124352, z: -0.9676614}
+  m_LocalPosition: {x: -6, y: -4.44, z: -0.9676614}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -87,7 +89,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: c2a279823541c1848858995b79df3347, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -164,6 +166,34 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.17, y: 1.82}
   m_EdgeRadius: 0
+--- !u!114 &3928113132549679211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962872165495968207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c4cc4075dade704ea89d9095d5219ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _normalColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  _selectedColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &9188982053866799277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962872165495968207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35693fa4fcdaf784ebf96bdaa159264f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animationDuration: 1
+  _delayBeforeDisappear: 0.5
 --- !u!1 &3711025826074877147
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,7 +205,9 @@ GameObject:
   - component: {fileID: 96986311306470956}
   - component: {fileID: 8899099661938647246}
   - component: {fileID: 6506561998741233121}
-  m_Layer: 0
+  - component: {fileID: 3662362529399477583}
+  - component: {fileID: 2551360129981323007}
+  m_Layer: 3
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +223,7 @@ Transform:
   m_GameObject: {fileID: 3711025826074877147}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.88391936, y: 1.8782481, z: -0.9676614}
+  m_LocalPosition: {x: -1.99, y: 2.59, z: -0.9676614}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -217,7 +249,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: c2a279823541c1848858995b79df3347, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -294,6 +326,34 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.69, y: 2.66}
   m_EdgeRadius: 0
+--- !u!114 &3662362529399477583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3711025826074877147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c4cc4075dade704ea89d9095d5219ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _normalColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  _selectedColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &2551360129981323007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3711025826074877147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35693fa4fcdaf784ebf96bdaa159264f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animationDuration: 1
+  _delayBeforeDisappear: 0.5
 --- !u!1 &4912149391644068431
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +365,9 @@ GameObject:
   - component: {fileID: 7475425462145682344}
   - component: {fileID: 7998575209099202715}
   - component: {fileID: 2316394575929104333}
-  m_Layer: 0
+  - component: {fileID: 8381663436751520795}
+  - component: {fileID: 6665030589286063996}
+  m_Layer: 3
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -321,7 +383,7 @@ Transform:
   m_GameObject: {fileID: 4912149391644068431}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.3836803, y: -1.399452, z: -0.9676614}
+  m_LocalPosition: {x: 7.3, y: -1.06, z: -0.9676614}
   m_LocalScale: {x: 1.5994, y: 1.8184, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -347,7 +409,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: c2a279823541c1848858995b79df3347, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -424,3 +486,31 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.91, y: 1.49}
   m_EdgeRadius: 0
+--- !u!114 &8381663436751520795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4912149391644068431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c4cc4075dade704ea89d9095d5219ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _normalColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  _selectedColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &6665030589286063996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4912149391644068431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35693fa4fcdaf784ebf96bdaa159264f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animationDuration: 1
+  _delayBeforeDisappear: 0.5

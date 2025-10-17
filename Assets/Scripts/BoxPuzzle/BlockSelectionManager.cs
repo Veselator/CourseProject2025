@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,10 +6,13 @@ using UnityEngine;
 public class BlockSelectionManager : MonoBehaviour
 {
     // Constants
-    private const float PREVIEW_LINE_WIDTH = 0.05f;
-    private const float CONNECTION_LINE_WIDTH = 0.1f;
+    private const float PREVIEW_LINE_WIDTH = 0.2f;
+    private const float CONNECTION_LINE_WIDTH = 0.25f;
     private const float COLLISION_RADIUS = 0.01f;
     private const int MOUSE_BUTTON_LEFT = 0;
+    private const float DELAY_AFTER_END_OF_SUCCESS_ANIMATION = 1f;
+    private const string LINE_SORTING_LAYER = "TheBackground";
+    private const float LINE_ANIMATION_DURATION = 0.2f;
 
     // Components
     private LineRenderer previewLine;
@@ -24,6 +28,21 @@ public class BlockSelectionManager : MonoBehaviour
     // Animation
     private Coroutine animationCoroutine;
 
+    // Events
+    public event Action OnSuccessAnimation;
+    public event Action OnFailureAnimation;
+    public event Action OnResetSelection;
+    public event Action<BoxPiece> OnBlockSelected;
+
+    // Other
+    [SerializeField] private LayerMask _blockLayerMask;
+    public static BlockSelectionManager Instance { get; private set; }
+    [SerializeField] private Color _previewLineColor = new Color(1f, 1f, 1f, 0.5f);
+    [SerializeField] private Color _connectedLineColor = Color.blue;
+    [SerializeField] private GameObject _failMarkPrefab;
+
+    private Coroutine lineAnimationCoroutine;
+
     private enum BlockSelectionState
     {
         Idle,
@@ -36,6 +55,7 @@ public class BlockSelectionManager : MonoBehaviour
     private void Awake()
     {
         mainCamera = Camera.main;
+        if (Instance == null) Instance = this;
         InitializeLineRenderers();
     }
 
@@ -45,13 +65,22 @@ public class BlockSelectionManager : MonoBehaviour
         GameObject previewObject = new GameObject("PreviewLine");
         previewObject.transform.SetParent(transform);
         previewLine = previewObject.AddComponent<LineRenderer>();
-        ConfigureLineRenderer(previewLine, PREVIEW_LINE_WIDTH, new Color(1f, 1f, 1f, 0.5f));
+        ConfigureLineRenderer(previewLine, PREVIEW_LINE_WIDTH, _previewLineColor);
 
         // Connections line (between blocks)
         GameObject connectionsObject = new GameObject("ConnectionsLine");
         connectionsObject.transform.SetParent(transform);
         connectionsLine = connectionsObject.AddComponent<LineRenderer>();
-        ConfigureLineRenderer(connectionsLine, CONNECTION_LINE_WIDTH, Color.blue);
+        ConfigureLineRenderer(connectionsLine, CONNECTION_LINE_WIDTH, _connectedLineColor);
+    }
+
+    private void ResetLineColors()
+    {
+        previewLine.startColor = _previewLineColor;
+        previewLine.endColor = _previewLineColor;
+
+        connectionsLine.startColor = _connectedLineColor;
+        connectionsLine.endColor = _connectedLineColor;
     }
 
     private void ConfigureLineRenderer(LineRenderer line, float width, Color color)
@@ -62,6 +91,8 @@ public class BlockSelectionManager : MonoBehaviour
         line.endColor = color;
         line.useWorldSpace = true;
         line.positionCount = 0;
+
+        line.sortingLayerName = LINE_SORTING_LAYER;
 
         // Add material for better visuals
         line.material = new Material(Shader.Find("Sprites/Default"));
@@ -92,7 +123,7 @@ public class BlockSelectionManager : MonoBehaviour
     private void OnMouseDown()
     {
         Vector3 mousePos = GetMouseWorldPosition();
-        Collider2D hit = Physics2D.OverlapCircle(mousePos, COLLISION_RADIUS);
+        Collider2D hit = Physics2D.OverlapCircle(mousePos, COLLISION_RADIUS, _blockLayerMask);
 
         if (hit != null)
         {
@@ -108,12 +139,16 @@ public class BlockSelectionManager : MonoBehaviour
     private void OnMouseUp()
     {
         Vector3 mousePos = GetMouseWorldPosition();
-        Collider2D hit = Physics2D.OverlapCircle(mousePos, COLLISION_RADIUS);
+        Collider2D hit = Physics2D.OverlapCircle(mousePos, COLLISION_RADIUS, _blockLayerMask);
+
+        Debug.Log($"Trying to process OnMouseUp selectedBlock.id = {selectedBlock.Id}");
 
         if (hit != null && hit.GetComponent<BoxPiece>() != null)
         {
             BoxPiece targetPiece = hit.GetComponent<BoxPiece>();
 
+            Debug.Log($"Trying to process OnMouseUp selectedBlock.id = {selectedBlock.Id} targetPiece.Id = {targetPiece.Id}");
+            Debug.Log($"Connected blocks = {connectedBlocks}");
             if (targetPiece != selectedBlock && !connectedBlocks.Contains(targetPiece))
             {
                 ConnectBlocks(selectedBlock, targetPiece);
@@ -171,7 +206,8 @@ public class BlockSelectionManager : MonoBehaviour
         else
         {
             // Wrong connection - show failure animation
-            ShowFailureAnimation();
+            Debug.Log("Wrong connection attempted.");
+            ShowFailureAnimation(from, to);
         }
     }
 
@@ -179,9 +215,10 @@ public class BlockSelectionManager : MonoBehaviour
     {
         // Use existing logic but with proper null checks
         if (connectedBlocks.Count == 0) return true;
-
         BoxPiece lastConnected = connectedBlocks[connectedBlocks.Count - 1];
-        return to.Id - lastConnected.Id == 1;
+        bool result = to.Id - lastConnected.Id == 1 && to.Id - from.Id == 1;
+        Debug.Log($"Checking connection from {from.Id} to {to.Id}. lastConnected.id = {lastConnected.Id} result is {(result ? "TRUE" : "FALSE")}");
+        return result;
     }
 
     private void UpdatePreviewLine()
@@ -201,8 +238,53 @@ public class BlockSelectionManager : MonoBehaviour
 
     private void UpdateConnectionLine()
     {
+        if (lineAnimationCoroutine != null)
+        {
+            StopCoroutine(lineAnimationCoroutine);
+        }
+        lineAnimationCoroutine = StartCoroutine(AnimateLineToNewPoint());
+    }
+
+    private IEnumerator AnimateLineToNewPoint()
+    {
+        if (connectionPoints.Count < 2)
+        {
+            // Если только одна точка, просто отображаем её
+            connectionsLine.positionCount = connectionPoints.Count;
+            connectionsLine.SetPositions(connectionPoints.ToArray());
+            yield break;
+        }
+
+        Vector3 startPoint = connectionPoints[connectionPoints.Count - 2];
+        Vector3 endPoint = connectionPoints[connectionPoints.Count - 1];
+
+        // Устанавливаем количество точек (все предыдущие + одна промежуточная для анимации)
         connectionsLine.positionCount = connectionPoints.Count;
-        connectionsLine.SetPositions(connectionPoints.ToArray());
+
+        float elapsed = 0f;
+
+        while (elapsed < LINE_ANIMATION_DURATION)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / LINE_ANIMATION_DURATION);
+
+            // Интерполируем позицию последней точки
+            Vector3 currentPoint = Vector3.Lerp(startPoint, endPoint, t * t);
+
+            // Обновляем все точки линии
+            for (int i = 0; i < connectionPoints.Count - 1; i++)
+            {
+                connectionsLine.SetPosition(i, connectionPoints[i]);
+            }
+
+            // Последняя точка анимируется
+            connectionsLine.SetPosition(connectionPoints.Count - 1, currentPoint);
+
+            yield return null;
+        }
+
+        // Убеждаемся, что линия точно достигла конечной точки
+        connectionsLine.SetPosition(connectionPoints.Count - 1, endPoint);
     }
 
     private void CheckForCompletion()
@@ -219,13 +301,51 @@ public class BlockSelectionManager : MonoBehaviour
     {
         if (animationCoroutine != null) StopCoroutine(animationCoroutine);
         animationCoroutine = StartCoroutine(SuccessAnimationCoroutine());
+        OnSuccessAnimation?.Invoke();
     }
 
-    private void ShowFailureAnimation()
+    private void ShowFailureAnimation(BoxPiece from, BoxPiece to)
     {
         if (animationCoroutine != null) StopCoroutine(animationCoroutine);
         animationCoroutine = StartCoroutine(FailureAnimationCoroutine());
+        SpawnFailMark(GetMiddlePoint(from.gameObject.transform.position, to.gameObject.transform.position));
+        OnFailureAnimation?.Invoke();
     }
+
+    private Vector3 GetMiddlePoint(Vector3 firstPoint, Vector3 secondPoint)
+    {
+        return (firstPoint + secondPoint) / 2f;
+    }
+
+    private void SpawnFailMark(Vector3 position)
+    {
+        Instantiate(_failMarkPrefab, position, Quaternion.identity);
+    }
+        
+    // Корутина для connectionsLine для уменьшения толщины от текущей до 0 по ease in
+    private IEnumerator HideLine(float duration) 
+    {
+        float elapsed = 0f;
+        float startWidth = connectionsLine.startWidth;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+
+            float easedT = t * t; // ease in
+            float currentWidth = Mathf.Lerp(startWidth, 0f, easedT);
+
+            connectionsLine.startWidth = currentWidth;
+            connectionsLine.endWidth = currentWidth;
+            yield return null;
+        }
+
+        connectionsLine.positionCount = 0;
+        connectionsLine.startWidth = startWidth;
+        connectionsLine.endWidth = startWidth;
+    }
+
 
     private IEnumerator SuccessAnimationCoroutine()
     {
@@ -247,9 +367,11 @@ public class BlockSelectionManager : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(0.5f);
-
+        StartCoroutine(HideLine(0.5f));
+        yield return new WaitForSeconds(DELAY_AFTER_END_OF_SUCCESS_ANIMATION);
+        
         // Proceed to next level
+        ResetLineColors();
         BoxPuzzleEventManager.LevelChange();
         ResetSelection();
     }
@@ -290,6 +412,8 @@ public class BlockSelectionManager : MonoBehaviour
         previewLine.positionCount = 0;
         selectedBlock = null;
         currentState = BlockSelectionState.Idle;
+
+        OnResetSelection?.Invoke();
     }
 
     public void ResetLine()

@@ -591,7 +591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0912fb60a6c4df24ebea8c42c29b2442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultTrackingPosition: {x: 0, y: 0, z: 0}
+  _defaultTrackingPosition: {x: 0, y: 0, z: -10}
 --- !u!1 &528451553
 GameObject:
   m_ObjectHideFlags: 0

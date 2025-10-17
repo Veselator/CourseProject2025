@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BoxPuzzleGameManager : MonoBehaviour
 {
-    [SerializeField] private LevelManager levelManager; // Изменено с AddPiecesToGame
-    private BlockSelectionManager selectionManager;
+    [SerializeField] private LevelManager levelManager;
+    [SerializeField] private float DelayBeforeLevelLoad = 1.5f;
 
     private int currentLevelPieces = 0;
     private int totalCurrentLevelPieces;
@@ -15,8 +15,6 @@ public class BoxPuzzleGameManager : MonoBehaviour
         // Находим менеджеры если не назначены
         if (levelManager == null)
             levelManager = FindObjectOfType<LevelManager>();
-
-        selectionManager = FindObjectOfType<BlockSelectionManager>();
     }
 
     private void Start()
@@ -56,10 +54,10 @@ public class BoxPuzzleGameManager : MonoBehaviour
     private IEnumerator CompleteLevelSequence()
     {
         // Ждем анимацию успеха
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(DelayBeforeLevelLoad);
 
         // Переход на следующий уровень
-        BoxPuzzleEventManager.LevelChange();
+        //BoxPuzzleEventManager.LevelChange();
         currentLevelPieces = 0;
         UpdateLevelInfo();
     }

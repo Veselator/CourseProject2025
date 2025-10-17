@@ -13,7 +13,7 @@ public class CameraController : MonoBehaviour
     {
         if (PlayerMovementHandler.Instance != null) _target = PlayerMovementHandler.Instance.transform;
 
-        _tracker = GetComponent<SoftCameraTracker>();
+        _tracker = GetComponent<ICameraTracker>();
     }
 
     private void Update()

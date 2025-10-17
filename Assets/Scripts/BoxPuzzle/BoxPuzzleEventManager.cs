@@ -12,7 +12,7 @@ public static class BoxPuzzleEventManager
 
     public static void ShowSelected(Collider2D col) 
     { 
-    OnSelected?.Invoke(col);
+        OnSelected?.Invoke(col);
     }
 
     public static void RetrunToNormOp() 
@@ -26,7 +26,6 @@ public static class BoxPuzzleEventManager
   
     public static void LevelChange() 
     { 
-    OnLevelChange?.Invoke();
+        OnLevelChange?.Invoke();
     }
-   
 }
