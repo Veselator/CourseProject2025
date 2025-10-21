@@ -145,6 +145,15 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""AdditionalActionButton"",
+                    ""type"": ""Value"",
+                    ""id"": ""b1801eb3-961c-44d5-bb9a-943809db945d"",
+                    ""expectedControlType"": ""Integer"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -301,6 +310,17 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""action"": ""NumFour"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f41d6cb6-23cb-42ab-b5a6-bf3196cb1a36"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AdditionalActionButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -315,6 +335,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         m_Player_NumTwo = m_Player.FindAction("NumTwo", throwIfNotFound: true);
         m_Player_NumThree = m_Player.FindAction("NumThree", throwIfNotFound: true);
         m_Player_NumFour = m_Player.FindAction("NumFour", throwIfNotFound: true);
+        m_Player_AdditionalActionButton = m_Player.FindAction("AdditionalActionButton", throwIfNotFound: true);
     }
 
     ~@PlayerInputAction()
@@ -401,6 +422,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_NumTwo;
     private readonly InputAction m_Player_NumThree;
     private readonly InputAction m_Player_NumFour;
+    private readonly InputAction m_Player_AdditionalActionButton;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -436,6 +458,10 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/NumFour".
         /// </summary>
         public InputAction @NumFour => m_Wrapper.m_Player_NumFour;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/AdditionalActionButton".
+        /// </summary>
+        public InputAction @AdditionalActionButton => m_Wrapper.m_Player_AdditionalActionButton;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -480,6 +506,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @NumFour.started += instance.OnNumFour;
             @NumFour.performed += instance.OnNumFour;
             @NumFour.canceled += instance.OnNumFour;
+            @AdditionalActionButton.started += instance.OnAdditionalActionButton;
+            @AdditionalActionButton.performed += instance.OnAdditionalActionButton;
+            @AdditionalActionButton.canceled += instance.OnAdditionalActionButton;
         }
 
         /// <summary>
@@ -509,6 +538,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @NumFour.started -= instance.OnNumFour;
             @NumFour.performed -= instance.OnNumFour;
             @NumFour.canceled -= instance.OnNumFour;
+            @AdditionalActionButton.started -= instance.OnAdditionalActionButton;
+            @AdditionalActionButton.performed -= instance.OnAdditionalActionButton;
+            @AdditionalActionButton.canceled -= instance.OnAdditionalActionButton;
         }
 
         /// <summary>
@@ -591,5 +623,12 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnNumFour(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "AdditionalActionButton" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAdditionalActionButton(InputAction.CallbackContext context);
     }
 }

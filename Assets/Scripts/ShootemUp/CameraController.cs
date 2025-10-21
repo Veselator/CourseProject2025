@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    //  ое-кака€ проблема в плавности движени€
+    // ¬озможные причины: частота кадров, разрешение
+
     private ICameraTracker _tracker;
-    private Transform _target;
+    [SerializeField] private Transform _target;
     public static bool IsAbleToUpdate = true;
     [SerializeField] private Vector3 _defaultTrackingPosition = Vector3.zero;
 
@@ -16,7 +19,7 @@ public class CameraController : MonoBehaviour
         _tracker = GetComponent<ICameraTracker>();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (GlobalFlags.GetFlag(Flags.GameOver)) return;
         if (!IsAbleToUpdate) return; 

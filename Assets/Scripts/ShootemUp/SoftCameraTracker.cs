@@ -4,20 +4,29 @@ public class SoftCameraTracker : MonoBehaviour, ICameraTracker
 {
     //  амера - статична€, но интерполирует значени€ с позицией курсора мыши
     private Vector3 startPosition;
-    [SerializeField] private float blendFactor = 0.05f;
+    public Vector3 StartPosition
+    {
+        get => startPosition; 
+        set => startPosition = value;
+    }
+
+    [Header("“о, насколько плавно будет движение камеры")]
+    [SerializeField] protected float blendFactor = 0.05f;
+
+    protected Vector3 TargetPosition => GetMousePosition();
 
     private void Start()
     {
         startPosition = Camera.main.transform.position;
     }
 
-    private Vector3 GetMousePosition()
+    protected Vector3 GetMousePosition()
     {
         return Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 
-    public Vector3 GetCurrentPosition(Vector3 targetPosition)
+    public virtual Vector3 GetCurrentPosition(Vector3 targetPosition)
     {
-        return Vector3.Lerp(startPosition, GetMousePosition(), blendFactor);
+        return Vector3.Lerp(startPosition, TargetPosition, blendFactor);
     }
 }

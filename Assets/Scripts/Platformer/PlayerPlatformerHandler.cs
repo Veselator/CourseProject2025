@@ -3,10 +3,17 @@ using UnityEngine;
 
 public class PlayerPlatformerHandler : PlayerMovementHandler
 {
+    // Отвечает за управление игроком - соединяет ввод и физику
+    // НАМ ВСЁ РАВНО как игрок вводит - геймпад, клавиатура или бананы. За это отвечает система Input Action
+    // МЫ БЕЗ ПОНЯТИЯ как будет двигаться персонаж. За это отвечает RigidbodyPlatformerMovement
+    // МЫ соединяем эти компоненты
+
     // Логика для корректной работы прыжка
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private Transform _checkGroundTransform;
+    public Transform BottomCheckTransform => _checkGroundTransform;
     [SerializeField] private Vector2 _groundCheckRectangle;
+    public Vector2 BottomCheckRectangle => _groundCheckRectangle;
 
     // Custom gravity
     [SerializeField] private float _gravityDelay = 0.2f;
@@ -24,7 +31,7 @@ public class PlayerPlatformerHandler : PlayerMovementHandler
     protected override void Init()
     {
         _playerInput = PlayerInput.Instance;
-        _movement = GetComponent<RigidbodyPlatformerMovement>();
+        _movement = GetComponent<IMovement>();
         _rigidbodyMovement = _movement as RigidbodyPlatformerMovement;
 
         OnPlayerJump += Jump;
@@ -109,6 +116,7 @@ public class PlayerPlatformerHandler : PlayerMovementHandler
         }
         else if (isSecondJumpAvailable)
         {
+            _airTimer = 0f;
             OnPlayerJump?.Invoke();
             isSecondJumpAvailable = false;
         }
