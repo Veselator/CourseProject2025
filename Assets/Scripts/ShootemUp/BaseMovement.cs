@@ -4,11 +4,20 @@ public abstract class BaseMovement : MonoBehaviour, IMovement
 {
     public Vector2 Velocity { get; set; }
     [Min(0.1f)]
-    [SerializeField] private float speed;
+    [SerializeField] protected float speed;
     public float Speed
     {
-        get => speed; set => speed = value;
+        get => speed; 
+        set => speed = value;
     }
+
+    [SerializeField] protected float jumpStrength;
+    public float JumpStrength
+    {
+        get => jumpStrength; 
+        set => jumpStrength = value;
+    }
+
     private Box clampBox { get; set; }
     public float MaxSpeed { get; set; } // При текущей реализации не используется
     public bool IsAbleToMove { get; set; } = true;
@@ -18,6 +27,11 @@ public abstract class BaseMovement : MonoBehaviour, IMovement
     protected virtual void FixedUpdate()
     {
         if(IsAbleToMove) HandleMovement();
+    }
+
+    public virtual void ChangeVelocity(Vector2 velocity)
+    {
+        Velocity = velocity.normalized;
     }
 
     public void SetClampBorders(Vector2 min, Vector2 max)
@@ -38,6 +52,8 @@ public abstract class BaseMovement : MonoBehaviour, IMovement
 
         return newClampedPosition;
     }
+
+    public abstract void HandleJump();
 
     protected abstract void HandleMovement();
 }

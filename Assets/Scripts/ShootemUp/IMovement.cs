@@ -21,6 +21,15 @@ public interface IMovement
     float MaxSpeed { get; set; }
     bool IsAbleToMove { get; set; }
     bool IsClamped { get; set; }
+    public float JumpStrength { get; set; }
+
+    virtual void Init(Vector2 velocity, float speed, float maxSpeed, float jumpStrength)
+    {
+        Speed = speed;
+        Velocity = velocity;
+        MaxSpeed = maxSpeed;
+        JumpStrength = jumpStrength;
+    }
 
     virtual void Init(Vector2 velocity, float speed, float maxSpeed)
     {
@@ -32,6 +41,12 @@ public interface IMovement
     virtual void Init(Vector2 velocity)
     {
         Velocity = velocity;
+    }
+
+    virtual void Init(Vector2 velocity, float jumpStrength)
+    {
+        Velocity = velocity;
+        JumpStrength = jumpStrength;
     }
 
     virtual void SetIsClamped(bool isClamped)
@@ -48,15 +63,14 @@ public interface IMovement
         MaxSpeed = maxSpeed;
     }
 
-    virtual void ChangeVelocity(Vector2 velocity)
-    {
-        Velocity = velocity.normalized;
-    }
+    abstract void ChangeVelocity(Vector2 velocity);
 
     virtual void Stop()
     {
         Velocity = Vector2.zero;
     }
+
+    abstract void HandleJump();
 
     abstract void SetClampBorders(Vector2 min, Vector2 max);
 }

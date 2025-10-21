@@ -2,26 +2,25 @@ using UnityEngine;
 
 public class RigidbodyMovement : BaseMovement
 {
-    private Rigidbody2D _rb;
+    protected Rigidbody2D _rigidbody;
 
-    private void Start()
+    public void Start()
     {
-        _rb = GetComponent<Rigidbody2D>();
+        _rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    protected override void FixedUpdate()
+    public override void HandleJump()
     {
-        base.FixedUpdate();
-        //ClampVelocity();
+        Debug.Log("Jump is not implemented to this class but you somehow called it. Congratulations!");
     }
 
     protected override void HandleMovement()
     {
         //_rb.AddForce(Velocity * Speed);
-        Vector2 newPosition = _rb.position + Speed * Time.fixedDeltaTime * Velocity;
+        Vector2 newPosition = _rigidbody.position + Speed * Time.fixedDeltaTime * Velocity;
 
         if (isClamped) newPosition = ClampPosition(newPosition);
 
-        _rb.MovePosition(newPosition);
+        _rigidbody.MovePosition(newPosition);
     }
 }

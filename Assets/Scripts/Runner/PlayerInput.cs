@@ -9,7 +9,7 @@ public class PlayerInput : MonoBehaviour
     // Использует Unity Input System
 
     private PlayerInputAction _playerInputActions;
-
+    private PlayerInputAction.PlayerActions _player;
     public PlayerInputAction playerInputAction => _playerInputActions;
 
     public static PlayerInput Instance { get; private set; }
@@ -18,13 +18,14 @@ public class PlayerInput : MonoBehaviour
     {
         _playerInputActions = new PlayerInputAction();
         _playerInputActions.Enable();
+        _player = _playerInputActions.Player;
 
         if (Instance == null) Instance = this;
     }
 
     public Vector2 GetMovementVector()
     {
-        return _playerInputActions.Player.Move.ReadValue<Vector2>().normalized;
+        return _player.Move.ReadValue<Vector2>().normalized;
     }
 
     public bool IsHitButtonPressed() // Spacebar

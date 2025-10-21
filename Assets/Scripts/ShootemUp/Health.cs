@@ -8,6 +8,7 @@ public class Health : MonoBehaviour, IHealth
     // Объекта врагов
 
     // Реализация для ShootemUp
+    // Которая подойдёт и для платформера
     [SerializeField] private float maxHealth;
     public float MaximumHealth
     {
