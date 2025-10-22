@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class AbilityStrongPunch : IAbility
 {
-    public AbilityStrongPunch()
-    {
+    private PlayerPunchManager _playerPunchManager;
 
+    public AbilityStrongPunch(PlayerPunchManager ppm)
+    {
+        _playerPunchManager = ppm;
     }
 
     public void Try2ApplyAbility()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Punching!");
+        _playerPunchManager.Punch();
     }
 }
