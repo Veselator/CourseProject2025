@@ -67,13 +67,14 @@ MonoBehaviour:
   dealedDamage:
     damageHealth: 25
     damageArmor: 0
-    damageMultiplier: 0
+    damageMultiplier: 1
   points: []
+  time2Wait: 2
   _isLooped: 1
   _distanceThreshold: 0.5
   _obstacleLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 320
   _obstacleCheckSize: {x: 1.24, y: 0.61}
   _obstacleCheckDistance: 1
   _obstacleCheckTransform: {fileID: 6276474838631035341}
@@ -116,7 +117,7 @@ MonoBehaviour:
   jumpStrength: 7
   _lerpFactorForMovement: 0.02
   _lerpFactorForRotate: 0.05
-  _lerpFactorIfNoButtonPressed: 0.05
+  _lerpFactorIfNoButtonPressed: 0.3
   _extraGravity: 700
 --- !u!61 &8092417444258514135
 BoxCollider2D:

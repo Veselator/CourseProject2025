@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public class Health : MonoBehaviour, IHealth
+public class Health : MonoBehaviour, IHealth, IReadableValue
 {
     // Здовоье может быть только у:
     // Игрока
@@ -9,6 +9,10 @@ public class Health : MonoBehaviour, IHealth
 
     // Реализация для ShootemUp
     // Которая подойдёт и для платформера
+    // Да и в обще отличная реализация
+    // Здоровья всем родным программиста, который это написал
+    // И в обще он крутой
+
     [SerializeField] private float maxHealth;
     public float MaximumHealth
     {
@@ -65,7 +69,11 @@ public class Health : MonoBehaviour, IHealth
     public Action OnHealthChanged { get; set; }
     public Action OnArmorChanged { get; set; }
 
-    public void Start()
+    // IReadableValue
+    public float Value => CurrentHealthInPercentage;
+    public event Action<float> OnValueChanged;
+
+    public void Awake()
     {
         currentHealth = MaximumHealth;
         currentArmor = MaximumArmor;
@@ -94,6 +102,7 @@ public class Health : MonoBehaviour, IHealth
                 if (excessDamage > 0f)
                 {
                     currentHealth -= damage.damageMultiplier * excessDamage;
+                    OnHealthChanged?.Invoke();
                 }
             }
         }
@@ -104,6 +113,7 @@ public class Health : MonoBehaviour, IHealth
         }
         Debug.Log($"Damage dealed hpd {damage.damageHealth} armd {damage.damageArmor} dmp {damage.damageMultiplier}. I`m hp = {currentHealth} & arm = {currentArmor}");
         OnDamaged?.Invoke();
+        OnValueChanged?.Invoke(Value);
 
         if (IsDied) OnDeath?.Invoke();
     }

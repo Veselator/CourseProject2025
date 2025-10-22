@@ -219,7 +219,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a7aba5153c15f94ab82b9cd4c6280e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useYPosition: 1
   sortingOrderScale: -100
   sortingOffset: 0
   sortingOffsetY: 2
@@ -320,7 +319,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a7aba5153c15f94ab82b9cd4c6280e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useYPosition: 1
   sortingOrderScale: -100
   sortingOffset: 3
   sortingOffsetY: 0
@@ -3011,7 +3009,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a7aba5153c15f94ab82b9cd4c6280e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useYPosition: 1
   sortingOrderScale: -100
   sortingOffset: 0
   sortingOffsetY: 0
@@ -4107,7 +4104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a7aba5153c15f94ab82b9cd4c6280e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useYPosition: 1
   sortingOrderScale: -100
   sortingOffset: 0
   sortingOffsetY: 0.85
@@ -4621,7 +4617,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a7aba5153c15f94ab82b9cd4c6280e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useYPosition: 1
   sortingOrderScale: -100
   sortingOffset: 2
   sortingOffsetY: 0
@@ -5339,9 +5334,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &1754302513138489441
 MonoBehaviour:

@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class PMovingEnemy : BasePEnemy
@@ -6,6 +8,7 @@ public class PMovingEnemy : BasePEnemy
     // Враг, который может перемещаться между точками + прыгать при необходимости
 
     [SerializeField] Transform[] points;
+    [SerializeField] float time2Wait = 2f;
     [SerializeField] private bool _isLooped = true;
     private int _currentPoint = 0;
     private Vector2 _currentDirection;
@@ -17,6 +20,8 @@ public class PMovingEnemy : BasePEnemy
     [SerializeField] private Vector2 _obstacleCheckSize = new Vector2(0.5f, 0.5f);
     [SerializeField] private float _obstacleCheckDistance = 1f;
     [SerializeField] private Transform _obstacleCheckTransform;
+    // Кешируем значение результата поиска препятствий
+    private Collider2D[] _obstacleResults = new Collider2D[10];
 
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private Transform _checkGroundTransform;
@@ -69,6 +74,15 @@ public class PMovingEnemy : BasePEnemy
         _currentDirection = (_targetPosition - (Vector2)transform.position).normalized;
     }
 
+    // Корутина для реализации ожидания
+    private IEnumerator SetTargetCoroutine(float time)
+    {
+        _currentDirection = Vector2.zero;
+        _movement.ChangeVelocity(_currentDirection);
+        yield return new WaitForSeconds(time);
+        SetTarget(_currentPoint);
+    }
+
     private void UpdateTarget()
     {
         _currentPoint++;
@@ -83,7 +97,9 @@ public class PMovingEnemy : BasePEnemy
                 return;
             }
         }
-        SetTarget(_currentPoint);
+
+        if (time2Wait == 0f) SetTarget(_currentPoint);
+        else StartCoroutine(SetTargetCoroutine(time2Wait));
     }
 
     private void CheckIsAtTarget()
@@ -97,6 +113,7 @@ public class PMovingEnemy : BasePEnemy
 
     private void HandleMovement()
     {
+        // Интерфейс движения - такой же, как у игрока
         _movement.ChangeVelocity(_currentDirection);
     }
 
@@ -112,16 +129,20 @@ public class PMovingEnemy : BasePEnemy
 
         checkPosition += horizontalDirection * _obstacleCheckDistance;
 
-        Collider2D obstacle = Physics2D.OverlapBox(
+        int count = Physics2D.OverlapBoxNonAlloc(
             checkPosition,
             _obstacleCheckSize,
             0f,
+            _obstacleResults,
             _obstacleLayer
         );
 
-        if (obstacle != null)
+        for (int i = 0; i < count; i++)
         {
+            if (_obstacleResults[i].gameObject == gameObject) continue;
+
             TryJump();
+            break;
         }
     }
 

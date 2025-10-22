@@ -12,29 +12,40 @@ public class CameraShake : MonoBehaviour
     public float ShakeHitTime => ShakeHitDuration;
     [SerializeField] private AnimationCurve shakeCurve = AnimationCurve.EaseInOut(0f, 1f, 1f, 0f);
 
-    private Vector3 originalLocalPosition;
-    private Quaternion originalLocalRotation;
-    // Flag to prevent overlapping shakes
-    private bool isShaking = false;
-    // Property to enable/disable shaking
+    protected Vector3 originalLocalPosition;
+    protected Quaternion originalLocalRotation;
+    protected bool isShaking = false;
+
+    // Offset для тряски
+    protected Vector3 currentShakeOffset = Vector3.zero;
+    protected Quaternion currentShakeRotation = Quaternion.identity;
+
     public bool IsAbleToShake = true;
 
     public static CameraShake Instace;
-
     public static Action ShakeCamera;
+
+    // Публичные свойства для получения offset
+    public Vector3 ShakeOffset => currentShakeOffset;
+    public Quaternion ShakeRotation => currentShakeRotation;
 
     private void Awake()
     {
         if (Instace == null) Instace = this;
+        OnAwakeInitialize();
     }
+
+    protected virtual void OnAwakeInitialize() { }
 
     void Start()
     {
-        // Сохраняем изначальную локальную позицию камеры
         originalLocalPosition = transform.localPosition;
         originalLocalRotation = transform.localRotation;
         ShakeCamera += StartHitShake;
+        OnStartInitialize();
     }
+
+    protected virtual void OnStartInitialize() { }
 
     private void OnDestroy()
     {
@@ -55,21 +66,17 @@ public class CameraShake : MonoBehaviour
         StartCoroutine(HitShake(ShakeHitDuration, shakeHitIntensity));
     }
 
-    private IEnumerator RandomDragCamera(float duration, float intensity)
+    protected virtual IEnumerator RandomDragCamera(float duration, float intensity)
     {
+        originalLocalPosition = transform.localPosition;
+        originalLocalRotation = transform.localRotation;
         isShaking = true;
         float elapsedTime = 0f;
 
-        // Сохраняем текущую локальную позицию и ротацию как стартовые
-        Vector3 startPosition = transform.localPosition;
-        Quaternion startRotation = transform.localRotation;
-
-        // Случайные семена для Perlin noise, чтобы каждый вызов отличался
         float seedX = UnityEngine.Random.Range(0f, 100f);
         float seedY = UnityEngine.Random.Range(100f, 200f);
         float seedRot = UnityEngine.Random.Range(200f, 300f);
 
-        // Базовые частоты — немного варьируем, чтобы имитировать человеческую руку
         float baseFreq = UnityEngine.Random.Range(0.9f, 1.6f);
         float rotFreq = baseFreq * UnityEngine.Random.Range(0.6f, 1.2f);
 
@@ -77,101 +84,88 @@ public class CameraShake : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
             float normalizedTime = Mathf.Clamp01(elapsedTime / duration);
-
-            // Используем кривую для плавного затухания дрожания
             float curveValue = shakeCurve.Evaluate(normalizedTime);
 
-            // Временной фактор для Perlin noise
             float t = Time.time * baseFreq;
 
-            // Perlin noise в диапазоне [-1,1]
             float noiseX = (Mathf.PerlinNoise(seedX, t) - 0.5f) * 2f;
             float noiseY = (Mathf.PerlinNoise(seedY, t * 1.1f) - 0.5f) * 2f;
 
-            // Низкочастотный дрейф (медленное перемещение камеры)
             float driftX = (Mathf.PerlinNoise(seedX + 50f, Time.time * 0.18f) - 0.5f) * 2f;
             float driftY = (Mathf.PerlinNoise(seedY + 50f, Time.time * 0.18f) - 0.5f) * 2f;
 
-            // Комбинируем быстрый шум и медленный дрейф
             Vector3 rawOffset = new Vector3(noiseX * 0.7f + driftX * 0.3f, noiseY * 0.7f + driftY * 0.3f, 0f);
+            Vector3 targetOffset = rawOffset * intensity * curveValue;
 
-            // Масштабируем по интенсивности и кривой
-            Vector3 offset = rawOffset * intensity * curveValue;
+            currentShakeOffset = Vector3.Lerp(currentShakeOffset, targetOffset, Time.deltaTime * 8f);
 
-            // Плавное подмешивание для ощущения инерции (handheld)
-            Vector3 targetPos = startPosition + offset;
-            transform.localPosition = Vector3.Lerp(transform.localPosition, targetPos, Time.deltaTime * 8f);
-
-            // Небольшая ротация по Z для имитации лёгкого наклона камеры в руке
             float rotNoise = (Mathf.PerlinNoise(seedRot, Time.time * rotFreq) - 0.5f) * 2f;
-            float maxRotationDeg = Mathf.Clamp(intensity * 3f, 0.5f, 6f); // градусы
+            float maxRotationDeg = Mathf.Clamp(intensity * 3f, 0.5f, 6f);
             float targetZ = rotNoise * maxRotationDeg * curveValue;
-            Quaternion targetRot = Quaternion.Euler(0f, 0f, targetZ) * startRotation;
-            transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRot, Time.deltaTime * 6f);
+            Quaternion targetRot = Quaternion.Euler(0f, 0f, targetZ);
 
+            currentShakeRotation = Quaternion.Slerp(currentShakeRotation, targetRot, Time.deltaTime * 6f);
+
+            ApplyShake();
             yield return null;
         }
 
-        // Возвращаем камеру в стартовую позицию и ротацию
-        transform.localPosition = startPosition;
-        transform.localRotation = startRotation;
+        currentShakeOffset = Vector3.zero;
+        currentShakeRotation = Quaternion.identity;
+        ApplyShake();
         isShaking = false;
     }
 
-    private IEnumerator HitShake(float duration, float intensity)
+    protected virtual IEnumerator HitShake(float duration, float intensity)
     {
+        //originalLocalPosition = transform.localPosition;
+        //originalLocalRotation = transform.localRotation;
+        Debug.Log("Started shaking");
         float elapsedTime = 0f;
-
-        // Сохраняем текущую локальную позицию как стартовую
-        Vector3 startPosition = transform.localPosition;
-        Quaternion startRotation = transform.localRotation;
 
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
             float normalizedTime = Mathf.Clamp01(elapsedTime / duration);
-
-            // Используем кривую для плавного затухания дрожания
             float curveValue = shakeCurve.Evaluate(normalizedTime);
 
-            // Создаём случайное смещение (удар более резкий)
-            Vector3 randomOffset = new Vector3(
+            currentShakeOffset = new Vector3(
                 UnityEngine.Random.Range(-1f, 1f) * intensity * curveValue,
                 UnityEngine.Random.Range(-1f, 1f) * intensity * curveValue,
                 0f
             );
 
-            transform.localPosition = startPosition + randomOffset;
-
-            // Лёгкая резкая ротация для удара
             float rot = UnityEngine.Random.Range(-1f, 1f) * intensity * 4f * curveValue;
-            transform.localRotation = Quaternion.Euler(0f, 0f, rot) * startRotation;
+            currentShakeRotation = Quaternion.Euler(0f, 0f, rot);
 
+            //ApplyShake();
             yield return null;
         }
 
-        // Возвращаем камеру в стартовую позицию и ротацию
-        transform.localPosition = startPosition;
-        transform.localRotation = startRotation;
+        currentShakeOffset = Vector3.zero;
+        currentShakeRotation = Quaternion.identity;
+        //ApplyShake();
     }
 
-    /// <summary>
-    /// Принудительно останавливает дрожание и возвращает камеру в исходную позицию
-    /// </summary>
-    public void StopShake()
+    protected virtual void ApplyShake()
+    {
+        transform.localPosition = originalLocalPosition + currentShakeOffset;
+        transform.localRotation = currentShakeRotation * originalLocalRotation;
+    }
+
+    public virtual void StopShake()
     {
         if (isShaking)
         {
             StopAllCoroutines();
+            currentShakeOffset = Vector3.zero;
+            currentShakeRotation = Quaternion.identity;
             transform.localPosition = originalLocalPosition;
             transform.localRotation = originalLocalRotation;
             isShaking = false;
         }
     }
 
-    /// <summary>
-    /// Сбрасывает исходную позицию камеры (полезно если Player переместился)
-    /// </summary>
     public void ResetOriginalPosition()
     {
         if (!isShaking)
@@ -181,7 +175,6 @@ public class CameraShake : MonoBehaviour
         }
     }
 
-    // Примеры использования для тестирования
     void Update()
     {
         HandleShake();

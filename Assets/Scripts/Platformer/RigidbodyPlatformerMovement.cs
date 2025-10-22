@@ -20,6 +20,8 @@ public class RigidbodyPlatformerMovement : RigidbodyMovement
     private float _currentLerpFactor = 0f;
     // Мусорная переменная чисто для Mathf.SmoothDamp
     private float JustRefVariableForSmoothDumpBecauseItRequiresSomeVariableButSimultaneouslyReturnsValueWhatTheShitIAmWritingIsntIt;
+    // Для реализации перемещения с платформой
+    private Vector2 _platformVelocity = Vector2.zero;
 
     public bool NoButtonPressed => _targetVelocityX == 0f;
     public event Action OnAnyMove;
@@ -49,6 +51,7 @@ public class RigidbodyPlatformerMovement : RigidbodyMovement
         }
     }
 
+    // Для X
     public override void ChangeVelocity(Vector2 newVecloity)
     {
         _targetVelocityX = newVecloity.x;
@@ -68,6 +71,11 @@ public class RigidbodyPlatformerMovement : RigidbodyMovement
         }
     }
 
+    public void SetPlatformVelocity(Vector2 velocity)
+    {
+        _platformVelocity = velocity;
+    }
+
     public void HandleGravity()
     {
         _rigidbody.AddForce(new Vector2(0f, -_extraGravity * Time.deltaTime));
@@ -85,7 +93,10 @@ public class RigidbodyPlatformerMovement : RigidbodyMovement
 
         //_rb.MovePosition(newPosition);
         if (_currentVelocityX != 0) OnAnyMove?.Invoke();
-        _rigidbody.velocity = new Vector2(Speed * _currentVelocityX * Time.fixedDeltaTime, _rigidbody.velocity.y);
+
+        float finalVelocityX = Speed * _currentVelocityX * Time.fixedDeltaTime + _platformVelocity.x;
+
+        _rigidbody.velocity = new Vector2(finalVelocityX, _rigidbody.velocity.y);
     }
 
     public void ResetGravity()

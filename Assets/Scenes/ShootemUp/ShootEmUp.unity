@@ -1433,6 +1433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 0}
   _defaultTrackingPosition: {x: 0, y: 0, z: 0}
+  _cameraShake: {fileID: 263120675}
 --- !u!114 &263120674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5023,8 +5024,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 100%
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8d2c5b665d2da944e8a8aa7e6beaa39b, type: 2}
+  m_sharedMaterial: {fileID: -4658025546781487090, guid: 8d2c5b665d2da944e8a8aa7e6beaa39b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

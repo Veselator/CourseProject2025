@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHitShakeHolder : MonoBehaviour
@@ -7,6 +6,8 @@ public class PlayerHitShakeHolder : MonoBehaviour
     // Скрипт что-бы подвязать урон по игроку с тряской камеры
     // Интересно, что сам IHealth не знает о существовании CameraShake
     // Ровно как и CameraShake не знает о существовании конкретного экземпляра
+
+    // Вешаем на объект управления игроком
 
     private IHealth trackingHealth;
     private float movementHoldingTime;
@@ -22,8 +23,7 @@ public class PlayerHitShakeHolder : MonoBehaviour
 
     private void HoldCameraMovement()
     {
-        // Удерживаем движение на время тряски
-        StartCoroutine(HoldMainCameraMovement(movementHoldingTime));
+        //StartCoroutine(HoldMainCameraMovement(movementHoldingTime));
     }
 
     private IEnumerator HoldMainCameraMovement(float time)
