@@ -63,7 +63,7 @@ public class Health : MonoBehaviour, IHealth, IReadableValue
     public float CurrentHealthInPercentage => CurrentHealth / MaximumHealth;
     public float CurrentArmorInPercentage => Armor / MaximumArmor;
 
-    public Action OnDamaged { get; set; }
+    public Action OnDamaged { get; set; } // TODO: Action<float> OnDamaged для анимации текста урона
     public Action OnArmoryDestoyed { get; set; }
     public Action OnDeath { get; set;  }
     public Action OnHealthChanged { get; set; }

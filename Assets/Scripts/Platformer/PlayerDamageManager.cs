@@ -24,7 +24,7 @@ public class PlayerDamageManager : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = UnityEngine.Color.red;
+        Gizmos.color = Color.red;
         Gizmos.DrawWireCube(_bottomPointTransform.position, _bottomBox);
     }
 
@@ -36,10 +36,11 @@ public class PlayerDamageManager : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D colli)
     {
         IPossible2DealDamage tempInterface;
-
         // Если не предмет, способный нанести урон - нам не интересно
         if (!colli.gameObject.TryGetComponent<IPossible2DealDamage>(out tempInterface)) return;
+
         BasePEnemy tempEnemy = tempInterface as BasePEnemy;
+        Laser laser = tempInterface as Laser;
 
         if (tempEnemy)
         {
@@ -56,15 +57,29 @@ public class PlayerDamageManager : MonoBehaviour
                 _health.TakeDamage(tempEnemy.DealedDamage);
             }
         }
+        else if (laser)
+        {
+            // Усё
+            // Допрыгался фраер
+            _health.TakeDamage(laser.DealedDamage);
+        }
         else
         {
             // Очевидно, что это статичное препятствие
             // При всём нашем большом желании мы ему не сможем ничего навредить
             // А он нам - сможет
-            Debug.Log($"WOW! I touched static obstacle! Amazing!");
             _health.TakeDamage(tempInterface.DealedDamage);
         }
 
-        _movement.DoImpulse(GetNormalizedVectorBetween(transform.position, colli.transform.position), _impulseStrengthAfterDamageDealed);
+        Vector2 contactPoint = Vector2.zero;
+        for (int i = 0; i < colli.contactCount; i++)
+        {
+            contactPoint += colli.GetContact(i).point;
+        }
+        contactPoint /= colli.contactCount;
+
+        Vector2 knockbackDirection = GetNormalizedVectorBetween((Vector2)transform.position, contactPoint);
+        Debug.Log($"Knockback direction is {knockbackDirection}, _impulseStrengthAfterDamageDealed is {_impulseStrengthAfterDamageDealed}");
+        _movement.DoImpulse(knockbackDirection, _impulseStrengthAfterDamageDealed);
     }
 }

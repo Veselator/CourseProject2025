@@ -1,18 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class SignalLineClickHandler : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private LinkedManager[] _linkedManagers;
 
-    // Update is called once per frame
-    void Update()
+    private void OnMouseDown()
     {
-        
+        //_linkedManager.RotateLine(ID);
+        foreach (LinkedManager signalManager in _linkedManagers)
+        {
+            signalManager.linkedManager.RotateLine(signalManager.ID);
+        }
     }
+}
+
+[Serializable]
+public struct LinkedManager
+{
+    public SignalsManager linkedManager;
+    public int ID;
 }

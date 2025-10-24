@@ -1,18 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SignalLineVisual : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private LinkedManager[] _linkedManagers;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // Подписка на события, отображения состояния
 }

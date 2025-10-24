@@ -23,11 +23,23 @@ public class RigidbodyPlatformerMovement : RigidbodyMovement
     // Для реализации перемещения с платформой
     private Vector2 _platformVelocity = Vector2.zero;
 
+    private bool _isStunned = false;
+    private float _stunnedTimer = 0f;
+
     public bool NoButtonPressed => _targetVelocityX == 0f;
     public event Action OnAnyMove;
     protected override void FixedUpdate()
     {
-        if(!_isAtTargetSpeed) HandleSmoothMovement();
+        if (_isStunned)
+        {
+            _stunnedTimer -= Time.fixedDeltaTime;
+            if (_stunnedTimer <= 0f)
+            {
+                _isStunned = false;
+            }
+        }
+
+        if (!_isAtTargetSpeed && !_isStunned) HandleSmoothMovement();
         base.FixedUpdate();
     }
 
@@ -89,13 +101,11 @@ public class RigidbodyPlatformerMovement : RigidbodyMovement
 
     protected override void HandleMovement()
     {
-        //Vector2 newPosition = _rb.position + Speed * Time.fixedDeltaTime * Velocity;
+        // НЕ перезаписываем velocity, если игрок в стане
+        if (_isStunned) return;
 
-        //_rb.MovePosition(newPosition);
         if (_currentVelocityX != 0) OnAnyMove?.Invoke();
-
         float finalVelocityX = Speed * _currentVelocityX * Time.fixedDeltaTime + _platformVelocity.x;
-
         _rigidbody.velocity = new Vector2(finalVelocityX, _rigidbody.velocity.y);
     }
 
@@ -104,10 +114,13 @@ public class RigidbodyPlatformerMovement : RigidbodyMovement
         _rigidbody.velocity = Vector2.zero;
     }
 
-    public void DoImpulse(Vector2 direction, float impulseStrength = 1f)
+    public void DoImpulse(Vector2 direction, float impulseStrength = 1f, float stunDuration = 0.2f)
     {
-        //Debug.Log($"Impulse direction {direction} impulseStrength {impulseStrength}");
         ResetGravity();
         _rigidbody.AddForce(direction * impulseStrength, ForceMode2D.Impulse);
+
+        // Блокируем управление на время импульса
+        _isStunned = true;
+        _stunnedTimer = stunDuration;
     }
 }
