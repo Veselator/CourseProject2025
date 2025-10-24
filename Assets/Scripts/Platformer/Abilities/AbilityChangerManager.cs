@@ -8,6 +8,7 @@ public class AbilityChangerManager : MonoBehaviour
     private PlayerChangerManager _changerManager;
     [SerializeField] private PlayerAbilityManager _playerAbilityManager;
     [SerializeField] private PlayerPunchManager _playerPunchManager;
+    [SerializeField] private GrenadesManager _grenadesManager;
 
     private void Start()
     {
@@ -26,7 +27,7 @@ public class AbilityChangerManager : MonoBehaviour
     private void InitAbilityPanels()
     {
         abilityPanels = new AbilityPanel[2] {
-            new(new AbilityStrongPunch(_playerPunchManager), new AbilityMechanic()),
+            new(new AbilityStrongPunch(_playerPunchManager), new AbilityMechanic(_grenadesManager)),
             new(new AbilitySolvePuzzles(), new AbilityTurnOffLazers())
         };
     }

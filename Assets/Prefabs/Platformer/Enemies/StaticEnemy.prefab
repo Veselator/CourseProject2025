@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dealedDamage:
-    damageHealth: 100
+    damageHealth: 25
     damageArmor: 0
     damageMultiplier: 1
 --- !u!61 &5065189829240789120

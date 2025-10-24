@@ -1,4 +1,3 @@
-using System.Drawing;
 using UnityEngine;
 
 public class PlayerPunchManager : MonoBehaviour
@@ -12,10 +11,10 @@ public class PlayerPunchManager : MonoBehaviour
     private void OnDrawGizmos()
     {
         if (_punchTransform == null) return;
-        Gizmos.color = UnityEngine.Color.red;
+        Gizmos.color = Color.red;
         Gizmos.DrawWireCube(_punchTransform.position, _punchRectangle);
 
-        Gizmos.color = UnityEngine.Color.yellow;
+        Gizmos.color = Color.yellow;
         Vector2 punchDirection = GetPunchDirection();
         Gizmos.DrawRay(_punchTransform.position, punchDirection * 2f);
     }

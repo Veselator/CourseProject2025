@@ -1,16 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class AbilityMechanic : IAbility
 {
-    public AbilityMechanic()
+    private GrenadesManager _grenadesManager;
+    public AbilityMechanic(GrenadesManager grenadesManager)
     {
-
+        _grenadesManager = grenadesManager;
     }
 
     public void Try2ApplyAbility()
     {
-        throw new System.NotImplementedException();
+        _grenadesManager.ThrowGrenade();
     }
 }

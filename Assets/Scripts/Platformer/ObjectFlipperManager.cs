@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ObjectFlipperManager : MonoBehaviour
@@ -6,6 +7,8 @@ public class ObjectFlipperManager : MonoBehaviour
     [SerializeField] private Transform _object2Flip;
     private RigidbodyPlatformerMovement _movement;
     private bool _isFlipped = false;
+
+    public event Action OnFlipped;
 
     private void Start()
     {
@@ -24,6 +27,7 @@ public class ObjectFlipperManager : MonoBehaviour
         _object2Flip.localScale = new Vector3(-_object2Flip.localScale.x, 
             _object2Flip.localScale.y, 
             _object2Flip.localScale.z);
+        OnFlipped?.Invoke();
     }
 
     private void HandleFlip()

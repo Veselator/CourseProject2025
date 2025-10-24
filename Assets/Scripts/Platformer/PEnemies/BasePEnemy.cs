@@ -11,6 +11,18 @@ public abstract class BasePEnemy : MonoBehaviour, IPossible2DealDamage
     protected virtual void Start()
     {
         InitComponents();
+
+        Health.OnDeath += ProcessDeath;
+    }
+
+    private void OnDestroy()
+    {
+        Health.OnDeath -= ProcessDeath;
+    }
+
+    private void ProcessDeath()
+    {
+        Destroy(gameObject);
     }
 
     private void InitComponents()

@@ -154,6 +154,24 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""LeftPrimaryKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""0993c986-8bf8-4c90-8322-cc519a71d8ac"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightPrimaryKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""f64266ce-30ee-44ad-8e27-9d4e5aa981de"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -321,6 +339,28 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""action"": ""AdditionalActionButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""81200c23-d801-4caa-b644-fbe98407c8a3"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftPrimaryKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1ad0f46c-8e7a-4bca-a7c3-5aed8d8aa5a1"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightPrimaryKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -336,6 +376,8 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         m_Player_NumThree = m_Player.FindAction("NumThree", throwIfNotFound: true);
         m_Player_NumFour = m_Player.FindAction("NumFour", throwIfNotFound: true);
         m_Player_AdditionalActionButton = m_Player.FindAction("AdditionalActionButton", throwIfNotFound: true);
+        m_Player_LeftPrimaryKey = m_Player.FindAction("LeftPrimaryKey", throwIfNotFound: true);
+        m_Player_RightPrimaryKey = m_Player.FindAction("RightPrimaryKey", throwIfNotFound: true);
     }
 
     ~@PlayerInputAction()
@@ -423,6 +465,8 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_NumThree;
     private readonly InputAction m_Player_NumFour;
     private readonly InputAction m_Player_AdditionalActionButton;
+    private readonly InputAction m_Player_LeftPrimaryKey;
+    private readonly InputAction m_Player_RightPrimaryKey;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -462,6 +506,14 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/AdditionalActionButton".
         /// </summary>
         public InputAction @AdditionalActionButton => m_Wrapper.m_Player_AdditionalActionButton;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/LeftPrimaryKey".
+        /// </summary>
+        public InputAction @LeftPrimaryKey => m_Wrapper.m_Player_LeftPrimaryKey;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/RightPrimaryKey".
+        /// </summary>
+        public InputAction @RightPrimaryKey => m_Wrapper.m_Player_RightPrimaryKey;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -509,6 +561,12 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @AdditionalActionButton.started += instance.OnAdditionalActionButton;
             @AdditionalActionButton.performed += instance.OnAdditionalActionButton;
             @AdditionalActionButton.canceled += instance.OnAdditionalActionButton;
+            @LeftPrimaryKey.started += instance.OnLeftPrimaryKey;
+            @LeftPrimaryKey.performed += instance.OnLeftPrimaryKey;
+            @LeftPrimaryKey.canceled += instance.OnLeftPrimaryKey;
+            @RightPrimaryKey.started += instance.OnRightPrimaryKey;
+            @RightPrimaryKey.performed += instance.OnRightPrimaryKey;
+            @RightPrimaryKey.canceled += instance.OnRightPrimaryKey;
         }
 
         /// <summary>
@@ -541,6 +599,12 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @AdditionalActionButton.started -= instance.OnAdditionalActionButton;
             @AdditionalActionButton.performed -= instance.OnAdditionalActionButton;
             @AdditionalActionButton.canceled -= instance.OnAdditionalActionButton;
+            @LeftPrimaryKey.started -= instance.OnLeftPrimaryKey;
+            @LeftPrimaryKey.performed -= instance.OnLeftPrimaryKey;
+            @LeftPrimaryKey.canceled -= instance.OnLeftPrimaryKey;
+            @RightPrimaryKey.started -= instance.OnRightPrimaryKey;
+            @RightPrimaryKey.performed -= instance.OnRightPrimaryKey;
+            @RightPrimaryKey.canceled -= instance.OnRightPrimaryKey;
         }
 
         /// <summary>
@@ -630,5 +694,19 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnAdditionalActionButton(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "LeftPrimaryKey" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLeftPrimaryKey(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "RightPrimaryKey" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRightPrimaryKey(InputAction.CallbackContext context);
     }
 }
