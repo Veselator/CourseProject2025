@@ -31,10 +31,19 @@ public class SignalLine
     public bool GetSpecificSignal(SignalDirection direction) => CurrentSignal[direction];
     public bool GetSpecificSignal(int direction) => CurrentSignal[direction];
 
-    public void Rotate(bool isCLockwise)
+    public void Rotate(bool isClockwise)
     {
-        if (isCLockwise) CurrentSignal.RotateClockwise();
-        else CurrentSignal.RotateAnticlockwise();
+        if (isClockwise) CurrentSignal = new Signal(CurrentSignal.left, CurrentSignal.top, CurrentSignal.right, CurrentSignal.bottom);//CurrentSignal.RotateClockwise();
+        else CurrentSignal = new Signal(CurrentSignal.right, CurrentSignal.bottom, CurrentSignal.left, CurrentSignal.top);
+        //Debug.Log($"Signal {ID} is rotated! New signal is {CurrentSignal}");
+    }
+
+    public override string ToString()
+    {
+        string activeString = IsLineActive ? "active" : "not active";
+        return $"Hi! I`m the signal line with ID {ID}. My direction is {(int)CurrentDirection}. " +
+            $"My signals are: top={CurrentSignal.top}, right={CurrentSignal.right}, bottom={CurrentSignal.bottom}, left={CurrentSignal.left}. " +
+            $"I`m currently {activeString}! Have a nice day!";
     }
 }
 
@@ -86,23 +95,5 @@ public struct Signal
         this.right = right;
         this.bottom = bottom;
         this.left = left;
-    }
-
-    public void RotateClockwise()
-    {
-        bool temp = top;
-        top = left;
-        left = bottom;
-        bottom = right;
-        right = temp;
-    }
-
-    public void RotateAnticlockwise()
-    {
-        bool temp = top;
-        top = right;
-        bottom = left;
-        right = bottom;
-        left = temp;
     }
 }

@@ -7,6 +7,8 @@ public class SignalLinesConfig : ScriptableObject
     // Конфиг для настройки головоломки с проводами
     public SignalLineConfig[] signals;
     public SignalDirection startDirection;
+    [Header("Правильное решение срабатывает только один раз?")]
+    public bool IsOneShoot;
 }
 
 [Serializable]

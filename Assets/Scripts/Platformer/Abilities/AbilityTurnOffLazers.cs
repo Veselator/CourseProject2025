@@ -1,16 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class AbilityTurnOffLazers : IAbility
 {
-    public AbilityTurnOffLazers()
-    {
+    private LaserTurnOffer _laserTurnOffer;
+    private bool _isAvailable = true;
+    public float duration = 4f;
+    private float timeAfterDuration = 2f;
+    public float CooldownTime;
 
+    public bool IsAvailable { get => _isAvailable; set => _isAvailable = value; }
+
+    public AbilityTurnOffLazers(LaserTurnOffer laserTurnOffer)
+    {
+        _laserTurnOffer = laserTurnOffer;
+        CooldownTime = duration + timeAfterDuration;
     }
 
     public void Try2ApplyAbility()
     {
-        throw new System.NotImplementedException();
+        if (!_isAvailable) return;
+
+        _laserTurnOffer.StartCoroutineForTurinngOffLasers(this, duration, timeAfterDuration);
     }
 }

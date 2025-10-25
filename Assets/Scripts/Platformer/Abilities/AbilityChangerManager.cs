@@ -9,6 +9,7 @@ public class AbilityChangerManager : MonoBehaviour
     [SerializeField] private PlayerAbilityManager _playerAbilityManager;
     [SerializeField] private PlayerPunchManager _playerPunchManager;
     [SerializeField] private GrenadesManager _grenadesManager;
+    [SerializeField] private LaserTurnOffer _laserTurnOffer;
 
     private void Start()
     {
@@ -28,7 +29,7 @@ public class AbilityChangerManager : MonoBehaviour
     {
         abilityPanels = new AbilityPanel[2] {
             new(new AbilityStrongPunch(_playerPunchManager), new AbilityMechanic(_grenadesManager)),
-            new(new AbilitySolvePuzzles(), new AbilityTurnOffLazers())
+            new(new AbilitySolvePuzzles(), new AbilityTurnOffLazers(_laserTurnOffer))
         };
     }
 

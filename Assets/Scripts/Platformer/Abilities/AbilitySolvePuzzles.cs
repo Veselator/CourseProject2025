@@ -1,16 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class AbilitySolvePuzzles : IAbility
 {
-    public AbilitySolvePuzzles()
-    {
+    // Не удивляйся - эта абилка просто есть
+    public bool IsAvailable { get; set; } = true;
+    public AbilitySolvePuzzles() { }
 
-    }
-
-    public void Try2ApplyAbility()
-    {
-        throw new System.NotImplementedException();
-    }
+    public void Try2ApplyAbility() { }
 }

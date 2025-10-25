@@ -62,3 +62,6 @@ TagManager:
   - name: QuestItems
     uniqueID: 1215547279
     locked: 0
+  - name: SomePuzzle
+    uniqueID: 1655448521
+    locked: 0

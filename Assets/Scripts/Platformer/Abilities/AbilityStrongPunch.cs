@@ -5,6 +5,7 @@ using UnityEngine;
 public class AbilityStrongPunch : IAbility
 {
     private PlayerPunchManager _playerPunchManager;
+    public bool IsAvailable { get; set; } = true;
 
     public AbilityStrongPunch(PlayerPunchManager ppm)
     {

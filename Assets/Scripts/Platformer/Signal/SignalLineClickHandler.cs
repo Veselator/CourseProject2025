@@ -3,7 +3,12 @@ using UnityEngine;
 
 public class SignalLineClickHandler : MonoBehaviour
 {
-    [SerializeField] private LinkedManager[] _linkedManagers;
+    private LinkedManager[] _linkedManagers;
+
+    public void Init()
+    {
+        _linkedManagers = GetComponent<SignalLineLinkedManagers>().LinkedManagers;
+    }
 
     private void OnMouseDown()
     {
@@ -20,4 +25,6 @@ public struct LinkedManager
 {
     public SignalsManager linkedManager;
     public int ID;
+
+    public Signal GetSignal() => linkedManager.GetSignal(ID).GetSignal();
 }
