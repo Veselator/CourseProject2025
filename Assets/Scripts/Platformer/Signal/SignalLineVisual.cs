@@ -130,6 +130,11 @@ public class SignalLineVisual : MonoBehaviour
         else StartCoroutine(ChangeStateCoroutine(1f, 0f));
     }
 
+    private void OnDisable()
+    {
+        _isPlayingRotationAnimation = false;
+    }
+
     private IEnumerator ChangeStateCoroutine(float inValue, float outValue)
     {
         float currentDuration = 0f;

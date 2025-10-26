@@ -1,3 +1,5 @@
+using System;
+
 public class AbilityTurnOffLazers : IAbility
 {
     private LaserTurnOffer _laserTurnOffer;
@@ -6,12 +8,24 @@ public class AbilityTurnOffLazers : IAbility
     private float timeAfterDuration = 2f;
     public float CooldownTime;
 
-    public bool IsAvailable { get => _isAvailable; set => _isAvailable = value; }
+    public bool IsAvailable
+    {
+        get => _isAvailable;
+        set
+        {
+            if(_isAvailable != value) OnAbilityAvailabilityChanged?.Invoke(value);
+            _isAvailable = value;
+        }
+    }
 
-    public AbilityTurnOffLazers(LaserTurnOffer laserTurnOffer)
+    public AbilityUIData UIData { get; }
+    public event Action<bool> OnAbilityAvailabilityChanged;
+
+    public AbilityTurnOffLazers(LaserTurnOffer laserTurnOffer, AbilityUIData data)
     {
         _laserTurnOffer = laserTurnOffer;
         CooldownTime = duration + timeAfterDuration;
+        UIData = data;
     }
 
     public void Try2ApplyAbility()
@@ -19,5 +33,6 @@ public class AbilityTurnOffLazers : IAbility
         if (!_isAvailable) return;
 
         _laserTurnOffer.StartCoroutineForTurinngOffLasers(this, duration, timeAfterDuration);
+        IsAvailable = false;
     }
 }
