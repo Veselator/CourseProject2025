@@ -23,25 +23,31 @@ public class PlayerPlatformerHandler : PlayerMovementHandler
     [SerializeField] private float _maxCoyoteTime = 0.4f;
     private bool isSecondJumpAvailable = true;
     private bool _isGrounded = false;
+    private bool _isGroundedLast = false; // Нужно для отслеживания состояния
 
     private RigidbodyPlatformerMovement _rigidbodyMovement;
     protected override bool IsHandleAdditionalThings { get; } = true;
 
-    public event Action OnPlayerJump;
+    public event Action OnPlayerJumped;
+    public event Action OnPlayerWalking;
+    public event Action OnPlayerDoesntWalking;
+    public event Action OnPlayerFalling;
+    public event Action OnPlayerGrounded;
+
     protected override void Init()
     {
         _playerInput = PlayerInput.Instance;
         _movement = GetComponent<IMovement>();
         _rigidbodyMovement = _movement as RigidbodyPlatformerMovement;
 
-        OnPlayerJump += Jump;
+        OnPlayerJumped += Jump;
 
         _movement.Init(Vector2.zero);
     }
 
     private void OnDestroy()
     {
-        OnPlayerJump -= Jump;
+        OnPlayerJumped -= Jump;
     }
 
     protected override void HandleInput()
@@ -50,15 +56,38 @@ public class PlayerPlatformerHandler : PlayerMovementHandler
         HandleJump();
     }
 
+    protected override void HandleMovingInput()
+    {
+        Vector2 currentMovementVector = MovementVector;
+
+        if (currentMovementVector.x == 0) OnPlayerWalking?.Invoke();
+        else OnPlayerDoesntWalking?.Invoke();
+
+            _movement.ChangeVelocity(currentMovementVector);
+    }
+
     protected override void HandleAdditionalThings()
     {
         // Родительский класс гарантирует, что вызов HandleAdditionalThings будет перед HandleInput
-        _isGrounded = IsGrounded();
-        if (_isGrounded) isSecondJumpAvailable = true;
+        HoldIsGrounded();
 
         CoyoteTimerHandler();
         AirTimerHandler();
         ExtraGravity();
+    }
+
+    private void HoldIsGrounded()
+    {
+        // Проверяем логику, связанную с приземлением и полётом
+        _isGrounded = IsGrounded();
+        if (_isGrounded) isSecondJumpAvailable = true;
+
+        // Приземлились
+        if(!_isGroundedLast && _isGrounded) OnPlayerGrounded?.Invoke();
+        // Летит
+        else if (!_isGrounded) OnPlayerFalling?.Invoke();
+
+        _isGroundedLast = _isGrounded;
     }
 
     // Кастомная гравитация. Реализация от Rigidbody2D sucks
@@ -112,12 +141,12 @@ public class PlayerPlatformerHandler : PlayerMovementHandler
 
         if (_isGrounded || _coyoteTimer > 0f)
         {
-            OnPlayerJump?.Invoke();
+            OnPlayerJumped?.Invoke();
         }
         else if (isSecondJumpAvailable)
         {
             _airTimer = 0f;
-            OnPlayerJump?.Invoke();
+            OnPlayerJumped?.Invoke();
             isSecondJumpAvailable = false;
         }
     }

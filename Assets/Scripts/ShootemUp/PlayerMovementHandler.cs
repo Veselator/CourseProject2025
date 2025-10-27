@@ -54,7 +54,7 @@ public class PlayerMovementHandler : MonoBehaviour
         Debug.Log("Child classes only");
     }
 
-    private void HandleMovingInput()
+    protected virtual void HandleMovingInput()
     {
         _movement.ChangeVelocity(MovementVector);
     }
