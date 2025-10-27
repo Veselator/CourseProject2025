@@ -80,6 +80,13 @@ public class Health : MonoBehaviour, IHealth, IReadableValue
         Debug.Log($"Helath inited! hp{currentHealth} arm{currentArmor}");
     }
 
+    public void ResetHealth()
+    {
+        currentHealth = MaximumHealth;
+        currentArmor = MaximumArmor;
+        OnValueChanged?.Invoke(Value);
+    }
+
     public void TakeDamage(Damage damage)
     {
         // Что-бы не регистрировать урон когда игра уже закончилась

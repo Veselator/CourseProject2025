@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public interface IHealth
@@ -25,6 +23,7 @@ public interface IHealth
     Action OnArmoryDestoyed { get; set; }
     Action OnArmorChanged { get; set; }
     Action OnDeath { get; set;  }
+    abstract void ResetHealth();
     abstract void TakeDamage(Damage damage); // заменить damage на struct damage, для большей модификации урона
     // Ps OnCollisionEnter2D обрабатывает пуля
 }

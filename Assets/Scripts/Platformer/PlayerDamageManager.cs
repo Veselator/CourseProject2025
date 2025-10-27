@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerDamageManager : MonoBehaviour
 {
     private IHealth _health;
+    public IHealth Health => _health;
     private RigidbodyPlatformerMovement _movement;
 
     [SerializeField] private LayerMask _enemyMask;
