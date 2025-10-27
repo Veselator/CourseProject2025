@@ -23,6 +23,7 @@ public class PlayerPlatformerHandler : PlayerMovementHandler
     [SerializeField] private float _maxCoyoteTime = 0.4f;
     private bool isSecondJumpAvailable = true;
     private bool _isGrounded = false;
+    public bool IsGrounded => _isGrounded;
     private bool _isGroundedLast = false; // Нужно для отслеживания состояния
 
     private RigidbodyPlatformerMovement _rigidbodyMovement;
@@ -33,6 +34,7 @@ public class PlayerPlatformerHandler : PlayerMovementHandler
     public event Action OnPlayerDoesntWalking;
     public event Action OnPlayerFalling;
     public event Action OnPlayerGrounded;
+    public event Action OnPlayerDegrounded;
 
     protected override void Init()
     {
@@ -60,7 +62,7 @@ public class PlayerPlatformerHandler : PlayerMovementHandler
     {
         Vector2 currentMovementVector = MovementVector;
 
-        if (currentMovementVector.x == 0) OnPlayerWalking?.Invoke();
+        if (currentMovementVector.x != 0) OnPlayerWalking?.Invoke();
         else OnPlayerDoesntWalking?.Invoke();
 
             _movement.ChangeVelocity(currentMovementVector);
@@ -79,11 +81,13 @@ public class PlayerPlatformerHandler : PlayerMovementHandler
     private void HoldIsGrounded()
     {
         // Проверяем логику, связанную с приземлением и полётом
-        _isGrounded = IsGrounded();
+        _isGrounded = GetIsGrounded();
         if (_isGrounded) isSecondJumpAvailable = true;
 
         // Приземлились
         if(!_isGroundedLast && _isGrounded) OnPlayerGrounded?.Invoke();
+        // От земли оттолкнулись
+        else if (_isGroundedLast && !_isGrounded) OnPlayerDegrounded?.Invoke();
         // Летит
         else if (!_isGrounded) OnPlayerFalling?.Invoke();
 
@@ -124,7 +128,7 @@ public class PlayerPlatformerHandler : PlayerMovementHandler
         }
     }
 
-    private bool IsGrounded()
+    private bool GetIsGrounded()
     {
         return Physics2D.OverlapBox(_checkGroundTransform.position, _groundCheckRectangle, 0f, _groundLayer);
     }

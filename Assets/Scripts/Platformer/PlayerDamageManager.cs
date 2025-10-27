@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerDamageManager : MonoBehaviour
@@ -11,6 +12,7 @@ public class PlayerDamageManager : MonoBehaviour
     [SerializeField] private Damage PlayerDamageOnEnemies;
     [SerializeField] private float _impulseStrengthAfterDamageDealed = 2f;
 
+    public event Action OnPlayerDamaged;
     private void Start()
     {
         _health = GetComponent<Health>();
@@ -80,6 +82,8 @@ public class PlayerDamageManager : MonoBehaviour
 
         Vector2 knockbackDirection = GetNormalizedVectorBetween((Vector2)transform.position, contactPoint);
         Debug.Log($"Knockback direction is {knockbackDirection}, _impulseStrengthAfterDamageDealed is {_impulseStrengthAfterDamageDealed}");
+
         _movement.DoImpulse(knockbackDirection, _impulseStrengthAfterDamageDealed);
+        OnPlayerDamaged?.Invoke();
     }
 }
