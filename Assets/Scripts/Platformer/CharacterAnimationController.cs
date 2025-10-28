@@ -5,6 +5,7 @@ public class CharacterAnimationController : MonoBehaviour
     [SerializeField] private Animator[] _linkedAnimators;
     [SerializeField] private PlayerPlatformerHandler _linkedPlayerPlatformerHandler;
     [SerializeField] private PlayerDamageManager _damageManager;
+    [SerializeField] private PlayerAbilityManager _abilityManager;
     [SerializeField] private float _runThreshold = 1f;
 
     private static readonly int IsWalkingHash = Animator.StringToHash("IsWalking");
@@ -12,6 +13,8 @@ public class CharacterAnimationController : MonoBehaviour
     private static readonly int IsGroundedHash = Animator.StringToHash("IsGrounded");
     private static readonly int DamageHash = Animator.StringToHash("Damage");
     private static readonly int RunHash = Animator.StringToHash("Run");
+    private static readonly int PunchHash = Animator.StringToHash("Punch");
+    private static readonly int ThrowHash = Animator.StringToHash("Throw");
 
     private float _runTimer = 0f;
     private bool _isWalking = false;
@@ -19,14 +22,24 @@ public class CharacterAnimationController : MonoBehaviour
 
     private void OnEnable()
     {
-        if (_linkedPlayerPlatformerHandler == null) return;
-        _linkedPlayerPlatformerHandler.OnPlayerJumped += HandleJump;
-        _linkedPlayerPlatformerHandler.OnPlayerWalking += HandleWalking;
-        _linkedPlayerPlatformerHandler.OnPlayerDoesntWalking += HandleNotWalking;
-        _linkedPlayerPlatformerHandler.OnPlayerGrounded += HandleGrounded;
-        _linkedPlayerPlatformerHandler.OnPlayerDegrounded += HandleDegrounded;
-        if (_damageManager == null) return;
-        _damageManager.OnPlayerDamaged += HandleDamage;
+        if (_linkedPlayerPlatformerHandler != null)
+        {
+            _linkedPlayerPlatformerHandler.OnPlayerJumped += HandleJump;
+            _linkedPlayerPlatformerHandler.OnPlayerWalking += HandleWalking;
+            _linkedPlayerPlatformerHandler.OnPlayerDoesntWalking += HandleNotWalking;
+            _linkedPlayerPlatformerHandler.OnPlayerGrounded += HandleGrounded;
+            _linkedPlayerPlatformerHandler.OnPlayerDegrounded += HandleDegrounded;
+        }
+
+        if (_abilityManager != null)
+        {
+            _abilityManager.OnAbilityApplied += HoldAbilityAnimation;
+        }
+
+        if (_damageManager == null)
+        {
+            _damageManager.OnPlayerDamaged += HandleDamage;
+        }
 
         if (_linkedPlayerPlatformerHandler.IsGrounded) HandleGrounded();
         else HandleDegrounded();
@@ -34,14 +47,24 @@ public class CharacterAnimationController : MonoBehaviour
 
     private void OnDisable()
     {
-        if (_linkedPlayerPlatformerHandler == null) return;
-        _linkedPlayerPlatformerHandler.OnPlayerJumped -= HandleJump;
-        _linkedPlayerPlatformerHandler.OnPlayerWalking -= HandleWalking;
-        _linkedPlayerPlatformerHandler.OnPlayerDoesntWalking -= HandleNotWalking;
-        _linkedPlayerPlatformerHandler.OnPlayerGrounded -= HandleGrounded;
-        _linkedPlayerPlatformerHandler.OnPlayerDegrounded -= HandleDegrounded;
-        if (_damageManager == null) return;
-        _damageManager.OnPlayerDamaged -= HandleDamage;
+        if (_linkedPlayerPlatformerHandler != null)
+        {
+            _linkedPlayerPlatformerHandler.OnPlayerJumped -= HandleJump;
+            _linkedPlayerPlatformerHandler.OnPlayerWalking -= HandleWalking;
+            _linkedPlayerPlatformerHandler.OnPlayerDoesntWalking -= HandleNotWalking;
+            _linkedPlayerPlatformerHandler.OnPlayerGrounded -= HandleGrounded;
+            _linkedPlayerPlatformerHandler.OnPlayerDegrounded -= HandleDegrounded;
+        }
+
+        if (_abilityManager != null)
+        {
+            _abilityManager.OnAbilityApplied -= HoldAbilityAnimation;
+        }
+
+        if (_damageManager == null)
+        {
+            _damageManager.OnPlayerDamaged -= HandleDamage;
+        }
     }
 
     private void Update()
@@ -56,6 +79,23 @@ public class CharacterAnimationController : MonoBehaviour
                 Run();
             }
         }
+    }
+
+    private void ApplyTrigger(int property)
+    {
+        foreach (var animator in _linkedAnimators)
+        {
+            if (animator != null)
+            {
+                animator.SetTrigger(property);
+            }
+        }
+    }
+
+    private void HoldAbilityAnimation(IAbility ability)
+    {
+        if (ability.Type == AbilityType.Mechanic) ApplyTrigger(ThrowHash);
+        else if (ability.Type == AbilityType.StrongPunch) ApplyTrigger(PunchHash);
     }
 
     private void Run()

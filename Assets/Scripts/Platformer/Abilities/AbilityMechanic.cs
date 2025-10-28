@@ -2,6 +2,7 @@ using System;
 
 public class AbilityMechanic : IAbility
 {
+    public AbilityType Type { get; } = AbilityType.Mechanic;
     private GrenadesManager _grenadesManager;
     private bool _isAvailable = false; // По умолчанию у нас нет гранат
     public bool IsAvailable

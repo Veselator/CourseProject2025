@@ -2,6 +2,7 @@ using System;
 
 public class AbilitySolvePuzzles : IAbility
 {
+    public AbilityType Type { get; } = AbilityType.SolvePuzzles;
     // Не удивляйся - эта абилка просто есть
     public bool IsAvailable { get; set; } = true;
     public AbilityUIData UIData { get; }

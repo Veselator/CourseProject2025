@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +9,7 @@ public class PlayerAbilityManager : MonoBehaviour
     public AbilityPanel currentAbilitiesPanel;
     [SerializeField] private InputActionReference[] _inputActions = new InputActionReference[2];
 
+    public event Action<IAbility> OnAbilityApplied;
     private void Start()
     {
         InitInputAction();
@@ -44,9 +46,11 @@ public class PlayerAbilityManager : MonoBehaviour
 
     private void ApplyAbility(int abilityId)
     {
+        IAbility ability = currentAbilitiesPanel.abilities[abilityId];
         if (currentAbilitiesPanel.abilities[abilityId] == null) return;
 
-        currentAbilitiesPanel.abilities[abilityId].Try2ApplyAbility();
+        ability.Try2ApplyAbility();
+        OnAbilityApplied?.Invoke(ability);
     }
 }
 

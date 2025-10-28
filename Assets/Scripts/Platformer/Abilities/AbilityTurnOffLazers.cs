@@ -2,6 +2,7 @@ using System;
 
 public class AbilityTurnOffLazers : IAbility
 {
+    public AbilityType Type { get; } = AbilityType.TurnOffLasers;
     private LaserTurnOffer _laserTurnOffer;
     private bool _isAvailable = true;
     public float duration = 4f;

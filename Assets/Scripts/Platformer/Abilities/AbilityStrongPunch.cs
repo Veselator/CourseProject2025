@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class AbilityStrongPunch : IAbility
 {
+    public AbilityType Type { get; } = AbilityType.StrongPunch;
     private PlayerPunchManager _playerPunchManager;
     public bool IsAvailable { get; set; } = true;
     public AbilityUIData UIData { get; }
