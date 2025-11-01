@@ -37,7 +37,8 @@ public class DialogueTextWriter : MonoBehaviour
         for (int i = 0; i <= totalCharacters; i++)
         {
             _dialogueText.maxVisibleCharacters = i;
-            yield return new WaitForSeconds(currentTypingConfig.TypingSpeed);
+
+            if(i < totalCharacters && Char.IsLetter(allText[i])) yield return new WaitForSeconds(currentTypingConfig.TypingSpeed);
 
             // Если подошли к концу - меняем currentTypingConfig
             if (i == currentTypingConfig.IDTo)

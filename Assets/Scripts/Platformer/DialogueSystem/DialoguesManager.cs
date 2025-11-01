@@ -26,9 +26,13 @@ public class DialoguesManager : MonoBehaviour
     private bool _isReadyToNextNode = false;
     private int currentNodeIndex = 0;
 
+    public static DialoguesManager Instance { get; private set; }
+
     public event Action<DialogueSO> OnDialogueEnded;
     private void Awake()
     {
+        if(Instance == null) Instance = this;
+
         _textWriter.OnWritingEnded += HandleWritingEnded;
         _dialogueRoot.SetActive(false);
 
@@ -52,8 +56,8 @@ public class DialoguesManager : MonoBehaviour
 
         DialogueNodeSO nextNode = _currentDialogue.Nodes[currentNodeIndex];
         UpdateUI(nextNode);
-        _textWriter.Write(nextNode);
         _dialogueRoot.SetActive(true);
+        _textWriter.Write(nextNode);
     }
 
     // Для привязки к нажатию кнопки

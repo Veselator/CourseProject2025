@@ -32,15 +32,17 @@ public class NextAvailabilityAnimation : MonoBehaviour
         float duration = 0;
         float t = 0;
 
+        Color color = _linkedText.color;
         while (duration < _fadeInDuration)
         {
             duration += Time.deltaTime;
             t = duration / _fadeInDuration;
-            SetAlpha(t);
+
+            _linkedText.color = new Color(color.r, color.g, color.b, t);
             yield return null;
         }
 
-        SetAlpha(1f);
+        _linkedText.color = new Color(color.r, color.g, color.b, 1);
         _isPlayingCoroutine = false;
     }
 
