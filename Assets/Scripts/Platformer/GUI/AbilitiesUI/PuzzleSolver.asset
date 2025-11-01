@@ -15,4 +15,4 @@ MonoBehaviour:
   Title: "\u0412\u0447\u0438\u0442\u044C\u0441\u044F \u043D\u0430 \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u0456\u0441\u0442\u0430"
   Description: "\u041C\u043E\u0436\u0435 \u0432\u0438\u0440\u0456\u0448\u0443\u0432\u0430\u0442\u0438
     \u0433\u043E\u043B\u043E\u0432\u043E\u043B\u043E\u043C\u043A\u0438"
-  AbilitySprite: {fileID: -471377129, guid: 61f6418bf86c6a64bbbb2694f4944433, type: 3}
+  AbilitySprite: {fileID: 786889698, guid: 6063fffc8ba0c5040968aa51bad8878e, type: 3}

@@ -6,6 +6,7 @@ public class PlayerDamageManager : MonoBehaviour
     private IHealth _health;
     public IHealth Health => _health;
     private RigidbodyPlatformerMovement _movement;
+    private InvulnerabilityManager _invulnerabilityManager;
 
     [SerializeField] private LayerMask _enemyMask;
     [SerializeField] private Vector2 _bottomBox;
@@ -18,6 +19,7 @@ public class PlayerDamageManager : MonoBehaviour
     {
         _health = GetComponent<Health>();
         _movement = GetComponent<RigidbodyPlatformerMovement>();
+        _invulnerabilityManager = GetComponent<InvulnerabilityManager>();
     }
 
     private bool IsPlayerAtTopOfEnemy(Vector2 enemyPosition)
@@ -45,33 +47,39 @@ public class PlayerDamageManager : MonoBehaviour
         BasePEnemy tempEnemy = tempInterface as BasePEnemy;
         Laser laser = tempInterface as Laser;
 
-        if (tempEnemy)
+        if (!_invulnerabilityManager.IsInvulnerable) // Если неуязвимы - то урона не будет, хоть и игрока всё равно оттолкнёт
         {
-            // Это враг
-            // Проверяем - мы наносим урон или по нам наносят урон
-            if (IsPlayerAtTopOfEnemy(colli.transform.position))
+            if (tempEnemy)
             {
-                tempEnemy.Health.TakeDamage(PlayerDamageOnEnemies);
+                // Это враг
+                // Проверяем - мы наносим урон или по нам наносят урон
+                if (IsPlayerAtTopOfEnemy(colli.transform.position))
+                {
+                    tempEnemy.Health.TakeDamage(PlayerDamageOnEnemies);
+                }
+                else
+                {
+                    // Урон получает игрок
+                    // Плак-плак
+                    _health.TakeDamage(tempEnemy.DealedDamage);
+                    _invulnerabilityManager.ResetTimer();
+                }
+            }
+            else if (laser)
+            {
+                // Усё
+                // Допрыгался фраер
+                _health.TakeDamage(laser.DealedDamage);
+                _invulnerabilityManager.ResetTimer();
             }
             else
             {
-                // Урон получает игрок
-                // Плак-плак
-                _health.TakeDamage(tempEnemy.DealedDamage);
+                // Очевидно, что это статичное препятствие
+                // При всём нашем большом желании мы ему не сможем никак навредить
+                // А он нам - сможет
+                _health.TakeDamage(tempInterface.DealedDamage);
+                _invulnerabilityManager.ResetTimer();
             }
-        }
-        else if (laser)
-        {
-            // Усё
-            // Допрыгался фраер
-            _health.TakeDamage(laser.DealedDamage);
-        }
-        else
-        {
-            // Очевидно, что это статичное препятствие
-            // При всём нашем большом желании мы ему не сможем ничего навредить
-            // А он нам - сможет
-            _health.TakeDamage(tempInterface.DealedDamage);
         }
 
         Vector2 contactPoint = Vector2.zero;

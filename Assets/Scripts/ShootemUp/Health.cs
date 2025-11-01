@@ -54,6 +54,7 @@ public class Health : MonoBehaviour, IHealth, IReadableValue
         set
         {
             currentHealth = Math.Max(value, 0f);
+            OnValueChanged?.Invoke(Value);
         }
     }
     // В данной реализации не используется
@@ -84,7 +85,6 @@ public class Health : MonoBehaviour, IHealth, IReadableValue
     {
         currentHealth = MaximumHealth;
         currentArmor = MaximumArmor;
-        OnValueChanged?.Invoke(Value);
     }
 
     public void TakeDamage(Damage damage)
@@ -108,19 +108,18 @@ public class Health : MonoBehaviour, IHealth, IReadableValue
 
                 if (excessDamage > 0f)
                 {
-                    currentHealth -= damage.damageMultiplier * excessDamage;
+                    CurrentHealth -= damage.damageMultiplier * excessDamage;
                     OnHealthChanged?.Invoke();
                 }
             }
         }
         else
         {
-            currentHealth -= damage.damageMultiplier * damage.damageHealth;
+            CurrentHealth -= damage.damageMultiplier * damage.damageHealth;
             OnHealthChanged?.Invoke();
         }
         Debug.Log($"Damage dealed hpd {damage.damageHealth} armd {damage.damageArmor} dmp {damage.damageMultiplier}. I`m hp = {currentHealth} & arm = {currentArmor}");
         OnDamaged?.Invoke();
-        OnValueChanged?.Invoke(Value);
 
         if (IsDied) OnDeath?.Invoke();
     }

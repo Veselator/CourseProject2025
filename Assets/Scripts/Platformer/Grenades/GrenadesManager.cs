@@ -7,12 +7,19 @@ public class GrenadesManager : MonoBehaviour
     [SerializeField] private Transform _grenadeSpawnPoint;
     [SerializeField] private float _thowForceFactor = 3f;
 
-    private int _currentNumOfGrenades = 3; // бпелеммн
+    private int _currentNumOfGrenades = 0;
     public int CurrentNumOfGrenades => _currentNumOfGrenades;
     private Vector3 _currentMousePos => Camera.main.ScreenToWorldPoint(Input.mousePosition);
     private Vector2 _currentThrowDirection => (Vector2)(_currentMousePos - _grenadeSpawnPoint.position).normalized;
 
     public event Action<int> OnGrenadeCountChanged;
+
+    public static GrenadesManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        if(Instance == null) Instance = this;
+    }
 
     public void AddGrenades(int count = 1)
     {
