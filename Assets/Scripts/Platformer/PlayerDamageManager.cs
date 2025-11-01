@@ -44,12 +44,20 @@ public class PlayerDamageManager : MonoBehaviour
         // Если не предмет, способный нанести урон - нам не интересно
         if (!colli.gameObject.TryGetComponent<IPossible2DealDamage>(out tempInterface)) return;
 
-        BasePEnemy tempEnemy = tempInterface as BasePEnemy;
-        Laser laser = tempInterface as Laser;
-
         if (!_invulnerabilityManager.IsInvulnerable) // Если неуязвимы - то урона не будет, хоть и игрока всё равно оттолкнёт
         {
-            if (tempEnemy)
+            BasePEnemy tempEnemy = tempInterface as BasePEnemy;
+            if (!tempEnemy)
+            {
+                // Лазер или какое-то препятствие, которое наносит урон
+
+                // Усё
+                // Допрыгался фраер
+                _health.TakeDamage(tempInterface.DealedDamage);
+                _invulnerabilityManager.ResetTimer();
+
+            }
+            else
             {
                 // Это враг
                 // Проверяем - мы наносим урон или по нам наносят урон
@@ -61,24 +69,10 @@ public class PlayerDamageManager : MonoBehaviour
                 {
                     // Урон получает игрок
                     // Плак-плак
+                    // :(
                     _health.TakeDamage(tempEnemy.DealedDamage);
                     _invulnerabilityManager.ResetTimer();
                 }
-            }
-            else if (laser)
-            {
-                // Усё
-                // Допрыгался фраер
-                _health.TakeDamage(laser.DealedDamage);
-                _invulnerabilityManager.ResetTimer();
-            }
-            else
-            {
-                // Очевидно, что это статичное препятствие
-                // При всём нашем большом желании мы ему не сможем никак навредить
-                // А он нам - сможет
-                _health.TakeDamage(tempInterface.DealedDamage);
-                _invulnerabilityManager.ResetTimer();
             }
         }
 
