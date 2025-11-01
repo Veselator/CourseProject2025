@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class PMovingEnemy : BasePEnemy
@@ -39,6 +38,7 @@ public class PMovingEnemy : BasePEnemy
     private RigidbodyPlatformerMovement _rigidbodyMovement;
 
     public event Action OnPointReached;
+    public event Action OnStartedWalking;
 
     protected override void Start()
     {
@@ -72,6 +72,7 @@ public class PMovingEnemy : BasePEnemy
         _targetPosition = points[id].position;
         _isAtTarget = false;
         _currentDirection = (_targetPosition - (Vector2)transform.position).normalized;
+        OnStartedWalking?.Invoke();
     }
 
     // Корутина для реализации ожидания

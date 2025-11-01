@@ -6,14 +6,13 @@ public class Teleporter : MonoBehaviour
     private bool _isActive = true;
 
     [HideInInspector] public Vector3 TeleportPosition { get; private set; }
+    [SerializeField] private Transform _teleportPoint;
     [SerializeField] private Teleporter _linkedTeleporter;
     [SerializeField] private float _cooldownTime = 1f;
 
-    private const float SPAWN_DISTANCE = 4f;
-
     private void Start()
     {
-        TeleportPosition = (Vector2)transform.position + Vector2.up * SPAWN_DISTANCE;
+        TeleportPosition = _teleportPoint.position;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
