@@ -83,7 +83,7 @@ public class Health : MonoBehaviour, IHealth, IReadableValue
 
     public void ResetHealth()
     {
-        currentHealth = MaximumHealth;
+        CurrentHealth = MaximumHealth;
         currentArmor = MaximumArmor;
     }
 

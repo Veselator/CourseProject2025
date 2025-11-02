@@ -39,7 +39,8 @@ public class PuzzlesVisibilityManager : MonoBehaviour
         Shader.SetGlobalInt(EffectTypeID, (int)effectType);
 
         Shader.SetGlobalFloat(RevealProgressID, _currentVisibility ? 1f : 0f);
-        _puzzlesParentObject.SetActive(_currentVisibility);
+        if (_puzzlesParentObject) _puzzlesParentObject.SetActive(_currentVisibility);
+        else Debug.LogError("Братан, я всё понимаю. Но не забудь, брат, когда добавишь паззлы сюда засунуть компонент родительский всех паззов. Не забудешь, брат? По-братски?");
     }
 
     public void SetVisibility(bool newState)
