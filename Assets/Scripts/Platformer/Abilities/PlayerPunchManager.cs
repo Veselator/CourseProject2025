@@ -7,6 +7,7 @@ public class PlayerPunchManager : MonoBehaviour
     [SerializeField] private LayerMask _layerPossible2Hit;
     [SerializeField] private float _punchStrength = 2f;
     [SerializeField] private Rigidbody2D _trackingRigidbody;
+    [SerializeField] private Damage _punchDamage;
 
     private void OnDrawGizmos()
     {
@@ -27,10 +28,13 @@ public class PlayerPunchManager : MonoBehaviour
         Vector2 punchDirection = GetPunchDirection();
         foreach (Collider2D collider in colliders)
         {
+            // Получаем необходимые компоненты
             Rigidbody2D tempRigidbody = collider.GetComponent<Rigidbody2D>();
-            if (!tempRigidbody) return;
+            IHealth tempHealth = collider.GetComponent<IHealth>();
 
-            tempRigidbody.AddForce(punchDirection * _punchStrength, ForceMode2D.Impulse);
+            // Какие из них не null - с такими и работает
+            tempRigidbody?.AddForce(punchDirection * _punchStrength, ForceMode2D.Impulse);
+            tempHealth?.TakeDamage(_punchDamage);
         }
     }
 

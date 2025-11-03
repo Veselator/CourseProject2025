@@ -7,6 +7,7 @@ public class LivesManager : MonoBehaviour, IReadableValue
     [SerializeField] private int MaxLives = 3;
     private int _lives;
     [SerializeField] private Transform _lastSpawnPoint;
+    [SerializeField] private RigidbodyPlatformerMovement _playerMovement; // Что-бы сбросить движение
     [SerializeField] private Transform _player;
 
     public event Action<float> OnValueChanged;
@@ -57,7 +58,8 @@ public class LivesManager : MonoBehaviour, IReadableValue
         else
         {
             _player.position = _lastSpawnPoint.position;
-            _health.ResetHealth();
+            _playerMovement?.ResetMovement();
+            _health?.ResetHealth();
             OnValueChanged?.Invoke(Value);
         }
     }

@@ -114,6 +114,16 @@ public class RigidbodyPlatformerMovement : RigidbodyMovement
         _rigidbody.velocity = Vector2.zero;
     }
 
+    public void ResetMovement()
+    {
+        // Полная перезагрузка
+        _currentVelocityX = 0f;
+        _targetVelocityX = 0f;
+        _rigidbody.velocity = Vector2.zero;
+
+        ResetGravity();
+    }
+
     public void DoImpulse(Vector2 direction, float impulseStrength = 1f, float stunDuration = 0.2f)
     {
         ResetGravity();

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7e16835c9942e2469fd122d8ae0ee0a, type: 3}
+  m_Name: LasersDialogue
+  m_EditorClassIdentifier: 
+  Id: lasers
+  Nodes:
+  - {fileID: 11400000, guid: 0f409a8055200634caac61fb3770f014, type: 2}
+  - {fileID: 11400000, guid: 5de909150b96d6441be008fb8517cac9, type: 2}
+  - {fileID: 11400000, guid: 071853e42f4623b4a9d240370d87477e, type: 2}
+  - {fileID: 11400000, guid: c3d8a66ea7843a746b9512d076621588, type: 2}

@@ -18,9 +18,9 @@ MonoBehaviour:
     \u043A\u043E\u0441\u043C\u0456\u0447\u043D\u043E\u043C\u0443 \u043A\u043E\u0440\u0430\u0431\u043B\u0456"
   TypingConfig:
   - IDTo: 18
-    TypingSpeed: 0.05
+    TypingSpeed: 0.03
     DelayAfter: 0.5
   - IDTo: 500
-    TypingSpeed: 0.05
+    TypingSpeed: 0.03
     DelayAfter: 0
   DelayAfter: 0.5
