@@ -10,67 +10,49 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f71b199bc232d4741ae990bce7bdf921, type: 3}
-  m_Name: First
+  m_Name: Random2
   m_EditorClassIdentifier: 
   signals:
   - signal:
       top: 1
-      right: 0
+      right: 1
       bottom: 1
       left: 0
-    direction: 2
-  - signal:
-      top: 1
-      right: 0
-      bottom: 1
-      left: 0
-    direction: 2
+    direction: 0
   - signal:
       top: 1
       right: 1
       bottom: 0
       left: 0
-    direction: 3
-  - signal:
-      top: 1
-      right: 0
-      bottom: 1
-      left: 0
-    direction: 3
-  - signal:
-      top: 1
-      right: 0
-      bottom: 1
-      left: 0
-    direction: 3
+    direction: 0
   - signal:
       top: 0
       right: 1
       bottom: 0
       left: 1
-    direction: 3
-  - signal:
-      top: 1
-      right: 0
-      bottom: 1
-      left: 0
-    direction: 3
-  - signal:
-      top: 1
-      right: 1
-      bottom: 1
-      left: 0
-    direction: 3
+    direction: 0
   - signal:
       top: 0
       right: 1
       bottom: 0
       left: 1
-    direction: 3
+    direction: 0
   - signal:
-      top: 0
+      top: 1
+      right: 1
+      bottom: 0
+      left: 0
+    direction: 0
+  - signal:
+      top: 1
       right: 0
       bottom: 1
+      left: 0
+    direction: 0
+  - signal:
+      top: 1
+      right: 1
+      bottom: 0
       left: 1
     direction: 0
   - signal:
@@ -80,10 +62,52 @@ MonoBehaviour:
       left: 0
     direction: 0
   - signal:
-      top: 0
+      top: 1
       right: 1
+      bottom: 0
+      left: 0
+    direction: 0
+  - signal:
+      top: 1
+      right: 0
+      bottom: 1
+      left: 1
+    direction: 0
+  - signal:
+      top: 1
+      right: 1
+      bottom: 1
+      left: 1
+    direction: 0
+  - signal:
+      top: 1
+      right: 0
       bottom: 0
       left: 1
     direction: 0
-  startDirection: 1
+  - signal:
+      top: 1
+      right: 1
+      bottom: 0
+      left: 0
+    direction: 0
+  - signal:
+      top: 1
+      right: 0
+      bottom: 1
+      left: 0
+    direction: 0
+  - signal:
+      top: 1
+      right: 1
+      bottom: 0
+      left: 0
+    direction: 0
+  - signal:
+      top: 1
+      right: 1
+      bottom: 0
+      left: 0
+    direction: 0
+  startDirection: 0
   IsOneShoot: 0

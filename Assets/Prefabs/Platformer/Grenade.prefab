@@ -52,9 +52,9 @@ MonoBehaviour:
   explosivePhysicalPower: 20
   explosivePowerScaler: 0.87
   explosionDamage:
-    damageHealth: 50
+    damageHealth: 100
     damageArmor: 0
-    damageMultiplier: 0
+    damageMultiplier: 1
 --- !u!58 &3598352910567222630
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -102,7 +102,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1.27
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 5

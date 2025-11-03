@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7e16835c9942e2469fd122d8ae0ee0a, type: 3}
+  m_Name: GrenadesDialogue
+  m_EditorClassIdentifier: 
+  Id: grenades
+  Nodes:
+  - {fileID: 11400000, guid: 60d7cad1669e66e4e907f98226a90e9b, type: 2}
+  - {fileID: 11400000, guid: 4dfbde2ea7f5d0948a4d56fb36bf60c9, type: 2}
+  - {fileID: 11400000, guid: 82fca569b823e3e4aacd201dc72e146c, type: 2}
+  - {fileID: 11400000, guid: 92338973b86a0e448824a41a48aab8ac, type: 2}
+  - {fileID: 11400000, guid: 8731f1debd0baeb48a408d544f2eabcd, type: 2}
+  - {fileID: 11400000, guid: d32fd080bc5bf7943bb825c91f2e9259, type: 2}

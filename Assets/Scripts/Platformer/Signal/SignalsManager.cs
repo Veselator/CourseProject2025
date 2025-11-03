@@ -40,6 +40,7 @@ public class SignalsManager : MonoBehaviour
     {
         if (_linesConfig == null || _linesConfig.signals == null || _linesConfig.signals.Length == 0)
         {
+            Debug.LogError("Чё-то не так с конфигом");
             _isFailedToLoadConfig = true;
             return;
         }
@@ -47,6 +48,7 @@ public class SignalsManager : MonoBehaviour
         SignalLineConfig[] signalConfigs = _linesConfig.signals;
         _isOneShoot = _linesConfig.IsOneShoot;
         _signals = new SignalLine[signalConfigs.Length];
+        _startDirection = _linesConfig.startDirection;
 
         SignalLine lastSignal = null;
         for (int i = _signals.Length - 1; i >= 0; i--)
@@ -111,6 +113,7 @@ public class SignalsManager : MonoBehaviour
 
             if (signal.GetSpecificSignal((int)direction + 2))
             {
+                //Debug.Log($"This signal is positive due to direction is {direction.ToString()} and opposite from it direction is {(int)direction + 2}");
                 Try2ChangeSignalLineState(signal, true);
                 direction = signal.CurrentDirection;
 

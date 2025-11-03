@@ -33,8 +33,14 @@ public class Grenade : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        BasePEnemy tempEnemy;
-        if (!collision.gameObject.TryGetComponent<BasePEnemy>(out tempEnemy)) return;
+        // Нам нужен только объект с компонентом IHealth
+        // Кто может в теории подойти под критерий?
+        // Игрок, враги, коробки и другие разрушаемые препятствия, если таковые будут добавлены
+        if (!collision.gameObject.TryGetComponent<IHealth>(out _)) return;
+
+        // Если игрок - он нам не нужен. Нам же не надо, что-бы граната, которую запустил игрок,
+        // прилетела в него самого
+        if (collision.gameObject.TryGetComponent<PlayerPlatformerHandler>(out _)) return;
 
         Explode();
     }
