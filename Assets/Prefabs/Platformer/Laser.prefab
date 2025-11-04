@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7025951507036537471}
   - component: {fileID: 7041314415103719256}
   - component: {fileID: 1800415765221420675}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7307575911600079612}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SecondPoint
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 7107127832909955322}
   - component: {fileID: 8528779059316898528}
   - component: {fileID: 1776936683956012416}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LaserVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3751109989071366211}
   - component: {fileID: 1397684039600695418}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LaserBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -377,7 +377,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2007089571151100074}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FirstPoint
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -410,7 +410,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8338068239942929120}
   - component: {fileID: 7094987737341326403}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LaserBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -16,6 +16,8 @@ public class PlayerMovementHandler : MonoBehaviour
 
     // Для дочерних классов
     protected virtual bool IsHandleAdditionalThings { get; } = false;
+    public bool IsMovementBlocked { get; set; } = false; // Для кат-сцен
+    protected Vector2 __zeroVector = Vector2.zero;
 
     private void Awake()
     {
@@ -56,6 +58,7 @@ public class PlayerMovementHandler : MonoBehaviour
 
     protected virtual void HandleMovingInput()
     {
-        _movement.ChangeVelocity(MovementVector);
+        if(!IsMovementBlocked) _movement.ChangeVelocity(MovementVector);
+        else _movement.ChangeVelocity(__zeroVector);
     }
 }

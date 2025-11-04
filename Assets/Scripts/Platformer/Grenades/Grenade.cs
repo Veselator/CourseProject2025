@@ -16,11 +16,11 @@ public class Grenade : MonoBehaviour
         HoldTimer();
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.green;
-    //    Gizmos.DrawSphere(transform.position, explosionRadius);
-    //}
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(transform.position, explosionRadius);
+    }
 
     private void HoldTimer()
     {
