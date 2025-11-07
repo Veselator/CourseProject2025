@@ -61,16 +61,12 @@ public class PlayerPlatformerHandler : PlayerMovementHandler
 
     protected override void HandleMovingInput()
     {
-        if (!IsMovementBlocked)
-        {
-            Vector2 currentMovementVector = MovementVector;
+        Vector2 currentMovementVector = MovementVector;
 
-            if (currentMovementVector.x != 0) OnPlayerWalking?.Invoke();
-            else OnPlayerDoesntWalking?.Invoke();
+        if (currentMovementVector.x != 0) OnPlayerWalking?.Invoke();
+        else OnPlayerDoesntWalking?.Invoke();
 
-            _movement.ChangeVelocity(currentMovementVector);
-        }
-        else _movement.ChangeVelocity(__zeroVector);
+        _movement.ChangeVelocity(currentMovementVector);
     }
 
     protected override void HandleAdditionalThings()
@@ -150,6 +146,7 @@ public class PlayerPlatformerHandler : PlayerMovementHandler
 
         if (_isGrounded || _coyoteTimer > 0f)
         {
+            _airTimer = 0f;
             OnPlayerJumped?.Invoke(1f);
         }
         else if (isSecondJumpAvailable)

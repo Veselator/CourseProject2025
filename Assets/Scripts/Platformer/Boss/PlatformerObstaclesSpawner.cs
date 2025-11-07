@@ -1,5 +1,5 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlatformerObstaclesSpawner : MonoBehaviour
@@ -14,10 +14,12 @@ public class PlatformerObstaclesSpawner : MonoBehaviour
     private SpawnConfiguration _currentSpawnConfiguration;
     private int _currentNumOfObstacles;
     private bool _isSpawning = false;
+    [SerializeField] private float _delayBeforeSpawning = 1.2f;
 
     private void Awake()
     {
         _bossPhasesManager.OnPhaseStarted += CheckPhaseStarted;
+        _bossPhasesManager.OnPhaseEnded += CheckPhaseEnded;
     }
 
     private void Start()
@@ -28,6 +30,16 @@ public class PlatformerObstaclesSpawner : MonoBehaviour
     private void OnDestroy()
     {
         _bossPhasesManager.OnPhaseStarted -= CheckPhaseStarted;
+        _bossPhasesManager.OnPhaseEnded -= CheckPhaseEnded;
+    }
+
+    private void CheckPhaseEnded(PhaseID phaseId)
+    {
+        if (_isSpawning)
+        {
+            _isSpawning = false;
+            StopAllCoroutines();
+        }
     }
 
     private void CheckPhaseStarted(PhaseID phaseId)
@@ -36,7 +48,7 @@ public class PlatformerObstaclesSpawner : MonoBehaviour
 
         _currentSpawnConfiguration = _spawnConfigurations[(int)phaseId];
 
-        if (_currentSpawnConfiguration.spawnDelay == 0f)
+        if (_currentSpawnConfiguration.fromSpawnDelay == 0f || _currentSpawnConfiguration.toSpawnDelay == 0f)
         {
             Debug.LogError("Нулевой spawnDelay?! Что-бы компьютер взорвался от бесконечного спавна?!");
             return;
@@ -47,6 +59,7 @@ public class PlatformerObstaclesSpawner : MonoBehaviour
 
     private IEnumerator SpawnLoop()
     {
+        yield return new WaitForSeconds(_delayBeforeSpawning);
         // Начинаем спавнить препятствия
         _isSpawning = true;
 
@@ -56,24 +69,34 @@ public class PlatformerObstaclesSpawner : MonoBehaviour
         // И потом просто "брать" из кучки
         // Но конкретно для этой архитектуры такая оптимизация излишняя
         // Расчёты не тяжёлые, общее количество объектов <100
-        for (int i = 0; i < _currentSpawnConfiguration.numOfBunches; i++)
+        do
         {
-            // Заходим в кучу
-            for (int j = 0; j < _currentSpawnConfiguration.numOfObstaclesPerBunch; j++)
+            for (int i = 0; i < _currentSpawnConfiguration.numOfBunches; i++)
             {
-                // Получаем текущее случайно сгенерированное число
-                int currentRnd = Random.Range(0, 100);
+                // Заходим в кучу
+                float currentInterpolation = (float)i / _currentSpawnConfiguration.numOfBunches;
+                int currentNumOfObstaclesPerBunch = (int)Mathf.Lerp(_currentSpawnConfiguration.fromNumOfObstaclesPerBunch, _currentSpawnConfiguration.toNumOfObstaclerPerBunch, currentInterpolation);
+                for (int j = 0; j < currentNumOfObstaclesPerBunch; j++)
+                {
+                    // Получаем текущее случайно сгенерированное число
+                    int currentRnd = UnityEngine.Random.Range(0, 100);
 
-                SpawnLocation currentSpawnLocation = (SpawnLocation)(currentRnd % 3);
-                GameObject currentPrefab = _obstaclePrefabs[currentRnd % _obstaclePrefabs.Length];
+                    SpawnLocation currentSpawnLocation = (SpawnLocation)(currentRnd % 3);
+                    GameObject currentPrefab = _obstaclePrefabs[currentRnd % _obstaclePrefabs.Length];
 
-                // Создаём препятствие
-                CreateNewObstacle(currentPrefab, currentSpawnLocation, _currentSpawnConfiguration.obstaclesSpeed);
-                yield return new WaitForSeconds(_currentSpawnConfiguration.spawnDelay);
+                    float currentSpeed = Mathf.Lerp(_currentSpawnConfiguration.fromObstaclesSpeed, _currentSpawnConfiguration.toObstacleSpeed, currentInterpolation);
+                    float currentDelay = Mathf.Lerp(_currentSpawnConfiguration.fromSpawnDelay, _currentSpawnConfiguration.toSpawnDelay, currentInterpolation);
+
+                    // Создаём препятствие
+                    CreateNewObstacle(currentPrefab, currentSpawnLocation, currentSpeed);
+                    yield return new WaitForSeconds(currentDelay);
+                }
+
+                float currentDelayBetweenBunches = Mathf.Lerp(_currentSpawnConfiguration.fromDelayBetweenBunches, _currentSpawnConfiguration.toDelayBetweenBunches, currentInterpolation);
+                yield return new WaitForSeconds(currentDelayBetweenBunches);
             }
-
-            yield return new WaitForSeconds(_currentSpawnConfiguration.delayBetweenBunches);
         }
+        while (_currentSpawnConfiguration.isEndless);
 
         _isSpawning = false;
     }
@@ -81,7 +104,7 @@ public class PlatformerObstaclesSpawner : MonoBehaviour
     public void HandleObstacleDestroyed()
     {
         _currentNumOfObstacles--;
-        if (_isSpawning) return;
+        if (_isSpawning || _currentSpawnConfiguration.isEndless) return;
         if (_currentNumOfObstacles <= 0) _bossPhasesManager.TryToEndPhase(); // Волна усё
     }
 
@@ -107,13 +130,23 @@ public class PlatformerObstaclesSpawner : MonoBehaviour
     }
 }
 
+[Serializable]
 public struct SpawnConfiguration
 {
-    public float spawnDelay;
-    public float obstaclesSpeed;
-    public int numOfObstaclesPerBunch;
+    // Все значения интерполируются
+    // Для повышения сложности
+    [Header("Время между спавном препятствий в рамках одного набора")]
+    public float fromSpawnDelay, toSpawnDelay;
+    [Header("Скорость препятствий")]
+    public float fromObstaclesSpeed, toObstacleSpeed;
+    [Header("Количество препятствий в одной группе")]
+    public int fromNumOfObstaclesPerBunch, toNumOfObstaclerPerBunch;
+    [Header("Время между спавном групп")]
+    public float fromDelayBetweenBunches, toDelayBetweenBunches;
+    [Header("Количество групп")]
     public int numOfBunches;
-    public float delayBetweenBunches;
+    [Header("Спавним ли бесконечно - пока какое-то условие не остановит спан")]
+    public bool isEndless; // Для второй фазы
 }
 
 public enum SpawnLocation

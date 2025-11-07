@@ -6,6 +6,7 @@ public class BossPhasesManager : MonoBehaviour
     public static BossPhasesManager Instance { get; private set; }
     private PlatformerCutscenesManager _cutscenesManager;
     [SerializeField] private PlatformerCutscene[] phasesCutscenes;
+    [SerializeField] private SignalsManager _linkedSignalsManager;
     private PhaseID _currentPhase = PhaseID.First;
     public PhaseID CurrentPhase => _currentPhase;
 
@@ -30,6 +31,13 @@ public class BossPhasesManager : MonoBehaviour
     private void Start()
     {
         _cutscenesManager = PlatformerCutscenesManager.Instance;
+
+        _linkedSignalsManager.OnPuzzleSolved += TryToEndPhase;
+    }
+
+    private void OnDestroy()
+    {
+        _linkedSignalsManager.OnPuzzleSolved -= TryToEndPhase;
     }
 
     public void StartBossBattle()

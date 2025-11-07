@@ -161,7 +161,7 @@ public class SignalLineVisual : MonoBehaviour
 
         float rotationAngle = isClockwise ? -90f : 90f;
 
-        Quaternion startRotation = transform.rotation;
+        Quaternion startRotation = transform.localRotation;
         Quaternion targetRotation = startRotation * Quaternion.Euler(0, 0, rotationAngle);
 
         float currentDuration = 0f;
@@ -174,12 +174,12 @@ public class SignalLineVisual : MonoBehaviour
 
             float smoothT = _rotationCurve.Evaluate(t);
 
-            transform.rotation = Quaternion.Lerp(startRotation, targetRotation, smoothT);
+            transform.localRotation = Quaternion.Lerp(startRotation, targetRotation, smoothT);
 
             yield return null;
         }
 
-        transform.rotation = targetRotation;
+        transform.localRotation = targetRotation;
 
         _isPlayingRotationAnimation = false;
     }

@@ -14,6 +14,8 @@ public class PlatformerCutscenesManager : MonoBehaviour
     [SerializeField] private CameraZoomByMouse _cameraZoom;
     [SerializeField] private DialoguesManager _dialoguesManager;
     [SerializeField] private BossPhasesManager _bossPhasesManager;
+    [SerializeField] private LivesManager _livesManager;
+    [SerializeField] private ObjectMoverService _objectMover;
 
     // Внутренние поля
     private PlatformerCutscene _currentCutscene;
@@ -66,24 +68,29 @@ public class PlatformerCutscenesManager : MonoBehaviour
             case CutsceneActionType.BlockMovement:
                 _playerPlatformerHandler.IsMovementBlocked = true;
                 break;
+
             case CutsceneActionType.UnblockMovement:
                 _playerPlatformerHandler.IsMovementBlocked = false;
                 break;
+
             case CutsceneActionType.ToggleMovement:
                 _playerPlatformerHandler.IsMovementBlocked = !_playerPlatformerHandler.IsMovementBlocked;
                 break;
 
             // Камера
             case CutsceneActionType.SetCameraTrackingObject:
-                GameObject _newTrackingObject = GameObject.Find(currentAction.linkedObjectName);
-                if(_newTrackingObject) _cameraController.Target = _newTrackingObject.transform;
+                GameObject newTrackingObject = GameObject.Find(currentAction.linkedObjectName);
+                if(newTrackingObject != null) _cameraController.Target = newTrackingObject.transform;
                 break;
+
             case CutsceneActionType.ReturnCameraToPlayer:
                 _cameraController.ResetTrackingObject();
                 break;
+
             case CutsceneActionType.SetCameraSize:
                 _cameraZoom.SetSize(currentAction.Size);
                 break;
+
             case CutsceneActionType.ResetCameraSize:
                 _cameraZoom.ResetSize();
                 break;
@@ -95,6 +102,24 @@ public class PlatformerCutscenesManager : MonoBehaviour
 
             case CutsceneActionType.BossActionAfterCutscene:
                 _bossPhasesManager.BossActionAfterCutscene();
+                break;
+
+            case CutsceneActionType.SetPlayerSpawnpoint:
+                GameObject someObj = GameObject.Find(currentAction.linkedObjectName);
+                if (someObj != null) _livesManager.SetSpawnPoint(someObj.transform);
+                break;
+
+            case CutsceneActionType.MoveObject:
+                GameObject movingObject = GameObject.Find(currentAction.linkedObjectName);
+                GameObject destinationObject = GameObject.Find(currentAction.destinationObjectName);
+
+                if (movingObject != null && destinationObject != null) _objectMover.AnimateMoving(movingObject, destinationObject.transform, ObjectAnimationType.EaseIn, currentAction.animateScale);
+                else
+                {
+                    if (movingObject == null) Debug.LogError($"movingObject: {currentAction.linkedObjectName} не найден");
+                    if (destinationObject == null) Debug.LogError($"destinationObject: {currentAction.destinationObjectName} не найден");
+                }
+
                 break;
 
             default:

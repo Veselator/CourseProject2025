@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lasers3
   m_EditorClassIdentifier: 
   Character: {fileID: 11400000, guid: 49507b9350591ca47a8983c64431e562, type: 2}
-  Text: ...
+  Text: ': |'
   TypingConfig:
   - IDTo: 1000
     TypingSpeed: 0.03

@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee5486c499f10364aa075864a990d142, type: 3}
+  m_Name: BossPhase3
+  m_EditorClassIdentifier: 
+  Actions:
+  - CAT: 1
+    WaitType: 0
+    linkedObjectName: 
+    Size: 0
+    LinkedDialogue: {fileID: 0}
+    destinationObjectName: 
+    animateScale: 0
+    animationDuration: 0
+    TimeInSeconds: 0
+  - CAT: 4
+    WaitType: 0
+    linkedObjectName: Fleshka (1)
+    Size: 0
+    LinkedDialogue: {fileID: 0}
+    destinationObjectName: 
+    animateScale: 0
+    animationDuration: 0
+    TimeInSeconds: 0
+  - CAT: 11
+    WaitType: 1
+    linkedObjectName: BossPuzzle
+    Size: 10
+    LinkedDialogue: {fileID: 0}
+    destinationObjectName: PuzzleDest (1)
+    animateScale: 1
+    animationDuration: 0.69
+    TimeInSeconds: 2
+  - CAT: 6
+    WaitType: 1
+    linkedObjectName: Fleshka (1)
+    Size: 10
+    LinkedDialogue: {fileID: 0}
+    destinationObjectName: 
+    animateScale: 0
+    animationDuration: 0
+    TimeInSeconds: 2
+  - CAT: 8
+    WaitType: 2
+    linkedObjectName: Fleshka (1)
+    Size: 10
+    LinkedDialogue: {fileID: 11400000, guid: f350a1f45af2ae6448157fef84b40e81, type: 2}
+    destinationObjectName: 
+    animateScale: 0
+    animationDuration: 0
+    TimeInSeconds: 2
+  - CAT: 2
+    WaitType: 0
+    linkedObjectName: Fleshka (1)
+    Size: 10
+    LinkedDialogue: {fileID: 0}
+    destinationObjectName: 
+    animateScale: 0
+    animationDuration: 0
+    TimeInSeconds: 2
+  - CAT: 7
+    WaitType: 0
+    linkedObjectName: Fleshka (1)
+    Size: 10
+    LinkedDialogue: {fileID: 0}
+    destinationObjectName: 
+    animateScale: 0
+    animationDuration: 0
+    TimeInSeconds: 2
+  - CAT: 5
+    WaitType: 0
+    linkedObjectName: Fleshka (1)
+    Size: 10
+    LinkedDialogue: {fileID: 0}
+    destinationObjectName: 
+    animateScale: 0
+    animationDuration: 0
+    TimeInSeconds: 2

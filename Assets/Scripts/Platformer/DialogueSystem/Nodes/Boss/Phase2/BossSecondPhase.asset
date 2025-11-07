@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c0fbb0cbba9e534199c291d6bcb54c4, type: 3}
+  m_Name: BossSecondPhase
+  m_EditorClassIdentifier: 
+  Character: {fileID: 11400000, guid: 73f9fa4ac337e8e47bfafeccf074adaa, type: 2}
+  Text: "\u042F\u043A?! \u041D\u0435 \u043C\u043E\u0436\u0435 \u0431\u0443\u0442\u0438!"
+  TypingConfig:
+  - IDTo: 4
+    TypingSpeed: 0.03
+    DelayAfter: 1
+  - IDTo: 1000
+    TypingSpeed: 0.03
+    DelayAfter: 1
+  DelayAfter: 0

@@ -15,7 +15,7 @@ public struct CutsceneAction
     public CutsceneActionType CAT;
     public WaitActionType WaitType;
 
-    [ShowIfEnum("CAT", CutsceneActionType.SetCameraTrackingObject)]
+    [ShowIfEnum("CAT", CutsceneActionType.SetCameraTrackingObject, CutsceneActionType.SetPlayerSpawnpoint, CutsceneActionType.MoveObject)]
     public string linkedObjectName; // Да, это не очень хорошо, но более правильное решение потребует больше времени
 
     [ShowIfEnum("CAT", CutsceneActionType.SetCameraSize)]
@@ -23,6 +23,15 @@ public struct CutsceneAction
 
     [ShowIfEnum("CAT", CutsceneActionType.StartDialogue)]
     public DialogueSO LinkedDialogue;
+
+    [ShowIfEnum("CAT", CutsceneActionType.MoveObject)]
+    public string destinationObjectName;
+
+    [ShowIfEnum("CAT", CutsceneActionType.MoveObject)]
+    public bool animateScale;
+
+    [ShowIfEnum("CAT", CutsceneActionType.MoveObject)]
+    public float animationDuration;
 
     [ShowIfEnum("WaitType", WaitActionType.WaitForSeconds)]
     public float TimeInSeconds;
@@ -47,7 +56,13 @@ public enum CutsceneActionType
     StartDialogue,
 
     // Босс
-    BossActionAfterCutscene
+    BossActionAfterCutscene,
+    
+    // Другое
+    SetPlayerSpawnpoint,
+
+    // Перемещение объекта
+    MoveObject
 }
 
 public enum WaitActionType

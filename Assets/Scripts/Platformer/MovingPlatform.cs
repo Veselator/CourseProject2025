@@ -16,15 +16,23 @@ public class MovingPlatform : MonoBehaviour
     private Vector2 _currentDirection;
     private Vector2 _targetPosition;
     private bool _isAtTarget = false;
+    private bool _isFailedToLoadPoints = false;
     [SerializeField] private float _distanceThreshold = 0.4f;
     private Rigidbody2D _rigidbody;
 
     public event Action OnPointReached;
     public event Action OnMovementEnded; // Если не _isLooped
 
-    private void Start()
+    protected virtual void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        if (points == null || points.Length == 0)
+        {
+            Debug.LogError("Не назначил points? Почему?");
+            _isFailedToLoadPoints = true;
+            return;
+        }
+
         transform.position = points[0].position;
 
         SetTarget(_currentPoint);
@@ -38,7 +46,7 @@ public class MovingPlatform : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_isAtTarget) return;
+        if (_isAtTarget || _isFailedToLoadPoints) return;
 
         CheckIsAtTarget();
         HandleMovement();
@@ -46,6 +54,8 @@ public class MovingPlatform : MonoBehaviour
 
     private void SetTarget(int id)
     {
+        if (_isFailedToLoadPoints) return;
+
         Debug.Log($"The target position changed! It`s {id}");
         _targetPosition = points[id].position;
         _isAtTarget = false;
@@ -54,6 +64,8 @@ public class MovingPlatform : MonoBehaviour
 
     private IEnumerator SetTargetCoroutine(float time)
     {
+        if (_isFailedToLoadPoints) yield break;
+
         _currentDirection = Vector2.zero;
         HandleMovement();
         yield return new WaitForSeconds(time);

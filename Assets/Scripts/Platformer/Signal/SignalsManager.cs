@@ -21,19 +21,24 @@ public class SignalsManager : MonoBehaviour
     private float _rotateTimer = 0f;
     private bool _isPossibeToRotate = false;
     private bool _isFailedToLoadConfig = false;
+    private bool _isInited = false;
 
     private bool _isOneShoot = false;
-    private bool isAvailableToExecuteOnEndAction = true;
+    private bool _isAvailableToExecuteOnEndAction = true;
     private ISignalAction _actionOnEnd;
 
     public event Action<SignalsManager, SignalLine, bool> OnSignalStateChanged;
     public event Action<SignalsManager, SignalLine, bool> OnLineRotated;
+    public event Action OnPuzzleSolved;
 
     public void Init()
     {
+        if (_isInited) return;
+
         _actionOnEnd = GetComponent<ISignalAction>();
-        if (_actionOnEnd == null) isAvailableToExecuteOnEndAction = false;
+        if (_actionOnEnd == null) _isAvailableToExecuteOnEndAction = false;
         InitConfig();
+        _isInited = true;
     }
 
     private void InitConfig()
@@ -69,6 +74,8 @@ public class SignalsManager : MonoBehaviour
 
     private void OnEnable()
     {
+        if (!_isInited) Init();
+        if (_isFailedToLoadConfig) return;
         ForceToUpdateActiveSignals();
     }
 
@@ -135,7 +142,7 @@ public class SignalsManager : MonoBehaviour
 
         if (isFail)
         {
-            if (!isAvailableToExecuteOnEndAction) return;
+            if (!_isAvailableToExecuteOnEndAction) return;
             // Если провалено, и это тот сценарий, когда головоломка была решённой а стала не решённой
             // то отменяем решение
             if (_actionOnEnd.IsExecuted) _actionOnEnd.Undo();
@@ -143,13 +150,15 @@ public class SignalsManager : MonoBehaviour
         }
 
         // Если всё прошло хорошо - обрабатываем что-то
-        if (isAvailableToExecuteOnEndAction) ExecuteOnEndAction();
+        OnPuzzleSolved?.Invoke();
+
+        if (_isAvailableToExecuteOnEndAction) ExecuteOnEndAction();
     }
 
     private void ExecuteOnEndAction()
     {
         _actionOnEnd.Execute();
-        if (_isOneShoot) isAvailableToExecuteOnEndAction = false;
+        if (_isOneShoot) _isAvailableToExecuteOnEndAction = false;
     }
 
     public void RotateLine(int id)

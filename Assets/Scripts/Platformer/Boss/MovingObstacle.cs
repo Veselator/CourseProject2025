@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingObstacle : MovingPlatform
+public class MovingObstacle : MovingPlatform, IPossible2DealDamage
 {
+    [SerializeField] private Damage dealedDamage;
+    public Damage DealedDamage => dealedDamage;
     // Используется для босса
     private PlatformerObstaclesSpawner _linkedSpawner;
     public void Init(PlatformerObstaclesSpawner spawner, float newSpeed, Transform fromPoint, Transform toPoint)
@@ -14,8 +14,9 @@ public class MovingObstacle : MovingPlatform
         _isLooped = false;
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         OnMovementEnded += EndMovement;
     }
 

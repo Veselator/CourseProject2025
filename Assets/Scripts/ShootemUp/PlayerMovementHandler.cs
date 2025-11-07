@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class PlayerMovementHandler : MonoBehaviour
@@ -11,13 +10,12 @@ public class PlayerMovementHandler : MonoBehaviour
 
     [SerializeField] private Box clampingBox;
 
-    public Vector2 MovementVector => _playerInput.GetMovementVector();
+    public Vector2 MovementVector => IsMovementBlocked ? Vector2.zero : _playerInput.GetMovementVector();
     public static PlayerMovementHandler Instance { get; private set; }
 
     // Для дочерних классов
     protected virtual bool IsHandleAdditionalThings { get; } = false;
     public bool IsMovementBlocked { get; set; } = false; // Для кат-сцен
-    protected Vector2 __zeroVector = Vector2.zero;
 
     private void Awake()
     {
@@ -58,7 +56,6 @@ public class PlayerMovementHandler : MonoBehaviour
 
     protected virtual void HandleMovingInput()
     {
-        if(!IsMovementBlocked) _movement.ChangeVelocity(MovementVector);
-        else _movement.ChangeVelocity(__zeroVector);
+        _movement.ChangeVelocity(MovementVector);
     }
 }
