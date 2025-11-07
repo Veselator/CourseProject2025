@@ -7,10 +7,11 @@ public class MovingPlatform : MonoBehaviour
     // Как вариант - сделать pathfinding по точкам отдельным компонентом
     // Т.к. используется и в MovingPlatform и PMovingEnemy
 
-    [SerializeField] Transform[] points;
+    [SerializeField] protected Transform[] points;
     [SerializeField] float time2Wait = 2f;
-    [SerializeField] private bool _isLooped = true;
-    [SerializeField] private float speed = 2f;
+    [SerializeField] protected bool _isLooped = true;
+    [SerializeField] protected float speed = 2f;
+
     private int _currentPoint = 1;
     private Vector2 _currentDirection;
     private Vector2 _targetPosition;
@@ -19,6 +20,7 @@ public class MovingPlatform : MonoBehaviour
     private Rigidbody2D _rigidbody;
 
     public event Action OnPointReached;
+    public event Action OnMovementEnded; // Если не _isLooped
 
     private void Start()
     {
@@ -69,6 +71,7 @@ public class MovingPlatform : MonoBehaviour
             }
             else
             {
+                OnMovementEnded?.Invoke();
                 return;
             }
         }

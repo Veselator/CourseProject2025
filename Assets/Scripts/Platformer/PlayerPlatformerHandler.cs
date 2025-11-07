@@ -25,11 +25,12 @@ public class PlayerPlatformerHandler : PlayerMovementHandler
     private bool _isGrounded = false;
     public bool IsGrounded => _isGrounded;
     private bool _isGroundedLast = false; // Нужно для отслеживания состояния
+    [SerializeField] private float _jumpFactorIfSecondJump = 1.2f;
 
     private RigidbodyPlatformerMovement _rigidbodyMovement;
     protected override bool IsHandleAdditionalThings { get; } = true;
 
-    public event Action OnPlayerJumped;
+    public event Action<float> OnPlayerJumped;
     public event Action OnPlayerWalking;
     public event Action OnPlayerDoesntWalking;
     public event Action OnPlayerFalling;
@@ -149,15 +150,15 @@ public class PlayerPlatformerHandler : PlayerMovementHandler
 
         if (_isGrounded || _coyoteTimer > 0f)
         {
-            OnPlayerJumped?.Invoke();
+            OnPlayerJumped?.Invoke(1f);
         }
         else if (isSecondJumpAvailable)
         {
             _airTimer = 0f;
-            OnPlayerJumped?.Invoke();
+            OnPlayerJumped?.Invoke(_jumpFactorIfSecondJump);
             isSecondJumpAvailable = false;
         }
     }
 
-    private void Jump() => _rigidbodyMovement.HandleJump();
+    private void Jump(float jumpScaler) => _rigidbodyMovement.HandleJump(jumpScaler);
 }

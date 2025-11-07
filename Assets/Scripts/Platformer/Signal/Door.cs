@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    private bool _isOpen = false;
+    [SerializeField] private bool _isOpen = false;
     private Collider2D _doorCollider;
     public bool IsOpen => _isOpen;
 
@@ -12,6 +12,7 @@ public class Door : MonoBehaviour
     private void Start()
     {
         _doorCollider = GetComponent<Collider2D>();
+        SetIsOpen(_isOpen);
     }
 
     public void SetIsOpen(bool newState)

@@ -13,7 +13,7 @@ public class DoubleDoorVisual : MonoBehaviour
 
     private Coroutine _currentAnimation;
 
-    private void Start()
+    private void Awake()
     {
         InitializeStartPoints();
         _linkedDoor.OnStateChanged += HoldDoorStateChange;

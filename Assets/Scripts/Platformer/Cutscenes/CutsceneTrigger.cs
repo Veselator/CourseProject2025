@@ -1,15 +1,11 @@
 using UnityEngine;
 
-public class CutsceneTrigger : MonoBehaviour
+public class CutsceneTrigger : BaseTrigger
 {
     [SerializeField] private PlatformerCutscene _linkedCutscene;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void ActionOnPlayerEnter()
     {
-        if (collision.gameObject.GetComponent<PlayerPlatformerHandler>())
-        {
-            PlatformerCutscenesManager.Instance.StartCutscene(_linkedCutscene);
-            Destroy(gameObject);
-        }
+        PlatformerCutscenesManager.Instance.StartCutscene(_linkedCutscene);
     }
 }

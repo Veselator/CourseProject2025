@@ -168,7 +168,7 @@ public class PMovingEnemy : BasePEnemy
         }
         else
         {
-            _movement.HandleJump();
+            _movement.HandleJump(1f);
         }
     }
 

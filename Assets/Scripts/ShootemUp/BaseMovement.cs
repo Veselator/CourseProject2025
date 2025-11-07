@@ -53,7 +53,7 @@ public abstract class BaseMovement : MonoBehaviour, IMovement
         return newClampedPosition;
     }
 
-    public abstract void HandleJump();
+    public abstract void HandleJump(float jumpScaler = 1f);
 
     protected abstract void HandleMovement();
 }

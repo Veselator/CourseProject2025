@@ -15,7 +15,13 @@ MonoBehaviour:
   signals:
   - signal:
       top: 0
-      right: 1
+      right: 0
+      bottom: 1
+      left: 1
+    direction: 2
+  - signal:
+      top: 1
+      right: 0
       bottom: 1
       left: 0
     direction: 2
@@ -24,12 +30,6 @@ MonoBehaviour:
       right: 1
       bottom: 0
       left: 1
-    direction: 2
-  - signal:
-      top: 1
-      right: 0
-      bottom: 1
-      left: 0
     direction: 2
   - signal:
       top: 1

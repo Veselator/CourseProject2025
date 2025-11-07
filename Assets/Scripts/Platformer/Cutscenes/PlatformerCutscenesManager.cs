@@ -13,6 +13,7 @@ public class PlatformerCutscenesManager : MonoBehaviour
     [SerializeField] private CameraController _cameraController;
     [SerializeField] private CameraZoomByMouse _cameraZoom;
     [SerializeField] private DialoguesManager _dialoguesManager;
+    [SerializeField] private BossPhasesManager _bossPhasesManager;
 
     // Внутренние поля
     private PlatformerCutscene _currentCutscene;
@@ -90,6 +91,10 @@ public class PlatformerCutscenesManager : MonoBehaviour
             // Диалог
             case CutsceneActionType.StartDialogue:
                 _dialoguesManager.StartDialogue(currentAction.LinkedDialogue);
+                break;
+
+            case CutsceneActionType.BossActionAfterCutscene:
+                _bossPhasesManager.BossActionAfterCutscene();
                 break;
 
             default:

@@ -70,7 +70,7 @@ public interface IMovement
         Velocity = Vector2.zero;
     }
 
-    abstract void HandleJump();
+    abstract void HandleJump(float jumpScaler);
 
     abstract void SetClampBorders(Vector2 min, Vector2 max);
 }

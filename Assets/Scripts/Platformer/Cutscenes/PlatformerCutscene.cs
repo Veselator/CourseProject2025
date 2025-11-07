@@ -44,7 +44,10 @@ public enum CutsceneActionType
     ResetCameraSize,
 
     // Диалог
-    StartDialogue
+    StartDialogue,
+
+    // Босс
+    BossActionAfterCutscene
 }
 
 public enum WaitActionType

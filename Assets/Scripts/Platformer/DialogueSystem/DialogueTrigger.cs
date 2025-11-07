@@ -1,15 +1,11 @@
 using UnityEngine;
 
-public class DialogueTrigger : MonoBehaviour
+public class DialogueTrigger : BaseTrigger
 {
     [SerializeField] private DialogueSO _linkedDialogue;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void ActionOnPlayerEnter()
     {
-        if (collision.gameObject.GetComponent<PlayerPlatformerHandler>())
-        {
-            DialoguesManager.Instance.StartDialogue(_linkedDialogue);
-            Destroy(gameObject);
-        }
+        DialoguesManager.Instance.StartDialogue(_linkedDialogue);
     }
 }

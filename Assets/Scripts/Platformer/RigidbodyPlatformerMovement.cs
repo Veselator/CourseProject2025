@@ -93,10 +93,10 @@ public class RigidbodyPlatformerMovement : RigidbodyMovement
         _rigidbody.AddForce(new Vector2(0f, -_extraGravity * Time.deltaTime));
     }
 
-    public override void HandleJump()
+    public override void HandleJump(float jumpScaler = 1f)
     {
         ResetGravity();
-        _rigidbody.AddForce(Vector2.up * jumpStrength, ForceMode2D.Impulse);
+        _rigidbody.AddForce(Vector2.up * jumpStrength * jumpScaler, ForceMode2D.Impulse);
     }
 
     protected override void HandleMovement()

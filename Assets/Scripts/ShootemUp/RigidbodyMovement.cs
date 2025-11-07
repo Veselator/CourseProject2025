@@ -9,7 +9,7 @@ public class RigidbodyMovement : BaseMovement
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    public override void HandleJump()
+    public override void HandleJump(float jumpScaler = 1f)
     {
         Debug.Log("Jump is not implemented to this class but you somehow called it. Congratulations!");
     }

@@ -109,7 +109,7 @@ public class CharacterAnimationController : MonoBehaviour
         }
     }
 
-    private void HandleJump()
+    private void HandleJump(float _)
     {
         foreach (var animator in _linkedAnimators)
         {
