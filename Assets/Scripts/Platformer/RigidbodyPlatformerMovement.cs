@@ -28,7 +28,10 @@ public class RigidbodyPlatformerMovement : RigidbodyMovement
     private float _stunnedTimer = 0f;
 
     public bool NoButtonPressed => _targetVelocityX == 0f;
-    public event Action OnAnyMove;
+    public event Action<Vector2> OnAnyMove;
+    public event Action<Vector2> OnRotated;
+    public event Action OnNoMove;
+
     protected override void FixedUpdate()
     {
         if (_isStunned)
@@ -73,15 +76,21 @@ public class RigidbodyPlatformerMovement : RigidbodyMovement
         if (NoButtonPressed)
         {
             _currentLerpFactor = _interpolationFactorIfNoButtonPressed;
+            OnNoMove?.Invoke();
+            return;
         }
-        else if (IsDifferentSings(_targetVelocityX, _currentVelocityX))
+
+        if (IsDifferentSings(_targetVelocityX, _currentVelocityX))
         {
             _currentLerpFactor = _interpolationFactorForRotate;
+            OnRotated?.Invoke(newVecloity);
         }
         else
         {
             _currentLerpFactor = _interpolationFactorForMovement;
         }
+
+        OnAnyMove?.Invoke(newVecloity);
     }
 
     public void SetPlatformVelocity(Vector2 velocity)
@@ -105,7 +114,7 @@ public class RigidbodyPlatformerMovement : RigidbodyMovement
         // НЕ перезаписываем velocity, если игрок в стане
         if (_isStunned) return;
 
-        if (_currentVelocityX != 0) OnAnyMove?.Invoke();
+        //if (_currentVelocityX != 0) OnAnyMove?.Invoke();
         float finalVelocityX = Speed * _currentVelocityX * Time.fixedDeltaTime + _platformVelocity.x;
         _rigidbody.velocity = new Vector2(finalVelocityX, _rigidbody.velocity.y);
     }

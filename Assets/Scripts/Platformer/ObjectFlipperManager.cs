@@ -30,7 +30,7 @@ public class ObjectFlipperManager : MonoBehaviour
         OnFlipped?.Invoke();
     }
 
-    private void HandleFlip()
+    private void HandleFlip(Vector2 _)
     {
         if (_movement.CurrentVelocityX > 0f && _isFlipped)
         {

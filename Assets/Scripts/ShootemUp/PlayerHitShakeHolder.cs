@@ -10,32 +10,17 @@ public class PlayerHitShakeHolder : MonoBehaviour
     // Вешаем на объект управления игроком
 
     private IHealth trackingHealth;
-    private float movementHoldingTime;
+    [SerializeField] private CameraShake _linkedShaker;
 
     private void Start()
     {
         trackingHealth = GetComponent<IHealth>();
-        movementHoldingTime = CameraShake.Instace.ShakeHitTime;
 
-        trackingHealth.OnDamaged += CameraShake.Instace.StartHitShake;
-        trackingHealth.OnDamaged += HoldCameraMovement;
-    }
-
-    private void HoldCameraMovement()
-    {
-        //StartCoroutine(HoldMainCameraMovement(movementHoldingTime));
-    }
-
-    private IEnumerator HoldMainCameraMovement(float time)
-    {
-        CameraController.IsAbleToUpdate = false;
-        yield return new WaitForSeconds(time);
-        CameraController.IsAbleToUpdate = true;
+        trackingHealth.OnDamaged += _linkedShaker.StartHitShake;
     }
 
     private void OnDestroy()
     {
         trackingHealth.OnDamaged -= CameraShake.ShakeCamera;
-        trackingHealth.OnDamaged -= HoldCameraMovement;
     }
 }

@@ -3193,6 +3193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd9b1ffb6c6b952468c7004e5a5abf92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _linkedShaker: {fileID: 263120675}
 --- !u!114 &594169092
 MonoBehaviour:
   m_ObjectHideFlags: 0

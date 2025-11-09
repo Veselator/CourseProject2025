@@ -22,7 +22,6 @@ public class CameraShake : MonoBehaviour
 
     public bool IsAbleToShake = true;
 
-    public static CameraShake Instace;
     public static Action ShakeCamera;
 
     // Публичные свойства для получения offset
@@ -31,7 +30,6 @@ public class CameraShake : MonoBehaviour
 
     private void Awake()
     {
-        if (Instace == null) Instace = this;
         OnAwakeInitialize();
     }
 
