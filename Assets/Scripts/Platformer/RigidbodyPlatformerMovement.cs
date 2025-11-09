@@ -12,9 +12,10 @@ public class RigidbodyPlatformerMovement : RigidbodyMovement
 
     private const float _movementThreshold = 0.01f;
     [Header("Настройка движения")]
-    [SerializeField] private float _lerpFactorForMovement = 0.02f;
-    [SerializeField] private float _lerpFactorForRotate = 0.05f;
-    [SerializeField] private float _lerpFactorIfNoButtonPressed = 0.05f;
+    [SerializeField] private float _interpolationFactorForMovement = 0.02f;
+    [SerializeField] private float _interpolationFactorForRotate = 0.05f;
+    [SerializeField] private float _interpolationFactorIfNoButtonPressed = 0.05f;
+
     [Header("Настройка гравитации")]
     [SerializeField] private float _extraGravity = 700f;
     private float _currentLerpFactor = 0f;
@@ -71,15 +72,15 @@ public class RigidbodyPlatformerMovement : RigidbodyMovement
 
         if (NoButtonPressed)
         {
-            _currentLerpFactor = _lerpFactorIfNoButtonPressed;
+            _currentLerpFactor = _interpolationFactorIfNoButtonPressed;
         }
         else if (IsDifferentSings(_targetVelocityX, _currentVelocityX))
         {
-            _currentLerpFactor = _lerpFactorForRotate;
+            _currentLerpFactor = _interpolationFactorForRotate;
         }
         else
         {
-            _currentLerpFactor = _lerpFactorForMovement;
+            _currentLerpFactor = _interpolationFactorForMovement;
         }
     }
 

@@ -33,8 +33,8 @@ public class PlayerPunchManager : MonoBehaviour
             IHealth tempHealth = collider.GetComponent<IHealth>();
 
             // Какие из них не null - с такими и работает
-            tempRigidbody?.AddForce(punchDirection * _punchStrength, ForceMode2D.Impulse);
-            tempHealth?.TakeDamage(_punchDamage);
+            if(tempRigidbody != null) tempRigidbody.AddForce(punchDirection * _punchStrength, ForceMode2D.Impulse);
+            if(tempHealth != null) tempHealth.TakeDamage(_punchDamage);
         }
     }
 

@@ -44,6 +44,7 @@ public class PlatformerObstaclesSpawner : MonoBehaviour
 
     private void CheckPhaseStarted(PhaseID phaseId)
     {
+        Debug.Log($"PlatformerObstaclesSpawner: trying to Check phase started, phaseid is {phaseId.ToString()}");
         if (phaseId == PhaseID.Third || phaseId == PhaseID.None) return; // Неинтересно
 
         _currentSpawnConfiguration = _spawnConfigurations[(int)phaseId];
@@ -59,6 +60,7 @@ public class PlatformerObstaclesSpawner : MonoBehaviour
 
     private IEnumerator SpawnLoop()
     {
+        Debug.Log("PlatformerObstaclesSpawner: SpawnLoop started");
         yield return new WaitForSeconds(_delayBeforeSpawning);
         // Начинаем спавнить препятствия
         _isSpawning = true;
@@ -98,6 +100,7 @@ public class PlatformerObstaclesSpawner : MonoBehaviour
         }
         while (_currentSpawnConfiguration.isEndless);
 
+        Debug.Log("PlatformerObstaclesSpawner: SpawnLoop ended");
         _isSpawning = false;
     }
 

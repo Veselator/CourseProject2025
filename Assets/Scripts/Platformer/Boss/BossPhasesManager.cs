@@ -63,6 +63,7 @@ public class BossPhasesManager : MonoBehaviour
 
     public void TryToEndPhase()
     {
+        Debug.Log($"BossPhasesManager: trying to end phase {_currentPhase.ToString()}");
         // ѕроверка, можно ли закончить фазу
         if (_currentPhase == PhaseID.Third) return; // Ќе можем закончить если треть€ фаза или выше - там другой механизм
 

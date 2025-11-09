@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c0fbb0cbba9e534199c291d6bcb54c4, type: 3}
   m_Name: BossThirdStage 3
   m_EditorClassIdentifier: 
-  Character: {fileID: 11400000, guid: 49507b9350591ca47a8983c64431e562, type: 2}
+  Character: {fileID: 11400000, guid: 73f9fa4ac337e8e47bfafeccf074adaa, type: 2}
   Text: "\u041D\u0406! \u041C\u041E\u0404 \u0421\u041B\u0410\u0411\u0415 \u041C\u0406\u0421\u0426\u0415!
     \u0412\u041E\u041D\u041E \u0412\u0406\u0414\u041A\u0420\u0418\u0422\u0415 \u0414\u041E
     \u0423\u0414\u0410\u0420\u0423!"

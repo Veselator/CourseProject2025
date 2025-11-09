@@ -18,52 +18,88 @@ MonoBehaviour:
     linkedObjectName: 
     Size: 0
     LinkedDialogue: {fileID: 0}
+    destinationObjectName: 
+    animateScale: 0
+    animationDuration: 0
     TimeInSeconds: 0
   - CAT: 6
     WaitType: 0
     linkedObjectName: Fleshka (1)
     Size: 15
     LinkedDialogue: {fileID: 11400000, guid: 14ee221692f4b594d8299f696754a446, type: 2}
+    destinationObjectName: 
+    animateScale: 0
+    animationDuration: 0
     TimeInSeconds: 0
   - CAT: 10
     WaitType: 0
     linkedObjectName: PlayerBossSpawnPoint
     Size: 0
     LinkedDialogue: {fileID: 11400000, guid: 14ee221692f4b594d8299f696754a446, type: 2}
+    destinationObjectName: 
+    animateScale: 0
+    animationDuration: 0
     TimeInSeconds: 0
   - CAT: 4
     WaitType: 1
     linkedObjectName: Fleshka (1)
     Size: 0
     LinkedDialogue: {fileID: 0}
-    TimeInSeconds: 2
+    destinationObjectName: 
+    animateScale: 0
+    animationDuration: 0
+    TimeInSeconds: 1
+  - CAT: 11
+    WaitType: 1
+    linkedObjectName: Boss
+    Size: 0
+    LinkedDialogue: {fileID: 11400000, guid: 14ee221692f4b594d8299f696754a446, type: 2}
+    destinationObjectName: BossPoint
+    animateScale: 0
+    animationDuration: 0.58
+    TimeInSeconds: 1.19
   - CAT: 8
     WaitType: 2
     linkedObjectName: Fleshka (1)
     Size: 0
     LinkedDialogue: {fileID: 11400000, guid: 14ee221692f4b594d8299f696754a446, type: 2}
+    destinationObjectName: 
+    animateScale: 0
+    animationDuration: 0
     TimeInSeconds: 0
   - CAT: 2
     WaitType: 0
     linkedObjectName: Fleshka (1)
     Size: 0
     LinkedDialogue: {fileID: 11400000, guid: 14ee221692f4b594d8299f696754a446, type: 2}
+    destinationObjectName: 
+    animateScale: 0
+    animationDuration: 0
     TimeInSeconds: 0
   - CAT: 9
     WaitType: 0
     linkedObjectName: Fleshka (1)
     Size: 0
     LinkedDialogue: {fileID: 11400000, guid: 14ee221692f4b594d8299f696754a446, type: 2}
+    destinationObjectName: 
+    animateScale: 0
+    animationDuration: 0
     TimeInSeconds: 0
   - CAT: 6
     WaitType: 0
     linkedObjectName: Fleshka (1)
     Size: 10
     LinkedDialogue: {fileID: 11400000, guid: 14ee221692f4b594d8299f696754a446, type: 2}
+    destinationObjectName: 
+    animateScale: 0
+    animationDuration: 0
     TimeInSeconds: 0
   - CAT: 4
     WaitType: 0
     linkedObjectName: Fleshka (2)
     Size: 0
     LinkedDialogue: {fileID: 11400000, guid: 14ee221692f4b594d8299f696754a446, type: 2}
+    destinationObjectName: 
+    animateScale: 0
+    animationDuration: 0
     TimeInSeconds: 0

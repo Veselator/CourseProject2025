@@ -113,7 +113,7 @@ public class PlatformerCutscenesManager : MonoBehaviour
                 GameObject movingObject = GameObject.Find(currentAction.linkedObjectName);
                 GameObject destinationObject = GameObject.Find(currentAction.destinationObjectName);
 
-                if (movingObject != null && destinationObject != null) _objectMover.AnimateMoving(movingObject, destinationObject.transform, ObjectAnimationType.EaseIn, currentAction.animateScale);
+                if (movingObject != null && destinationObject != null) _objectMover.AnimateMoving(movingObject, destinationObject.transform, ObjectAnimationType.EaseOut, currentAction.animateScale);
                 else
                 {
                     if (movingObject == null) Debug.LogError($"movingObject: {currentAction.linkedObjectName} не найден");

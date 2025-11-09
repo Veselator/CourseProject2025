@@ -32,14 +32,14 @@ MonoBehaviour:
     animationDuration: 0
     TimeInSeconds: 0
   - CAT: 11
-    WaitType: 1
+    WaitType: 0
     linkedObjectName: BossPuzzle
     Size: 10
     LinkedDialogue: {fileID: 0}
     destinationObjectName: PuzzleDest (1)
     animateScale: 1
     animationDuration: 0.69
-    TimeInSeconds: 2
+    TimeInSeconds: 0
   - CAT: 6
     WaitType: 1
     linkedObjectName: Fleshka (1)
@@ -48,7 +48,7 @@ MonoBehaviour:
     destinationObjectName: 
     animateScale: 0
     animationDuration: 0
-    TimeInSeconds: 2
+    TimeInSeconds: 1.1
   - CAT: 8
     WaitType: 2
     linkedObjectName: Fleshka (1)
@@ -58,6 +58,78 @@ MonoBehaviour:
     animateScale: 0
     animationDuration: 0
     TimeInSeconds: 2
+  - CAT: 11
+    WaitType: 1
+    linkedObjectName: WeakPoint
+    Size: 10
+    LinkedDialogue: {fileID: 0}
+    destinationObjectName: TopPoint
+    animateScale: 0
+    animationDuration: 0.59
+    TimeInSeconds: 1.83
+  - CAT: 8
+    WaitType: 2
+    linkedObjectName: Fleshka (1)
+    Size: 10
+    LinkedDialogue: {fileID: 11400000, guid: 45323dd30807f34428600a37a9763357, type: 2}
+    destinationObjectName: 
+    animateScale: 0
+    animationDuration: 0
+    TimeInSeconds: 2
+  - CAT: 6
+    WaitType: 1
+    linkedObjectName: Fleshka (1)
+    Size: 15
+    LinkedDialogue: {fileID: 0}
+    destinationObjectName: 
+    animateScale: 0
+    animationDuration: 0
+    TimeInSeconds: 0.29
+  - CAT: 11
+    WaitType: 0
+    linkedObjectName: PL (1)
+    Size: 10
+    LinkedDialogue: {fileID: 0}
+    destinationObjectName: BP (1)
+    animateScale: 0
+    animationDuration: 1.24
+    TimeInSeconds: 2
+  - CAT: 11
+    WaitType: 0
+    linkedObjectName: PL (2)
+    Size: 10
+    LinkedDialogue: {fileID: 0}
+    destinationObjectName: BP (2)
+    animateScale: 0
+    animationDuration: 1.24
+    TimeInSeconds: 2
+  - CAT: 11
+    WaitType: 0
+    linkedObjectName: PL (3)
+    Size: 10
+    LinkedDialogue: {fileID: 0}
+    destinationObjectName: BP (3)
+    animateScale: 0
+    animationDuration: 1.24
+    TimeInSeconds: 2
+  - CAT: 11
+    WaitType: 0
+    linkedObjectName: PL (4)
+    Size: 10
+    LinkedDialogue: {fileID: 0}
+    destinationObjectName: BP (4)
+    animateScale: 0
+    animationDuration: 1.24
+    TimeInSeconds: 2
+  - CAT: 11
+    WaitType: 1
+    linkedObjectName: PL
+    Size: 10
+    LinkedDialogue: {fileID: 0}
+    destinationObjectName: BP
+    animateScale: 0
+    animationDuration: 1.24
+    TimeInSeconds: 1.73
   - CAT: 2
     WaitType: 0
     linkedObjectName: Fleshka (1)

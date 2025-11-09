@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c0fbb0cbba9e534199c291d6bcb54c4, type: 3}
   m_Name: BossThirdStage 2
   m_EditorClassIdentifier: 
-  Character: {fileID: 11400000, guid: 49507b9350591ca47a8983c64431e562, type: 2}
+  Character: {fileID: 11400000, guid: 73f9fa4ac337e8e47bfafeccf074adaa, type: 2}
   Text: "\u041E\u0439, \u0449\u043E \u0446\u0435..."
   TypingConfig:
   - IDTo: 1000

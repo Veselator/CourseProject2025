@@ -20,12 +20,14 @@ public class GameSceneManager : MonoBehaviour
 
     public static void ExitToMenu()
     {
+        Debug.Log("GameSceneManager: Выход в меню...");
         Application.Quit();
     }
 
     public static void LoadNextScene()
     {
         // Временно!
+        Debug.Log("GameSceneManager: Загружаю следующую сцену...");
         Application.Quit();
     }
 }
