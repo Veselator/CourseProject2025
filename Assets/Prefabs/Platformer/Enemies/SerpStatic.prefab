@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5804420292867542551}
   - component: {fileID: 2139694038661818795}
   - component: {fileID: 418586914939926732}
+  - component: {fileID: 9159219476873556042}
   m_Layer: 6
   m_Name: SerpStatic
   m_TagString: Untagged
@@ -143,6 +144,23 @@ PolygonCollider2D:
       - {x: -0.011727393, y: 0.32240131}
       - {x: -0.45947212, y: -0.4848565}
   m_UseDelaunayMesh: 0
+--- !u!114 &9159219476873556042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484926134468820341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee89db9baecab384abf6a77fb723cb77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damageObjects:
+  - {fileID: 3130559392902306767}
+  _animationDuration: 0.5
+  _flickerSpeed: 0.1
+  _linkedHealth: {fileID: 0}
 --- !u!1 &3130559392902306767
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,7 +213,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 4a11246ac25bd0243a9beaa0cc45f2c1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

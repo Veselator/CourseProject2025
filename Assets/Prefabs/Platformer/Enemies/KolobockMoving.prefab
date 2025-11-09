@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 4697823320945180218}
   - component: {fileID: 4382682666532044131}
   - component: {fileID: 8984466753982486312}
+  - component: {fileID: 8040882091442673107}
   m_Layer: 6
   m_Name: KolobockMoving
   m_TagString: Untagged
@@ -178,9 +179,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 200
   jumpStrength: 12
-  _lerpFactorForMovement: 0.02
-  _lerpFactorForRotate: 0.05
-  _lerpFactorIfNoButtonPressed: 0.3
+  _interpolationFactorForMovement: 0.02
+  _interpolationFactorForRotate: 0.05
+  _interpolationFactorIfNoButtonPressed: 0.05
   _extraGravity: 700
 --- !u!61 &4382682666532044131
 BoxCollider2D:
@@ -254,6 +255,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &8040882091442673107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3431066228875456231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee89db9baecab384abf6a77fb723cb77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damageObjects:
+  - {fileID: 7027888184655130421}
+  _animationDuration: 0.5
+  _flickerSpeed: 0.1
+  _linkedHealth: {fileID: 0}
 --- !u!1 &7027888184655130421
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,7 +324,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 4a11246ac25bd0243a9beaa0cc45f2c1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

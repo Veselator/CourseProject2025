@@ -21,6 +21,6 @@ public class PlayerHitShakeHolder : MonoBehaviour
 
     private void OnDestroy()
     {
-        trackingHealth.OnDamaged -= CameraShake.ShakeCamera;
+        trackingHealth.OnDamaged -= _linkedShaker.StartHitShake;
     }
 }

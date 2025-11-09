@@ -64,6 +64,12 @@ public class CameraShake : MonoBehaviour
         StartCoroutine(HitShake(ShakeHitDuration, shakeHitIntensity));
     }
 
+    public void StartHitShake(float shakeHitIntensityFactor)
+    {
+        Debug.Log("Starting shaking");
+        StartCoroutine(HitShake(ShakeHitDuration, shakeHitIntensity * shakeHitIntensityFactor));
+    }
+
     protected virtual IEnumerator RandomDragCamera(float duration, float intensity)
     {
         originalLocalPosition = transform.localPosition;

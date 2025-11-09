@@ -52,7 +52,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 4a11246ac25bd0243a9beaa0cc45f2c1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 663813479951506596}
   - component: {fileID: 4429598300636820237}
   - component: {fileID: 5519957185768104923}
+  - component: {fileID: 9012816277859236147}
   m_Layer: 6
   m_Name: FinnStatic
   m_TagString: Untagged
@@ -224,6 +225,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &9012816277859236147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4913313789572460302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee89db9baecab384abf6a77fb723cb77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damageObjects:
+  - {fileID: 1087476327895404579}
+  _animationDuration: 0.5
+  _flickerSpeed: 0.1
+  _linkedHealth: {fileID: 0}
 --- !u!1 &5252290243761707633
 GameObject:
   m_ObjectHideFlags: 0

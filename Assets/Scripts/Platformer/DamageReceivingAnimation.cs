@@ -3,11 +3,14 @@ using UnityEngine;
 
 public class DamageReceivingAnimation : MonoBehaviour
 {
+    // Анимация получения урона на основе Health и материала с параметром _ColorInterpolationValue
+
     [Header("Настройки анимации")]
     [SerializeField] private GameObject[] _damageObjects;
-    [SerializeField] private float _animationDuration = 0.5f;
-    [SerializeField] private float _flickerSpeed = 0.1f;
     [SerializeField] private Health _linkedHealth;
+    [SerializeField] private float _animationDuration = 0.5f;
+    [SerializeField] private float _maxflickerSpeed = 0.2f;
+    [SerializeField] private AnimationCurve _curve = AnimationCurve.EaseInOut(0.1f, 0.1f, 1, 1);
 
     private MaterialPropertyBlock _propBlock;
     private static readonly int ColorInterpolationValueID = Shader.PropertyToID("_ColorInterpolationValue");
@@ -16,6 +19,7 @@ public class DamageReceivingAnimation : MonoBehaviour
 
     private void Awake()
     {
+        if(_linkedHealth == null) _linkedHealth = GetComponent<Health>();
         _propBlock = new MaterialPropertyBlock();
     }
 
@@ -45,13 +49,14 @@ public class DamageReceivingAnimation : MonoBehaviour
 
         while (elapsed < _animationDuration)
         {
-            SetColorInterpolationValue(0.99f);
-            yield return new WaitForSeconds(_flickerSpeed);
+            float currentFlickingSpeed = _curve.Evaluate(elapsed / _animationDuration) * _maxflickerSpeed;
+            SetColorInterpolationValue(1f);
+            yield return new WaitForSeconds(currentFlickingSpeed);
 
             SetColorInterpolationValue(0f);
-            yield return new WaitForSeconds(_flickerSpeed);
+            yield return new WaitForSeconds(currentFlickingSpeed);
 
-            elapsed += _flickerSpeed * 2f;
+            elapsed += currentFlickingSpeed * 2f;
         }
 
         SetColorInterpolationValue(0f);

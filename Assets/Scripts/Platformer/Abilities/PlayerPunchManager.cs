@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerPunchManager : MonoBehaviour
@@ -9,6 +10,7 @@ public class PlayerPunchManager : MonoBehaviour
     [SerializeField] private Rigidbody2D _trackingRigidbody;
     [SerializeField] private Damage _punchDamage;
 
+    public event Action OnPunch;
     private void OnDrawGizmos()
     {
         if (_punchTransform == null) return;
@@ -22,6 +24,8 @@ public class PlayerPunchManager : MonoBehaviour
 
     public void Punch()
     {
+        OnPunch?.Invoke();
+
         Collider2D[] colliders = Physics2D.OverlapBoxAll(_punchTransform.position, _punchRectangle, 0f, _layerPossible2Hit);
         if (colliders.Length == 0) return;
 

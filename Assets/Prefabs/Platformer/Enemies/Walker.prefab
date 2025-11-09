@@ -50,6 +50,7 @@ GameObject:
   - component: {fileID: 3865587012773801338}
   - component: {fileID: 4326166550625122357}
   - component: {fileID: 2482476791406892000}
+  - component: {fileID: 4175271838851019896}
   m_Layer: 6
   m_Name: Walker
   m_TagString: Untagged
@@ -162,9 +163,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 200
   jumpStrength: 7
-  _lerpFactorForMovement: 0.02
-  _lerpFactorForRotate: 0.05
-  _lerpFactorIfNoButtonPressed: 0.3
+  _interpolationFactorForMovement: 0.02
+  _interpolationFactorForRotate: 0.05
+  _interpolationFactorIfNoButtonPressed: 0.05
   _extraGravity: 700
 --- !u!61 &2015468365186644922
 BoxCollider2D:
@@ -311,6 +312,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4175271838851019896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635069736371142306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee89db9baecab384abf6a77fb723cb77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damageObjects:
+  - {fileID: 9165972570317285931}
+  _animationDuration: 0.5
+  _flickerSpeed: 0.1
+  _linkedHealth: {fileID: 0}
 --- !u!1 &7062662931173690272
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,7 +444,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 4a11246ac25bd0243a9beaa0cc45f2c1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

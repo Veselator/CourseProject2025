@@ -17,7 +17,6 @@ public class CameraController : MonoBehaviour
     public static bool IsAbleToUpdate = true;
     [SerializeField] private Vector3 _defaultTrackingPosition = Vector3.zero;
 
-    // —сылка на Shaker (если есть)
     [SerializeField] private CameraShake _cameraShake;
 
     private void Start()

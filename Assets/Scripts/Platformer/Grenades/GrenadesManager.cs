@@ -6,6 +6,7 @@ public class GrenadesManager : MonoBehaviour
     [SerializeField] private GameObject _grenadePrefab;
     [SerializeField] private Transform _grenadeSpawnPoint;
     [SerializeField] private float _thowForceFactor = 3f;
+    [SerializeField] private CameraShake _shaker;
 
     private int _currentNumOfGrenades = 0;
     public int CurrentNumOfGrenades => _currentNumOfGrenades;
@@ -34,8 +35,9 @@ public class GrenadesManager : MonoBehaviour
         OnGrenadeCountChanged?.Invoke(_currentNumOfGrenades);
 
         GameObject grenadeInstance = Instantiate(_grenadePrefab, _grenadeSpawnPoint.position, Quaternion.identity);
-        Rigidbody2D tempRigidbody = grenadeInstance.GetComponent<Rigidbody2D>();
+        grenadeInstance.GetComponent<ExplosionVisual>().Init(_shaker);
 
+        Rigidbody2D tempRigidbody = grenadeInstance.GetComponent<Rigidbody2D>();
         if (tempRigidbody == null)
         {
             Debug.LogError("Компонент Rigidbody2D не найден");

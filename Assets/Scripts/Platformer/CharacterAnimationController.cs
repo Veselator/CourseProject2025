@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterAnimationController : MonoBehaviour
@@ -22,6 +23,8 @@ public class CharacterAnimationController : MonoBehaviour
 
     private void OnEnable()
     {
+        AnimatorCheck.CacheAnimators(_linkedAnimators);
+
         if (_linkedPlayerPlatformerHandler != null)
         {
             _linkedPlayerPlatformerHandler.OnPlayerJumped += HandleJump;
@@ -56,10 +59,10 @@ public class CharacterAnimationController : MonoBehaviour
             _linkedPlayerPlatformerHandler.OnPlayerDegrounded -= HandleDegrounded;
         }
 
-        if (_abilityManager != null)
-        {
-            _abilityManager.OnAbilityApplied -= HoldAbilityAnimation;
-        }
+        //if (_abilityManager != null)
+        //{
+        //    _abilityManager.OnAbilityApplied -= HoldAbilityAnimation;
+        //}
 
         if (_damageManager == null)
         {
@@ -83,26 +86,33 @@ public class CharacterAnimationController : MonoBehaviour
 
     private void ApplyTrigger(int property)
     {
+        if (!gameObject.activeInHierarchy) return;
+
         foreach (var animator in _linkedAnimators)
         {
-            if (animator != null)
+            if (animator != null && AnimatorCheck.HasParameter(animator, property))
             {
                 animator.SetTrigger(property);
             }
         }
     }
 
+    // Нет
     private void HoldAbilityAnimation(IAbility ability)
     {
+        if (!gameObject.activeInHierarchy) return;
+
         if (ability.Type == AbilityType.Mechanic) ApplyTrigger(ThrowHash);
         else if (ability.Type == AbilityType.StrongPunch) ApplyTrigger(PunchHash);
     }
 
     private void Run()
     {
+        if (!gameObject.activeInHierarchy) return;
+
         foreach (var animator in _linkedAnimators)
         {
-            if (animator != null)
+            if (animator != null && AnimatorCheck.HasParameter(animator, RunHash))
             {
                 animator.SetTrigger(RunHash);
             }
@@ -111,9 +121,11 @@ public class CharacterAnimationController : MonoBehaviour
 
     private void HandleJump(float _)
     {
+        if (!gameObject.activeInHierarchy) return;
+
         foreach (var animator in _linkedAnimators)
         {
-            if (animator != null)
+            if (animator != null && AnimatorCheck.HasParameter(animator, JumpHash))
             {
                 animator.SetTrigger(JumpHash);
             }
@@ -122,9 +134,11 @@ public class CharacterAnimationController : MonoBehaviour
 
     private void HandleDamage()
     {
+        if (!gameObject.activeInHierarchy) return;
+
         foreach (var animator in _linkedAnimators)
         {
-            if (animator != null)
+            if (animator != null && AnimatorCheck.HasParameter(animator, DamageHash))
             {
                 animator.SetTrigger(DamageHash);
             }
@@ -135,9 +149,10 @@ public class CharacterAnimationController : MonoBehaviour
     {
         _isWalking = true;
 
+        if (!gameObject.activeInHierarchy) return;
         foreach (var animator in _linkedAnimators)
         {
-            if (animator != null)
+            if (animator != null && AnimatorCheck.HasParameter(animator, IsWalkingHash))
             {
                 animator.SetBool(IsWalkingHash, true);
             }
@@ -150,9 +165,10 @@ public class CharacterAnimationController : MonoBehaviour
         _runTimer = 0f;
         _isRunTriggered = false;
 
+        if (!gameObject.activeInHierarchy) return;
         foreach (var animator in _linkedAnimators)
         {
-            if (animator != null)
+            if (animator != null && AnimatorCheck.HasParameter(animator, IsWalkingHash))
             {
                 animator.SetBool(IsWalkingHash, false);
             }
@@ -161,9 +177,10 @@ public class CharacterAnimationController : MonoBehaviour
 
     private void HandleDegrounded()
     {
+        if (!gameObject.activeInHierarchy) return;
         foreach (var animator in _linkedAnimators)
         {
-            if (animator != null)
+            if (animator != null && AnimatorCheck.HasParameter(animator, IsGroundedHash))
             {
                 animator.SetBool(IsGroundedHash, false);
             }
@@ -172,12 +189,39 @@ public class CharacterAnimationController : MonoBehaviour
 
     private void HandleGrounded()
     {
+        if (!gameObject.activeInHierarchy) return;
         foreach (var animator in _linkedAnimators)
         {
-            if (animator != null)
+            if (animator != null && AnimatorCheck.HasParameter(animator, IsGroundedHash))
             {
                 animator.SetBool(IsGroundedHash, true);
             }
         }
+    }
+}
+
+public static class AnimatorCheck
+{
+    private static Dictionary<Animator, HashSet<int>> _cachedParameters = new Dictionary<Animator, HashSet<int>>();
+
+    public static void CacheAnimators(Animator[] animators)
+    {
+        foreach (var animator in animators)
+        {
+            if (animator != null && animator.runtimeAnimatorController != null)
+            {
+                var paramSet = new HashSet<int>();
+                foreach (var param in animator.parameters)
+                {
+                    paramSet.Add(param.nameHash);
+                }
+                _cachedParameters[animator] = paramSet;
+            }
+        }
+    }
+
+    public static bool HasParameter(this Animator animator, int parameterHash)
+    {
+        return _cachedParameters.TryGetValue(animator, out var paramSet) && paramSet.Contains(parameterHash);
     }
 }

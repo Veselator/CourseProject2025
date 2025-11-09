@@ -39,6 +39,9 @@ public class PlayerPlatformerHandler : PlayerMovementHandler
 
     protected override void Init()
     {
+        // Временно
+        Debug.unityLogger.logEnabled = false;
+
         _playerInput = PlayerInput.Instance;
         _movement = GetComponent<IMovement>();
         _rigidbodyMovement = _movement as RigidbodyPlatformerMovement;
