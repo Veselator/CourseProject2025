@@ -59,7 +59,7 @@ public class PlayerPlatformerHandler : PlayerMovementHandler
     protected override void HandleInput()
     {
         base.HandleInput();
-        if(!IsMovementBlocked) HandleJump();
+        if(!IsMovementBlocked && !GlobalFlags.GetFlag(Flags.GameOver)) HandleJump();
     }
 
     protected override void HandleMovingInput()

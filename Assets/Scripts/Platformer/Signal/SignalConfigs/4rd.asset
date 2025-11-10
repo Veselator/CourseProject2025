@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   signals:
   - signal:
-      top: 0
-      right: 1
+      top: 1
+      right: 0
       bottom: 1
-      left: 1
+      left: 0
     direction: 2
   - signal:
       top: 1

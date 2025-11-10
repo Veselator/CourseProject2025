@@ -12,6 +12,8 @@ public class UIAppearManager : MonoBehaviour
     public static UIAppearManager Instance { get; private set; }
     public Action OnAppearAnimationEnded;
 
+    private bool _isAniamtionBegan = false;
+
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -28,6 +30,8 @@ public class UIAppearManager : MonoBehaviour
 
     public void ShowUI()
     {
+        if (_isAniamtionBegan) return;
+        _isAniamtionBegan = true;
         StartCoroutine(FadeIn());
     }
 

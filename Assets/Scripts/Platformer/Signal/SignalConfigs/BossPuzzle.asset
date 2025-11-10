@@ -140,10 +140,10 @@ MonoBehaviour:
       left: 1
     direction: 3
   - signal:
-      top: 0
-      right: 1
-      bottom: 0
-      left: 1
+      top: 1
+      right: 0
+      bottom: 1
+      left: 0
     direction: 3
   startDirection: 2
   IsOneShoot: 1

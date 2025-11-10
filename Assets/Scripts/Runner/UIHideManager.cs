@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UIHideManager : MonoBehaviour
@@ -9,6 +8,7 @@ public class UIHideManager : MonoBehaviour
     private const float delayBeforeEndOfAnimation = 2f;
 
     private UIAppearManager _UIAppearManager;
+    private bool _isHiding = false;
 
     private void Start()
     {
@@ -33,6 +33,8 @@ public class UIHideManager : MonoBehaviour
 
     private void HideUI()
     {
+        if (_isHiding) return;
+        _isHiding = true;
         StartCoroutine(FadeOut());
     }
 

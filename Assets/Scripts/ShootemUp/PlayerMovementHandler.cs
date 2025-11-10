@@ -10,7 +10,7 @@ public class PlayerMovementHandler : MonoBehaviour
 
     [SerializeField] private Box clampingBox;
 
-    public Vector2 MovementVector => IsMovementBlocked ? Vector2.zero : _playerInput.GetMovementVector();
+    public Vector2 MovementVector => IsMovementBlocked || GlobalFlags.GetFlag(Flags.GameOver) ? Vector2.zero : _playerInput.GetMovementVector();
     public static PlayerMovementHandler Instance { get; private set; }
 
     // Для дочерних классов
@@ -38,7 +38,6 @@ public class PlayerMovementHandler : MonoBehaviour
 
     private void Update()
     {
-        if (GlobalFlags.GetFlag(Flags.GameOver)) return;
         if (IsHandleAdditionalThings) HandleAdditionalThings();
         HandleInput();
     }

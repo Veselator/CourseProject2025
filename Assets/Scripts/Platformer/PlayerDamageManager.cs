@@ -14,7 +14,7 @@ public class PlayerDamageManager : MonoBehaviour
     [SerializeField] private Damage PlayerDamageOnEnemies;
     [SerializeField] private float _impulseStrengthAfterDamageDealed = 2f;
 
-    public event Action OnPlayerDamaged;
+    public event Action OnPlayerDamaged; // Зачем, если это можно отслеживать через здоровье? Без понятия
     private void Start()
     {
         _health = GetComponent<Health>();
@@ -40,6 +40,8 @@ public class PlayerDamageManager : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D colli)
     {
+        if (GlobalFlags.GetFlag(Flags.GameOver)) return;
+
         IPossible2DealDamage tempInterface;
         // Если не предмет, способный нанести урон - нам не интересно
         if (!colli.gameObject.TryGetComponent<IPossible2DealDamage>(out tempInterface)) return;

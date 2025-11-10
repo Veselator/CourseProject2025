@@ -40,6 +40,15 @@ MonoBehaviour:
     animateScale: 0
     animationDuration: 0
     TimeInSeconds: 0
+  - CAT: 11
+    WaitType: 0
+    linkedObjectName: FleshkaAAA
+    Size: 0
+    LinkedDialogue: {fileID: 11400000, guid: 14ee221692f4b594d8299f696754a446, type: 2}
+    destinationObjectName: FleshkaDisappear
+    animateScale: 0
+    animationDuration: 0.33
+    TimeInSeconds: 0
   - CAT: 4
     WaitType: 1
     linkedObjectName: Fleshka (1)
@@ -50,14 +59,23 @@ MonoBehaviour:
     animationDuration: 0
     TimeInSeconds: 1
   - CAT: 11
+    WaitType: 0
+    linkedObjectName: Shadow
+    Size: 0
+    LinkedDialogue: {fileID: 11400000, guid: 14ee221692f4b594d8299f696754a446, type: 2}
+    destinationObjectName: ShadowPoint
+    animateScale: 0
+    animationDuration: 0.26
+    TimeInSeconds: 0
+  - CAT: 11
     WaitType: 1
     linkedObjectName: Boss
     Size: 0
     LinkedDialogue: {fileID: 11400000, guid: 14ee221692f4b594d8299f696754a446, type: 2}
     destinationObjectName: BossPoint
     animateScale: 0
-    animationDuration: 0.58
-    TimeInSeconds: 1.19
+    animationDuration: 0.64
+    TimeInSeconds: 1.59
   - CAT: 8
     WaitType: 2
     linkedObjectName: Fleshka (1)

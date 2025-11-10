@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -14,6 +15,7 @@ public class DialoguesManager : MonoBehaviour
     [SerializeField] private DialogueTextWriter _textWriter;
     [SerializeField] private GameObject _dialogueRoot;
     [SerializeField] private NextAvailabilityAnimation _nextAvailabilityAnimation;
+    [SerializeField] private BossAnimationController _bossAnimationController;
 
     // Клавиша для начала следующего диалога
     [SerializeField] private InputActionReference KeyToStartNextNode;
@@ -51,13 +53,13 @@ public class DialoguesManager : MonoBehaviour
 
     public void StartDialogue(DialogueSO dialogue)
     {
+        if (GlobalFlags.GetFlag(Flags.GameOver)) return;
         _currentDialogue = dialogue;
         currentNodeIndex = 0;
+        _dialogueRoot.SetActive(true);
 
         DialogueNodeSO nextNode = _currentDialogue.Nodes[currentNodeIndex];
-        UpdateUI(nextNode);
-        _dialogueRoot.SetActive(true);
-        _textWriter.Write(nextNode);
+        ProccessNode(nextNode);
     }
 
     // Для привязки к нажатию кнопки
@@ -68,12 +70,16 @@ public class DialoguesManager : MonoBehaviour
 
     private void UpdateUI(DialogueNodeSO currentNode)
     {
+        // Обновляем интерфейс диалога
         _characterTitle.text = currentNode.Character.Name;
         _characterImage.sprite = currentNode.Character.Photo;
+
+        _textWriter.Write(currentNode);
     }
 
     public void NextNode()
     {
+        if (GlobalFlags.GetFlag(Flags.GameOver)) return;
         if (!_isReadyToNextNode) return;
 
         currentNodeIndex++;
@@ -89,8 +95,17 @@ public class DialoguesManager : MonoBehaviour
         _nextAvailabilityAnimation.Hide();
         DialogueNodeSO nextNode = _currentDialogue.Nodes[currentNodeIndex];
 
-        UpdateUI(nextNode);
-        _textWriter.Write(nextNode);
+        ProccessNode(nextNode);
+    }
+
+    private void ProccessNode(DialogueNodeSO node)
+    {
+        if (node.AdditionalAction != DialogueAdditionalAction.None)
+        {
+            _bossAnimationController.SetEmotion(node.emotion);
+        }
+
+        UpdateUI(node);
     }
 
     private void HandleWritingEnded()

@@ -10,6 +10,10 @@ public class DialogueNodeSO : ScriptableObject
     public string Text;
     public CharacterTypingSpeedConfig[] TypingConfig;
     public float DelayAfter;
+
+    public DialogueAdditionalAction AdditionalAction;
+    [ShowIfEnum("AdditionalAction", DialogueAdditionalAction.SetEmotion)]
+    public BossEmotion emotion;
 }
 
 // Гибкая система настройки скорости ввода
@@ -20,4 +24,10 @@ public struct CharacterTypingSpeedConfig
     public int IDTo; // Включительно
     public float TypingSpeed;
     public float DelayAfter;
+}
+
+public enum DialogueAdditionalAction
+{
+    None,
+    SetEmotion
 }

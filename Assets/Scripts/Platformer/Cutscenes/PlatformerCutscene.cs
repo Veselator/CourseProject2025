@@ -35,6 +35,9 @@ public struct CutsceneAction
 
     [ShowIfEnum("WaitType", WaitActionType.WaitForSeconds)]
     public float TimeInSeconds;
+
+    [ShowIfEnum("CAT", CutsceneActionType.SetBossEmotion)]
+    public BossEmotion emotion;
 }
 
 public enum CutsceneActionType
@@ -62,7 +65,10 @@ public enum CutsceneActionType
     SetPlayerSpawnpoint,
 
     // Перемещение объекта
-    MoveObject
+    MoveObject,
+
+    // Эмоции босса
+    SetBossEmotion
 }
 
 public enum WaitActionType

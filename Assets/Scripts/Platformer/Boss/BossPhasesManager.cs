@@ -7,6 +7,9 @@ public class BossPhasesManager : MonoBehaviour
     private PlatformerCutscenesManager _cutscenesManager;
     [SerializeField] private PlatformerCutscene[] phasesCutscenes;
     [SerializeField] private SignalsManager _linkedSignalsManager;
+
+    private bool _isPossibleToEndFlag = false;
+
     private PhaseID _currentPhase = PhaseID.First;
     public PhaseID CurrentPhase => _currentPhase;
 
@@ -57,16 +60,19 @@ public class BossPhasesManager : MonoBehaviour
 
     public void BossActionAfterCutscene()
     {
+        if (GlobalFlags.GetFlag(Flags.GameOver)) return;
         // ƒействи€, когда кат-сцена фазы кончилась
+        _isPossibleToEndFlag = true;
         OnPhaseStarted?.Invoke(_currentPhase);
     }
 
     public void TryToEndPhase()
     {
+        if (GlobalFlags.GetFlag(Flags.GameOver)) return;
         Debug.Log($"BossPhasesManager: trying to end phase {_currentPhase.ToString()}");
         // ѕроверка, можно ли закончить фазу
-        if (_currentPhase == PhaseID.Third) return; // Ќе можем закончить если треть€ фаза или выше - там другой механизм
-
+        if (!_isPossibleToEndFlag || _currentPhase == PhaseID.Third) return; // Ќе можем закончить если треть€ фаза или выше - там другой механизм
+        _isPossibleToEndFlag = false;
         OnPhaseEnded?.Invoke(_currentPhase);
 
         _currentPhase = NextPhaseID;

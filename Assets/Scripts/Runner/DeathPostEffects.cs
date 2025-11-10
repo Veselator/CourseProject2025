@@ -9,9 +9,9 @@ public class DeathPostEffects : MonoBehaviour
 {
     //private PlayerHealth _playerHealth;
     private Volume _volume;
-    private Vignette vignette;
-    private ColorAdjustments colorAdjustments;
-    private ChromaticAberration chromaticAbberation;
+    private Vignette _vignette;
+    private ColorAdjustments _colorAdjustments;
+    private ChromaticAberration _chromaticAbberation;
     [SerializeField] private float animationDuration = 4f;
 
     private float targetVignetteIntensity;
@@ -25,22 +25,22 @@ public class DeathPostEffects : MonoBehaviour
 
         _volume = GetComponent<Volume>();
 
-        if (_volume.profile.TryGet<Vignette>(out vignette))
+        if (_volume.profile.TryGet<Vignette>(out _vignette))
         {
-            targetVignetteIntensity = vignette.intensity.value;
-            vignette.intensity.value = 0f; // Начинаем с нуля
+            targetVignetteIntensity = _vignette.intensity.value;
+            _vignette.intensity.value = 0f; // Начинаем с нуля
         }
 
-        if (_volume.profile.TryGet<ColorAdjustments>(out colorAdjustments))
+        if (_volume.profile.TryGet<ColorAdjustments>(out _colorAdjustments))
         {
-            targetColorFilter = colorAdjustments.colorFilter.value;
-            colorAdjustments.colorFilter.value = Color.white; // Начинаем с белого (нейтральный)
+            targetColorFilter = _colorAdjustments.colorFilter.value;
+            _colorAdjustments.colorFilter.value = Color.white; // Начинаем с белого (нейтральный)
         }
 
-        if (_volume.profile.TryGet<ChromaticAberration>(out chromaticAbberation))
+        if (_volume.profile.TryGet<ChromaticAberration>(out _chromaticAbberation))
         {
             // Исправление: .intensity — это ClampedFloatParameter, нужно присваивать через .value
-            chromaticAbberation.intensity.value = 1f;
+            _chromaticAbberation.intensity.value = 1f;
         }
     }
 
@@ -68,14 +68,25 @@ public class DeathPostEffects : MonoBehaviour
         float elapsedTime = 0f;
 
         // Стартовые значения
-        float startVignetteIntensity = vignette != null ? vignette.intensity.value : 0f;
-        Vector4 startColorFilter = colorAdjustments != null ? colorAdjustments.colorFilter.value : Color.white;
+        float startVignetteIntensity = _vignette != null ? _vignette.intensity.value : 0f;
+        Vector4 startColorFilter = _colorAdjustments != null ? _colorAdjustments.colorFilter.value : Color.white;
 
-        vignette.active = true;
-        vignette.intensity.overrideState = true;
-        colorAdjustments.active = true;
-        colorAdjustments.colorFilter.overrideState = true;
-        chromaticAbberation.active = true;
+        if(_vignette != null)
+        {
+            _vignette.active = true;
+            _vignette.intensity.overrideState = true;
+        }
+
+        if (_colorAdjustments != null)
+        {
+            _colorAdjustments.active = true;
+            _colorAdjustments.colorFilter.overrideState = true;
+        }
+
+        if (_chromaticAbberation != null)
+        {
+            _chromaticAbberation.active = true;
+        }
 
         while (elapsedTime < animationDuration)
         {
@@ -86,31 +97,31 @@ public class DeathPostEffects : MonoBehaviour
             float smoothProgress = Mathf.SmoothStep(0f, 1f, progress);
 
             // Анимируем Vignette Intensity
-            if (vignette != null)
+            if (_vignette != null)
             {
-                vignette.intensity.value = Mathf.Lerp(startVignetteIntensity, targetVignetteIntensity, smoothProgress);
+                _vignette.intensity.value = Mathf.Lerp(startVignetteIntensity, targetVignetteIntensity, smoothProgress);
             }
 
             // Анимируем Color Filter
-            if (colorAdjustments != null)
+            if (_colorAdjustments != null)
             {
-                colorAdjustments.colorFilter.value = Vector4.Lerp(startColorFilter, targetColorFilter, smoothProgress);
+                _colorAdjustments.colorFilter.value = Vector4.Lerp(startColorFilter, targetColorFilter, smoothProgress);
             }
 
-            if (chromaticAbberation != null)
+            if (_chromaticAbberation != null)
             {
-                chromaticAbberation.intensity.value = Mathf.Lerp(0f, 1f, progress);
+                _chromaticAbberation.intensity.value = Mathf.Lerp(0f, 1f, progress);
             }
 
             yield return null;
         }
 
         // Гарантируем точные конечные значения
-        if (vignette != null)
-            vignette.intensity.value = targetVignetteIntensity;
+        if (_vignette != null)
+            _vignette.intensity.value = targetVignetteIntensity;
 
-        if (colorAdjustments != null)
-            colorAdjustments.colorFilter.value = targetColorFilter;
+        if (_colorAdjustments != null)
+            _colorAdjustments.colorFilter.value = targetColorFilter;
         isPlayingAnimation = false;
     }
 }

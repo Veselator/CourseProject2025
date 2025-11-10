@@ -9,6 +9,7 @@ public class LivesManager : MonoBehaviour, IReadableValue
     [SerializeField] private Transform _lastSpawnPoint;
     [SerializeField] private RigidbodyPlatformerMovement _playerMovement; // Что-бы сбросить движение
     [SerializeField] private Transform _player;
+    [SerializeField] private CameraZoomByMouse _cameraZoomByMouse;
 
     public event Action<float> OnValueChanged;
 
@@ -49,18 +50,24 @@ public class LivesManager : MonoBehaviour, IReadableValue
 
     private void HandleDeath()
     {
+        if (GlobalFlags.GetFlag(Flags.GameOver)) return;
+
         _lives--;
         if (_lives == 0)
         {
             // Усьо
-            // TODO: экран смерти
+            GlobalFlags.SetFlag(Flags.GameOver);
+            // Не хорошо в виду того, что привязываем класс к конкретным реализации. Надо через Observer делать.
+            UIAppearManager.Instance.ShowUI();
+            _cameraZoomByMouse.SetSize(3f);
         }
         else
         {
             _player.position = _lastSpawnPoint.position;
-            _playerMovement?.ResetMovement();
             _health?.ResetHealth();
-            OnValueChanged?.Invoke(Value);
         }
+
+        _playerMovement?.ResetMovement();
+        OnValueChanged?.Invoke(Value);
     }
 }

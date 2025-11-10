@@ -22,6 +22,7 @@ MonoBehaviour:
     animateScale: 0
     animationDuration: 0
     TimeInSeconds: 0
+    emotion: 0
   - CAT: 4
     WaitType: 0
     linkedObjectName: Fleshka (1)
@@ -31,6 +32,7 @@ MonoBehaviour:
     animateScale: 0
     animationDuration: 0
     TimeInSeconds: 0
+    emotion: 0
   - CAT: 11
     WaitType: 0
     linkedObjectName: BossPuzzle
@@ -40,6 +42,7 @@ MonoBehaviour:
     animateScale: 1
     animationDuration: 0.69
     TimeInSeconds: 0
+    emotion: 0
   - CAT: 6
     WaitType: 1
     linkedObjectName: Fleshka (1)
@@ -49,6 +52,7 @@ MonoBehaviour:
     animateScale: 0
     animationDuration: 0
     TimeInSeconds: 1.1
+    emotion: 0
   - CAT: 8
     WaitType: 2
     linkedObjectName: Fleshka (1)
@@ -58,15 +62,17 @@ MonoBehaviour:
     animateScale: 0
     animationDuration: 0
     TimeInSeconds: 2
+    emotion: 0
   - CAT: 11
     WaitType: 1
     linkedObjectName: WeakPoint
     Size: 10
     LinkedDialogue: {fileID: 0}
-    destinationObjectName: TopPoint
+    destinationObjectName: TopPointBoss
     animateScale: 0
     animationDuration: 0.59
     TimeInSeconds: 1.83
+    emotion: 0
   - CAT: 8
     WaitType: 2
     linkedObjectName: Fleshka (1)
@@ -76,6 +82,7 @@ MonoBehaviour:
     animateScale: 0
     animationDuration: 0
     TimeInSeconds: 2
+    emotion: 0
   - CAT: 6
     WaitType: 1
     linkedObjectName: Fleshka (1)
@@ -85,6 +92,7 @@ MonoBehaviour:
     animateScale: 0
     animationDuration: 0
     TimeInSeconds: 0.29
+    emotion: 0
   - CAT: 11
     WaitType: 0
     linkedObjectName: PL (1)
@@ -94,6 +102,7 @@ MonoBehaviour:
     animateScale: 0
     animationDuration: 1.24
     TimeInSeconds: 2
+    emotion: 0
   - CAT: 11
     WaitType: 0
     linkedObjectName: PL (2)
@@ -103,6 +112,7 @@ MonoBehaviour:
     animateScale: 0
     animationDuration: 1.24
     TimeInSeconds: 2
+    emotion: 0
   - CAT: 11
     WaitType: 0
     linkedObjectName: PL (3)
@@ -112,6 +122,7 @@ MonoBehaviour:
     animateScale: 0
     animationDuration: 1.24
     TimeInSeconds: 2
+    emotion: 0
   - CAT: 11
     WaitType: 0
     linkedObjectName: PL (4)
@@ -121,6 +132,7 @@ MonoBehaviour:
     animateScale: 0
     animationDuration: 1.24
     TimeInSeconds: 2
+    emotion: 0
   - CAT: 11
     WaitType: 1
     linkedObjectName: PL
@@ -130,6 +142,7 @@ MonoBehaviour:
     animateScale: 0
     animationDuration: 1.24
     TimeInSeconds: 1.73
+    emotion: 0
   - CAT: 2
     WaitType: 0
     linkedObjectName: Fleshka (1)
@@ -139,6 +152,7 @@ MonoBehaviour:
     animateScale: 0
     animationDuration: 0
     TimeInSeconds: 2
+    emotion: 0
   - CAT: 7
     WaitType: 0
     linkedObjectName: Fleshka (1)
@@ -148,6 +162,7 @@ MonoBehaviour:
     animateScale: 0
     animationDuration: 0
     TimeInSeconds: 2
+    emotion: 0
   - CAT: 5
     WaitType: 0
     linkedObjectName: Fleshka (1)
@@ -157,3 +172,4 @@ MonoBehaviour:
     animateScale: 0
     animationDuration: 0
     TimeInSeconds: 2
+    emotion: 0

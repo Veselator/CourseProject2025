@@ -16,6 +16,7 @@ public class PlatformerCutscenesManager : MonoBehaviour
     [SerializeField] private BossPhasesManager _bossPhasesManager;
     [SerializeField] private LivesManager _livesManager;
     [SerializeField] private ObjectMoverService _objectMover;
+    [SerializeField] private BossAnimationController _bossAnimationController;
 
     // Внутренние поля
     private PlatformerCutscene _currentCutscene;
@@ -37,6 +38,7 @@ public class PlatformerCutscenesManager : MonoBehaviour
     {
         // Если другая кат-сцена уже играет - не прерываем
         if (IsPlayingCutscene) return;
+        if (GlobalFlags.GetFlag(Flags.GameOver)) return;
         _currentCutscene = cutscene;
         _currentActions = _currentCutscene.Actions;
 
@@ -54,6 +56,7 @@ public class PlatformerCutscenesManager : MonoBehaviour
     private void ParseCurrentAction()
     {
         // Парсим функцию
+        if (GlobalFlags.GetFlag(Flags.GameOver)) return;
 
         if (_currentActionPointer >= _currentActions.Length)
         {
@@ -120,6 +123,10 @@ public class PlatformerCutscenesManager : MonoBehaviour
                     if (destinationObject == null) Debug.LogError($"destinationObject: {currentAction.destinationObjectName} не найден");
                 }
 
+                break;
+
+            case CutsceneActionType.SetBossEmotion:
+                _bossAnimationController.SetEmotion(currentAction.emotion);
                 break;
 
             default:

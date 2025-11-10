@@ -25,3 +25,5 @@ MonoBehaviour:
     TypingSpeed: 0.03
     DelayAfter: 0
   DelayAfter: 0
+  AdditionalAction: 1
+  emotion: 0
