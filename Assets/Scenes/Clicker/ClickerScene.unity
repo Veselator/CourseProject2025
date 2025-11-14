@@ -4713,31 +4713,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1132110680}
-  - component: {fileID: 1132110679}
   - component: {fileID: 1132110681}
   m_Layer: 0
-  m_Name: SceneManager
+  m_Name: GlobalFlagsReloadManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1132110679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1132110678}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d903cd557756d164599525736bde364a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mainMenuSceneName: MainMenu
-  _levelScenes: []
-  _useAsyncLoading: 1
-  _minimumLoadingTime: 0.5
 --- !u!4 &1132110680
 Transform:
   m_ObjectHideFlags: 0
@@ -6436,7 +6419,7 @@ Transform:
   m_GameObject: {fileID: 1598341572}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 23.055931, y: 0.1305238, z: 0.05670529}
+  m_LocalPosition: {x: 23.055931, y: 0.1305238, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6840,7 +6823,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5477571734009509453, guid: db63278d3907a7c44a68050407988186, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.055931
+      value: 23.06
       objectReference: {fileID: 0}
     - target: {fileID: 5477571734009509453, guid: db63278d3907a7c44a68050407988186, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8342,7 +8325,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5477571734009509453, guid: db63278d3907a7c44a68050407988186, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.015932798
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5477571734009509453, guid: db63278d3907a7c44a68050407988186, type: 3}
       propertyPath: m_LocalPosition.y

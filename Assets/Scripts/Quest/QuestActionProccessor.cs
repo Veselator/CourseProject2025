@@ -164,6 +164,7 @@ public class QuestActionProccessor : MonoBehaviour
                 break;
             case QuestEffectType.WinGame:
                 GlobalFlags.SetFlag(Flags.GameWin);
+                GameSaveManager.Instance.SetLevelCompleted(3);
                 GameSceneManager.LoadNextScene();
                 break;
 

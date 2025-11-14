@@ -11,6 +11,10 @@ public class DistanceTracker : MonoBehaviour
     // StageTracker будет отвечать за этапы и события
 
     public float CurrentSpeed { get; private set; } = 8f;
+    public float CurrentSpeedForMoving { get; private set; } = 8f; // движени
+    private float _startSpeed;
+    private float _speedfactor = 0.6f;
+
     private const float START_ACCELERATION = 1f;
     private float currentAcceleration = START_ACCELERATION;
     private float maxAcceleration = 4f;
@@ -74,6 +78,7 @@ public class DistanceTracker : MonoBehaviour
     private void Start()
     {
         CurrentDistance = 0f;
+        _startSpeed = CurrentSpeed;
 
         turnDistances = new float[]{ DISTANCE_TO_FIRST_TURN, DISTANCE_TO_SECOND_TURN, DISTANCE_TO_END_GAME };
         playerRotationAnimation = PlayerRotationAnimation.Instance;
@@ -159,6 +164,8 @@ public class DistanceTracker : MonoBehaviour
             
             GlobalFlags.SetFlag(Flags.RunnerStage3Passed);
             GlobalFlags.SetFlag(Flags.GameWin);
+
+            GameSaveManager.Instance.SetLevelCompleted(1);
             GameSceneManager.LoadNextScene();
         }
     }
@@ -181,6 +188,7 @@ public class DistanceTracker : MonoBehaviour
     {
         if (CurrentSpeed < maxSpeed) CurrentSpeed += currentAcceleration * Time.deltaTime;
         if (currentAcceleration < maxAcceleration) currentAcceleration += Time.deltaTime;
+        CurrentSpeedForMoving = _startSpeed + CurrentSpeed * _speedfactor;
         CurrentDistance += CurrentSpeed * Time.deltaTime;
     }
 

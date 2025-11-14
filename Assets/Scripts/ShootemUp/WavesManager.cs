@@ -82,6 +82,9 @@ public class WavesManager : MonoBehaviour
             if (currentWaveIndex == TotalNumOfWaves)
             {
                 GlobalFlags.ToggleFlag(Flags.GameWin);
+
+                GameSaveManager.Instance.SetLevelCompleted(2);
+                GameSceneManager.LoadNextScene();
                 return;
             }
 

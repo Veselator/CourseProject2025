@@ -6153,7 +6153,7 @@ PrefabInstance:
     - target: {fileID: 5751189473175971114, guid: 39b9b8ededec0724e92c3e7c4937ec17, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1811287922}
+      objectReference: {fileID: 0}
     - target: {fileID: 5751189473175971114, guid: 39b9b8ededec0724e92c3e7c4937ec17, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ReloadScene
@@ -6165,7 +6165,7 @@ PrefabInstance:
     - target: {fileID: 6622835898866948520, guid: 39b9b8ededec0724e92c3e7c4937ec17, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1811287922}
+      objectReference: {fileID: 0}
     - target: {fileID: 6622835898866948520, guid: 39b9b8ededec0724e92c3e7c4937ec17, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ExitToMenu
@@ -9384,27 +9384,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1811287923}
-  - component: {fileID: 1811287922}
   - component: {fileID: 1811287924}
   m_Layer: 0
-  m_Name: SceneManager
+  m_Name: GFRM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1811287922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1811287921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d903cd557756d164599525736bde364a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1811287923
 Transform:
   m_ObjectHideFlags: 0

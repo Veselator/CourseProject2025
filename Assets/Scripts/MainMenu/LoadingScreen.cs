@@ -14,8 +14,11 @@ public class LoadingScreen : MonoBehaviour
     [SerializeField] private float _fadeInDuration = 0.3f;
     [SerializeField] private float _fadeOutDuration = 0.3f;
 
+    private float _loadingTime;
+
     private GameSceneManager _sceneManager;
     private Coroutine _fadeCoroutine;
+    private Coroutine _progressCoroutine;
 
     private void Awake()
     {
@@ -26,17 +29,19 @@ public class LoadingScreen : MonoBehaviour
 
         _canvasGroup.alpha = 0f;
         _canvasGroup.blocksRaycasts = false;
-        gameObject.SetActive(false);
+
+        _canvasGroup.gameObject.SetActive(false);
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
     {
         _sceneManager = GameSceneManager.Instance;
+        _loadingTime = _sceneManager.LoadingTime;
 
         if (_sceneManager != null)
         {
             _sceneManager.OnLoadingStarted += ShowLoadingScreen;
-            _sceneManager.OnLoadingProgress += UpdateProgress;
             _sceneManager.OnLoadingCompleted += HideLoadingScreen;
         }
         else
@@ -50,29 +55,32 @@ public class LoadingScreen : MonoBehaviour
         if (_sceneManager != null)
         {
             _sceneManager.OnLoadingStarted -= ShowLoadingScreen;
-            _sceneManager.OnLoadingProgress -= UpdateProgress;
             _sceneManager.OnLoadingCompleted -= HideLoadingScreen;
         }
     }
 
     private void ShowLoadingScreen(int _)
     {
-        gameObject.SetActive(true);
+        Debug.Log("Started loading animation");
+        _canvasGroup.gameObject.SetActive(true);
+
+        if (_progressBar != null)
+        {
+            _progressBar.value = 0f;
+        }
 
         if (_fadeCoroutine != null)
         {
             StopCoroutine(_fadeCoroutine);
         }
 
-        _fadeCoroutine = StartCoroutine(FadeCanvasGroup(1f, _fadeInDuration, true));
-    }
-
-    private void UpdateProgress(float progress)
-    {
-        if (_progressBar != null)
+        if (_progressCoroutine != null)
         {
-            _progressBar.value = progress;
+            StopCoroutine(_progressCoroutine);
         }
+
+        _fadeCoroutine = StartCoroutine(FadeCanvasGroup(1f, _fadeInDuration, true));
+        _progressCoroutine = StartCoroutine(AnimateProgressBar());
     }
 
     private void HideLoadingScreen(int _)
@@ -104,7 +112,30 @@ public class LoadingScreen : MonoBehaviour
 
         if (targetAlpha == 0f)
         {
-            gameObject.SetActive(false);
+            _canvasGroup.gameObject.SetActive(false);
+        }
+    }
+
+    private IEnumerator AnimateProgressBar()
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < _loadingTime)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / _loadingTime;
+
+            if (_progressBar != null)
+            {
+                _progressBar.value = Mathf.Lerp(0f, 1f, t);
+            }
+
+            yield return null;
+        }
+
+        if (_progressBar != null)
+        {
+            _progressBar.value = 1f;
         }
     }
 }

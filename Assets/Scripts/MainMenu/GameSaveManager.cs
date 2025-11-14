@@ -103,6 +103,9 @@ public class GameSaveManager : MonoBehaviour
             return;
         }
 
+        // Если прошли уже - ничего не меняем
+        if (_levelCompleted[levelIndex]) return;
+
         _levelCompleted[levelIndex] = completed;
         Save();
 

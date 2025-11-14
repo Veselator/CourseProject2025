@@ -28,6 +28,7 @@ public class ClickPowerShopItem : BaseClickerShopItem
                     break;
 
                 case EffectType.EndGame:
+                    GameSaveManager.Instance?.SetLevelCompleted(0);
                     GameSceneManager.LoadNextScene();
                     break;
             }

@@ -29,6 +29,6 @@ public class PlayerMovementAcrossLevel : MonoBehaviour
         if (distanceTracker.IsRunnerRotating) return;
         if (GlobalFlags.GetFlag(Flags.GameOver)) return;
         if (distanceTracker == null) return;
-        transform.Translate(CurrentDirection * distanceTracker.CurrentSpeed * Time.deltaTime);
+        transform.Translate(CurrentDirection * distanceTracker.CurrentSpeedForMoving * Time.deltaTime);
     }
 }

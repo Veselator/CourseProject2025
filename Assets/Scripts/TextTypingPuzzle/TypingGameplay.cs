@@ -184,6 +184,7 @@ public class TypingGameplay : MonoBehaviour
 
         if (overallAccuracy >= ACCURACY_TO_WIN_THRESHOLD)
         {
+            GameSaveManager.Instance.SetLevelCompleted(5);
             GameSceneManager.LoadNextScene();
         }
         else

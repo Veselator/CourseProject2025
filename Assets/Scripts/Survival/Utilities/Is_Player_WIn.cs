@@ -9,6 +9,7 @@ public class Is_Player_WIn : MonoBehaviour
     {
         if (TimeCounter.Instance.TimeCount <= 0) 
         {
+            GameSaveManager.Instance.SetLevelCompleted(4);
             GameSceneManager.LoadNextScene();
             //GM.Player_Win();
         }

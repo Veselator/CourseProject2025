@@ -19,6 +19,7 @@ public class PlatformerGameEndTrigger : MonoBehaviour
 
     private void EndGame()
     {
-        GameSceneManager.LoadNextScene();
+        GameSaveManager.Instance.SetLevelCompleted(6);
+        GameSceneManager.ExitToMenu();
     }
 }

@@ -27,6 +27,7 @@ public class GameSceneManager : MonoBehaviour
     [Header("Настройки загрузки")]
     [SerializeField] private bool _useAsyncLoading = true;
     [SerializeField] private float _minimumLoadingTime = 0.5f;
+    public float LoadingTime => _minimumLoadingTime;
 
     private int _currentLevelIndex = -1;
 
@@ -161,6 +162,7 @@ public class GameSceneManager : MonoBehaviour
 
     private IEnumerator LoadSceneAsync(string sceneName)
     {
+        //Debug.Log("LoadSceneAsync");
         OnLoadingStarted?.Invoke(_currentLevelIndex);
 
         float startTime = Time.time;
