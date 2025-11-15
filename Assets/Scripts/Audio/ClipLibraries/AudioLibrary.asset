@@ -181,10 +181,38 @@ MonoBehaviour:
     clips:
     - {fileID: 8300000, guid: b6ed3e319c6c2994982b17b8efcc33c3, type: 3}
     category: 0
-    volume: 0.72
+    volume: 0.48
   - name: bullet_changed
     AET: 0
     clips:
     - {fileID: 8300000, guid: ece6b62c87d1cd74ab6cb068435437b9, type: 3}
     category: 0
-    volume: 0.57
+    volume: 0.44
+  - name: hit_metal
+    AET: 1
+    clips:
+    - {fileID: 8300000, guid: db0d4c1f8b00c5d448205eb3d131612c, type: 3}
+    - {fileID: 8300000, guid: af34300f49cc6e24991242856f1e8e4c, type: 3}
+    category: 0
+    volume: 0.73
+  - name: quest_take
+    AET: 1
+    clips:
+    - {fileID: 8300000, guid: 002062426a7ceac40ab586b051a4f48e, type: 3}
+    - {fileID: 8300000, guid: 9faab46b300a55a4eb7e3713008d8891, type: 3}
+    - {fileID: 8300000, guid: 20875b161ff161941a1948974d1c66ff, type: 3}
+    category: 0
+    volume: 0.73
+  - name: item_used
+    AET: 1
+    clips:
+    - {fileID: 8300000, guid: 5c28c60bb3edc77448f4f927170fd796, type: 3}
+    - {fileID: 8300000, guid: 8180e867b012986418545796e5e721fd, type: 3}
+    category: 0
+    volume: 0.82
+  - name: heartbeat
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: fd2dedfe073835a4fa55caa51cf1c78d, type: 3}
+    category: 0
+    volume: 0.93

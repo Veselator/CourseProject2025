@@ -919,9 +919,13 @@ PrefabInstance:
       value: GameOverMenu
       objectReference: {fileID: 0}
     - target: {fileID: 5751189473175971114, guid: 39b9b8ededec0724e92c3e7c4937ec17, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5751189473175971114, guid: 39b9b8ededec0724e92c3e7c4937ec17, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1500886235}
+      objectReference: {fileID: 0}
     - target: {fileID: 5751189473175971114, guid: 39b9b8ededec0724e92c3e7c4937ec17, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ReloadScene
@@ -931,16 +935,16 @@ PrefabInstance:
       value: GameSceneManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6622835898866948520, guid: 39b9b8ededec0724e92c3e7c4937ec17, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622835898866948520, guid: 39b9b8ededec0724e92c3e7c4937ec17, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1500886235}
+      objectReference: {fileID: 0}
     - target: {fileID: 6622835898866948520, guid: 39b9b8ededec0724e92c3e7c4937ec17, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ExitToMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 7382634221680880710, guid: 39b9b8ededec0724e92c3e7c4937ec17, type: 3}
-      propertyPath: fadeDuration
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7382634221680880710, guid: 39b9b8ededec0724e92c3e7c4937ec17, type: 3}
       propertyPath: delayBeforeStart
@@ -3722,6 +3726,7 @@ GameObject:
   m_Component:
   - component: {fileID: 502005062}
   - component: {fileID: 502005061}
+  - component: {fileID: 502005063}
   m_Layer: 0
   m_Name: QuestInventoryManager
   m_TagString: Untagged
@@ -3756,6 +3761,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &502005063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502005060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c635f58ffaccdcc40a0fffba33400e08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inventoryManager: {fileID: 502005061}
+  _itemTook:
+    SoundId: quest_take
+    MinPitch: 0.7
+    MaxPitch: 1.2
+    IsDefaultVolume: 1
+    VolumeFactor: 0
 --- !u!1001 &510551838
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10356,6 +10380,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1255289085}
   - component: {fileID: 1255289084}
+  - component: {fileID: 1255289086}
   m_Layer: 0
   m_Name: QuestActionProccessor
   m_TagString: Untagged
@@ -10390,6 +10415,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1255289086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255289083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3654ee11f6b6434d88502bc6c33d03b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _questActionProccessor: {fileID: 1255289084}
+  _itemUsed:
+    SoundId: item_used
+    MinPitch: 0.62
+    MaxPitch: 1.13
+    IsDefaultVolume: 1
+    VolumeFactor: 0
+  _failed: ban
 --- !u!1 &1267359034
 GameObject:
   m_ObjectHideFlags: 0
@@ -11627,7 +11672,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1500886236}
-  - component: {fileID: 1500886235}
   - component: {fileID: 1500886234}
   m_Layer: 0
   m_Name: SceneManager
@@ -11646,18 +11690,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 580d004753c2adc4b93473e55d74bd9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1500886235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1500886233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d903cd557756d164599525736bde364a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1500886236
@@ -11876,50 +11908,6 @@ MonoBehaviour:
   isNeedToHide: 1
   action: {fileID: 0}
   interactOnlyOnce: 1
---- !u!1 &1553609172
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1553609174}
-  - component: {fileID: 1553609173}
-  m_Layer: 0
-  m_Name: QuestAnimationManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1553609173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1553609172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 755e6b696716a1045abdf1413c730a20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1553609174
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1553609172}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2547907, y: -1.9080684, z: -0.0008171279}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1561167374
 GameObject:
   m_ObjectHideFlags: 0
@@ -12690,6 +12678,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1634427980}
   - component: {fileID: 1634427979}
+  - component: {fileID: 1634427981}
   m_Layer: 0
   m_Name: QuestTimerManager
   m_TagString: Untagged
@@ -12728,6 +12717,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1634427981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634427978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9233a9b98ccd674497a7b32599dcc2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _questTimerManager: {fileID: 1634427979}
+  _timeToStartPlayAudio: 8
+  _soundToPlay: heartbeat
 --- !u!1 &1645415338
 GameObject:
   m_ObjectHideFlags: 0
@@ -16271,7 +16275,6 @@ SceneRoots:
   - {fileID: 1003070439}
   - {fileID: 502005062}
   - {fileID: 1634427980}
-  - {fileID: 1553609174}
   - {fileID: 1255289085}
   - {fileID: 1500886236}
   - {fileID: 993102358}

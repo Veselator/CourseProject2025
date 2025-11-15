@@ -4,6 +4,9 @@ public class ShootemUpAudioOnUpgrade : MonoBehaviour
 {
     [SerializeField] private UpgradesManager _upgradesManager;
     [SerializeField] private string _soundIfUpgrade;
+    [SerializeField] private float _minPitch = 0.9f;
+    [SerializeField] private float _maxPitch = 1.1f;
+
     private GameAudioManager _gameAudioManager;
 
     private void Start()
@@ -20,6 +23,6 @@ public class ShootemUpAudioOnUpgrade : MonoBehaviour
 
     private void HandleUpgradeChosen(IUpgrade obj)
     {
-        _gameAudioManager.PlaySound(_soundIfUpgrade);
+        _gameAudioManager.PlaySFXWithRandomPitch(_soundIfUpgrade, _minPitch, _maxPitch);
     }
 }

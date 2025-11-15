@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 5856462128594298344}
   - component: {fileID: 4706060025720286935}
   - component: {fileID: 5350717779908324481}
+  - component: {fileID: 8093072925427886771}
   m_Layer: 6
   m_Name: RotatingEnemy
   m_TagString: Enemy
@@ -331,6 +332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1.67
+  jumpStrength: 0
 --- !u!114 &8357322172590740633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,6 +397,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 6457634511928574928}
+--- !u!114 &8093072925427886771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7483383346812524280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 004ea82aedf9da540a3c729fbf052776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundIfDamaged: hit_metal
+  _minPitch: 0.6
+  _maxPitch: 1.2
 --- !u!1001 &869990737872792421
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -2965,6 +2965,7 @@ GameObject:
   - component: {fileID: 594169080}
   - component: {fileID: 594169086}
   - component: {fileID: 594169093}
+  - component: {fileID: 594169095}
   - component: {fileID: 594169087}
   - component: {fileID: 594169091}
   m_Layer: 0
@@ -3240,6 +3241,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletSwitcher: {fileID: 594169089}
   _soundIfBulletSwitched: bullet_changed
+  _minPitch: 0.84
+  _maxPitch: 1.12
+--- !u!114 &594169095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594169077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 004ea82aedf9da540a3c729fbf052776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundIfDamaged: hit_metal
+  _minPitch: 0.6
+  _maxPitch: 1.1
 --- !u!1 &595998954
 GameObject:
   m_ObjectHideFlags: 0
@@ -7289,6 +7307,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _upgradesManager: {fileID: 1287936885}
   _soundIfUpgrade: equipped
+  _minPitch: 0.9
+  _maxPitch: 1.1
 --- !u!1 &1310871628
 GameObject:
   m_ObjectHideFlags: 0

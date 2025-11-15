@@ -62,6 +62,9 @@ public class BulletSwitcher : MonoBehaviour
 
     private void OnScroll(InputAction.CallbackContext context)
     {
+        // Если доступна только одна пуля, то нет смысла переключаться
+        if (bms.CountOfUnlockedBullets == 1) return;
+
         float scrollValue = context.ReadValue<Vector2>().y;
 
         if (scrollValue > 0)

@@ -53,6 +53,7 @@ GameObject:
   - component: {fileID: 1396911787293398796}
   - component: {fileID: 5549344824059067739}
   - component: {fileID: 1041687638574489771}
+  - component: {fileID: 3773568389892854536}
   m_Layer: 6
   m_Name: AllSIdeShootingEnemy
   m_TagString: Enemy
@@ -262,6 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  jumpStrength: 0
 --- !u!114 &9193466097463228795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,6 +371,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 3365548856620173213}
+--- !u!114 &3773568389892854536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5030022706384296453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 004ea82aedf9da540a3c729fbf052776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundIfDamaged: hit_metal
+  _minPitch: 0.6
+  _maxPitch: 1.2
 --- !u!1 &8420375432253324293
 GameObject:
   m_ObjectHideFlags: 0

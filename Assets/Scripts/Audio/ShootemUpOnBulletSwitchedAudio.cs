@@ -4,6 +4,9 @@ public class ShootemUpOnBulletSwitchedAudio : MonoBehaviour
 {
     [SerializeField] private BulletSwitcher _bulletSwitcher;
     [SerializeField] private string _soundIfBulletSwitched;
+    [SerializeField] private float _minPitch = 0.9f;
+    [SerializeField] private float _maxPitch = 1.1f;
+
     private GameAudioManager _gameAudioManager;
 
     private void Start()
@@ -20,6 +23,6 @@ public class ShootemUpOnBulletSwitchedAudio : MonoBehaviour
 
     private void HandleUpgradeChosen(int _)
     {
-        _gameAudioManager.PlaySound(_soundIfBulletSwitched);
+        _gameAudioManager.PlaySFXWithRandomPitch(_soundIfBulletSwitched, _minPitch, _maxPitch);
     }
 }

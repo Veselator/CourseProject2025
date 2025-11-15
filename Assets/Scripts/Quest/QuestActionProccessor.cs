@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class QuestActionProccessor : MonoBehaviour
@@ -25,6 +23,8 @@ public class QuestActionProccessor : MonoBehaviour
     }
 
     public static QuestActionProccessor Instance { get; private set; }
+    public event Action OnItemActionSucceeded;
+    public event Action OnItemActionFailed;
 
     private void Awake()
     {
@@ -56,9 +56,20 @@ public class QuestActionProccessor : MonoBehaviour
         // isBlockItemUse - для предотвращения рекурсии
 
         if (!isBlockItemUse && sender != null && sender.TryGetComponent<InteractableItem>(out InteractableItem item) 
-            && _questInventoryManager.IsSelectedAnyItem && _questInventoryManager.SelectedItem.targetItemId.Contains(item.itemID))
+            && _questInventoryManager.IsSelectedAnyItem)
         {
-            ProcessSelectedItemAction(item, _questInventoryManager.SelectedItem, sender);
+            // Если предмет выбран и используется на интерактивном объекте, то смотрим, подходит ли он
+            if (_questInventoryManager.SelectedItem.targetItemId.Contains(item.itemID))
+            {
+                OnItemActionSucceeded?.Invoke();
+                ProcessSelectedItemAction(item, _questInventoryManager.SelectedItem, sender);
+            }
+            else
+            {
+                OnItemActionFailed?.Invoke();
+                _questInventoryManager.DeselectItem();
+            }
+
             return;
         }
 

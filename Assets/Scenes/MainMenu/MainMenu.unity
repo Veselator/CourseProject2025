@@ -2069,7 +2069,7 @@ MonoBehaviour:
   _musicSourceCrossfade: {fileID: 0}
   _dialogueSource: {fileID: 0}
   _ambientSource: {fileID: 0}
-  _sfxPoolSize: 15
+  _sfxPoolSize: 20
   _defaultPitch: 1
   _masterVolume: 1
   _musicVolume: 1

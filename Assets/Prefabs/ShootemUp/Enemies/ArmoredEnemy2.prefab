@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 6207428362239091438}
   - component: {fileID: 3097487242346172876}
   - component: {fileID: 3131229278001860102}
+  - component: {fileID: 1205863022740821002}
   m_Layer: 6
   m_Name: ArmoredEnemy2
   m_TagString: Enemy
@@ -297,6 +298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  jumpStrength: 0
 --- !u!114 &6207428362239091438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,6 +343,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 849555512686704818}
+--- !u!114 &1205863022740821002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8764308845040164860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 004ea82aedf9da540a3c729fbf052776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundIfDamaged: hit_metal
+  _minPitch: 0.6
+  _maxPitch: 1.2
 --- !u!1001 &6995647359097485378
 PrefabInstance:
   m_ObjectHideFlags: 0

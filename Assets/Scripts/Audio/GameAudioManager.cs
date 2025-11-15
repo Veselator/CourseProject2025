@@ -1,7 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Unity.VisualScripting.Member;
 
 public class GameAudioManager : MonoBehaviour
 {
@@ -197,7 +197,7 @@ public class GameAudioManager : MonoBehaviour
         AudioSource source = GetAvailableSFXSource();
         source.clip = clipToPlay;
         source.volume = _masterVolume * _sfxVolume * entry.volume * volumeMultiplier;
-        source.pitch = Random.Range(minPitch, maxPitch);
+        source.pitch = UnityEngine.Random.Range(minPitch, maxPitch);
         source.loop = false;
         source.Play();
 
@@ -210,10 +210,15 @@ public class GameAudioManager : MonoBehaviour
         StartCoroutine(DecrementPlayingCount(soundName, clipToPlay.length));
     }
 
+    public void PlaySFXWithRandomPitch(SoundWithRandomPitchSettings settings)
+    {
+        PlaySFXWithRandomPitch(settings.SoundId, settings.MinPitch, settings.MaxPitch, settings.IsDefaultVolume ? 1f : settings.VolumeFactor);
+    }
+
     private AudioClip GetAudioClip(AudioClipLibrary.AudioEntry entry)
     {
         return entry.AET == AudioEntryType.Random && entry.clips.Length > 0
-            ? entry.clips[Random.Range(0, entry.clips.Length)]
+            ? entry.clips[UnityEngine.Random.Range(0, entry.clips.Length)]
             : entry.clips[0];
     }
 
@@ -615,4 +620,15 @@ public enum AudioCategory
     Dialogue,
     UI,
     Ambient
+}
+
+[Serializable]
+public struct SoundWithRandomPitchSettings
+{
+    public string SoundId;
+    public float MinPitch;
+    public float MaxPitch;
+
+    public bool IsDefaultVolume;
+    public float VolumeFactor;
 }

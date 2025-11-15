@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 2836877508877314021}
   - component: {fileID: 921239399601201181}
   - component: {fileID: 8942382356253859575}
+  - component: {fileID: -8732235569641815581}
   m_Layer: 6
   m_Name: RegularEnemy
   m_TagString: Enemy
@@ -214,6 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  jumpStrength: 0
 --- !u!114 &2836877508877314021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,6 +260,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 7872756371807298426}
+--- !u!114 &-8732235569641815581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118248135972952776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 004ea82aedf9da540a3c729fbf052776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundIfDamaged: hit_metal
+  _minPitch: 0.6
+  _maxPitch: 1.2
 --- !u!1 &7604209087836682407
 GameObject:
   m_ObjectHideFlags: 0

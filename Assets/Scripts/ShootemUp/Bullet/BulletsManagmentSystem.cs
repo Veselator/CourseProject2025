@@ -6,6 +6,7 @@ using UnityEngine;
 public class BulletsManagmentSystem : MonoBehaviour
 {
     [SerializeField] private HashSet<BulletType> unlockedBullets = new HashSet<BulletType>();
+    public int CountOfUnlockedBullets => unlockedBullets.Count;
     public Action<BulletType> OnNewBulletUnlocked;
     public static BulletsManagmentSystem Instance { get; private set; }
 
