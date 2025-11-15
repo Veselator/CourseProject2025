@@ -9765,6 +9765,7 @@ GameObject:
   - component: {fileID: 1911798955}
   - component: {fileID: 1911798953}
   - component: {fileID: 1911798954}
+  - component: {fileID: 1911798957}
   - component: {fileID: 1911798956}
   m_Layer: 0
   m_Name: PlayerRunner
@@ -9936,6 +9937,25 @@ MonoBehaviour:
   - {fileID: 1684465355}
   - {fileID: 615895264}
   _jumpParticle: {fileID: 2072064773}
+--- !u!114 &1911798957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911798944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74fbb08bee02e5340a5ad7528f9bb5c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boomSound: explosion
+  _boomSoundMinPitch: 0.78
+  _boomSoundMaxPitch: 1.47
+  _moneySound: bonus
+  _jumpSound: jump
+  _jumpSoundMinPitch: 0.6
+  _jumpSoundMaxPitch: 1.2
 --- !u!1 &1990209101
 GameObject:
   m_ObjectHideFlags: 0

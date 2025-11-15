@@ -33,6 +33,7 @@ public class UpgradesManager : MonoBehaviour
     public static UpgradesManager Instance { get; private set; }
     private bool isAvailableToChoseUpgrade;
 
+    public event Action<IUpgrade> OnUpgradeChosen;
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -60,6 +61,8 @@ public class UpgradesManager : MonoBehaviour
         // Применяем апгрейд
         IUpgrade selectedUpgrade = choosenUpgrades[upgrade];
         selectedUpgrade.ApplyUpgrade();
+
+        OnUpgradeChosen?.Invoke(selectedUpgrade);
 
         // Удаляем использованный апгрейд из оставшихся
         UpgradeType selectedType = GetUpgradeType(selectedUpgrade);

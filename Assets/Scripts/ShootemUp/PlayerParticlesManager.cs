@@ -28,7 +28,7 @@ public class PlayerParticlesManager : MonoBehaviour
     {
         foreach (var particle in _boomParticles)
         {
-            if(particle.gameObject.active) particle.Play();
+            if(particle.gameObject.activeInHierarchy) particle.Play();
         }
     }
 
@@ -36,5 +36,4 @@ public class PlayerParticlesManager : MonoBehaviour
     {
         _jumpParticle.Play();
     }
-
 }

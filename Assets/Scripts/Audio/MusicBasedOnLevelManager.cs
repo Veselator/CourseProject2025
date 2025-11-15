@@ -20,6 +20,7 @@ public class MusicBasedOnLevelManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (_sceneManager == null) return;
         _sceneManager.OnLoadingStarted -= HandleMusicChange;
     }
 

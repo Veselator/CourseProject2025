@@ -2956,6 +2956,7 @@ GameObject:
   - component: {fileID: 594169079}
   - component: {fileID: 594169078}
   - component: {fileID: 594169088}
+  - component: {fileID: 594169094}
   - component: {fileID: 594169089}
   - component: {fileID: 594169092}
   - component: {fileID: 594169084}
@@ -3225,6 +3226,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebaca5cb602970a47af5c3c3abd4e1ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &594169094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594169077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f41599a62f3474244a1f1453cb556d84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bulletSwitcher: {fileID: 594169089}
+  _soundIfBulletSwitched: bullet_changed
 --- !u!1 &595998954
 GameObject:
   m_ObjectHideFlags: 0
@@ -7207,6 +7222,7 @@ GameObject:
   - component: {fileID: 1287936886}
   - component: {fileID: 1287936885}
   - component: {fileID: 1287936887}
+  - component: {fileID: 1287936888}
   m_Layer: 0
   m_Name: UpgradesManager
   m_TagString: Untagged
@@ -7259,6 +7275,20 @@ MonoBehaviour:
   - {fileID: 1943451002}
   - {fileID: 1682668311}
   - {fileID: 1189259147}
+--- !u!114 &1287936888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287936884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b68df94fb96849941a3326158d76562a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _upgradesManager: {fileID: 1287936885}
+  _soundIfUpgrade: equipped
 --- !u!1 &1310871628
 GameObject:
   m_ObjectHideFlags: 0

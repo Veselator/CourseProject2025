@@ -21,6 +21,7 @@ public class AmbientManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (_sceneManager == null) return;
         _sceneManager.OnLoadingStarted -= HandleAmbientChange;
     }
 

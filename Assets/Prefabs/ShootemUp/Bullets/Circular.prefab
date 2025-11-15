@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4288148656847971282}
   - component: {fileID: 2166295871346915953}
   - component: {fileID: 4443206763096733206}
+  - component: {fileID: -5938518014651995320}
   m_Layer: 0
   m_Name: Circular
   m_TagString: Untagged
@@ -167,3 +168,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.38
+--- !u!114 &-5938518014651995320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2818273082383388054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15d2c534b70efa7499f536a79c87815f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audio: laser
+  _minPitch: 0.85
+  _maxPitch: 1.41
+  _volumeFactor: 0.79

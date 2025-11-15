@@ -562,6 +562,7 @@ GameObject:
   - component: {fileID: 894706457502998386}
   - component: {fileID: 4670041209720400741}
   - component: {fileID: 7382634221680880710}
+  - component: {fileID: 217820966380000660}
   m_Layer: 5
   m_Name: GameOverMenu
   m_TagString: Untagged
@@ -615,6 +616,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aa760132aa48a641b06aff23f673275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 1.5
+  delayBeforeStart: 0
+--- !u!114 &217820966380000660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5444089587187702531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da20a8a378f65bd45af91cc9afb7b7a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _restartButton: {fileID: 5751189473175971114}
+  _mainMenuButton: {fileID: 6622835898866948520}
 --- !u!1 &7033628379626838535
 GameObject:
   m_ObjectHideFlags: 0

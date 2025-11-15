@@ -595,14 +595,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 131810857}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab825dc62c4f3ba47b66370ef83c9ec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _sfx: pop
   _linkedButton: {fileID: 0}
-  _minPitch: 0.33
+  _minPitch: 0.41
   _maxPitch: 1.63
 --- !u!1 &132644863
 GameObject:

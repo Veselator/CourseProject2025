@@ -28,6 +28,11 @@ public class PlayerInput : MonoBehaviour
         return _player.Move.ReadValue<Vector2>().normalized;
     }
 
+    private void OnDestroy()
+    {
+        _playerInputActions.Disable();
+    }
+
     public bool IsHitButtonPressed() // Spacebar
     {
         return _playerInputActions.Player.Jump.triggered;

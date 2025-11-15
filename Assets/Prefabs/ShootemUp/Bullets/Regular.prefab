@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6844222458499046294}
   - component: {fileID: 217448018343412268}
   - component: {fileID: 1153391425344850014}
+  - component: {fileID: 4505948738395239421}
   m_Layer: 0
   m_Name: Regular
   m_TagString: Untagged
@@ -177,3 +178,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &4505948738395239421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7612053777050718617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15d2c534b70efa7499f536a79c87815f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audio: laser
+  _minPitch: 0.85
+  _maxPitch: 1.41
+  _volumeFactor: 0.79

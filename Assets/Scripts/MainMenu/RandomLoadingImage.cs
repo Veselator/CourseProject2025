@@ -16,6 +16,7 @@ public class RandomLoadingImage : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (_gameSceneManager == null) return;
         _gameSceneManager.OnLoadingStarted -= SetRandomLoadingScreen;
     }
 

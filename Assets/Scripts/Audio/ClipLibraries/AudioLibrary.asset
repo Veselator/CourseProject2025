@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: AudioLibrary
   m_EditorClassIdentifier: 
   _clips:
+  - name: runner_ambience
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 57843bb3fc423a14cbf3c4d432a6d820, type: 3}
+    category: 4
+    volume: 1.09
   - name: cave_ambience
     AET: 0
     clips:
@@ -107,11 +113,13 @@ MonoBehaviour:
     category: 0
     volume: 1.21
   - name: pop
-    AET: 0
+    AET: 1
     clips:
     - {fileID: 8300000, guid: 032d293926ca8d446865c89e88036146, type: 3}
+    - {fileID: 8300000, guid: f509edb33a2c7024c870a4d0cead2653, type: 3}
+    - {fileID: 8300000, guid: 0b9a2290f6ad11447b33d26499aa60db, type: 3}
     category: 0
-    volume: 0.26
+    volume: 0.35
   - name: ban
     AET: 0
     clips:
@@ -123,7 +131,7 @@ MonoBehaviour:
     clips:
     - {fileID: 8300000, guid: b4aecbfa76f766045915dcb6d3c150a8, type: 3}
     category: 0
-    volume: 0.68
+    volume: 0.77
   - name: purchase
     AET: 0
     clips:
@@ -136,3 +144,47 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 1c2921ef9db428442b77b9d666993466, type: 3}
     category: 0
     volume: 0.54
+  - name: explosion
+    AET: 1
+    clips:
+    - {fileID: 8300000, guid: 248e6c84806707f4ebb5b828d23fb767, type: 3}
+    - {fileID: 8300000, guid: acc81a6664ac5114d82f0d1489912cba, type: 3}
+    category: 0
+    volume: 0.88
+  - name: fail
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 8444359e8f845b24c846ebc030b68481, type: 3}
+    category: 0
+    volume: 1.22
+  - name: fail
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 8444359e8f845b24c846ebc030b68481, type: 3}
+    category: 0
+    volume: 1.22
+  - name: jump
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 406cfe271e928d140a4ebc345563c4f5, type: 3}
+    category: 0
+    volume: 1.22
+  - name: laser
+    AET: 1
+    clips:
+    - {fileID: 8300000, guid: 8c20b8d4b0a3cb94d97c45065d97d958, type: 3}
+    - {fileID: 8300000, guid: 9c58672d71fb7814a980ab44509492e7, type: 3}
+    category: 0
+    volume: 0.12
+  - name: equipped
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: b6ed3e319c6c2994982b17b8efcc33c3, type: 3}
+    category: 0
+    volume: 0.72
+  - name: bullet_changed
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: ece6b62c87d1cd74ab6cb068435437b9, type: 3}
+    category: 0
+    volume: 0.57
