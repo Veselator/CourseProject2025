@@ -19546,6 +19546,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d903cd557756d164599525736bde364a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mainMenuSceneName: MainMenu
+  _levelScenes: []
+  _useAsyncLoading: 1
+  _minimumLoadingTime: 0.5
 --- !u!4 &477902920
 Transform:
   m_ObjectHideFlags: 0

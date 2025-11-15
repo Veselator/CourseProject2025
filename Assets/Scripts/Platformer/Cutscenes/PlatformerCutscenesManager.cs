@@ -17,6 +17,7 @@ public class PlatformerCutscenesManager : MonoBehaviour
     [SerializeField] private LivesManager _livesManager;
     [SerializeField] private ObjectMoverService _objectMover;
     [SerializeField] private BossAnimationController _bossAnimationController;
+    private GameAudioManager _gameAudioManager;
 
     // Внутренние поля
     private PlatformerCutscene _currentCutscene;
@@ -32,6 +33,11 @@ public class PlatformerCutscenesManager : MonoBehaviour
     private void Awake()
     {
         if(Instance == null) Instance = this;
+    }
+
+    private void Start()
+    {
+        _gameAudioManager = GameAudioManager.Instance;
     }
 
     public void StartCutscene(PlatformerCutscene cutscene)
@@ -127,6 +133,10 @@ public class PlatformerCutscenesManager : MonoBehaviour
 
             case CutsceneActionType.SetBossEmotion:
                 _bossAnimationController.SetEmotion(currentAction.emotion);
+                break;
+
+            case CutsceneActionType.PlaySpecificMusic:
+                _gameAudioManager.PlayMusic(currentAction.musicName);
                 break;
 
             default:

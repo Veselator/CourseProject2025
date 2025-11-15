@@ -13,7 +13,126 @@ MonoBehaviour:
   m_Name: AudioLibrary
   m_EditorClassIdentifier: 
   _clips:
-  - name: main_menu_background
-    clip: {fileID: 8300000, guid: 8488a5ad851bcb04faafeb8c001bbe6b, type: 3}
+  - name: cave_ambience
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: f33e1eee577fdd04f96b58255b6da414, type: 3}
+    category: 4
+    volume: 0.83
+  - name: Platformer_boss
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 8a32d7d121f1c514c87a2ff1480a2280, type: 3}
     category: 1
     volume: 1
+  - name: Peremoga
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: a75fb400e644acc42aa3ea301e1155c9, type: 3}
+    category: 1
+    volume: 1
+  - name: Platformer
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 58024b910caba32459de889f9ffa0f6c, type: 3}
+    category: 1
+    volume: 1
+  - name: Puzzle1
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: ec8784bbd0b351d46ac1c6bd8912941b, type: 3}
+    category: 1
+    volume: 1
+  - name: Puzzle2
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 404d680d13928e944bd609ec86d476eb, type: 3}
+    category: 1
+    volume: 1
+  - name: Puzzle3
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 94312f01a6ea3ae408cc8b930c2c8d68, type: 3}
+    category: 1
+    volume: 1
+  - name: Survival
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 259b7fb980a85a34799239529880c308, type: 3}
+    category: 1
+    volume: 1
+  - name: horrorQuest
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: d13f9c6e60ffe5749834c87640446ebb, type: 3}
+    category: 1
+    volume: 1.21
+  - name: Runner
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 3e97a2d9b42232546ac7929f65a50a8d, type: 3}
+    category: 1
+    volume: 1
+  - name: main_menu_background
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 8488a5ad851bcb04faafeb8c001bbe6b, type: 3}
+    category: 1
+    volume: 1
+  - name: clicker_background
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 1b9d2833df349a24fa852c409e947f63, type: 3}
+    category: 1
+    volume: 1.21
+  - name: shootEmUp_background
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 51d101e374657254d87987347e2afc08, type: 3}
+    category: 1
+    volume: 1.21
+  - name: meow
+    AET: 1
+    clips:
+    - {fileID: 8300000, guid: 8dde367d129568745b2b1a6f0ba0e633, type: 3}
+    - {fileID: 8300000, guid: 73a7589c3695a3f41974c5c976361b85, type: 3}
+    - {fileID: 8300000, guid: 37f7eca9586bfc540b4cc8f826651917, type: 3}
+    category: 0
+    volume: 0.74
+  - name: button
+    AET: 1
+    clips:
+    - {fileID: 8300000, guid: 2f832245bcfbf034a927528e3aea55f5, type: 3}
+    - {fileID: 8300000, guid: f18606cf5cb50c24497083f78a6bf798, type: 3}
+    category: 0
+    volume: 1.21
+  - name: pop
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 032d293926ca8d446865c89e88036146, type: 3}
+    category: 0
+    volume: 0.26
+  - name: ban
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 0e88a38631e3b4945b2447de49883144, type: 3}
+    category: 0
+    volume: 0.71
+  - name: bonus
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: b4aecbfa76f766045915dcb6d3c150a8, type: 3}
+    category: 0
+    volume: 0.68
+  - name: purchase
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: b62abda52d9437641ab20d095e494116, type: 3}
+    category: 0
+    volume: 0.91
+  - name: building
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 1c2921ef9db428442b77b9d666993466, type: 3}
+    category: 0
+    volume: 0.54

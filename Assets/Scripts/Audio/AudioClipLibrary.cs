@@ -9,9 +9,12 @@ public class AudioClipLibrary : ScriptableObject
     public class AudioEntry
     {
         public string name;
-        public AudioClip clip;
+        public AudioEntryType AET;
+
+        public AudioClip[] clips = new AudioClip[1];
+
         public AudioCategory category = AudioCategory.SFX;
-        [Range(0f, 1f)] public float volume = 1f;
+        [Range(0f, 2f)] public float volume = 1f;
     }
 
     [SerializeField] private List<AudioEntry> _clips = new List<AudioEntry>();
@@ -47,7 +50,7 @@ public class AudioClipLibrary : ScriptableObject
     public AudioClip GetClip(string name)
     {
         AudioEntry entry = GetEntry(name);
-        return entry?.clip;
+        return entry?.clips[0];
     }
 
     public bool HasClip(string name)
@@ -59,4 +62,10 @@ public class AudioClipLibrary : ScriptableObject
 
         return _clipDictionary.ContainsKey(name);
     }
+}
+
+public enum AudioEntryType
+{
+    Normal,
+    Random
 }

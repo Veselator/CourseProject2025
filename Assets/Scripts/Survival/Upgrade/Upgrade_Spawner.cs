@@ -17,18 +17,15 @@ public class Upgrade_Spawner : MonoBehaviour
         currentKills = Kills_For_Upgrade;
        
     }
+
     private void Spawn_Upgrade()
     {
-
         GameObject currUpgrade = upgrades[Random.Range(0, upgrades.Length)];
         float rand_x = Random.Range(-17.5f, 17.5f);
         float rand_y = Random.Range(-10f, 10f);
         Instantiate(currUpgrade, new Vector3(rand_x, rand_y, 0), Quaternion.identity);
-        Debug.Log("Upgrade is spawned");
-
-
+        Debug.Log("Upgrade spawned");
     }
-    
 
     private void Update()
     {
@@ -40,7 +37,7 @@ public class Upgrade_Spawner : MonoBehaviour
         }
         if (notifyTimer >= 0)
         {
-            Text.text = "Upgrade is spawned!!!";
+            Text.text = "Upgrade is spawned";
             notifyTimer -= Time.deltaTime;
         }
         else 

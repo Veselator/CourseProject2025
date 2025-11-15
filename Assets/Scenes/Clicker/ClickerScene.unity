@@ -467,6 +467,7 @@ GameObject:
   - component: {fileID: 131810861}
   - component: {fileID: 131810860}
   - component: {fileID: 131810859}
+  - component: {fileID: 131810862}
   m_Layer: 5
   m_Name: MainButton
   m_TagString: Untagged
@@ -587,6 +588,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 131810857}
   m_CullTransparentMesh: 1
+--- !u!114 &131810862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131810857}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab825dc62c4f3ba47b66370ef83c9ec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfx: pop
+  _linkedButton: {fileID: 0}
+  _minPitch: 0.33
+  _maxPitch: 1.63
 --- !u!1 &132644863
 GameObject:
   m_ObjectHideFlags: 0
@@ -1164,6 +1181,7 @@ GameObject:
   - component: {fileID: 336918570}
   - component: {fileID: 336918569}
   - component: {fileID: 336918568}
+  - component: {fileID: 336918571}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -1285,6 +1303,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 336918566}
   m_CullTransparentMesh: 1
+--- !u!114 &336918571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336918566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab825dc62c4f3ba47b66370ef83c9ec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfx: button
+  _linkedButton: {fileID: 0}
+  _minPitch: 0.42
+  _maxPitch: 1.35
 --- !u!1001 &356524977
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5551,6 +5585,7 @@ GameObject:
   - component: {fileID: 1346283688}
   - component: {fileID: 1346283687}
   - component: {fileID: 1346283689}
+  - component: {fileID: 1346283690}
   m_Layer: 5
   m_Name: ShopButton
   m_TagString: Untagged
@@ -5672,6 +5707,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1346283690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346283685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab825dc62c4f3ba47b66370ef83c9ec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfx: button
+  _linkedButton: {fileID: 0}
+  _minPitch: 0.42
+  _maxPitch: 1.35
 --- !u!1 &1355584365
 GameObject:
   m_ObjectHideFlags: 0

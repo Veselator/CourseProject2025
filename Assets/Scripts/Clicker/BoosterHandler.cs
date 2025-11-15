@@ -37,6 +37,7 @@ public class BoosterHandler : MonoBehaviour
 
     public Action OnBoosterBought;
     public Action OnBoosterUpgraded;
+    public Action OnFailedToDoAction;
 
     private void Awake()
     {
@@ -56,6 +57,7 @@ public class BoosterHandler : MonoBehaviour
             return true;
         }
 
+        OnFailedToDoAction?.Invoke();
         return false;
     }
 
@@ -70,6 +72,7 @@ public class BoosterHandler : MonoBehaviour
             return true;
         }
 
+        OnFailedToDoAction?.Invoke();
         return false;
     }
 

@@ -22,6 +22,19 @@ MonoBehaviour:
     animateScale: 0
     animationDuration: 0
     TimeInSeconds: 0
+    emotion: 0
+    musicName: 
+  - CAT: 13
+    WaitType: 0
+    linkedObjectName: Fleshka (2)
+    Size: 0
+    LinkedDialogue: {fileID: 11400000, guid: 14ee221692f4b594d8299f696754a446, type: 2}
+    destinationObjectName: 
+    animateScale: 0
+    animationDuration: 0
+    TimeInSeconds: 0
+    emotion: 0
+    musicName: Platformer_boss
   - CAT: 6
     WaitType: 0
     linkedObjectName: Fleshka (1)
@@ -31,6 +44,8 @@ MonoBehaviour:
     animateScale: 0
     animationDuration: 0
     TimeInSeconds: 0
+    emotion: 0
+    musicName: 
   - CAT: 10
     WaitType: 0
     linkedObjectName: PlayerBossSpawnPoint
@@ -40,6 +55,8 @@ MonoBehaviour:
     animateScale: 0
     animationDuration: 0
     TimeInSeconds: 0
+    emotion: 0
+    musicName: 
   - CAT: 11
     WaitType: 0
     linkedObjectName: FleshkaAAA
@@ -49,6 +66,8 @@ MonoBehaviour:
     animateScale: 0
     animationDuration: 0.33
     TimeInSeconds: 0
+    emotion: 0
+    musicName: 
   - CAT: 4
     WaitType: 1
     linkedObjectName: Fleshka (1)
@@ -58,6 +77,8 @@ MonoBehaviour:
     animateScale: 0
     animationDuration: 0
     TimeInSeconds: 1
+    emotion: 0
+    musicName: 
   - CAT: 11
     WaitType: 0
     linkedObjectName: Shadow
@@ -67,6 +88,8 @@ MonoBehaviour:
     animateScale: 0
     animationDuration: 0.26
     TimeInSeconds: 0
+    emotion: 0
+    musicName: 
   - CAT: 11
     WaitType: 1
     linkedObjectName: Boss
@@ -76,6 +99,8 @@ MonoBehaviour:
     animateScale: 0
     animationDuration: 0.64
     TimeInSeconds: 1.59
+    emotion: 0
+    musicName: 
   - CAT: 8
     WaitType: 2
     linkedObjectName: Fleshka (1)
@@ -85,6 +110,8 @@ MonoBehaviour:
     animateScale: 0
     animationDuration: 0
     TimeInSeconds: 0
+    emotion: 0
+    musicName: 
   - CAT: 2
     WaitType: 0
     linkedObjectName: Fleshka (1)
@@ -94,6 +121,8 @@ MonoBehaviour:
     animateScale: 0
     animationDuration: 0
     TimeInSeconds: 0
+    emotion: 0
+    musicName: 
   - CAT: 9
     WaitType: 0
     linkedObjectName: Fleshka (1)
@@ -103,6 +132,8 @@ MonoBehaviour:
     animateScale: 0
     animationDuration: 0
     TimeInSeconds: 0
+    emotion: 0
+    musicName: 
   - CAT: 6
     WaitType: 0
     linkedObjectName: Fleshka (1)
@@ -112,6 +143,8 @@ MonoBehaviour:
     animateScale: 0
     animationDuration: 0
     TimeInSeconds: 0
+    emotion: 0
+    musicName: 
   - CAT: 4
     WaitType: 0
     linkedObjectName: Fleshka (2)
@@ -121,3 +154,5 @@ MonoBehaviour:
     animateScale: 0
     animationDuration: 0
     TimeInSeconds: 0
+    emotion: 0
+    musicName: 

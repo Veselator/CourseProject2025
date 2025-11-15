@@ -516,6 +516,7 @@ GameObject:
   - component: {fileID: 6153510931824076698}
   - component: {fileID: 3398721373742579055}
   - component: {fileID: 8369109150531408583}
+  - component: {fileID: 1253981960832476872}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -599,7 +600,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 0.6415094, g: 0.6415094, b: 0.6415094, a: 0.54509807}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0}
@@ -624,3 +625,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1253981960832476872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8322350986044394355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab825dc62c4f3ba47b66370ef83c9ec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfx: button
+  _linkedButton: {fileID: 0}
+  _minPitch: 0.68
+  _maxPitch: 1.2

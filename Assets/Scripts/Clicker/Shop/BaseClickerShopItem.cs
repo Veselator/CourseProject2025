@@ -27,6 +27,7 @@ public abstract class BaseClickerShopItem : MonoBehaviour, IClickerShopItem
 
     public event Action<IClickerShopItem> OnItemPurchased;
     public event Action<IClickerShopItem> OnAvailabilityChanged;
+    public event Action<IClickerShopItem> OnFailedToBuyItem;
 
     // НОВЫЙ МЕТОД - для инициализации данными из менеджера
     public void InitializeWithData(ShopItemData data)
@@ -125,9 +126,11 @@ public abstract class BaseClickerShopItem : MonoBehaviour, IClickerShopItem
 
     public virtual bool TryToPurchase()
     {
-        if (_isBought) return false;
-        if (!IsAvailable) return false;
-        if (!IsAffordable) return false;
+        if(_isBought || !IsAvailable || !IsAffordable)
+        {
+            OnFailedToBuyItem?.Invoke(this);
+            return false;
+        }
 
         _clickerManager.ChangeMoney(-Price);
         _isBought = true;

@@ -38,6 +38,9 @@ public struct CutsceneAction
 
     [ShowIfEnum("CAT", CutsceneActionType.SetBossEmotion)]
     public BossEmotion emotion;
+
+    [ShowIfEnum("CAT", CutsceneActionType.PlaySpecificMusic)]
+    public string musicName;
 }
 
 public enum CutsceneActionType
@@ -68,7 +71,10 @@ public enum CutsceneActionType
     MoveObject,
 
     // Ёмоции босса
-    SetBossEmotion
+    SetBossEmotion,
+
+    // ћузыка
+    PlaySpecificMusic
 }
 
 public enum WaitActionType

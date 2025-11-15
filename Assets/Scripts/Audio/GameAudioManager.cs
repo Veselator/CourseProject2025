@@ -1,6 +1,7 @@
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 public class GameAudioManager : MonoBehaviour
 {
@@ -27,7 +28,11 @@ public class GameAudioManager : MonoBehaviour
     [SerializeField] private AudioSource _musicSource;
     [SerializeField] private AudioSource _musicSourceCrossfade;
     [SerializeField] private AudioSource _dialogueSource;
+    [SerializeField] private AudioSource _ambientSource;
     [SerializeField] private int _sfxPoolSize = 10;
+
+    [Header("Настройка стандартной высоты тона")]
+    [SerializeField] private float _defaultPitch = 1f;
 
     [Header("Настройки громкости")]
     [SerializeField][Range(0f, 1f)] private float _masterVolume = 1f;
@@ -85,6 +90,16 @@ public class GameAudioManager : MonoBehaviour
             _musicSource.spatialBlend = 0f;
         }
 
+        if (_ambientSource == null)
+        {
+            GameObject ambientObj = new GameObject("AmbientSource");
+            ambientObj.transform.SetParent(transform);
+            _ambientSource = ambientObj.AddComponent<AudioSource>();
+            _ambientSource.loop = true;
+            _ambientSource.playOnAwake = false;
+            _ambientSource.spatialBlend = 0f;
+        }
+
         if (_musicSourceCrossfade == null)
         {
             GameObject crossfadeObj = new GameObject("MusicSourceCrossfade");
@@ -135,19 +150,71 @@ public class GameAudioManager : MonoBehaviour
             return;
         }
 
+        AudioClip clipToPlay = GetAudioClip(entry);
+
         switch (entry.category)
         {
             case AudioCategory.SFX:
             case AudioCategory.UI:
-                PlaySFX(entry.clip, entry.volume * volumeMultiplier, soundName);
+                PlaySFX(clipToPlay, entry.volume * volumeMultiplier, soundName);
                 break;
             case AudioCategory.Music:
-                PlayMusic(entry.clip, entry.volume * volumeMultiplier);
+                PlayMusic(clipToPlay, entry.volume * volumeMultiplier);
                 break;
             case AudioCategory.Dialogue:
-                PlayDialogue(entry.clip, entry.volume * volumeMultiplier);
+                PlayDialogue(clipToPlay, entry.volume * volumeMultiplier);
+                break;
+            case AudioCategory.Ambient:
+                PlayAmbient(soundName, volumeMultiplier);
                 break;
         }
+    }
+
+    public void PlaySFXWithRandomPitch(string soundName, float minPitch, float maxPitch, float volumeMultiplier = 1f)
+    {
+        if (_audioLibrary == null)
+        {
+            Debug.LogError("AudioClipLibrary не назначена!");
+            return;
+        }
+
+        if (!CanPlaySound(soundName))
+        {
+            return;
+        }
+
+        AudioClipLibrary.AudioEntry entry = _audioLibrary.GetEntry(soundName);
+        if (entry == null)
+        {
+            Debug.LogWarning($"Звук '{soundName}' не найден в библиотеке!");
+            return;
+        }
+
+        AudioClip clipToPlay = GetAudioClip(entry);
+
+        if (clipToPlay == null) return;
+
+        AudioSource source = GetAvailableSFXSource();
+        source.clip = clipToPlay;
+        source.volume = _masterVolume * _sfxVolume * entry.volume * volumeMultiplier;
+        source.pitch = Random.Range(minPitch, maxPitch);
+        source.loop = false;
+        source.Play();
+
+        if (!_currentlyPlayingCount.ContainsKey(soundName))
+        {
+            _currentlyPlayingCount[soundName] = 0;
+        }
+        _currentlyPlayingCount[soundName]++;
+
+        StartCoroutine(DecrementPlayingCount(soundName, clipToPlay.length));
+    }
+
+    private AudioClip GetAudioClip(AudioClipLibrary.AudioEntry entry)
+    {
+        return entry.AET == AudioEntryType.Random && entry.clips.Length > 0
+            ? entry.clips[Random.Range(0, entry.clips.Length)]
+            : entry.clips[0];
     }
 
     public void PlayLoopingSound(string soundName, float volumeMultiplier = 1f)
@@ -163,10 +230,14 @@ public class GameAudioManager : MonoBehaviour
         if (_audioLibrary == null) return;
 
         AudioClipLibrary.AudioEntry entry = _audioLibrary.GetEntry(soundName);
-        if (entry == null || entry.clip == null) return;
+        if (entry == null) return;
+
+        AudioClip clipToPlay = GetAudioClip(entry);
+
+        if (clipToPlay == null) return;
 
         AudioSource source = GetAvailableSFXSource();
-        source.clip = entry.clip;
+        source.clip = clipToPlay;
         source.volume = _masterVolume * _sfxVolume * entry.volume * volumeMultiplier;
         source.loop = true;
         source.Play();
@@ -195,10 +266,10 @@ public class GameAudioManager : MonoBehaviour
         if (_audioLibrary == null) return;
 
         AudioClipLibrary.AudioEntry entry = _audioLibrary.GetEntry(musicName);
-        if (entry != null && entry.clip != null)
+        if (entry != null && entry.clips[0] != null)
         {
             float crossfadeTime = fadeTime < 0 ? _defaultCrossfadeTime : fadeTime;
-            StartCoroutine(CrossfadeMusic(entry.clip, entry.volume, crossfadeTime));
+            StartCoroutine(CrossfadeMusic(entry.clips[0], entry.volume, crossfadeTime));
         }
     }
 
@@ -208,14 +279,34 @@ public class GameAudioManager : MonoBehaviour
         StartCoroutine(FadeOutMusic(crossfadeTime));
     }
 
+    public void PlayAmbient(string musicName, float fadeTime = -1f)
+    {
+        Debug.Log($"PlayAmbient: {musicName}");
+        if (_audioLibrary == null) return;
+
+        AudioClipLibrary.AudioEntry entry = _audioLibrary.GetEntry(musicName);
+
+        if (entry == null) return;
+
+        _ambientSource.clip = entry.clips[0];
+        _ambientSource.volume = _masterVolume * _sfxVolume * entry.volume;
+        _ambientSource.loop = true;
+        _ambientSource.Play();
+    }
+
+    public void StopAmbient(float fadeTime = -1f)
+    {
+        _ambientSource.Stop();
+    }
+
     public void PlayDialogue(string dialogueName, float volumeMultiplier = 1f)
     {
         if (_audioLibrary == null) return;
 
         AudioClipLibrary.AudioEntry entry = _audioLibrary.GetEntry(dialogueName);
-        if (entry != null && entry.clip != null)
+        if (entry != null && entry.clips[0] != null)
         {
-            PlayDialogue(entry.clip, entry.volume * volumeMultiplier);
+            PlayDialogue(entry.clips[0], entry.volume * volumeMultiplier);
         }
     }
 
@@ -288,6 +379,7 @@ public class GameAudioManager : MonoBehaviour
     public float GetMusicVolume() => _musicVolume;
     public float GetSFXVolume() => _sfxVolume;
     public float GetDialogueVolume() => _dialogueVolume;
+    public float GetAmbientVolume() => _musicVolume;
 
     private bool CanPlaySound(string soundName)
     {
@@ -324,6 +416,7 @@ public class GameAudioManager : MonoBehaviour
         source.clip = clip;
         source.volume = _masterVolume * _sfxVolume * volumeMultiplier;
         source.loop = false;
+        source.pitch = _defaultPitch;
         source.Play();
 
         if (!_currentlyPlayingCount.ContainsKey(soundName))
@@ -505,6 +598,8 @@ public class GameAudioManager : MonoBehaviour
     {
         _musicSource.volume = _musicVolume * _masterVolume;
         _musicSourceCrossfade.volume = _musicVolume * _masterVolume;
+
+        _ambientSource.volume = _musicVolume * _masterVolume; // Да, подвязано к музыке
     }
 
     private void UpdateDialogueVolume()
@@ -518,5 +613,6 @@ public enum AudioCategory
     SFX,
     Music,
     Dialogue,
-    UI
+    UI,
+    Ambient
 }

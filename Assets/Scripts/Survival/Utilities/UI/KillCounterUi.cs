@@ -6,18 +6,17 @@ using TMPro;
 
 public class KillCounterUi : MonoBehaviour
 {
- private TMP_Text killText;
+    private TMP_Text _killText;
+    private KillCounter _killCounter;
 
-    private void Awake()
+    private void Start()
     {
-        killText = GetComponent<TMP_Text>();
+        _killText = GetComponent<TMP_Text>();
+        _killCounter = KillCounter.Instance;
     }
 
     private void Update()
     {
-        if (KillCounter.Instance != null)
-        {
-            killText.text = $"Enemy killed: {KillCounter.Instance.count}";
-        }
+        if (_killCounter != null) _killText.text = $"{_killCounter.count}";
     }
 }
