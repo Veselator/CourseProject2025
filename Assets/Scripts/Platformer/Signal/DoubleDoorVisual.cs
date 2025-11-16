@@ -37,7 +37,7 @@ public class DoubleDoorVisual : MonoBehaviour
         }
     }
 
-    private void HoldDoorStateChange(bool newState)
+    private void HoldDoorStateChange(bool newState, bool _)
     {
         if (_currentAnimation != null)
         {

@@ -8,6 +8,7 @@ public class DialogueNodeSO : ScriptableObject
     public DialogueCharacterSO Character;
     [TextArea(3, 7)]
     public string Text;
+    public string LinkedAudio;
     public CharacterTypingSpeedConfig[] TypingConfig;
     public float DelayAfter;
 

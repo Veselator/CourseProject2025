@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -16,6 +17,12 @@ public class Player_Movement : MonoBehaviour
 
     public float CurrentSpeed;
 
+    public bool IsMoving { get; private set; } = false;
+    public bool IsSprinting { get; private set; } = false;
+    public event Action OnMovingStarted;
+    public event Action OnMovingEnded;
+    public event Action OnSprintingStarted;
+    public event Action OnSprintingEnded;
 
     private void Awake()
     {
@@ -33,6 +40,8 @@ public class Player_Movement : MonoBehaviour
 
     private void Movement()
     {
+        bool currentRunning = false, currentMoving = false;
+
         if (ks != null && ks.isKnockBack)
         {
             return;
@@ -47,16 +56,44 @@ public class Player_Movement : MonoBehaviour
             movement.Normalize();
         }
         CurrentSpeed = speed;
+        if(CurrentSpeed != 0f) currentMoving = true;
 
-        if (s.amountOfStamina > 0 && Input.GetKey(KeyCode.LeftShift))
+        if (s.amountOfStamina > 0 && Input.GetKey(KeyCode.LeftShift) && currentMoving)
         {
             CurrentSpeed *= sprintFactor;
             //rb.MovePosition(movement * sprint);//rb.velocity = movement * sprint;
             s.Take_Stamina(10f * Time.deltaTime);
+            currentRunning = true;
         }
 
-        rb.velocity = CurrentSpeed * movement * Time.fixedDeltaTime;//MovePosition(rb.position + currentSpeed * Time.deltaTime * movement); //rb.velocity = movement * sprint;
+        rb.velocity = CurrentSpeed * movement * Time.fixedDeltaTime; //MovePosition(rb.position + currentSpeed * Time.deltaTime * movement); //rb.velocity = movement * sprint;
+
+        if (IsMoving && !currentMoving)
+        {
+            // До этого двигался, а сейчас нет
+            OnMovingEnded?.Invoke();
+        }
+        else if (!IsMoving && currentMoving)
+        {
+            // До этого стоял, а сейчас двинулся
+            OnMovingStarted?.Invoke();
+        }
+
+        if(IsSprinting && !currentRunning)
+        {
+            // До этого бежал, а сейчас нет
+            OnSprintingEnded?.Invoke();
+        }
+        else if (!IsSprinting && currentRunning)
+        {
+            // До этого не бежал, а сейчас бежит
+            OnSprintingStarted?.Invoke();
+        }
+
+        IsMoving = currentMoving;
+        IsSprinting = currentRunning;
     }
+
     private void FixedUpdate()
     {
         Movement();

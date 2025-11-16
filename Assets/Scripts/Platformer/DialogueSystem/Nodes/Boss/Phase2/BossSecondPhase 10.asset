@@ -17,8 +17,11 @@ MonoBehaviour:
     \u0432\u0438 \u0441\u043A\u0430\u0436\u0438\u0442\u0435 \u043D\u0430 \u0446\u0435
     - \u0433\u043E\u043B\u043E\u0432\u043E\u043B\u043E\u043C\u043A\u0430, \u0449\u043E
     \u043A\u0440\u0443\u0442\u0438\u0442\u044C\u0441\u044F!"
+  LinkedAudio: dig10
   TypingConfig:
   - IDTo: 1000
-    TypingSpeed: 0.03
+    TypingSpeed: 0.11
     DelayAfter: 0
   DelayAfter: 0
+  AdditionalAction: 0
+  emotion: 0

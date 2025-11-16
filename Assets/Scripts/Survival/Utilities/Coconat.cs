@@ -1,9 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Coconat : MonoBehaviour
 {
+    public event Action OnCoconutTaken;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player")) 
@@ -12,9 +13,9 @@ public class Coconat : MonoBehaviour
             if (player != null) {
                 player.Regain_Some_Stamina();
             }
-            
-            Destroy(gameObject);
 
+            OnCoconutTaken?.Invoke();
+            Destroy(gameObject);
         }
     }
 }

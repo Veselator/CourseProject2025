@@ -34,11 +34,11 @@ public class DialogueTextWriter : MonoBehaviour
         int currentTypingConfigId = 0;
         CharacterTypingSpeedConfig currentTypingConfig = node.TypingConfig[currentTypingConfigId];
 
-        for (int i = 0; i <= totalCharacters; i++)
+        for (int i = 1; i <= totalCharacters; i++)
         {
             _dialogueText.maxVisibleCharacters = i;
 
-            if(i < totalCharacters && Char.IsLetter(allText[i])) yield return new WaitForSeconds(currentTypingConfig.TypingSpeed);
+            if(Char.IsLetter(allText[i - 1])) yield return new WaitForSeconds(currentTypingConfig.TypingSpeed);
 
             // Если подошли к концу - меняем currentTypingConfig
             if (i == currentTypingConfig.IDTo)

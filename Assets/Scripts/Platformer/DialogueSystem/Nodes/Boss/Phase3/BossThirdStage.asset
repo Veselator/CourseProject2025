@@ -15,9 +15,10 @@ MonoBehaviour:
   Character: {fileID: 11400000, guid: 73f9fa4ac337e8e47bfafeccf074adaa, type: 2}
   Text: "\u0412\u0438 \u043D\u0430\u0432\u0456\u0442\u044C \u0456\u0437 \u0446\u0438\u043C
     \u0432\u043F\u043E\u0440\u0430\u043B\u0438\u0441\u044C!"
+  LinkedAudio: dig11
   TypingConfig:
   - IDTo: 1000
-    TypingSpeed: 0.03
+    TypingSpeed: 0.11
     DelayAfter: 0
   DelayAfter: 0
   AdditionalAction: 1

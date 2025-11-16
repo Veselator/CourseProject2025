@@ -128,6 +128,8 @@ GameObject:
   - component: {fileID: 7925241621134042197}
   - component: {fileID: 5065189829240789120}
   - component: {fileID: 4262166791573692372}
+  - component: {fileID: 2748889174721535514}
+  - component: {fileID: 5570860433564606666}
   m_Layer: 6
   m_Name: StaticEnemy
   m_TagString: Untagged
@@ -255,6 +257,40 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &2748889174721535514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4163664632838600986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 004ea82aedf9da540a3c729fbf052776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundIfDamaged: hit_metal
+  _minPitch: 0.6
+  _maxPitch: 1.2
+  _volume: 0.86
+--- !u!114 &5570860433564606666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4163664632838600986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 302e7bcbeec46b14fa615c177bec6283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deathSoundSettings:
+    SoundId: enemy_died
+    MinPitch: 0.56
+    MaxPitch: 1.15
+    IsDefaultVolume: 1
+    VolumeFactor: 0
 --- !u!1 &7942637845113170902
 GameObject:
   m_ObjectHideFlags: 0

@@ -32,6 +32,7 @@ public class BlockSelectionManager : MonoBehaviour
     public event Action OnSuccessAnimation;
     public event Action OnFailureAnimation;
     public event Action OnResetSelection;
+    public event Action OnBlocksConnected;
     public event Action<BoxPiece> OnBlockSelected;
 
     // Other
@@ -136,6 +137,7 @@ public class BlockSelectionManager : MonoBehaviour
             BoxPiece piece = hit.GetComponent<BoxPiece>();
             if (piece != null)
             {
+                OnBlockSelected?.Invoke(piece);
                 SelectBlock(piece);
                 currentState = BlockSelectionState.Connecting;
             }
@@ -157,6 +159,7 @@ public class BlockSelectionManager : MonoBehaviour
             Debug.Log($"Connected blocks = {connectedBlocks}");
             if (targetPiece != selectedBlock && !connectedBlocks.Contains(targetPiece))
             {
+                OnBlocksConnected?.Invoke();
                 ConnectBlocks(selectedBlock, targetPiece);
             }
         }

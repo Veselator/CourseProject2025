@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8694337313597168085}
   - component: {fileID: 2283899715580859426}
   - component: {fileID: 2615376738409241492}
+  - component: {fileID: 1485153577402642538}
   m_Layer: 0
   m_Name: Damage
   m_TagString: Upgrade
@@ -127,9 +128,23 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.245
+--- !u!114 &1485153577402642538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6729941920486260607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a5db1ac3c6a10e48b6334c1814f6438, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _linkedUpgrade: {fileID: 0}
+  _upgradeTakenSFX: bonus2

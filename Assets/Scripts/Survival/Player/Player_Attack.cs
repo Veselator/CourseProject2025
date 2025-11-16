@@ -1,5 +1,5 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player_Attack : MonoBehaviour
@@ -24,12 +24,15 @@ public class Player_Attack : MonoBehaviour
     private Stamina_Sys s;
     public bool IsAttacking { get; private set; } = false;
 
+    public event Action OnAttack;
+
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instance != null)
         {
             Destroy(gameObject);
         }
+
         Instance = this;
         s = GetComponent<Stamina_Sys>();
 
@@ -40,6 +43,8 @@ public class Player_Attack : MonoBehaviour
 
     private void Do_Attack()
     {
+        OnAttack?.Invoke();
+
         Collider2D[] enemy = Physics2D.OverlapCircleAll(attackPos.position, attackR, WhatIsEnemy);
         for (int i = 0; i < enemy.Length; i++)
         {

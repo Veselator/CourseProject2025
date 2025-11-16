@@ -7,6 +7,8 @@ public class LaserTurnOffer : MonoBehaviour
     private Laser[] _lasers;
 
     public event Action<float> OnLaserTimer;
+    public event Action OnLasersTurnedOff;
+
     private void Start()
     {
         _lasers = FindObjectsOfType<Laser>();
@@ -24,6 +26,7 @@ public class LaserTurnOffer : MonoBehaviour
     // Но такова архитектура
     public void StartCoroutineForTurinngOffLasers(IAbility trackingAbility, float duration, float durationAfterEnd)
     {
+        OnLasersTurnedOff?.Invoke();
         StartCoroutine(TurningOffLasers(trackingAbility, duration, durationAfterEnd));
     }
 

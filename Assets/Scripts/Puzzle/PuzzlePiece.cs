@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using static UnityEngine.ParticleSystem;
 
 public class PuzzlePiece : MonoBehaviour
@@ -10,6 +12,7 @@ public class PuzzlePiece : MonoBehaviour
     [SerializeField] private float snapThreshold = 0.1f;
 
     private Collider2D col;
+    public event Action OnPuzzlePiecePlaced;
 
     private void Awake()
     {
@@ -38,6 +41,7 @@ public class PuzzlePiece : MonoBehaviour
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         if (sr != null)
             sr.sortingOrder = -1;
+        OnPuzzlePiecePlaced?.Invoke();
         col.enabled = false;
     }
 }

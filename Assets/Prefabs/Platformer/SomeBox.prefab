@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 7608512000375635614}
   - component: {fileID: 7312335371573924394}
   - component: {fileID: 8589089947115834520}
+  - component: {fileID: 1376939329418317509}
+  - component: {fileID: 3761650881843542340}
   m_Layer: 3
   m_Name: SomeBox
   m_TagString: Untagged
@@ -229,3 +231,37 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1376939329418317509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8523323708739119563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 004ea82aedf9da540a3c729fbf052776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundIfDamaged: box_hit
+  _minPitch: 0.6
+  _maxPitch: 1.2
+  _volume: 0.91
+--- !u!114 &3761650881843542340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8523323708739119563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 302e7bcbeec46b14fa615c177bec6283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deathSoundSettings:
+    SoundId: box_destroyed
+    MinPitch: 0.6
+    MaxPitch: 1.2
+    IsDefaultVolume: 1
+    VolumeFactor: 0

@@ -320,6 +320,7 @@ GameObject:
   m_Component:
   - component: {fileID: 250863172}
   - component: {fileID: 250863173}
+  - component: {fileID: 250863175}
   - component: {fileID: 250863174}
   m_Layer: 5
   m_Name: PuzzleSolvedText
@@ -396,6 +397,19 @@ MonoBehaviour:
   - 100%!
   - so fast!
   _particleSystem: {fileID: 1541128525}
+--- !u!114 &250863175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250863171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d341b9a7e68d6c4b911d95b271cfe60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _winSound: win
 --- !u!1 &518368597
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,7 +605,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0912fb60a6c4df24ebea8c42c29b2442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _target: {fileID: 0}
   _defaultTrackingPosition: {x: 0, y: 0, z: -10}
+  _cameraShake: {fileID: 0}
 --- !u!1 &528451553
 GameObject:
   m_ObjectHideFlags: 0
@@ -985,6 +1001,7 @@ GameObject:
   - component: {fileID: 966436037}
   - component: {fileID: 966436036}
   - component: {fileID: 966436035}
+  - component: {fileID: 966436038}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -1118,6 +1135,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 966436033}
   m_CullTransparentMesh: 1
+--- !u!114 &966436038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966436033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab825dc62c4f3ba47b66370ef83c9ec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfx: button
+  _linkedButton: {fileID: 966436035}
+  _minPitch: 0.8
+  _maxPitch: 1.2
 --- !u!1 &977462839
 GameObject:
   m_ObjectHideFlags: 0
@@ -1196,10 +1229,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1100947098}
-  - component: {fileID: 1100947097}
   - component: {fileID: 1100947096}
   m_Layer: 0
-  m_Name: SceneManager
+  m_Name: GFRM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1215,18 +1247,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 580d004753c2adc4b93473e55d74bd9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1100947097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1100947095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d903cd557756d164599525736bde364a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1100947098
@@ -1389,6 +1409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5079c08e35a08f74c92e5e60294e8c3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animationDuration: 0.2
 --- !u!212 &1313618402
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6883,6 +6904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5079c08e35a08f74c92e5e60294e8c3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animationDuration: 0.2
 --- !u!114 &1990649126
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -167,7 +167,7 @@ public abstract class BaseClickerShopItem : MonoBehaviour, IClickerShopItem
 
     private void OnAnyItemPurchased(IClickerShopItem item)
     {
-        if (item != this)
+        if (item != (IClickerShopItem)this)
         {
             OnAvailabilityChanged?.Invoke(this);
         }

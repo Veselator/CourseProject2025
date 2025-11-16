@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1475170664040578091}
   - component: {fileID: 9050274213095335479}
   - component: {fileID: 1520434220097538610}
+  - component: {fileID: -8358093290500972513}
   m_Layer: 0
   m_Name: MedkitPickupable
   m_TagString: Untagged
@@ -144,3 +145,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBonus: 25
+--- !u!114 &-8358093290500972513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124996345826167752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c41b78423b72b804d901e73e65533219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pickupSoundSettings:
+    SoundId: eating
+    MinPitch: 0.91
+    MaxPitch: 1.1
+    IsDefaultVolume: 1
+    VolumeFactor: 0

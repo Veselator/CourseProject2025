@@ -18966,6 +18966,7 @@ GameObject:
   m_Component:
   - component: {fileID: 463921151}
   - component: {fileID: 463921152}
+  - component: {fileID: 463921153}
   m_Layer: 9
   m_Name: LasetTurnOffer
   m_TagString: Untagged
@@ -19000,6 +19001,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c872bac816583ae45a2e5ea664593cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &463921153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463921150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aed37e2c8af315642867bd511f11df13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _laserTurnOffer: {fileID: 463921152}
+  _lasersTurnOffSound: lasers_turn_off
 --- !u!1001 &465392975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19513,10 +19528,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 477902920}
-  - component: {fileID: 477902919}
   - component: {fileID: 477902918}
   m_Layer: 0
-  m_Name: GaneSceneManager
+  m_Name: GFRM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19534,22 +19548,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 580d004753c2adc4b93473e55d74bd9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &477902919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 477902917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d903cd557756d164599525736bde364a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mainMenuSceneName: MainMenu
-  _levelScenes: []
-  _useAsyncLoading: 1
-  _minimumLoadingTime: 0.5
 --- !u!4 &477902920
 Transform:
   m_ObjectHideFlags: 0
@@ -33020,6 +33018,7 @@ GameObject:
   - component: {fileID: 748712662}
   - component: {fileID: 748712663}
   - component: {fileID: 748712664}
+  - component: {fileID: 748712665}
   m_Layer: 0
   m_Name: ThirdPuzzle
   m_TagString: Untagged
@@ -33082,6 +33081,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _linkedDoor: {fileID: 808666383}
+--- !u!114 &748712665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748712661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16b4eab8d01167d4587cef413f1fef86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onPuzzleSolvedSFX: puzzle_success
 --- !u!1001 &753265634
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35317,6 +35329,7 @@ GameObject:
   - component: {fileID: 838560648}
   - component: {fileID: 838560650}
   - component: {fileID: 838560649}
+  - component: {fileID: 838560651}
   m_Layer: 9
   m_Name: PlayerChangerManager
   m_TagString: Untagged
@@ -35366,6 +35379,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputAction2Change: {fileID: 5598888813680761601, guid: ca5f6e8d0310886429a8dff269c692e6, type: 3}
+--- !u!114 &838560651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838560647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8e0bce214356641a60fc4c7ed1bf6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerChangerManager: {fileID: 838560650}
+  _onPlayerChangedSFX: character_changed
 --- !u!1 &840767720
 GameObject:
   m_ObjectHideFlags: 0
@@ -36991,6 +37018,7 @@ GameObject:
   - component: {fileID: 877544631}
   - component: {fileID: 877544632}
   - component: {fileID: 877544633}
+  - component: {fileID: 877544634}
   m_Layer: 0
   m_Name: 4rdPuzzle
   m_TagString: Untagged
@@ -37054,6 +37082,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _linkedDoor: {fileID: 1202675692}
+--- !u!114 &877544634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877544630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16b4eab8d01167d4587cef413f1fef86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onPuzzleSolvedSFX: puzzle_success
 --- !u!1001 &878105054
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44756,10 +44797,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1144692968}
   - component: {fileID: 1144692970}
+  - component: {fileID: 1144692983}
   - component: {fileID: 1144692972}
+  - component: {fileID: 1144692984}
   - component: {fileID: 1144692982}
   - component: {fileID: 1144692981}
   - component: {fileID: 1144692973}
+  - component: {fileID: 1144692985}
   - component: {fileID: 1144692980}
   - component: {fileID: 1144692971}
   - component: {fileID: 1144692979}
@@ -44785,7 +44829,7 @@ Transform:
   m_GameObject: {fileID: 1144692967}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.399952, y: -2.949996, z: 0}
+  m_LocalPosition: {x: 474.78003, y: -21.009995, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -45048,6 +45092,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea3b36c3daebb944f84a694ea7737730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1144692983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144692967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5dbc721ea2d5744a870a32303d0f5af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerPlatformerHandler: {fileID: 1144692972}
+  _walkingSFX: metal_walking
+  _jumpingSFX:
+    SoundId: metal_jumping
+    MinPitch: 0.62
+    MaxPitch: 1.09
+    IsDefaultVolume: 1
+    VolumeFactor: 0
+--- !u!114 &1144692984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144692967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 004ea82aedf9da540a3c729fbf052776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundIfDamaged: some_damage
+  _minPitch: 0.6
+  _maxPitch: 1.2
+  _volume: 1
+--- !u!114 &1144692985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144692967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 302e7bcbeec46b14fa615c177bec6283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deathSoundSettings:
+    SoundId: player_died
+    MinPitch: 0.86
+    MaxPitch: 1.12
+    IsDefaultVolume: 1
+    VolumeFactor: 0.65
 --- !u!1001 &1145147400
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57167,6 +57265,7 @@ GameObject:
   - component: {fileID: 1382078845}
   - component: {fileID: 1382078846}
   - component: {fileID: 1382078847}
+  - component: {fileID: 1382078848}
   m_Layer: 0
   m_Name: RandomPieces
   m_TagString: Untagged
@@ -57229,6 +57328,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _linkedDoor: {fileID: 808666383}
+--- !u!114 &1382078848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382078844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16b4eab8d01167d4587cef413f1fef86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onPuzzleSolvedSFX: puzzle_success
 --- !u!1 &1382435422
 GameObject:
   m_ObjectHideFlags: 0
@@ -396578,6 +396690,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1641635192}
   - component: {fileID: 1641635191}
+  - component: {fileID: 1641635193}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -396619,6 +396732,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1641635193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641635190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07914f184b8bdbf41bfca1b079025111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialoguesManager: {fileID: 1641635191}
+  _volume: 1
 --- !u!1 &1641861127
 GameObject:
   m_ObjectHideFlags: 0
@@ -396629,6 +396756,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1641861128}
   - component: {fileID: 1641861129}
+  - component: {fileID: 1641861130}
   m_Layer: 9
   m_Name: PunchManager
   m_TagString: Untagged
@@ -396674,6 +396802,25 @@ MonoBehaviour:
     damageHealth: 50
     damageArmor: 0
     damageMultiplier: 1
+--- !u!114 &1641861130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641861127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb2d504f5e4a49446a6ec24ec3b58fac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerPunchManager: {fileID: 1641861129}
+  _punchSoundSettings:
+    SoundId: p_punch
+    MinPitch: 0.6
+    MaxPitch: 1.2
+    IsDefaultVolume: 1
+    VolumeFactor: 0
 --- !u!1 &1642915850
 GameObject:
   m_ObjectHideFlags: 0
@@ -398694,7 +398841,7 @@ Transform:
   m_GameObject: {fileID: 1738787821}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.4, y: -2.7, z: 0}
+  m_LocalPosition: {x: 474.78, y: -20.76, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -400492,6 +400639,7 @@ GameObject:
   - component: {fileID: 1796983226}
   - component: {fileID: 1796983227}
   - component: {fileID: 1796983228}
+  - component: {fileID: 1796983229}
   m_Layer: 0
   m_Name: AnotherRandom
   m_TagString: Untagged
@@ -400550,6 +400698,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _linkedDoor: {fileID: 1202675692}
+--- !u!114 &1796983229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796983225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16b4eab8d01167d4587cef413f1fef86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onPuzzleSolvedSFX: puzzle_success
 --- !u!1001 &1802207983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -404070,6 +404231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1927773427}
   - component: {fileID: 1927773428}
+  - component: {fileID: 1927773430}
   - component: {fileID: 1927773429}
   m_Layer: 0
   m_Name: BossPuzzlePuzzle
@@ -404146,6 +404308,19 @@ MonoBehaviour:
   _linkedSprite: {fileID: 1954177180}
   _activatedColor: {r: 1, g: 1, b: 1, a: 1}
   _unactivatedColor: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 1}
+--- !u!114 &1927773430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927773426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16b4eab8d01167d4587cef413f1fef86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onPuzzleSolvedSFX: puzzle_success
 --- !u!1 &1931371129
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class BoxPuzzleGameManager : MonoBehaviour
@@ -9,6 +9,8 @@ public class BoxPuzzleGameManager : MonoBehaviour
 
     private int currentLevelPieces = 0;
     private int totalCurrentLevelPieces;
+
+    public event Action OnLevelCompleted;
 
     private void Awake()
     {
@@ -47,6 +49,7 @@ public class BoxPuzzleGameManager : MonoBehaviour
         if (currentLevelPieces >= totalCurrentLevelPieces && totalCurrentLevelPieces > 0)
         {
             Debug.Log("Level completed!");
+            OnLevelCompleted?.Invoke();
             StartCoroutine(CompleteLevelSequence());
         }
     }

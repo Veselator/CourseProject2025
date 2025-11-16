@@ -30,6 +30,7 @@ public class DialoguesManager : MonoBehaviour
 
     public static DialoguesManager Instance { get; private set; }
 
+    public event Action<DialogueNodeSO> OnDialogueNodeStarted;
     public event Action<DialogueSO> OnDialogueEnded;
     private void Awake()
     {
@@ -82,7 +83,10 @@ public class DialoguesManager : MonoBehaviour
         if (GlobalFlags.GetFlag(Flags.GameOver)) return;
         if (!_isReadyToNextNode) return;
 
+        _isReadyToNextNode = false;
         currentNodeIndex++;
+        _nextAvailabilityAnimation.Hide();
+
         if (currentNodeIndex >= _currentDialogue.Nodes.Length)
         {
             // Диалог закончился
@@ -91,8 +95,6 @@ public class DialoguesManager : MonoBehaviour
             return;
         }
 
-        _isReadyToNextNode = false;
-        _nextAvailabilityAnimation.Hide();
         DialogueNodeSO nextNode = _currentDialogue.Nodes[currentNodeIndex];
 
         ProccessNode(nextNode);
@@ -100,6 +102,8 @@ public class DialoguesManager : MonoBehaviour
 
     private void ProccessNode(DialogueNodeSO node)
     {
+        // Запускаем узел диалога
+        OnDialogueNodeStarted?.Invoke(node);
         if (node.AdditionalAction != DialogueAdditionalAction.None)
         {
             _bossAnimationController.SetEmotion(node.emotion);

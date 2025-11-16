@@ -98,6 +98,8 @@ GameObject:
   - component: {fileID: 1992465407176319157}
   - component: {fileID: 5655402263338624251}
   - component: {fileID: 4767950868348219779}
+  - component: {fileID: 302538961696379048}
+  - component: {fileID: -7219402273929448074}
   m_Layer: 6
   m_Name: KolobockStatic
   m_TagString: Untagged
@@ -229,9 +231,67 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damageObjects:
   - {fileID: 1309029920672233783}
-  _animationDuration: 0.5
-  _flickerSpeed: 0.1
   _linkedHealth: {fileID: 0}
+  _animationDuration: 0.5
+  _maxflickerSpeed: 0.2
+  _curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.1
+      value: 0.1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &302538961696379048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2400639447478502756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 004ea82aedf9da540a3c729fbf052776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundIfDamaged: hit_metal
+  _minPitch: 0.6
+  _maxPitch: 1.2
+  _volume: 0.86
+--- !u!114 &-7219402273929448074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2400639447478502756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 302e7bcbeec46b14fa615c177bec6283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deathSoundSettings:
+    SoundId: enemy_died
+    MinPitch: 0.56
+    MaxPitch: 1.15
+    IsDefaultVolume: 1
+    VolumeFactor: 0
 --- !u!1 &3958862225049010260
 GameObject:
   m_ObjectHideFlags: 0

@@ -157,18 +157,12 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 8444359e8f845b24c846ebc030b68481, type: 3}
     category: 0
     volume: 1.22
-  - name: fail
-    AET: 0
-    clips:
-    - {fileID: 8300000, guid: 8444359e8f845b24c846ebc030b68481, type: 3}
-    category: 0
-    volume: 1.22
   - name: jump
     AET: 0
     clips:
     - {fileID: 8300000, guid: 406cfe271e928d140a4ebc345563c4f5, type: 3}
     category: 0
-    volume: 1.22
+    volume: 0.57
   - name: laser
     AET: 1
     clips:
@@ -216,3 +210,229 @@ MonoBehaviour:
     - {fileID: 8300000, guid: fd2dedfe073835a4fa55caa51cf1c78d, type: 3}
     category: 0
     volume: 0.93
+  - name: walking_grass
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 3c15b7aea0daadd4fb87b7a355650099, type: 3}
+    category: 0
+    volume: 0.57
+  - name: running_grass
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 8fdeb07cb4ee7a84581cffb3ad892b55, type: 3}
+    category: 0
+    volume: 0.52
+  - name: some_damage
+    AET: 1
+    clips:
+    - {fileID: 8300000, guid: 670fb3c8f95d569418a9b34c372ad605, type: 3}
+    - {fileID: 8300000, guid: b8c6cbb0aed85ab4eaf4f92fba9fd38c, type: 3}
+    - {fileID: 8300000, guid: b9b5b0349ea1a014c8cac34d6086a970, type: 3}
+    category: 0
+    volume: 0.75
+  - name: eating
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: eb0ae90455f124b458851109efcd1cce, type: 3}
+    category: 0
+    volume: 0.57
+  - name: bonus2
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: bb7313b41391b914faf84423d2ecf256, type: 3}
+    category: 0
+    volume: 0.52
+  - name: snap
+    AET: 1
+    clips:
+    - {fileID: 8300000, guid: 032d293926ca8d446865c89e88036146, type: 3}
+    - {fileID: 8300000, guid: f509edb33a2c7024c870a4d0cead2653, type: 3}
+    - {fileID: 8300000, guid: 0b9a2290f6ad11447b33d26499aa60db, type: 3}
+    category: 0
+    volume: 1
+  - name: win
+    AET: 1
+    clips:
+    - {fileID: 8300000, guid: f22648564fe1d884c9df55714a242e4a, type: 3}
+    - {fileID: 8300000, guid: c1958ec59793b574999725af09cca7af, type: 3}
+    - {fileID: 8300000, guid: 229c300645f60b342834710f15810f6d, type: 3}
+    category: 0
+    volume: 1
+  - name: collect
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 9483d1ac2708a5945be0fedc321be637, type: 3}
+    category: 0
+    volume: 1
+  - name: correct
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 122be1e4242d02649a6f22e5832bf59b, type: 3}
+    category: 0
+    volume: 0.75
+  - name: wrong
+    AET: 1
+    clips:
+    - {fileID: 8300000, guid: bc6e9acbdd112de40bf41400f35bda7d, type: 3}
+    - {fileID: 8300000, guid: df844ec3be5ef634fb335c7f97d4d4a5, type: 3}
+    category: 0
+    volume: 0.75
+  - name: metal_walking
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 9bbeda173df93aa4387e9b84ae7c02a9, type: 3}
+    category: 0
+    volume: 0.43
+  - name: metal_jumping
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: f832e6d9e617efc499f8c46b61b94b16, type: 3}
+    category: 0
+    volume: 0.96
+  - name: p_punch
+    AET: 1
+    clips:
+    - {fileID: 8300000, guid: 002062426a7ceac40ab586b051a4f48e, type: 3}
+    - {fileID: 8300000, guid: 9faab46b300a55a4eb7e3713008d8891, type: 3}
+    - {fileID: 8300000, guid: 20875b161ff161941a1948974d1c66ff, type: 3}
+    category: 0
+    volume: 1.22
+  - name: lasers_turn_off
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 9b8836f0f315bc0459dd0635f7583dfd, type: 3}
+    category: 0
+    volume: 1
+  - name: enemy_died
+    AET: 1
+    clips:
+    - {fileID: 8300000, guid: a8c6f06e0a9d7b34dbda99355f5caaa2, type: 3}
+    - {fileID: 8300000, guid: 633e6641bb9a78447abd6bf68e29fcfd, type: 3}
+    category: 0
+    volume: 0.42
+  - name: player_died
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 0a3558fede96667438242c49af9b7564, type: 3}
+    category: 0
+    volume: 1
+  - name: puzzle_success
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: b176ab944067b334d9c090fa36864807, type: 3}
+    category: 0
+    volume: 1
+  - name: door_closed
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: b5c40e5c687965c43a19d00dd5927350, type: 3}
+    category: 0
+    volume: 0.55
+  - name: door_opened
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 16d4ff0bf8564fd4cafc243f8361adb6, type: 3}
+    category: 0
+    volume: 0.53
+  - name: character_changed
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: aa43ae42da658a94a80028371a935565, type: 3}
+    category: 0
+    volume: 0.45
+  - name: box_hit
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 749a468a6869ce948b7429ef0bad089e, type: 3}
+    category: 0
+    volume: 0.43
+  - name: box_destroyed
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: bf1c3b3c06fb8524cad54d99894cfaae, type: 3}
+    category: 0
+    volume: 0.62
+  - name: dig1
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: ab5ad2607c330e941a3622061a51757a, type: 3}
+    category: 2
+    volume: 1
+  - name: dig2
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 5c340438380d37947b0f0fbb3bd4627a, type: 3}
+    category: 2
+    volume: 1
+  - name: dig3
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: cc25eac3f72ad0b489747ba64c3d3d23, type: 3}
+    category: 2
+    volume: 1
+  - name: dig4
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 514f9ae9d2bc5474197c5c18b005b7b4, type: 3}
+    category: 2
+    volume: 1
+  - name: dig5
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: c7194f8d4bb3c7d479fa4cf7a3b2f3c0, type: 3}
+    category: 2
+    volume: 1
+  - name: dig6
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 35b9236fa1b794d4fb680edc3cfc1813, type: 3}
+    category: 2
+    volume: 1
+  - name: dig7
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 05264a08448f1e847b689796be5bff90, type: 3}
+    category: 2
+    volume: 1
+  - name: dig8
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 3944e4b9cba988e4da258259d1a746b4, type: 3}
+    category: 2
+    volume: 1
+  - name: dig9
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: f46ff9fff78ac364da2815e3f2ff2507, type: 3}
+    category: 2
+    volume: 1
+  - name: dig10
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: c61e476be3177384abe4574e0f46d5c3, type: 3}
+    category: 2
+    volume: 1
+  - name: dig11
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 49c9cfe6e65234248af14a8b5914c993, type: 3}
+    category: 2
+    volume: 1
+  - name: dig12
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: dde21746bd896b045a8dab5bd2a886cb, type: 3}
+    category: 2
+    volume: 1
+  - name: dig13
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 506a21968fe72cf44ba5b8959eec6dac, type: 3}
+    category: 2
+    volume: 1
+  - name: dig14
+    AET: 0
+    clips:
+    - {fileID: 8300000, guid: 279eea14e961e304d87c001fb749a936, type: 3}
+    category: 2
+    volume: 1

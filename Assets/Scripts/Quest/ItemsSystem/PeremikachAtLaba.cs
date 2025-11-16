@@ -8,8 +8,9 @@ public class PeremikachAtLaba : InteractableItem
     public int CurrentValue { get; private set; } = 1;
     [SerializeField] private Quaternion[] rotations;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         transform.rotation = rotations[0];
     }
 

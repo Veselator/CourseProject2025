@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Character: {fileID: 11400000, guid: 73f9fa4ac337e8e47bfafeccf074adaa, type: 2}
   Text: "\u0412\u0418 \u0411\u0423\u041B\u0418 \u041F\u0420\u0410\u0412\u0406!"
+  LinkedAudio: dig1
   TypingConfig:
   - IDTo: 1000
-    TypingSpeed: 0.03
+    TypingSpeed: 0.14
     DelayAfter: 0
   DelayAfter: 0
+  AdditionalAction: 0
+  emotion: 0

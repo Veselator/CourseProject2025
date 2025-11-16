@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Player_Gets_Damage : MonoBehaviour
 {
@@ -10,9 +8,12 @@ public class Player_Gets_Damage : MonoBehaviour
     public float damageInterval = 0.5f; 
     private float damageTimer = 0f;
 
+    public event Action OnPlayerDamage;
+
     private void Game_Over()
     {
         gameObject.SetActive(false);
+        GlobalFlags.SetFlag(Flags.GameOver);
         manager.Game_Over();
     }
 
@@ -26,9 +27,9 @@ public class Player_Gets_Damage : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             Health_System.Instance.Take_Damage(damage);
+            OnPlayerDamage?.Invoke();
             if (Health_System.Instance.Health <= 0)
             {
-
                 Game_Over();
             }
         }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,5 @@ public class Damage_Upgrade : BaseUpgrade
     {
         Player_Attack.Instance.DAMAGE += 10;
         Destroy(gameObject);
-        
     }
-
 }

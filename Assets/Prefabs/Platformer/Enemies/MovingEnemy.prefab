@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 5626095204779937802}
   - component: {fileID: 8092417444258514135}
   - component: {fileID: 7539067718911231322}
+  - component: {fileID: 2753931259946082175}
+  - component: {fileID: -9051011369256898119}
   m_Layer: 6
   m_Name: MovingEnemy
   m_TagString: Untagged
@@ -115,9 +117,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 200
   jumpStrength: 7
-  _lerpFactorForMovement: 0.02
-  _lerpFactorForRotate: 0.05
-  _lerpFactorIfNoButtonPressed: 0.3
+  _interpolationFactorForMovement: 0.02
+  _interpolationFactorForRotate: 0.05
+  _interpolationFactorIfNoButtonPressed: 0.05
   _extraGravity: 700
 --- !u!61 &8092417444258514135
 BoxCollider2D:
@@ -191,6 +193,40 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &2753931259946082175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6125144878300690101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 004ea82aedf9da540a3c729fbf052776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundIfDamaged: hit_metal
+  _minPitch: 0.6
+  _maxPitch: 1.2
+  _volume: 0.86
+--- !u!114 &-9051011369256898119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6125144878300690101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 302e7bcbeec46b14fa615c177bec6283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deathSoundSettings:
+    SoundId: enemy_died
+    MinPitch: 0.56
+    MaxPitch: 1.15
+    IsDefaultVolume: 1
+    VolumeFactor: 0
 --- !u!1 &6862705225366916866
 GameObject:
   m_ObjectHideFlags: 0

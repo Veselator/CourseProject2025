@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5519729101262215896}
   - component: {fileID: 2439035496820752557}
   - component: {fileID: 6743629771744455583}
+  - component: {fileID: 5421308549174214788}
   - component: {fileID: 7037108336854797459}
   - component: {fileID: 4726844119781599812}
   - component: {fileID: 6164865850737244583}
@@ -150,6 +151,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particles: {fileID: 0}
   snapThreshold: 0.4
+--- !u!114 &5421308549174214788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8198427657336700538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e098188c136266747a22187b7f6ca070, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _puzzlePiece: {fileID: 6743629771744455583}
+  _puzzlePiecePlacedSFXSettings:
+    SoundId: snap
+    MinPitch: 0.6
+    MaxPitch: 1.16
+    IsDefaultVolume: 1
+    VolumeFactor: 0
 --- !u!114 &7037108336854797459
 MonoBehaviour:
   m_ObjectHideFlags: 0

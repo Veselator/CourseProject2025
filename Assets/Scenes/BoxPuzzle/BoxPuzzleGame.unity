@@ -483,7 +483,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0912fb60a6c4df24ebea8c42c29b2442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _target: {fileID: 0}
   _defaultTrackingPosition: {x: 0, y: 0, z: 0}
+  _cameraShake: {fileID: 0}
 --- !u!114 &519420035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -685,6 +687,71 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1187204325}
   m_CullTransparentMesh: 1
+--- !u!1 &1286415919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1286415921}
+  - component: {fileID: 1286415920}
+  m_Layer: 0
+  m_Name: BoxPuzzleSFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1286415920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286415919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9f70ca5abad797459ac88eaaa69449a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameManager: {fileID: 1673563666}
+  _successSound:
+    SoundId: 
+    MinPitch: 0
+    MaxPitch: 0
+    IsDefaultVolume: 0
+    VolumeFactor: 0
+  _blockSelectedSound:
+    SoundId: snap
+    MinPitch: 0.6
+    MaxPitch: 1.08
+    IsDefaultVolume: 0
+    VolumeFactor: 0.54
+  _blocksConnectedSound:
+    SoundId: collect
+    MinPitch: 0.66
+    MaxPitch: 0.98
+    IsDefaultVolume: 1
+    VolumeFactor: 0
+  _wrongSelectedSound: ban
+  _levelCompeteSound: win
+--- !u!4 &1286415921
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286415919}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.8935869, y: 4.577791, z: -0.007602879}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1497338512
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,10 +761,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1497338515}
-  - component: {fileID: 1497338514}
   - component: {fileID: 1497338513}
   m_Layer: 0
-  m_Name: SceneManager
+  m_Name: GFRM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -713,18 +779,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 580d004753c2adc4b93473e55d74bd9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1497338514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1497338512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d903cd557756d164599525736bde364a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1497338515
@@ -1139,7 +1193,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0912fb60a6c4df24ebea8c42c29b2442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _target: {fileID: 0}
   _defaultTrackingPosition: {x: 0, y: 0, z: 0}
+  _cameraShake: {fileID: 0}
 --- !u!58 &1702941664
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1355,3 +1411,4 @@ SceneRoots:
   - {fileID: 297792335}
   - {fileID: 442169478}
   - {fileID: 1702941661}
+  - {fileID: 1286415921}
