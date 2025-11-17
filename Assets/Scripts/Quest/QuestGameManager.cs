@@ -16,7 +16,7 @@ public class QuestGameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        Instance = this;
         lastLevelIndex = levelsGO.Length - 1;
 
         InitLevels();

@@ -17,7 +17,7 @@ public class Player2dANimator : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        Instance = this;
         _playerMovement = Player_Movement.Instance;
 
         _rigidBody = GetComponent<Rigidbody2D>();

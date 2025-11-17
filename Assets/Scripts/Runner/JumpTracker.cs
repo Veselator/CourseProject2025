@@ -21,7 +21,7 @@ public class JumpTracker : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        Instance = this;
         transform.GetComponent<PlayerInputHandler>().OnJumpRequested += TryToJump;
     }
 

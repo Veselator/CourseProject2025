@@ -57,7 +57,7 @@ public class BlockSelectionManager : MonoBehaviour
     private void Awake()
     {
         mainCamera = Camera.main;
-        if (Instance == null) Instance = this;
+        Instance = this;
         InitializeLineRenderers();
     }
 

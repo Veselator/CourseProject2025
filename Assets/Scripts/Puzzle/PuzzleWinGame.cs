@@ -9,7 +9,7 @@ public class PuzzleWinGame : MonoBehaviour
     // Реализуем
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        Instance = this;
     }
 
     public void WinGame()

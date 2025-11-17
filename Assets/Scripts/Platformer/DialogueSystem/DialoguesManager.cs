@@ -34,7 +34,7 @@ public class DialoguesManager : MonoBehaviour
     public event Action<DialogueSO> OnDialogueEnded;
     private void Awake()
     {
-        if(Instance == null) Instance = this;
+        Instance = this;
 
         _textWriter.OnWritingEnded += HandleWritingEnded;
         _dialogueRoot.SetActive(false);

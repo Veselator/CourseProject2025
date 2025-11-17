@@ -16,7 +16,7 @@ public class PlayerChangerManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance == null) Instance = this;
+        Instance = this;
         BindChanging();
     }
 

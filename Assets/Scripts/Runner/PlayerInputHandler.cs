@@ -21,7 +21,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        Instance = this;
         playerInput = GetComponent<PlayerInput>();
     }
 

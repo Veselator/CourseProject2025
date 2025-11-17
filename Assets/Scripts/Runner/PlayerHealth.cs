@@ -14,7 +14,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        Instance = this;
         IsPossibleToHitPlayer = true;
     }
 

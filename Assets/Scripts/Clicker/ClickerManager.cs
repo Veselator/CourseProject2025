@@ -80,7 +80,7 @@ public class ClickerManager
 
     public ClickerManager()
     {
-        if (Instance == null) Instance = this;
+        Instance = this;
     }
 
     // Оптимизация: отдельный метод для изменения без события

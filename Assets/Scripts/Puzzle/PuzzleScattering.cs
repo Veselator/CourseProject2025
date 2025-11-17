@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class PuzzleScattering : MonoBehaviour
 {
-    const float offsetForX = 3f;
-    const float offsetForY = 2f;
     [SerializeField] private Box spawnBox;
 
     public static PuzzleScattering Instance { get; private set; }
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        Instance = this;
     }
 
     public void ScatterPuzzles(List<PuzzlePiece> pieces) 

@@ -21,7 +21,7 @@ public class PlayerLaneController : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        Instance = this;
         inputHandler = GetComponent<PlayerInputHandler>();
         movementAnimator = GetComponent<PlayerMovementAnimator>();
         currentLane = startingLane;

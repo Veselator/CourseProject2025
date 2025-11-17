@@ -28,7 +28,7 @@ public class QuestTimerManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        Instance = this;
         _nextTickTime = Time.time + TIME_PER_TICK;
         _timer = timersPerLevel[currentLevel];
     }

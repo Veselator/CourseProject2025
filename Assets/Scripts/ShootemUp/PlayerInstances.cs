@@ -14,7 +14,7 @@ public class PlayerInstances : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        Instance = this;
 
         playerRigidbodyMovement = GetComponent<RigidbodyMovement>();
         playerBulletSpawner = GetComponent<BulletSpawner>();

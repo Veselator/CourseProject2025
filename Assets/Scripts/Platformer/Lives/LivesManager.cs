@@ -20,7 +20,7 @@ public class LivesManager : MonoBehaviour, IReadableValue
     private void Awake()
     {
         _lives = MaxLives;
-        if (Instance == null) Instance = this;
+        Instance = this;
     }
 
     private void Start()

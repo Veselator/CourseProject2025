@@ -20,7 +20,7 @@ public class QuestInventoryManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        Instance = this;
     }
 
     public void AddItem(QuestInventoryItem item)

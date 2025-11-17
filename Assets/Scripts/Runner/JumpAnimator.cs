@@ -15,7 +15,7 @@ public class JumpAnimator : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        Instance = this;
     }
 
     public void Jump()

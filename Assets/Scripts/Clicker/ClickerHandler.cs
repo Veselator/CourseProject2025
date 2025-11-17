@@ -30,15 +30,8 @@ public class ClickerHandler : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            Init(new ClickerManager());
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Instance = this;
+        Init(new ClickerManager());
 
         // Кешируем камеру один раз
         _mainCamera = Camera.main;
@@ -177,7 +170,6 @@ public class ClickerHandler : MonoBehaviour
 
     public void ProcessUserClick()
     {
-
         float clickIncome = _clickerManager.IncomePerClick;
         _clickerManager.ChangeMoney(clickIncome);
 

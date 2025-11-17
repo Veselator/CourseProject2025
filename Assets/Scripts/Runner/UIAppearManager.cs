@@ -16,7 +16,7 @@ public class UIAppearManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        Instance = this;
 
         canvasGroup = GetComponent<CanvasGroup>();
     }

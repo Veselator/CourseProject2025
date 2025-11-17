@@ -13,7 +13,7 @@ public class QuestObjectRegistry : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        Instance = this;
     }
 
     public GameObject GetObject(string name)

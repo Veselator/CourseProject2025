@@ -36,7 +36,7 @@ public class UpgradesManager : MonoBehaviour
     public event Action<IUpgrade> OnUpgradeChosen;
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        Instance = this;
     }
 
     private void Start()

@@ -20,7 +20,7 @@ public class PlayerInput : MonoBehaviour
         _playerInputActions.Enable();
         _player = _playerInputActions.Player;
 
-        if (Instance == null) Instance = this;
+        Instance = this;
     }
 
     public Vector2 GetMovementVector()

@@ -69,10 +69,7 @@ public class DistanceTracker : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
+        instance = this;
     }
 
     private void Start()

@@ -31,8 +31,6 @@ public class GameSceneManager : MonoBehaviour
 
     private int _currentLevelIndex = -1;
 
-    private GameAudioManager _audioManager;
-
     public event Action<float> OnLoadingProgress;
     public event Action<int, bool> OnLoadingStarted;
     public event Action<int> OnLoadingCompleted;
@@ -49,11 +47,6 @@ public class GameSceneManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         Debug.Log("GameSceneManager инициализирован");
-    }
-
-    private void Start()
-    {
-        _audioManager = GameAudioManager.Instance;
     }
 
     public static void ReloadScene()
