@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -45,12 +43,13 @@ public class ClickerUIShopItem : MonoBehaviour
     private void Start()
     {
         _clickerManager = ClickerManager.Instance;
-        Initialize(GetComponent<BaseClickerShopItem>());
+        //Initialize(GetComponent<BaseClickerShopItem>());
         buyButton.onClick.AddListener(OnBuyButtonClicked);
     }
 
     public void Initialize(BaseClickerShopItem shopItem)
     {
+        Debug.Log("Initializing UI Shop Item: " + shopItem.Title);
         _shopItem = shopItem;
 
         // Заполняем статичные данные

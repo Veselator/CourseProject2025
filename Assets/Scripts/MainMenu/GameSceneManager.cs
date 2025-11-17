@@ -34,7 +34,7 @@ public class GameSceneManager : MonoBehaviour
     private GameAudioManager _audioManager;
 
     public event Action<float> OnLoadingProgress;
-    public event Action<int> OnLoadingStarted;
+    public event Action<int, bool> OnLoadingStarted;
     public event Action<int> OnLoadingCompleted;
 
     private void Awake()
@@ -158,6 +158,7 @@ public class GameSceneManager : MonoBehaviour
             }
             else
             {
+                OnLoadingStarted?.Invoke(_currentLevelIndex, false);
                 SceneManager.LoadScene(sceneName);
             }
         }
@@ -170,7 +171,7 @@ public class GameSceneManager : MonoBehaviour
     private IEnumerator LoadSceneAsync(string sceneName)
     {
         //Debug.Log("LoadSceneAsync");
-        OnLoadingStarted?.Invoke(_currentLevelIndex);
+        OnLoadingStarted?.Invoke(_currentLevelIndex, true);
 
         float startTime = Time.time;
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);

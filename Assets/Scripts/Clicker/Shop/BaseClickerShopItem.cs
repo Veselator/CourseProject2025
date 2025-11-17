@@ -8,6 +8,7 @@ public abstract class BaseClickerShopItem : MonoBehaviour, IClickerShopItem
 
     [Header("Данные предмета")]
     [SerializeField] protected ShopItemData itemData; // Может быть назначено в инспекторе или программно
+    public ShopItemData ItemData => itemData;
 
     private ClickerManager _clickerManager;
     private List<IConditionToBuy> _conditions = new List<IConditionToBuy>();

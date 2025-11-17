@@ -20,6 +20,10 @@ public class ShopItemData : ScriptableObject
     [Header("Условия покупки")]
     public ConditionType[] conditions;
     public string[] requiredItemIDs;
+
+    [Header("Броня")]
+    public bool IsArmor = false;
+    public int ArmorId;
 }
 
 public enum ShopItemCategory

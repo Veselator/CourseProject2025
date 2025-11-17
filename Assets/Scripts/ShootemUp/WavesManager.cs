@@ -20,6 +20,7 @@ public class WavesManager : MonoBehaviour
 
     [SerializeField] private Box spawningArea;
     public static WavesManager Instance { get; private set; }
+    [SerializeField] private float _delayBeforeWin = 2f;
     public bool IsWaveEnded { get; private set; }
     private bool isAbleToEnd;
     private bool isAbleToSpawnEnemies;
@@ -81,16 +82,22 @@ public class WavesManager : MonoBehaviour
             // Если да - что-то делаем
             if (currentWaveIndex == TotalNumOfWaves)
             {
-                GlobalFlags.ToggleFlag(Flags.GameWin);
-
-                GameSaveManager.Instance.SetLevelCompleted(2);
-                GameSceneManager.LoadNextScene();
+                StartCoroutine(WaitAndWinGame());
                 return;
             }
 
             // Если волны не закончились - продолжаем
             OnWaveEnded?.Invoke();
         }
+    }
+
+    private IEnumerator WaitAndWinGame()
+    {
+        yield return new WaitForSeconds(_delayBeforeWin);
+        GlobalFlags.ToggleFlag(Flags.GameWin);
+
+        GameSaveManager.Instance.SetLevelCompleted(2);
+        GameSceneManager.LoadNextScene();
     }
 
     private void CheckGlobalFlag(string flagName, bool flagState)

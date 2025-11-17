@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 6214816280699230130}
   - component: {fileID: 2055547834978333165}
   - component: {fileID: 8795278242835673936}
+  - component: {fileID: -618298926991547368}
   m_Layer: 6
   m_Name: FastEnemy
   m_TagString: Enemy
@@ -450,6 +451,19 @@ MonoBehaviour:
   _soundIfDamaged: hit_metal
   _minPitch: 0.6
   _maxPitch: 1.2
+  _volume: 0.44
+--- !u!114 &-618298926991547368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118248135972952776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 032986460c53d5b4994c10d401fef724, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3793595244115382198
 PrefabInstance:
   m_ObjectHideFlags: 0

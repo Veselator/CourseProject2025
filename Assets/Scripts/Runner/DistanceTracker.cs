@@ -35,9 +35,9 @@ public class DistanceTracker : MonoBehaviour
 
     // Значения дистанций для этапов
     // Вынесены в константы для удобства настройки
-    public readonly float DISTANCE_TO_FIRST_TURN = 700f;
-    public readonly float DISTANCE_TO_SECOND_TURN = 1400f;
-    public readonly float DISTANCE_TO_END_GAME = 2600f;
+    public readonly float DISTANCE_TO_FIRST_TURN = 400f;
+    public readonly float DISTANCE_TO_SECOND_TURN = 700f;
+    public readonly float DISTANCE_TO_END_GAME = 1200f;
 
     public float ProgressToEnd => CurrentDistance / DISTANCE_TO_END_GAME;
 

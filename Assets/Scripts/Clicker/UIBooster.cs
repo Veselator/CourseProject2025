@@ -41,6 +41,9 @@ public class UIBooster : MonoBehaviour
     private BoosterHandler _currentBooster;
     private ClickerManager _clickerManager;
 
+    public event Action OnBoosterAvailable;
+    public event Action OnBoosterNotAvailable;
+
     private void Start()
     {
         _currentBooster = GetComponent<BoosterHandler>();
@@ -76,12 +79,6 @@ public class UIBooster : MonoBehaviour
         UpdateButtonState(0f);
     }
 
-    // Надеюсь получиться доделать эту курсовую и не совершить суицид
-    // 03.10.25
-    // Если я останусь живым - то должен оставить здесь комментарий "Всё нормально"
-
-    //
-
     private void HandlePriceFactorChanged(float newPriceFactor)
     {
         UpdateTextInfo();
@@ -107,11 +104,14 @@ public class UIBooster : MonoBehaviour
         {
             currentButtonState = true;
             buyButtonImage.color = buttonAvailableColor;
+
+            OnBoosterAvailable?.Invoke();
         }
         else if (!isAvailableToBuy && currentButtonState)
         {
             currentButtonState = false;
             buyButtonImage.color = buttonNotAvailableColor;
+            OnBoosterNotAvailable?.Invoke();
         }
     }
 
@@ -121,11 +121,14 @@ public class UIBooster : MonoBehaviour
         {
             currentButtonState = true;
             buyUpgradeButtonImage.color = buttonAvailableColor;
+
+            OnBoosterAvailable?.Invoke();
         }
         else if (!isAvailableToDoUpgrade && currentButtonState)
         {
             currentButtonState = false;
             buyUpgradeButtonImage.color = buttonNotAvailableColor;
+            OnBoosterNotAvailable?.Invoke();
         }
     }
 

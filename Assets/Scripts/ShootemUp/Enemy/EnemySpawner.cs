@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
     private EnemyConfig enemyConfig;
     private BulletConfig bulletConfig;
     // VContainer
-    private IObjectResolver resolver;
+    private CameraShake _shaker;
 
     // Вызываем для спавна врагов
 
@@ -19,11 +19,11 @@ public class EnemySpawner : MonoBehaviour
     public static EnemySpawner Instance { get; private set; }
 
     [Inject]
-    public void Construct(IObjectResolver resolver, EnemyConfig enemyConfig, BulletConfig bulletConfig)
+    public void Construct(IObjectResolver resolver, EnemyConfig enemyConfig, BulletConfig bulletConfig, CameraShake shaker)
     {
-        this.resolver = resolver;
         this.enemyConfig = enemyConfig;
         this.bulletConfig = bulletConfig;
+        _shaker = shaker;
     }
 
     private void Awake()
@@ -66,5 +66,8 @@ public class EnemySpawner : MonoBehaviour
 
             enemy.currentMovingPattern = pattern;
         }
+
+        // Привязываем тряску камеры к смерти врага
+        enemy.GetComponent<EnemyShakeCameraOnDeath>().Init(_shaker);
     }
 }

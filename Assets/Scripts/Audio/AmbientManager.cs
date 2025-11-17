@@ -37,7 +37,7 @@ public class AmbientManager : MonoBehaviour
         return null;
     }
 
-    private void HandleAmbientChange(int id)
+    private void HandleAmbientChange(int id, bool _ = true)
     {
         // -1 - меню
         if (id < -1) return;

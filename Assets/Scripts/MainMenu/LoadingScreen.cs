@@ -59,8 +59,9 @@ public class LoadingScreen : MonoBehaviour
         }
     }
 
-    private void ShowLoadingScreen(int _)
+    private void ShowLoadingScreen(int _, bool IsNeedToShow)
     {
+        if (!IsNeedToShow) return;
         Debug.Log("Started loading animation");
         _canvasGroup.gameObject.SetActive(true);
 

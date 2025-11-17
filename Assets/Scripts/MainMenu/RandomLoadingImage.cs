@@ -20,7 +20,7 @@ public class RandomLoadingImage : MonoBehaviour
         _gameSceneManager.OnLoadingStarted -= SetRandomLoadingScreen;
     }
 
-    private void SetRandomLoadingScreen(int _)
+    private void SetRandomLoadingScreen(int _, bool someBool)
     {
         _loadingScreenImage.sprite = _sprites[Random.Range(0, _sprites.Length)];
     }

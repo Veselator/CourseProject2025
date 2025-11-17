@@ -9,6 +9,7 @@ public interface IClickerShopItem
     bool IsBought { get; }
     bool IsAvailable { get; } // Доступен ли для покупки (условия выполнены)
     bool IsAffordable { get; } // Хватает ли денег
+    public ShopItemData ItemData { get; }
 
     event Action<IClickerShopItem> OnItemPurchased;
     event Action<IClickerShopItem> OnAvailabilityChanged;

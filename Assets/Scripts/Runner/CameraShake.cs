@@ -7,6 +7,7 @@ public class CameraShake : MonoBehaviour
     [Header("Shake Settings")]
     [SerializeField] private float shakeIntensity = 0.42f;
     [SerializeField] private float shakeHitIntensity = 0.3f;
+    [SerializeField] private float shakeLightHitIntensity = 0.14f;
     [SerializeField] private float ShakeDuration = 0.8f;
     [SerializeField] private float ShakeHitDuration = 0.4f;
     public float ShakeHitTime => ShakeHitDuration;
@@ -62,6 +63,12 @@ public class CameraShake : MonoBehaviour
     {
         Debug.Log("Starting shaking");
         StartCoroutine(HitShake(ShakeHitDuration, shakeHitIntensity));
+    }
+
+    public void StartLightHitShake()
+    {
+        Debug.Log("Starting shaking");
+        StartCoroutine(HitShake(ShakeHitDuration, shakeLightHitIntensity));
     }
 
     public void StartHitShake(float shakeHitIntensityFactor)

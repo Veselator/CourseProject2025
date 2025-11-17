@@ -24,7 +24,7 @@ public class MusicBasedOnLevelManager : MonoBehaviour
         _sceneManager.OnLoadingStarted -= HandleMusicChange;
     }
 
-    private void HandleMusicChange(int id)
+    private void HandleMusicChange(int id, bool _ = true)
     {
         // -1 - меню
         if (id < -1 || id >= _music.Length) return;

@@ -16,6 +16,7 @@ public class ClickerShopManager : MonoBehaviour
     private HashSet<string> _purchasedItemIDs = new HashSet<string>();
 
     public event Action<IClickerShopItem> OnAnyItemPurchased;
+    public event Action<int> OnArmorPurched;
 
     private void Awake()
     {
@@ -73,6 +74,11 @@ public class ClickerShopManager : MonoBehaviour
     {
         _purchasedItemIDs.Add(item.ItemID);
         OnAnyItemPurchased?.Invoke(item);
+
+        if (item.ItemData.IsArmor)
+        {
+            OnArmorPurched?.Invoke(item.ItemData.ArmorId);
+        }
     }
 
     public bool IsItemPurchased(string itemID)
