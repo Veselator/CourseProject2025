@@ -5,6 +5,7 @@ using UnityEngine;
 public class WordValidator
 {
     private int correctLettersCount;
+    public int CorrectLettersCount => correctLettersCount;
 
     public bool ValidateCharacter(char input, TextPiece word)
     {

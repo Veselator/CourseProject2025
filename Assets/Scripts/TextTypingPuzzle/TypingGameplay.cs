@@ -167,6 +167,7 @@ public class TypingGameplay : MonoBehaviour
         if (activeWords.Count > 0) OnWordChanged?.Invoke(activeWords.Peek());
         else OnWordChanged?.Invoke(null);
 
+        gameProgress.RegisterIncorrectChars(word.tmpText.text.Length - validator.CorrectLettersCount); // Учитываем те буквы, которые пользователь мог ввести правильно
         OnCharacterTyped?.Invoke(0, '0');
         word.isComplete = false;
         validator.Reset();
@@ -209,6 +210,11 @@ public class GameProgress
     public void RegisterCorrectChar()
     {
         correctCharsTyped++;
+    }
+
+    public void RegisterIncorrectChars(int number)
+    {
+        incorrectCharsTyped += number;
     }
 
     public void RegisterIncorrectChar()

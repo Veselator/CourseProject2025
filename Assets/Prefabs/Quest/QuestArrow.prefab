@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 4
   m_Sprite: {fileID: -77547148, guid: 098f32a67b1e53948a7bc56d8d140f73, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.97264934, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -102,9 +102,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: 
   IsNeedToRegisterObject: 0
+  isNeedToHide: 0
   action: {fileID: 11400000, guid: ba5ce80ae4e30344ab21e8606b002dba, type: 2}
   interactOnlyOnce: 0
-  isNeedToHide: 0
 --- !u!114 &8056493074616326641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,8 +117,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a705b4ab8f76f1943a402125338c511f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightedColor: {r: 1, g: 1, b: 1, a: 1}
-  standardColor: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
+  highlightedColor: {r: 0.9663243, g: 1, b: 0, a: 1}
+  standardColor: {r: 0.6615429, g: 0.6698113, b: 0, a: 1}
   transitionDuration: 0.2
 --- !u!61 &2962074631148711139
 BoxCollider2D:

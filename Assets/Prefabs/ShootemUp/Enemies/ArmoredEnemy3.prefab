@@ -318,8 +318,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b7b34c8c8785554baa51a394d8bd9f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 60
-  maximumArmor: 159.7
+  maxHealth: 50.6
+  maximumArmor: 23.2
   isArmored: 1
 --- !u!114 &643910971502515373
 MonoBehaviour:
@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609bd4b3e23ed0a4fbbecf777e977d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 3.51
   jumpStrength: 0
 --- !u!114 &6207428362239091438
 MonoBehaviour:
@@ -366,7 +366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: -1}
-  delay: 0.63
+  delay: 1.59
   IsAbleToSpawn: 1
   currentBulletType: 0
   spawnBulletsPoint: {fileID: 7887360541593810713}

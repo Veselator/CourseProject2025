@@ -2634,7 +2634,7 @@ MonoBehaviour:
   mover: {fileID: 1002982293}
   textPrefab: {fileID: 7643643160788876821, guid: b7dff41396cef0e4ea52c2c083b8466d, type: 3}
   maxWords: 15
-  timeBetweenWords: 2.2
+  timeBetweenWords: 2.68
 --- !u!114 &2009910114
 MonoBehaviour:
   m_ObjectHideFlags: 0

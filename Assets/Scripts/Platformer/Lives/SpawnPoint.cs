@@ -1,11 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class SpawnPoint : MonoBehaviour
 {
     private LivesManager _livesManager;
     [SerializeField] private Transform _spawnPoint;
+
+    public event Action OnPlayerEnter;
 
     private void Start()
     {
@@ -15,6 +16,7 @@ public class SpawnPoint : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.TryGetComponent<PlayerPlatformerHandler>(out _)) return;
+        OnPlayerEnter?.Invoke();
         _livesManager.SetSpawnPoint(_spawnPoint);
     }
 }

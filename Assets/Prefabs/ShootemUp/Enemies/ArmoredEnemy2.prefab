@@ -283,8 +283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b7b34c8c8785554baa51a394d8bd9f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 60
-  maximumArmor: 55
+  maxHealth: 45
+  maximumArmor: 35
   isArmored: 1
 --- !u!114 &643910971502515373
 MonoBehaviour:
@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609bd4b3e23ed0a4fbbecf777e977d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 3.53
   jumpStrength: 0
 --- !u!114 &6207428362239091438
 MonoBehaviour:

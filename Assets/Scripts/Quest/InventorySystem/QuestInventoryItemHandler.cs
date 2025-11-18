@@ -7,7 +7,7 @@ public class QuestInventoryItemHandler : MonoBehaviour
     private QuestInventoryManager _questInventoryManager;
     public int id = 0;
 
-    private Image _itemImage;
+    [SerializeField] private Image _itemImage;
     private Material _normalMaterial;
     private Material _highlightMaterial;
 
@@ -15,7 +15,8 @@ public class QuestInventoryItemHandler : MonoBehaviour
     {
         _questInventoryManager = questInvManager;
         LinkedItem = linkedItem;
-        _itemImage = GetComponent<Image>();
+
+        if(_itemImage == null) _itemImage = GetComponent<Image>();
         _itemImage.sprite = LinkedItem.itemIcon;
         this.id = id;
 

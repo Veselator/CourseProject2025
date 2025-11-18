@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609bd4b3e23ed0a4fbbecf777e977d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 4.86
   jumpStrength: 0
 --- !u!114 &9193466097463228795
 MonoBehaviour:
@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: -1}
-  delay: 1
+  delay: 1.55
   IsAbleToSpawn: 1
   currentBulletType: 4
   spawnBulletsPoint: {fileID: 1236736323118148089}
@@ -320,7 +320,7 @@ MonoBehaviour:
   currentBulletType: 4
   spawnBulletsPoint: {fileID: 1236736323118148089}
   isPlayerSpawner: 0
-  damageMultiplier: 1
+  damageMultiplier: 2
 --- !u!114 &1396911787293398796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,7 +339,7 @@ MonoBehaviour:
   currentBulletType: 4
   spawnBulletsPoint: {fileID: 1236736323118148089}
   isPlayerSpawner: 0
-  damageMultiplier: 1
+  damageMultiplier: 2
 --- !u!114 &5549344824059067739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,7 +353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 1, y: 0}
-  delay: 1
+  delay: 2
   IsAbleToSpawn: 1
   currentBulletType: 4
   spawnBulletsPoint: {fileID: 1236736323118148089}

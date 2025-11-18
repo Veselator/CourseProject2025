@@ -172,6 +172,15 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Escape"",
+                    ""type"": ""Button"",
+                    ""id"": ""c70b89d0-3c87-4e51-9d3a-f668d548dbdf"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -361,6 +370,17 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""action"": ""RightPrimaryKey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a21dd491-d227-42d6-b4dc-a1bde1ed0b1b"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -378,6 +398,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         m_Player_AdditionalActionButton = m_Player.FindAction("AdditionalActionButton", throwIfNotFound: true);
         m_Player_LeftPrimaryKey = m_Player.FindAction("LeftPrimaryKey", throwIfNotFound: true);
         m_Player_RightPrimaryKey = m_Player.FindAction("RightPrimaryKey", throwIfNotFound: true);
+        m_Player_Escape = m_Player.FindAction("Escape", throwIfNotFound: true);
     }
 
     ~@PlayerInputAction()
@@ -467,6 +488,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_AdditionalActionButton;
     private readonly InputAction m_Player_LeftPrimaryKey;
     private readonly InputAction m_Player_RightPrimaryKey;
+    private readonly InputAction m_Player_Escape;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -514,6 +536,10 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/RightPrimaryKey".
         /// </summary>
         public InputAction @RightPrimaryKey => m_Wrapper.m_Player_RightPrimaryKey;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Escape".
+        /// </summary>
+        public InputAction @Escape => m_Wrapper.m_Player_Escape;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -567,6 +593,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @RightPrimaryKey.started += instance.OnRightPrimaryKey;
             @RightPrimaryKey.performed += instance.OnRightPrimaryKey;
             @RightPrimaryKey.canceled += instance.OnRightPrimaryKey;
+            @Escape.started += instance.OnEscape;
+            @Escape.performed += instance.OnEscape;
+            @Escape.canceled += instance.OnEscape;
         }
 
         /// <summary>
@@ -605,6 +634,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @RightPrimaryKey.started -= instance.OnRightPrimaryKey;
             @RightPrimaryKey.performed -= instance.OnRightPrimaryKey;
             @RightPrimaryKey.canceled -= instance.OnRightPrimaryKey;
+            @Escape.started -= instance.OnEscape;
+            @Escape.performed -= instance.OnEscape;
+            @Escape.canceled -= instance.OnEscape;
         }
 
         /// <summary>
@@ -708,5 +740,12 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnRightPrimaryKey(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Escape" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnEscape(InputAction.CallbackContext context);
     }
 }
