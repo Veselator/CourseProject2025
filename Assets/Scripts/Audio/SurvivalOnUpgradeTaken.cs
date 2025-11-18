@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SurvivalOnUpgradeTaken : MonoBehaviour
@@ -13,12 +11,12 @@ public class SurvivalOnUpgradeTaken : MonoBehaviour
         _gameAudioManager = GameAudioManager.Instance;
         if(_linkedUpgrade == null) _linkedUpgrade = GetComponent<BaseUpgrade>();
 
-        _linkedUpgrade.OnDamageUpgradeTaken += PlaySFX;
+        if(_linkedUpgrade != null) _linkedUpgrade.OnDamageUpgradeTaken += PlaySFX;
     }
 
     private void OnDestroy()
     {
-        _linkedUpgrade.OnDamageUpgradeTaken -= PlaySFX;
+        if (_linkedUpgrade != null) _linkedUpgrade.OnDamageUpgradeTaken -= PlaySFX;
     }
 
     private void PlaySFX()

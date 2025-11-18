@@ -8,7 +8,8 @@ public class Health_System : MonoBehaviour
     public static Health_System Instance { get; private set; }
     public Image HealthBar;
     // ѕо нормальному надо добавить переменную MaxAmountOfHealth
-    private int amountOfHealth = 100;
+    // ѕо нормальному надо использовать архитектуру IHealth и не использовать синглтон
+    private int amountOfHealth = 200;
     public int Health => amountOfHealth;
     private float lerpFactor = 0.02f;
 
@@ -33,7 +34,7 @@ public class Health_System : MonoBehaviour
     {
         // Ёто ужасно - логика интерфейса в логике системы
         // Ќо имеем что имеем
-        HealthBar.fillAmount = Mathf.Lerp(HealthBar.fillAmount, amountOfHealth / 100f, lerpFactor);
+        HealthBar.fillAmount = Mathf.Lerp(HealthBar.fillAmount, amountOfHealth / 200f, lerpFactor);
     }
 
 }

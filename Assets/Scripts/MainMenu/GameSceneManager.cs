@@ -39,6 +39,7 @@ public class GameSceneManager : MonoBehaviour
     {
         if (_instance != null && _instance != this)
         {
+            Debug.LogWarning("Попытка создать второй GameSceneManager... предотвращена");
             Destroy(gameObject);
             return;
         }
@@ -140,6 +141,13 @@ public class GameSceneManager : MonoBehaviour
         if (string.IsNullOrEmpty(sceneName))
         {
             Debug.LogError("Имя сцены пустое!");
+            return;
+        }
+
+        if (this == null || _instance != this)
+        {
+            string specificError = this == null ? "this == null" : "_instance != this";
+            Debug.LogError($"GameSceneManager был уничтожен! Невозможно загрузить сцену. {specificError}");
             return;
         }
 

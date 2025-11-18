@@ -551,8 +551,11 @@ public class GameAudioManager : MonoBehaviour
             yield return null;
         }
 
-        activeSource.Stop();
-        activeSource.volume = 0f;
+        _musicSource.Stop();
+        _musicSource.volume = 0f;
+
+        _musicSourceCrossfade.Stop();
+        _musicSourceCrossfade.volume = 0f;
 
         _isCrossfading = false;
         _crossfadeCoroutine = null;

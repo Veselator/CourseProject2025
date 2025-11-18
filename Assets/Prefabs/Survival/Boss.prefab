@@ -276,7 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da7a747d85b16742a5ae0ab4a0de152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountOfHealth: 100
+  amountOfHealth: 60
   knockBackForce: 5
   isEnemyKnocked: 0
   enemyPrefab: {fileID: 1023040497909254609, guid: 9856d90fb758bab41931f37b5dc69677, type: 3}

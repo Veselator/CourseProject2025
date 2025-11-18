@@ -288,7 +288,7 @@ MonoBehaviour:
     clips:
     - {fileID: 8300000, guid: f832e6d9e617efc499f8c46b61b94b16, type: 3}
     category: 0
-    volume: 0.96
+    volume: 0.8
   - name: p_punch
     AET: 1
     clips:

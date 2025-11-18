@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sfx: button
-  _linkedButton: {fileID: 4848814565579747089}
+  _linkedButton: {fileID: 1389048283937620262}
   _minPitch: 0.68
   _maxPitch: 1.38
 --- !u!1 &672360158105283925
@@ -1190,7 +1190,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 7
   m_TargetDisplay: 0
 --- !u!114 &9101126092916703425
 MonoBehaviour:

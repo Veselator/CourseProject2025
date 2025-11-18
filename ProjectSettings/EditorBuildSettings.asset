@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Bootstrap/Boostrap.unity
+    guid: 34b3b9f86f9cace4cbe203c2e7080602
+  - enabled: 1
     path: Assets/Scenes/MainMenu/MainMenu.unity
     guid: 55e194861d823894ba6c4732aee0414c
   - enabled: 1
@@ -35,4 +38,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Platformer/Platformer.unity
     guid: db9aa5372f43c184298dd84be5759c4e
+  - enabled: 1
+    path: Assets/Scenes/Peremoga/Peremoga.unity
+    guid: bc6a38d1346adf4478fe9a1eec07b5b4
   m_configObjects: {}

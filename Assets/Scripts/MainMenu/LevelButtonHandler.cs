@@ -12,7 +12,7 @@ public class LevelButtonHandler : MonoBehaviour
     [SerializeField] private TMP_Text _title;
     [SerializeField] private TMP_Text _subtitle;
     [SerializeField] private Button _button;
-    [SerializeField] private GameSceneManager _gameSceneManager;
+    private GameSceneManager _gameSceneManager;
     [SerializeField] private Image _backgroundImage;
 
     [SerializeField] private Color _colorIfComplete = Color.green;
@@ -32,6 +32,6 @@ public class LevelButtonHandler : MonoBehaviour
 
     private void LoadLevelHandler()
     {
-        _gameSceneManager.LoadLevel(_linkedInfo.sceneId);
+        GameSceneManager.Instance.LoadLevel(_linkedInfo.sceneId);
     }
 }
