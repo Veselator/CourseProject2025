@@ -28,8 +28,7 @@ public class SetSpawnPoint : MonoBehaviour
         TopPos.anchoredPosition = new Vector2(0, rectCanvas.rect.height / 2) + UP_OFFSET;
 
         Border.anchoredPosition = new Vector3(borderOffsetX, 0, 0);
-        Border.localScale = new Vector2(10f, BORDER_WIDTH);
-
+        Border.localScale = new Vector2(20f, BORDER_WIDTH);
     }
 
 }

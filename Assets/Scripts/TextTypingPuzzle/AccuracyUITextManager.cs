@@ -70,7 +70,7 @@ public class AccuracyUITextManager : MonoBehaviour
         }
     }
 
-    private void UpdateAccuracyText(int _, char typedChar)
+    private void UpdateAccuracyText(int _, char __)
     {
         float accuracy = _typingGameplay.CurrentAccuracy;
         _targetAccuracy = accuracy;

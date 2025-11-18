@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PickupableItem : BaseItem
@@ -20,8 +18,23 @@ public class PickupableItem : BaseItem
 
     public override void Interact()
     {
-        QuestInventoryManager.Instance.AddItem(itemData);
-        if (additionalActions != null) QuestActionProccessor.Instance.ProcessAction(additionalActions, this.gameObject);
-        Destroy(gameObject);
+        try
+        {
+            // Пытаемся добавить (даже если UI упадет, мы это поймаем)
+            // ВАЖНО: Перед этим обнови позицию, раз уж ты используешь SO для передачи координат
+            itemData.worldPickupPosition = transform.position;
+            QuestInventoryManager.Instance.AddItem(itemData);
+
+            if (additionalActions != null)
+                QuestActionProccessor.Instance.ProcessAction(additionalActions, this.gameObject);
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"CRITICAL ERROR IN PICKUP: {e.Message}\n{e.StackTrace}");
+        }
+        finally
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -274,6 +274,12 @@ public class GameAudioManager : MonoBehaviour
         if (entry != null && entry.clips[0] != null)
         {
             float crossfadeTime = fadeTime < 0 ? _defaultCrossfadeTime : fadeTime;
+
+            if(_crossfadeCoroutine != null)
+            {
+                StopCoroutine(_crossfadeCoroutine);
+            }
+
             StartCoroutine(CrossfadeMusic(entry.clips[0], entry.volume, crossfadeTime));
         }
     }
@@ -281,7 +287,7 @@ public class GameAudioManager : MonoBehaviour
     public void StopMusic(float fadeTime = -1f)
     {
         float crossfadeTime = fadeTime < 0 ? _defaultCrossfadeTime : fadeTime;
-        StartCoroutine(FadeOutMusic(crossfadeTime));
+        _crossfadeCoroutine = StartCoroutine(FadeOutMusic(crossfadeTime));
     }
 
     public void PlayAmbient(string musicName, float fadeTime = -1f)
@@ -456,6 +462,11 @@ public class GameAudioManager : MonoBehaviour
             return;
         }
 
+        if (_crossfadeCoroutine != null)
+        {
+            StopCoroutine(_crossfadeCoroutine);
+        }
+
         StartCoroutine(CrossfadeMusic(clip, volumeMultiplier, _defaultCrossfadeTime));
     }
 
@@ -487,25 +498,20 @@ public class GameAudioManager : MonoBehaviour
 
     private IEnumerator CrossfadeMusic(AudioClip newClip, float volumeMultiplier, float fadeTime)
     {
-        if (_isCrossfading)
-        {
-            if (_crossfadeCoroutine != null)
-            {
-                StopCoroutine(_crossfadeCoroutine);
-            }
-        }
-
         _isCrossfading = true;
 
-        AudioSource fadeOutSource = _musicSource.isPlaying ? _musicSource : _musicSourceCrossfade;
-        AudioSource fadeInSource = _musicSource.isPlaying ? _musicSourceCrossfade : _musicSource;
+        // Определяем, кто сейчас свободен, а кто занят
+        // Если _musicSource играет - значит, фейдим ЕГО, а включаем Crossfade. И наоборот.
+        AudioSource activeSource = _musicSource.isPlaying ? _musicSource : _musicSourceCrossfade;
+        AudioSource newSource = activeSource == _musicSource ? _musicSourceCrossfade : _musicSource;
 
-        fadeInSource.clip = newClip;
-        fadeInSource.volume = 0f;
-        fadeInSource.Play();
+        // Подготовка нового источника
+        newSource.clip = newClip;
+        newSource.volume = 0f;
+        newSource.Play(); // Теперь играют ОБА
 
         float elapsedTime = 0f;
-        float startVolume = fadeOutSource.volume;
+        float startVolume = activeSource.volume;
         float targetVolume = _masterVolume * _musicVolume * volumeMultiplier;
 
         while (elapsedTime < fadeTime)
@@ -513,15 +519,18 @@ public class GameAudioManager : MonoBehaviour
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / fadeTime;
 
-            fadeOutSource.volume = Mathf.Lerp(startVolume, 0f, t);
-            fadeInSource.volume = Mathf.Lerp(0f, targetVolume, t);
+            activeSource.volume = Mathf.Lerp(startVolume, 0f, t);
+            newSource.volume = Mathf.Lerp(0f, targetVolume, t);
 
             yield return null;
         }
 
-        fadeOutSource.Stop();
-        fadeOutSource.volume = 0f;
-        fadeInSource.volume = targetVolume;
+        // Останавливаем старый
+        activeSource.Stop();
+        activeSource.volume = 0f;
+
+        // Фиксируем новый
+        newSource.volume = targetVolume;
 
         _isCrossfading = false;
         _crossfadeCoroutine = null;
@@ -539,23 +548,32 @@ public class GameAudioManager : MonoBehaviour
 
         _isCrossfading = true;
 
-        AudioSource activeSource = _musicSource.isPlaying ? _musicSource : _musicSourceCrossfade;
-        float startVolume = activeSource.volume;
+        // 1. Запоминаем, КОГО именно мы сейчас глушим
+        AudioSource sourceToStop = _musicSource.isPlaying ? _musicSource : _musicSourceCrossfade;
+
+        // Если оба молчат или оба играют - выберем тот, у кого громкость больше
+        if (_musicSource.isPlaying && _musicSourceCrossfade.isPlaying)
+        {
+            sourceToStop = _musicSource.volume > _musicSourceCrossfade.volume ? _musicSource : _musicSourceCrossfade;
+        }
+
+        float startVolume = sourceToStop.volume;
         float elapsedTime = 0f;
 
         while (elapsedTime < fadeTime)
         {
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / fadeTime;
-            activeSource.volume = Mathf.Lerp(startVolume, 0f, t);
+            // Глушим только нашего кандидата
+            sourceToStop.volume = Mathf.Lerp(startVolume, 0f, t);
             yield return null;
         }
 
-        _musicSource.Stop();
-        _musicSource.volume = 0f;
+        // 2. В конце останавливаем ТОЛЬКО ЕГО
+        sourceToStop.Stop();
+        sourceToStop.volume = 0f;
 
-        _musicSourceCrossfade.Stop();
-        _musicSourceCrossfade.volume = 0f;
+        // Второй источник НЕ ТРОГАЕМ. Если там началась музыка - пусть играет.
 
         _isCrossfading = false;
         _crossfadeCoroutine = null;

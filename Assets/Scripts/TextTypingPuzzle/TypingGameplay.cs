@@ -167,6 +167,7 @@ public class TypingGameplay : MonoBehaviour
         if (activeWords.Count > 0) OnWordChanged?.Invoke(activeWords.Peek());
         else OnWordChanged?.Invoke(null);
 
+        OnCharacterTyped?.Invoke(0, '0');
         word.isComplete = false;
         validator.Reset();
         gameProgress.IncrementProcessedWords();

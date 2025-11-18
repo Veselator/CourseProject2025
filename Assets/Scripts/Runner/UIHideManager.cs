@@ -20,7 +20,7 @@ public class UIHideManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        GlobalFlags.onFlagChanged += CheckGlobalFlags;
+        GlobalFlags.onFlagChanged -= CheckGlobalFlags;
     }
 
     private void CheckGlobalFlags(string flagName, bool flagState)

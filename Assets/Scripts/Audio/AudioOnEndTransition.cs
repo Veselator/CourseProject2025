@@ -20,9 +20,8 @@ public class AudioOnEndTransition : MonoBehaviour
     {
         if (flag == Flags.GameOver && state)
         {
-            _audioManager.StopMusic();
             _audioManager.StopAmbient();
-            _audioManager.PlaySound(itsFailBro);
+            _audioManager.PlayMusic(itsFailBro);
         }
     }
 }

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,6 +25,12 @@ public class QuestInventoryUIManager : MonoBehaviour
         if (canvas == null)
         {
             canvas = GetComponentInParent<Canvas>();
+            // ÇÀÏÀÑÍÎÉ ÂÀĞÈÀÍÒ ÄËß ÁÈËÄÀ
+            if (canvas == null)
+            {
+                canvas = FindObjectOfType<Canvas>(); // Èùåì ëşáîé êàíâàñ íà ñöåíå
+                Debug.LogWarning("Canvas reference was missing, found one via FindObjectOfType: " + canvas.name);
+            }
         }
     }
 
