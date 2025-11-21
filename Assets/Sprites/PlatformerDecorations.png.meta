@@ -480,7 +480,7 @@ TextureImporter:
         width: 312
         height: 187
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -488,6 +488,27 @@ TextureImporter:
       bones: []
       spriteID: c403083e4b76a2a4eb01abc389608845
       internalID: 974924518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlatformerDecorations_17
+      rect:
+        serializedVersion: 2
+        x: 1993
+        y: 230
+        width: 716
+        height: 406
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7acf565817baa4f4ca645cad62435c6e
+      internalID: -273531152
       vertices: []
       indices: 
       edges: []
@@ -512,6 +533,7 @@ TextureImporter:
       PlatformerDecorations_14: 268772893
       PlatformerDecorations_15: 535708319
       PlatformerDecorations_16: 974924518
+      PlatformerDecorations_17: -273531152
       PlatformerDecorations_2: -1193345324
       PlatformerDecorations_3: -2101314447
       PlatformerDecorations_4: -1819201884

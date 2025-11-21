@@ -28,9 +28,9 @@ public class GrenadesManager : MonoBehaviour
         OnGrenadeCountChanged?.Invoke(_currentNumOfGrenades);
     }
 
-    public void ThrowGrenade()
+    public bool ThrowGrenade()
     {
-        if (_currentNumOfGrenades <= 0) return;
+        if (_currentNumOfGrenades <= 0) return false;
         _currentNumOfGrenades--;
         OnGrenadeCountChanged?.Invoke(_currentNumOfGrenades);
 
@@ -38,12 +38,14 @@ public class GrenadesManager : MonoBehaviour
         grenadeInstance.GetComponent<ExplosionVisual>().Init(_shaker);
 
         Rigidbody2D tempRigidbody = grenadeInstance.GetComponent<Rigidbody2D>();
+
         if (tempRigidbody == null)
         {
             Debug.LogError("Компонент Rigidbody2D не найден");
-            return;
+            return false;
         }
 
         tempRigidbody.AddForce(_currentThrowDirection * _thowForceFactor, ForceMode2D.Impulse);
+        return false;
     }
 }

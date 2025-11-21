@@ -9,5 +9,8 @@ public class AbilitySolvePuzzles : IAbility
     public event Action<bool> OnAbilityAvailabilityChanged;
     public AbilitySolvePuzzles(AbilityUIData data) { UIData = data; }
 
-    public void Try2ApplyAbility() { }
+    public bool Try2ApplyAbility() 
+    { 
+        return true; 
+    }
 }

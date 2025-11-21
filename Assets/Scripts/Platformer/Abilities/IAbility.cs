@@ -10,7 +10,7 @@ public interface IAbility
     AbilityUIData UIData { get; }
 
     event Action<bool> OnAbilityAvailabilityChanged;
-    void Try2ApplyAbility();
+    bool Try2ApplyAbility();
 }
 
 // Для идентификации для анимаций

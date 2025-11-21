@@ -29,11 +29,12 @@ public class AbilityTurnOffLazers : IAbility
         UIData = data;
     }
 
-    public void Try2ApplyAbility()
+    public bool Try2ApplyAbility()
     {
-        if (!_isAvailable) return;
+        if (!_isAvailable) return false;
 
         _laserTurnOffer.StartCoroutineForTurinngOffLasers(this, duration, timeAfterDuration);
         IsAvailable = false;
+        return true;
     }
 }

@@ -49,8 +49,7 @@ public class PlayerAbilityManager : MonoBehaviour
         IAbility ability = currentAbilitiesPanel.abilities[abilityId];
         if (currentAbilitiesPanel.abilities[abilityId] == null) return;
 
-        ability.Try2ApplyAbility();
-        OnAbilityApplied?.Invoke(ability);
+        if (ability.Try2ApplyAbility()) OnAbilityApplied?.Invoke(ability);
     }
 }
 

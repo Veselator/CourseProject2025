@@ -15,9 +15,9 @@ public class AbilityStrongPunch : IAbility
         UIData = data;
     }
 
-    public void Try2ApplyAbility()
+    public bool Try2ApplyAbility()
     {
-        Debug.Log("Punching!");
         _playerPunchManager.Punch();
+        return true;
     }
 }

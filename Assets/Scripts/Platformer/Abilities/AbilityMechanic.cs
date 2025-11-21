@@ -23,9 +23,9 @@ public class AbilityMechanic : IAbility
         UIData = data;
     }
 
-    public void Try2ApplyAbility()
+    public bool Try2ApplyAbility()
     {
-        _grenadesManager.ThrowGrenade();
+        return _grenadesManager.ThrowGrenade();
     }
 
     public void CheckAreGrenadesAvailable(int count)
