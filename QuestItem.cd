@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BaseItem">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAACCBAAAAAABAAAAAMAAEAAgAIAAAQAAAEAA=</HashCode>
+      <FileName>Assets\Scripts\Quest\ItemsSystem\BaseItem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="InteractableItem">
+    <Position X="5.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABCAAAACAAAAAAAAAAAAAIAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Quest\ItemsSystem\InteractableItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PickupableItem">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAACAAAAAAAAAAAAAAIAAAAAACAAAQAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Quest\ItemsSystem\PickupableItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BoltObjectScript">
+    <Position X="10" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAQAAAEAAAAAAAAAAAAAEI=</HashCode>
+      <FileName>Assets\Scripts\Quest\ItemsSystem\BoltObjectScript.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PeremikachAtLaba">
+    <Position X="10" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAIAACAAAAQAAACAAAAAIAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Quest\ItemsSystem\PeremikachAtLaba.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuestSecurityCounterButton">
+    <Position X="7.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAIAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Quest\QuestSecurityCounterButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="IInteractable">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Quest\ItemsSystem\IInteractable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IMessageReceiver">
+    <Position X="0.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Quest\ItemsSystem\IMessageReceiver.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

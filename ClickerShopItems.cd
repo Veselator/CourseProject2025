@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BaseClickerShopItem">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>UBIRAAAQASCkQEAAoAAAQAIQACAAQAACCCBAEoEACBA=</HashCode>
+      <FileName>Assets\Scripts\Clicker\Shop\BaseClickerShopItem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ClickPowerShopItem">
+    <Position X="4.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Clicker\Shop\ClickPowerShopItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="IClickerShopItem">
+    <Position X="2.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAQAkQEAAgAAAAAAQACAAAAAAAAAAAoAAABA=</HashCode>
+      <FileName>Assets\Scripts\Clicker\Shop\IClickerShopItem.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
