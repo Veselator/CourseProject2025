@@ -1,11 +1,9 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BoosterHandler : MonoBehaviour
 {
-    [SerializeField] private ClickerBooster _booster;
+    [SerializeField] private ClickerBooster _linkedBooster;
     [SerializeField] private GameObject currentGraphicPrefab;
     private UIBooster _UIBooster;
     public GameObject CurrentPrefab => currentGraphicPrefab;
@@ -22,17 +20,19 @@ public class BoosterHandler : MonoBehaviour
         }
     }
 
-    private int currentNumOfUpgrades = 0;
-    public int CurrentNumOfUpgrades => currentNumOfUpgrades;
+    private int _currentLevel = 0;
+    public int CurrentLevel => _currentLevel;
+    public int MaxLevel => _linkedBooster.maxLevel;
+    public bool IsReachedMaxLevel => CurrentLevel >= MaxLevel;
     public bool IsBought { get; private set; } = false;
 
     // Формула расчёта текущей цены для апгрейда
     // Возможная оптимизация: кешировать значения PriceToUpgrade и CurrentIncomePerTick
-    public float PriceToUpgrade => _booster.basePriceForUnit * Mathf.Pow(_booster.priceScalerFactor, currentNumOfUpgrades) * ClickerManager.PriceFactor;
-    public float PriceToUnlock => _booster.priceToUnlock * ClickerManager.PriceFactor;
-    public float CurrentIncomePerTick => currentNumOfUpgrades * _booster.incomePerUnit;
-    public string Title => _booster.title;
-    public bool IsAvailableToUpgrade => IsBought && (ClickerManager.IsAffordable(PriceToUpgrade));
+    public float PriceToUpgrade => _linkedBooster.basePriceForUnit * Mathf.Pow(_linkedBooster.priceScalerFactor, _currentLevel) * ClickerManager.PriceFactor;
+    public float PriceToUnlock => _linkedBooster.priceToUnlock * ClickerManager.PriceFactor;
+    public float CurrentIncomePerTick => _currentLevel * _linkedBooster.incomePerUnit;
+    public string Title => _linkedBooster.title;
+    public bool IsAvailableToUpgrade => IsBought && ClickerManager.IsAffordable(PriceToUpgrade) && _currentLevel < _linkedBooster.maxLevel;
     public bool IsAvailableToBuy => ClickerManager.IsAffordable(PriceToUnlock);
 
     public Action OnBoosterBought;
@@ -48,9 +48,9 @@ public class BoosterHandler : MonoBehaviour
     {
         if (IsBought) return false;
 
-        if (_clickerManager.IsAffordable(_booster.priceToUnlock))
+        if (_clickerManager.IsAffordable(_linkedBooster.priceToUnlock))
         {
-            _clickerManager.ChangeMoney(-_booster.priceToUnlock);
+            _clickerManager.ChangeMoney(-_linkedBooster.priceToUnlock);
             IsBought = true;
 
             OnBoosterBought?.Invoke();
@@ -66,7 +66,7 @@ public class BoosterHandler : MonoBehaviour
         if (IsAvailableToUpgrade)
         {
             _clickerManager.ChangeMoney(-PriceToUpgrade);
-            currentNumOfUpgrades++;
+            _currentLevel++;
 
             OnBoosterUpgraded?.Invoke();
             return true;

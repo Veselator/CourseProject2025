@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,8 +27,9 @@ public class UIBooster : MonoBehaviour
     private Box spawnUIBox;
     [SerializeField] private float spawnStep;
 
-    private Color buttonNotAvailableColor = Color.gray;
-    private Color buttonAvailableColor = Color.yellow;
+    [SerializeField] private Color buttonNotAvailableColor = Color.gray;
+    [SerializeField] private Color buttonAvailableColor = Color.yellow;
+    [SerializeField] private Color reachedMaxColor = Color.red;
 
     // Настройки анимации
     [SerializeField] private float animationDuration = 0.5f;
@@ -43,6 +43,8 @@ public class UIBooster : MonoBehaviour
 
     public event Action OnBoosterAvailable;
     public event Action OnBoosterNotAvailable;
+
+    private bool _isNeedToUdateInfo = true;
 
     private void Start()
     {
@@ -65,10 +67,7 @@ public class UIBooster : MonoBehaviour
     private void InitUIComponents()
     {
         title.text = _currentBooster.Title;
-        levelText.text = $"Lv. {_currentBooster.CurrentNumOfUpgrades}";
-        incomePerSecond.text = $"{_currentBooster.CurrentIncomePerTick}/c";
-        priceUnlockText.text = $"{NumsFormatter.FormatMoney(_currentBooster.PriceToUnlock)}";
-        priceText.text = $"{NumsFormatter.FormatMoney(Math.Ceiling(_currentBooster.PriceToUpgrade))}";
+        UpdateTextInfo();
 
         spawnUIBox.startPoint = startPointOfUISpawning.localPosition;
         spawnUIBox.endPoint = endPointOfUISpawning.localPosition;
@@ -81,12 +80,13 @@ public class UIBooster : MonoBehaviour
 
     private void HandlePriceFactorChanged(float newPriceFactor)
     {
+        if (!_isNeedToUdateInfo) return;
         UpdateTextInfo();
     }
 
     private void UpdateTextInfo()
     {
-        levelText.text = $"Lv. {_currentBooster.CurrentNumOfUpgrades}";
+        levelText.text = $"Lv. {_currentBooster.CurrentLevel} / {_currentBooster.MaxLevel}";
         incomePerSecond.text = $"{_currentBooster.CurrentIncomePerTick}/c";
         if (_currentBooster.IsBought) priceText.text = $"{NumsFormatter.FormatMoney(Math.Ceiling(_currentBooster.PriceToUpgrade))}";
         else priceUnlockText.text = $"{NumsFormatter.FormatMoney(_currentBooster.PriceToUnlock)}";
@@ -94,40 +94,36 @@ public class UIBooster : MonoBehaviour
 
     private void UpdateButtonState(float _ = 0f)
     {
-        if (_currentBooster.IsBought) UpdateUpgradeButtonState(_currentBooster.IsAvailableToUpgrade);
-        else UpdateBuyButtonState(_currentBooster.IsAvailableToBuy);
+        if (!_isNeedToUdateInfo) return;
+
+        if (_currentBooster.IsBought)
+        {
+            if (_currentBooster.IsReachedMaxLevel) ApplyMaxLevel();
+            else UpdateButtonState(_currentBooster.IsAvailableToUpgrade, buyUpgradeButtonImage);
+        }
+        else UpdateButtonState(_currentBooster.IsAvailableToBuy, buyButtonImage);
     }
 
-    private void UpdateBuyButtonState(bool isAvailableToBuy)
+    private void ApplyMaxLevel()
     {
-        if (isAvailableToBuy && !currentButtonState)
+        buyUpgradeButtonImage.color = reachedMaxColor;
+        priceText.text = "MAX";
+        _isNeedToUdateInfo = false;
+    }
+
+    private void UpdateButtonState(bool isAvailable, Image buttonImage)
+    {
+        if (isAvailable && !currentButtonState)
         {
             currentButtonState = true;
-            buyButtonImage.color = buttonAvailableColor;
+            buttonImage.color = buttonAvailableColor;
 
             OnBoosterAvailable?.Invoke();
         }
-        else if (!isAvailableToBuy && currentButtonState)
+        else if (!isAvailable && currentButtonState)
         {
             currentButtonState = false;
-            buyButtonImage.color = buttonNotAvailableColor;
-            OnBoosterNotAvailable?.Invoke();
-        }
-    }
-
-    private void UpdateUpgradeButtonState(bool isAvailableToDoUpgrade)
-    {
-        if (isAvailableToDoUpgrade && !currentButtonState)
-        {
-            currentButtonState = true;
-            buyUpgradeButtonImage.color = buttonAvailableColor;
-
-            OnBoosterAvailable?.Invoke();
-        }
-        else if (!isAvailableToDoUpgrade && currentButtonState)
-        {
-            currentButtonState = false;
-            buyUpgradeButtonImage.color = buttonNotAvailableColor;
+            buttonImage.color = buttonNotAvailableColor;
             OnBoosterNotAvailable?.Invoke();
         }
     }
@@ -151,6 +147,8 @@ public class UIBooster : MonoBehaviour
 
     public void TryToUpgradeBooster()
     {
+        if (!_isNeedToUdateInfo) return;
+
         if (_currentBooster.TryToUpgrade())
         {
             // Графически отобразить апгрейд
@@ -210,16 +208,10 @@ public class UIBooster : MonoBehaviour
         transform.localScale = originalScale;
     }
 
-    private Vector2 GetRandomPositionInsideSpawnBox()
-    {
-        return new Vector2(UnityEngine.Random.Range(spawnUIBox.startPoint.x, spawnUIBox.endPoint.x), 
-            UnityEngine.Random.Range(spawnUIBox.startPoint.y, spawnUIBox.endPoint.y));
-    }
-
     private void SpawnAnotherUICoolThingThatIEvenCantNameButWhichHasPrettyCoolLook()
     {
         // Я правда не знаю как назвать эти штуки
         GameObject newUiThing = Instantiate(_currentBooster.CurrentPrefab, transform);
-        newUiThing.transform.localPosition = new Vector2(spawnUIBox.startPoint.x + spawnStep * (_currentBooster.CurrentNumOfUpgrades - 1), spawnUIBox.startPoint.y);//spawnUIBox.startPoint + spawnStep * _currentBooster.CurrentNumOfUpgrades;
+        newUiThing.transform.localPosition = new Vector2(spawnUIBox.startPoint.x + spawnStep * (_currentBooster.CurrentLevel - 1), spawnUIBox.startPoint.y);//spawnUIBox.startPoint + spawnStep * _currentBooster.CurrentNumOfUpgrades;
     }
 }

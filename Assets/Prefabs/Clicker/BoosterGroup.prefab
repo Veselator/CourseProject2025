@@ -668,7 +668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 340650b555a94f9418b7d905a723a21e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _booster: {fileID: 11400000, guid: 8798010fb9b51114a92149c9b03e9436, type: 2}
+  _linkedBooster: {fileID: 0}
   currentGraphicPrefab: {fileID: 0}
 --- !u!114 &5788354754058168331
 MonoBehaviour:
@@ -695,6 +695,9 @@ MonoBehaviour:
   startPointOfUISpawning: {fileID: 4761538605890152002}
   endPointOfUISpawning: {fileID: 8129582274866694460}
   spawnStep: 18
+  buttonNotAvailableColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  buttonAvailableColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  reachedMaxColor: {r: 0, g: 1, b: 0.012151957, a: 1}
   animationDuration: 0.3
   overshoot: 1.2
 --- !u!114 &7671129640655345328

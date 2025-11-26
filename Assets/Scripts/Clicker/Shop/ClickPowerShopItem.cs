@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class ClickPowerShopItem : BaseClickerShopItem
 {
     // Применяет эффекты от покупки

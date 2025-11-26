@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   damage:
-    damageHealth: 2
+    damageHealth: 45
     damageArmor: 30
     damageMultiplier: 1
   lifetime: 4

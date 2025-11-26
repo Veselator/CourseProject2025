@@ -17,3 +17,4 @@ MonoBehaviour:
   priceToUnlock: 20
   basePriceForUnit: 10
   priceScalerFactor: 2.5
+  maxLevel: 8

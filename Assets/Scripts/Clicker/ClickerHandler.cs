@@ -1,9 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using VContainer;
 
 public class ClickerHandler : MonoBehaviour
 {
@@ -155,7 +151,7 @@ public class ClickerHandler : MonoBehaviour
             // Бустер куплен - обновляем индекс
             lastBoughtIndex = i;
 
-            if (booster.CurrentNumOfUpgrades > 0)
+            if (booster.CurrentLevel > 0)
             {
                 totalSum += booster.CurrentIncomePerTick;
             }

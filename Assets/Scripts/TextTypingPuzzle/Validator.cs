@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class WordValidator
 {
+    // Класс для проверки правильности написания сиволов в слове
+
     private int correctLettersCount;
     public int CorrectLettersCount => correctLettersCount;
 
@@ -15,7 +13,7 @@ public class WordValidator
         if (currentIndex >= targetText.Length)
             return false;
 
-        bool isCorrect = char.ToLower(input) == char.ToLower(targetText[currentIndex]);
+        bool isCorrect = LanguageValidator.ValidateChar(input) == char.ToLower(targetText[currentIndex]);
 
         if (isCorrect)
         {
