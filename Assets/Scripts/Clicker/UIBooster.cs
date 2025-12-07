@@ -99,7 +99,11 @@ public class UIBooster : MonoBehaviour
         if (_currentBooster.IsBought)
         {
             if (_currentBooster.IsReachedMaxLevel) ApplyMaxLevel();
-            else UpdateButtonState(_currentBooster.IsAvailableToUpgrade, buyUpgradeButtonImage);
+            else
+            {
+                UpdateTextInfo();
+                UpdateButtonState(_currentBooster.IsAvailableToUpgrade, buyUpgradeButtonImage);
+            }
         }
         else UpdateButtonState(_currentBooster.IsAvailableToBuy, buyButtonImage);
     }
